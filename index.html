@@ -7,14 +7,14 @@
   <!-- Responsive viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Fonts (optional example) -->
+  <!-- Google Fonts (example) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
     rel="stylesheet"
   />
 
-  <!-- Example: Bootstrap 5 (CDN) for easy layout -->
+  <!-- Bootstrap 5 (CDN) -->
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
@@ -22,11 +22,18 @@
     crossorigin="anonymous"
   />
 
+  <!-- AOS (Animate on Scroll) CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+  />
+
   <!-- Our custom stylesheet -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <!-- NAVBAR (Ignoring “Resources,” “Homebuyers and Sellers,” “Order Center”) -->
+
+  <!-- NAVBAR -->
   <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
     <div class="container">
       <a class="navbar-brand fw-bold" href="index.html">
@@ -46,61 +53,54 @@
 
       <div class="collapse navbar-collapse" id="navMenu">
         <ul class="navbar-nav ms-auto">
+          <!-- We do NOT display Resources, Homebuyers & Sellers, or Order Center. -->
           <li class="nav-item">
             <a class="nav-link" href="meet-our-staff.html">Meet Our Staff</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="contact-us.html">Contact Us</a>
           </li>
-          <!-- We do NOT display Resources, Homebuyers & Sellers, or Order Center. -->
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
-  <section class="hero d-flex align-items-center">
-    <div class="container text-center text-light">
-      <div class="hero-content">
-        <!-- Big heading with fade-in animation -->
-        <h1 class="fade-in-title display-4 fw-bold">
-          Mark Twain Title Company
-        </h1>
-        <p class="lead mt-3 mb-4">
-          "Lighting the path to home ownership"
-        </p>
-
-        <!-- Hand-drawn SVG effect (Logoise.svg) -->
-        <div class="mb-4">
-          <img
-            src="images/Logoise.svg"
-            alt="Mark Twain Title Company Logo"
-            class="hand-drawn-svg"
-          />
-        </div>
-      </div>
+  <!-- HERO SECTION (Parallax-ish background) -->
+  <section class="hero d-flex align-items-center justify-content-center text-center text-light">
+    <div class="container" data-aos="fade-up">
+      <h1 class="display-4 fw-bold mb-2">Mark Twain Title Company</h1>
+      <p class="lead mb-4">"Lighting the path to home ownership"</p>
+      <!-- The existing Logo SVG. It's fine even without stroke animation -->
+      <img
+        src="images/Logoise.svg"
+        alt="Mark Twain Title Company Logo"
+        class="hero-logo mb-4"
+      />
     </div>
   </section>
 
-  <!-- MAIN CONTENT (Preserve text from the old site) -->
+  <!-- MAIN CONTENT -->
   <main class="my-5 container">
     <div class="row">
       <div class="col-12">
-        <p>
-          Mark Twain Title Company has been providing title services for over 100 years
-          and is one of the oldest Title Companies in Missouri. We are an agent for
-          Stewart Title Guaranty Company and authorized and licensed to issue title
-          insurance in the state of Missouri. We primarily serve the northeast Missouri
-          counties of Marion, Ralls, Lewis, Clark, Knox, Shelby and Monroe.
-        </p>
-        <p>
-          Our staff includes some of the most wonderful, caring and knowledgeable
-          Professionals in the Industry with their 65 years of combined experience,
-          this is what sets us apart from any other Title Agency in Northeast Missouri.
-        </p>
+        <!-- Basic fade-in on scroll -->
+        <div data-aos="fade-in" data-aos-delay="100">
+          <p>
+            Mark Twain Title Company has been providing title services for over 100 years
+            and is one of the oldest Title Companies in Missouri. We are an agent for
+            Stewart Title Guaranty Company and authorized and licensed to issue title
+            insurance in the state of Missouri. We primarily serve the northeast Missouri
+            counties of Marion, Ralls, Lewis, Clark, Knox, Shelby and Monroe.
+          </p>
+          <p>
+            Our staff includes some of the most wonderful, caring and knowledgeable
+            Professionals in the Industry with their 65 years of combined experience,
+            this is what sets us apart from any other Title Agency in Northeast Missouri.
+          </p>
+        </div>
 
-        <!-- Example: display the Stewart badge/logos (adapt as needed) -->
-        <div class="mt-4 text-center">
+        <!-- Stewart badge (centered) -->
+        <div class="mt-4 text-center" data-aos="zoom-in" data-aos-delay="200">
           <img
             src="images/stewart-badge.png"
             alt="Trusted Provider by Stewart - Vetted and verified."
@@ -122,11 +122,19 @@
     </div>
   </footer>
 
-  <!-- Bootstrap Bundle JS for nav toggling, etc. -->
+  <!-- Bootstrap Bundle JS -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ho+DgUN3jUpr3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
     crossorigin="anonymous"
   ></script>
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800, // animation duration
+      once: true,    // whether animation should happen only once
+    });
+  </script>
 </body>
 </html>
