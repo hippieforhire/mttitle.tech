@@ -1,16 +1,19 @@
-/* 
-  style.css 
-  Common styling for all pages
-  Feel free to rename to style.scss if you want to use SASS 
+/*
+  style.css
+  Common styling for all pages.
 */
 
-/* Reset some default margins/spacings if you prefer:
- * You can also rely on Bootstrap's Reboot. 
- */
-
+/* Basic reset / body */
 body {
   font-family: "Poppins", Arial, sans-serif;
   color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Smooth scrolling if you like */
+html {
+  scroll-behavior: smooth;
 }
 
 /* Navbar overrides (optional) */
@@ -18,58 +21,39 @@ body {
   font-size: 1rem;
 }
 
-/* Hero Section:
-   We add a background image via CSS, or you can do inline if you prefer.
-   For demonstration, we use a placeholder gradient + image. Adjust to your taste.
+/* HERO Section 
+   We'll do a parallax-like effect for desktops using background-attachment: fixed.
+   iOS devices often ignore background-attachment: fixed, but that’s okay.
 */
 .hero {
-  min-height: 60vh;
+  min-height: 60vh; /* adjust as needed */
   background: linear-gradient(
-      rgba(0,0,0,0.4),
-      rgba(0,0,0,0.5)
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.6)
     ),
-    url("../images/hero-bg.jpg") no-repeat center center/cover;
-  color: #fff;
+    url("../images/hero-bg.jpg") no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
 }
 
-/* Animations for heading fade-in */
-.fade-in-title {
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeInUp 1.5s ease forwards;
-  animation-delay: 0.3s;
-}
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0px);
+/* If you want to disable the fixed bg for mobile, you can do a media query: */
+@media (max-width: 768px) {
+  .hero {
+    background-attachment: scroll; /* fallback for mobile */
   }
 }
 
-/* Hand-drawn SVG effect:
-   - We'll animate stroke-dashoffset from 1000 -> 0
-   - Requires your .svg to have stroke paths, not just fills. 
-*/
-.hand-drawn-svg {
+/* Extra styling for hero text/logo */
+.hero-logo {
   width: 200px;
+  max-width: 80%;
   height: auto;
-
-  /* If your SVG has strokes, uncomment below: 
-     stroke: #ffffff;  
-     stroke-width: 2;  
-     fill: none;  
-     stroke-dasharray: 1000;
-     stroke-dashoffset: 1000;
-     animation: draw 2s ease forwards;
-     animation-delay: 1s;
-  */
 }
 
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
+/* Animate on Scroll base styles (AOS):
+   Just rely on the library’s built-in transitions, or add your own transitions here if needed.
+*/
 
 /* Footer small override */
 footer {
