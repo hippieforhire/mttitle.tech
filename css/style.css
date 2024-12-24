@@ -1,59 +1,68 @@
 /*
   style.css
-  Common styling for all pages.
+  Common styling for your entire site
 */
 
-/* Basic reset / body */
+/* Basic resets / body */
 body {
   font-family: "Poppins", Arial, sans-serif;
   color: #333;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth; /* nice smooth scrolling */
 }
 
-/* Smooth scrolling if you like */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Navbar overrides (optional) */
+/* Navbar overrides */
 .navbar {
   font-size: 1rem;
 }
 
-/* HERO Section 
-   We'll do a parallax-like effect for desktops using background-attachment: fixed.
-   iOS devices often ignore background-attachment: fixed, but that’s okay.
+/* HERO SECTION with MP4 background 
+   We position the <video> absolutely, then place an overlay for the text.
 */
-.hero {
-  min-height: 60vh; /* adjust as needed */
-  background: linear-gradient(
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.6)
-    ),
-    url("../images/hero-bg.jpg") no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed;
+.hero-section {
+  width: 100%;
+  height: 70vh; /* adjust as needed */
+  min-height: 400px;
   position: relative;
+  overflow: hidden; /* so video doesn't overflow container */
+  background-color: #000; /* fallback background if video can't load */
 }
 
-/* If you want to disable the fixed bg for mobile, you can do a media query: */
-@media (max-width: 768px) {
-  .hero {
-    background-attachment: scroll; /* fallback for mobile */
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* nicely crop/fill the container */
+  z-index: 1;        /* behind overlay text */
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  background-color: rgba(0,0,0,0.3); /* slight dark overlay if you want */
+}
+
+/* Make sure text scales properly on smaller devices */
+.hero-overlay h1 {
+  font-size: 2.2rem;
+}
+.hero-overlay p {
+  font-size: 1.2rem;
+}
+@media (min-width: 768px) {
+  .hero-overlay h1 {
+    font-size: 3rem;
+  }
+  .hero-overlay p {
+    font-size: 1.4rem;
   }
 }
-
-/* Extra styling for hero text/logo */
-.hero-logo {
-  width: 200px;
-  max-width: 80%;
-  height: auto;
-}
-
-/* Animate on Scroll base styles (AOS):
-   Just rely on the library’s built-in transitions, or add your own transitions here if needed.
-*/
 
 /* Footer small override */
 footer {
