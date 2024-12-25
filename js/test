@@ -1,1 +1,18 @@
-nt
+ installed and committed/pushed:
+
+Animate.css (animate.min.css)
+GSAP (did not copy the .js into js/, but that’s okay if you just want it in node_modules)
+Locomotive-scroll (locomotive-scroll.min.js, locomotive-scroll.css)
+ScrollReveal (scrollreveal.min.js)
+Typed.js (typed.min.js [the UMD build])
+Anime.js (anime.min.js)
+Smooth Scroll (smooth-scroll.min.js)
+ScrollOut (scroll-out.min.js)
+fullPage.js (fullpage.min.js, fullpage.min.css)
+Swiper (swiper-bundle.min.js, swiper-bundle.min.css)
+Rellax (rellax.min.js)
+VanillaTilt (vanilla-tilt.min.js)
+Lax.js (lax.min.js)
+Jarallax (jarallax.min.js, jarallax-video.min.js, jarallax.css)
+GLightbox (glightbox.min.js, glightbox.min.css)
+Flickity (flickity.min.js, flickity.min.css)
