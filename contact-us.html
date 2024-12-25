@@ -121,9 +121,11 @@
   ></script>
   <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-  <!-- Additional libraries (if desired) -->
+  <!-- GSAP -->
+  <script src="js/gsap.min.js"></script>
+  <!-- Anime.js -->
   <script src="js/anime.min.js"></script>
+  <!-- ScrollReveal (optional) -->
   <script src="js/scrollreveal.min.js"></script>
 
   <script>
@@ -131,8 +133,14 @@
       duration: 800,
       once: true
     });
-    // A little ScrollReveal to fade in the container
-    // ScrollReveal().reveal('.container', { duration: 1200, reset: false });
+
+    // A small GSAP fade-in for the heading
+    gsap.from("h2.mb-4", {
+      scrollTrigger: ".mb-4",
+      y: 50,
+      opacity: 0,
+      duration: 1
+    });
   </script>
 </body>
 </html>
