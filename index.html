@@ -85,18 +85,18 @@
       class="hero-overlay d-flex flex-column justify-content-center align-items-center text-center"
       data-aos="zoom-in"
     >
-
       <!-- Smaller / separate logo above the text -->
       <img
-        src="images/"MTTC LOGO NEW ADDRESS.JPG
+        src="images/Logoise.svg"
         alt="Mark Twain Title Company Logo"
-        class="hero-logo mb-3"
+        class="hero-logo mb-3 tilt-logo"  <!-- We'll apply VanillaTilt to this -->
       />
 
       <h1 class="display-4 fw-bold mb-2 hero-title-text">
         Mark Twain Title Company
       </h1>
-      <!-- This span will be used for typed effect on desktop; we still keep the original text for fallback -->
+
+      <!-- A typed effect on the subtitle for desktop, with fallback text -->
       <p class="lead mb-4 hero-subtitle-text" id="typedSubtitle">
         "Lighting the path to home ownership"
       </p>
@@ -125,12 +125,15 @@
 
         <!-- Stewart badge (centered) -->
         <div class="mt-5 text-center" data-aos="zoom-in" data-aos-delay="200">
-          <img
-            src="images/stewart-badge.png"
-            alt="Trusted Provider by Stewart - Vetted and verified."
-            class="img-fluid"
-            style="max-width: 150px;"
-          />
+          <!-- We'll do a subtle tilt on this badge too, for extra flair -->
+          <div class="tilt-badge d-inline-block">
+            <img
+              src="images/stewart-badge.png"
+              alt="Trusted Provider by Stewart - Vetted and verified."
+              class="img-fluid"
+              style="max-width: 150px;"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -157,7 +160,7 @@
   <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-  <!-- Locomotive or Rellax or whichever parallax (using Rellax in this example) -->
+  <!-- Locomotive or Rellax (here we use Rellax) -->
   <script src="js/rellax.min.js"></script>
 
   <!-- Anime.js (optional) -->
@@ -169,8 +172,11 @@
   <!-- ScrollReveal (optional) -->
   <script src="js/scrollreveal.min.js"></script>
 
-  <!-- More libraries if desired, e.g. GSAP -->
+  <!-- GSAP -->
   <script src="js/gsap.min.js"></script>
+
+  <!-- VanillaTilt (for tilt effect) -->
+  <script src="js/vanilla-tilt.min.js"></script>
 
   <script>
     // Initialize AOS
@@ -179,28 +185,47 @@
       once: true     // animations happen only once
     });
 
-    // Initialize Rellax for parallax effect
+    // Rellax for parallax effect
     var rellax = new Rellax('.rellax', {
       center: false
-      // speed is set by data-rellax-speed in the markup
     });
 
-    // Example typed effect on the subtitle
+    // Typed.js for subtitle effect
     var typedSubtitleEl = document.getElementById('typedSubtitle');
     if (typedSubtitleEl) {
-      // Keep the fallback text as-is if typed fails
       new Typed('#typedSubtitle', {
         strings: ['"Lighting the path to home ownership"'],
         typeSpeed: 40,
         backSpeed: 20,
         startDelay: 300,
-        backDelay: 1000,
+        backDelay: 1200,
         loop: true
       });
     }
 
-    // Optionally reveal elements with ScrollReveal
-    // ScrollReveal().reveal('.hero-section', { duration: 1000, reset: false });
+    // ScrollReveal example (uncomment if you'd like)
+    // ScrollReveal().reveal('main', { duration: 1200, distance: '50px', origin: 'bottom', reset: false });
+
+    // VanillaTilt for the logo and the badge
+    VanillaTilt.init(document.querySelectorAll('.tilt-logo'), {
+      max: 10,
+      speed: 400,
+      glare: true,
+      "max-glare": 0.3
+    });
+    VanillaTilt.init(document.querySelectorAll('.tilt-badge'), {
+      max: 5,
+      speed: 200,
+      glare: false
+    });
+
+    // Sample small GSAP fade-in or scale animation on load
+    gsap.from(".hero-overlay", {
+      opacity: 0,
+      scale: 0.8,
+      duration: 1,
+      ease: "power2.out"
+    });
   </script>
 </body>
 </html>
