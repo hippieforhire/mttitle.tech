@@ -93,3 +93,91 @@ footer {
 .staff-list {
   line-height: 1.6;
 }
+
+/* ------------------------------------------ */
+/* ADDED STYLES FOR ENHANCED "PIZAZZ" BELOW  */
+/* ------------------------------------------ */
+
+/* A subtle effect on nav links */
+.navbar .nav-link {
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+.navbar .nav-link:hover {
+  color: #ffcc66 !important; /* A warm highlight on hover */
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px; 
+}
+
+/* Slightly deeper overlay on hover in hero */
+.hero-overlay:hover {
+  background-color: rgba(0, 0, 0, 0.75);
+  transition: background-color 0.4s ease;
+}
+
+/* Additional animation for .hero-title-text and .hero-subtitle-text 
+   to fade + slide from the top slightly */
+.hero-title-text {
+  animation: fadeDownHeroTitle 1.3s ease forwards;
+}
+@keyframes fadeDownHeroTitle {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-subtitle-text {
+  animation: fadeUpHeroSubtitle 1.3s ease forwards;
+  animation-delay: 0.5s; /* come in a bit after title */
+}
+@keyframes fadeUpHeroSubtitle {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add a gentle pulsing effect to the Stewart badge on hover */
+.tilt-badge:hover {
+  animation: pulseBadge 1.2s ease-in-out infinite alternate;
+}
+@keyframes pulseBadge {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.08);
+  }
+}
+
+/* A bit more flair for .staff-list items (fade on hover) */
+.staff-list li {
+  transition: color 0.3s ease;
+}
+.staff-list li:hover {
+  color: #555;
+}
+
+/* Subtle fade/zoom on images site-wide (except hero logos above) */
+img:not(.hero-logo) {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+img:not(.hero-logo):hover {
+  transform: scale(1.04);
+  opacity: 0.9;
+}
+
+/* OPTIONAL: A little style for .custom-header if you'd like */
+.custom-header {
+  position: relative;
+  min-height: 180px; /* ensures some vertical space for the background image */
+  overflow: hidden;
+}
