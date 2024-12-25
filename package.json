@@ -71,6 +71,7 @@
     "json-schema-traverse": "^0.4.1",
     "json-stable-stringify-without-jsonify": "^1.0.1",
     "keyv": "^4.5.4",
+    "lax.js": "^2.0.3",
     "levn": "^0.4.1",
     "locate-path": "^6.0.0",
     "locomotive-scroll": "^4.1.4",
