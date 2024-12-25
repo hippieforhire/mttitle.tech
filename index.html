@@ -33,51 +33,58 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="index.html">
-        Mark Twain Title Co.
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navMenu"
-        aria-controls="navMenu"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <!-- TOP HEADER with background image + NAVBAR -->
+  <header
+    class="custom-header"
+    style="
+      background: url('images/Untitled design.jpeg') no-repeat center center;
+      background-size: cover;
+      background-position: center;
+    "
+  >
+    <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: rgba(0,0,0,0.7)">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">
+          Mark Twain Title Co.
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+          aria-controls="navMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto">
-          <!-- We do NOT display Resources, Homebuyers & Sellers, or Order Center. -->
-          <li class="nav-item">
-            <a class="nav-link" href="meet-our-staff.html">Meet Our Staff</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact-us.html">Contact Us</a>
-          </li>
-        </ul>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto">
+            <!-- We do NOT display Resources, Homebuyers & Sellers, or Order Center. -->
+            <li class="nav-item">
+              <a class="nav-link" href="meet-our-staff.html">Meet Our Staff</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact-us.html">Contact Us</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
   <!-- HERO SECTION with video background -->
   <section class="hero-section position-relative rellax" data-rellax-speed="-2">
-    <!-- Your animated logo.mp4 (autoplays, looped, muted) -->
+    <!-- Updated: remove loop, handle 2 plays via JS -->
     <video
       class="hero-video"
       autoplay
       muted
-      loop
       playsinline
       id="heroVideo"
     >
       <source src="images/Logo.mp4" type="video/mp4" />
-      <!-- If you like, add a fallback image or message here. -->
     </video>
 
     <!-- Text/logo overlay (centered) -->
@@ -85,29 +92,23 @@
       class="hero-overlay d-flex flex-column justify-content-center align-items-center text-center"
       data-aos="zoom-in"
     >
-      <!-- Smaller / separate logo above the text -->
-      <img
-        src="images/Logoise.svg"
-        alt="Mark Twain Title Company Logo"
-        class="hero-logo mb-3 tilt-logo"  <!-- We'll apply VanillaTilt to this -->
-      />
+      <!-- Removed the smaller 'Logoise.svg' image per your request -->
 
       <h1 class="display-4 fw-bold mb-2 hero-title-text">
         Mark Twain Title Company
       </h1>
 
-      <!-- A typed effect on the subtitle for desktop, with fallback text -->
+      <!-- Slowed-down typed effect -->
       <p class="lead mb-4 hero-subtitle-text" id="typedSubtitle">
         "Lighting the path to home ownership"
       </p>
     </div>
   </section>
 
-  <!-- MAIN CONTENT -->
-  <main class="my-5 container">
+  <!-- MAIN CONTENT (added animate class for extra flair) -->
+  <main class="my-5 container animate__animated animate__fadeIn">
     <div class="row">
       <div class="col-12">
-        <!-- Basic fade-in on scroll -->
         <div data-aos="fade-in" data-aos-delay="100">
           <p>
             Mark Twain Title Company has been providing title services for over 100 years
@@ -125,7 +126,6 @@
 
         <!-- Stewart badge (centered) -->
         <div class="mt-5 text-center" data-aos="zoom-in" data-aos-delay="200">
-          <!-- We'll do a subtle tilt on this badge too, for extra flair -->
           <div class="tilt-badge d-inline-block">
             <img
               src="images/stewart-badge.png"
@@ -190,41 +190,43 @@
       center: false
     });
 
-    // Typed.js for subtitle effect
+    // Typed.js for subtitle effect (slowed down)
     var typedSubtitleEl = document.getElementById('typedSubtitle');
     if (typedSubtitleEl) {
       new Typed('#typedSubtitle', {
         strings: ['"Lighting the path to home ownership"'],
-        typeSpeed: 40,
-        backSpeed: 20,
+        typeSpeed: 60,   // slowed from 40
+        backSpeed: 30,   // slowed from 20
         startDelay: 300,
         backDelay: 1200,
         loop: true
       });
     }
 
-    // ScrollReveal example (uncomment if you'd like)
-    // ScrollReveal().reveal('main', { duration: 1200, distance: '50px', origin: 'bottom', reset: false });
-
-    // VanillaTilt for the logo and the badge
-    VanillaTilt.init(document.querySelectorAll('.tilt-logo'), {
-      max: 10,
-      speed: 400,
-      glare: true,
-      "max-glare": 0.3
-    });
+    // VanillaTilt for the badge
     VanillaTilt.init(document.querySelectorAll('.tilt-badge'), {
       max: 5,
       speed: 200,
       glare: false
     });
 
-    // Sample small GSAP fade-in or scale animation on load
+    // GSAP example fade-in
     gsap.from(".hero-overlay", {
       opacity: 0,
       scale: 0.8,
       duration: 1,
       ease: "power2.out"
+    });
+
+    // Play the MP4 exactly 2 times
+    let playedCount = 0;
+    const heroVideo = document.getElementById('heroVideo');
+    heroVideo.addEventListener('ended', function() {
+      playedCount++;
+      if (playedCount < 2) {
+        heroVideo.currentTime = 0;
+        heroVideo.play();
+      }
     });
   </script>
 </body>
