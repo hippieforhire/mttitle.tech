@@ -45,10 +45,7 @@ body {
   width: 100%;
   height: 100%;
   padding: 2rem;
-
-  /* Increase the dark overlay a bit for more contrast: */
-  background-color: rgba(0, 0, 0, 0.6);
-  /* Adjust 0.6 as you like. Higher = darker overlay, easier to read text. */
+  background-color: rgba(0, 0, 0, 0.6); /* Darker overlay for readability */
 }
 
 /* Make sure text is visible */
@@ -57,7 +54,6 @@ body {
 }
 .hero-subtitle-text {
   color: #f1f1f1 !important;
-  /* You can use #eee, #fff, etc., whichever you prefer. */
 }
 
 /* Adjusting the hero logo for separate usage above the text */
@@ -68,23 +64,7 @@ body {
   height: auto;
 }
 
-/* Make sure text scales properly on smaller devices */
-.hero-overlay h1 {
-  font-size: 2.2rem;
-}
-.hero-overlay p {
-  font-size: 1.2rem;
-}
-@media (min-width: 768px) {
-  .hero-overlay h1 {
-    font-size: 3rem;
-  }
-  .hero-overlay p {
-    font-size: 1.4rem;
-  }
-}
-
-/* For standard .hero (like in meet-our-staff / contact-us) we can keep it simpler */
+/* Standard .hero (like in meet-our-staff / contact-us) */
 .hero {
   min-height: 50vh;
   padding: 2rem;
@@ -96,14 +76,20 @@ body {
   background-size: cover;
 }
 
+/* For extra spice, let's make the hero items fade in gently */
+.hero img.hero-logo {
+  transition: transform 0.4s ease;
+}
+.hero img.hero-logo:hover {
+  transform: scale(1.05);
+}
+
 /* Footer small override */
 footer {
   font-size: 0.9rem;
 }
 
-/* An optional fade-in class from Animate.css, or your own custom transitions can go here. */
-
-/* Example staff-list styling */
+/* Staff list styling */
 .staff-list {
   line-height: 1.6;
 }
