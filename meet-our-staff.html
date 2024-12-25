@@ -64,11 +64,10 @@
   <!-- HERO SECTION -->
   <section class="hero d-flex align-items-center justify-content-center text-center text-light animate__animated animate__fadeIn">
     <div class="container" data-aos="fade-up">
-      <!-- Adjust the size & placement of the SVG logo -->
       <img
         src="images/Logoise.svg"
         alt="Mark Twain Title Company Logo"
-        class="hero-logo mb-4"
+        class="hero-logo mb-4 tilt-logo" <!-- We'll do tilt again -->
       />
       <h1 class="display-4 fw-bold mb-2">Mark Twain Title Company</h1>
       <p class="lead mb-4">"Lighting the path to home ownership"</p>
@@ -92,7 +91,6 @@
           this is what sets us apart from any other Title Agency in Northeast Missouri.
         </p>
 
-        <!-- If you want actual staff names, you can list them in a nice layout: -->
         <hr />
         <h2>Our Team</h2>
         <ul class="list-unstyled staff-list mt-3 animate__animated animate__fadeInUp">
@@ -128,7 +126,7 @@
           <img
             src="images/stewart-badge.png"
             alt="Trusted Provider by Stewart - Vetted and verified."
-            class="img-fluid"
+            class="img-fluid tilt-badge"
             style="max-width:150px;"
           />
         </div>
@@ -155,10 +153,30 @@
 
   <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- VanillaTilt -->
+  <script src="js/vanilla-tilt.min.js"></script>
+  <!-- Animate / optional libraries -->
+  <script src="js/anime.min.js"></script>
+  <script src="js/scrollreveal.min.js"></script>
+  <script src="js/gsap.min.js"></script>
+
   <script>
     AOS.init({
       duration: 800,
       once: true
+    });
+
+    // Optional tilt effect
+    VanillaTilt.init(document.querySelectorAll('.tilt-logo'), {
+      max: 10,
+      speed: 300,
+      glare: true,
+      "max-glare": 0.3
+    });
+    VanillaTilt.init(document.querySelectorAll('.tilt-badge'), {
+      max: 5,
+      speed: 200,
+      glare: false
     });
   </script>
 </body>
