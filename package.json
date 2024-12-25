@@ -93,6 +93,7 @@
     "readdirp": "^4.0.2",
     "resolve-from": "^4.0.0",
     "rollup": "^4.28.1",
+    "scroll-out": "^2.2.12",
     "scrollreveal": "^4.0.9",
     "shebang-command": "^2.0.0",
     "shebang-regex": "^3.0.0",
