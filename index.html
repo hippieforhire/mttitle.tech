@@ -66,7 +66,7 @@
   </nav>
 
   <!-- HERO SECTION with video background -->
-  <section class="hero-section position-relative">
+  <section class="hero-section position-relative rellax" data-rellax-speed="-2">
     <!-- Your animated logo.mp4 (autoplays, looped, muted) -->
     <video
       class="hero-video"
@@ -80,15 +80,24 @@
       <!-- If you like, add a fallback image or message here. -->
     </video>
 
-    <!-- Text overlay (centered) -->
+    <!-- Text/logo overlay (centered) -->
     <div
       class="hero-overlay d-flex flex-column justify-content-center align-items-center text-center"
       data-aos="zoom-in"
     >
+
+      <!-- Smaller / separate logo above the text -->
+      <img
+        src="images/"MTTC LOGO NEW ADDRESS.JPG
+        alt="Mark Twain Title Company Logo"
+        class="hero-logo mb-3"
+      />
+
       <h1 class="display-4 fw-bold mb-2 hero-title-text">
         Mark Twain Title Company
       </h1>
-      <p class="lead mb-4 hero-subtitle-text">
+      <!-- This span will be used for typed effect on desktop; we still keep the original text for fallback -->
+      <p class="lead mb-4 hero-subtitle-text" id="typedSubtitle">
         "Lighting the path to home ownership"
       </p>
     </div>
@@ -147,11 +156,51 @@
 
   <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Locomotive or Rellax or whichever parallax (using Rellax in this example) -->
+  <script src="js/rellax.min.js"></script>
+
+  <!-- Anime.js (optional) -->
+  <script src="js/anime.min.js"></script>
+
+  <!-- Typed.js -->
+  <script src="js/typed.min.js"></script>
+
+  <!-- ScrollReveal (optional) -->
+  <script src="js/scrollreveal.min.js"></script>
+
+  <!-- More libraries if desired, e.g. GSAP -->
+  <script src="js/gsap.min.js"></script>
+
   <script>
+    // Initialize AOS
     AOS.init({
       duration: 800, // animation duration
-      once: true,    // animations happen only once
+      once: true     // animations happen only once
     });
+
+    // Initialize Rellax for parallax effect
+    var rellax = new Rellax('.rellax', {
+      center: false
+      // speed is set by data-rellax-speed in the markup
+    });
+
+    // Example typed effect on the subtitle
+    var typedSubtitleEl = document.getElementById('typedSubtitle');
+    if (typedSubtitleEl) {
+      // Keep the fallback text as-is if typed fails
+      new Typed('#typedSubtitle', {
+        strings: ['"Lighting the path to home ownership"'],
+        typeSpeed: 40,
+        backSpeed: 20,
+        startDelay: 300,
+        backDelay: 1000,
+        loop: true
+      });
+    }
+
+    // Optionally reveal elements with ScrollReveal
+    // ScrollReveal().reveal('.hero-section', { duration: 1000, reset: false });
   </script>
 </body>
 </html>
