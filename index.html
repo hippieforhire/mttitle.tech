@@ -28,6 +28,9 @@
     href="https://unpkg.com/aos@2.3.1/dist/aos.css"
   />
 
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="css/animate.min.css" />
+
   <!-- Our custom stylesheet -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -38,13 +41,13 @@
     class="custom-header"
     style="
       background: url('images/Untitled design.jpeg') no-repeat center center;
-      background-size: cover;
+      background-size: contain;
       background-position: center;
     "
   >
-    <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
+    <nav class="navbar navbar-expand-md shadow-sm">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="index.html">
+        <a class="navbar-brand fw-bold text-white" href="index.html">
           Mark Twain Title Co.
         </a>
         <button
@@ -92,8 +95,6 @@
       class="hero-overlay d-flex flex-column justify-content-start align-items-center text-center"
       data-aos="zoom-in"
     >
-      <!-- Removed the smaller 'Logoise.svg' image per your request -->
-
       <h1 class="display-4 fw-bold mb-2 hero-title-text">
         Mark Twain Title Company
       </h1>
@@ -123,20 +124,6 @@
             this is what sets us apart from any other Title Agency in Northeast Missouri.
           </p>
         </div>
-
-        <!-- Removed the Stewart badge image to eliminate broken image icon -->
-        <!--
-        <div class="mt-5 text-center" data-aos="zoom-in" data-aos-delay="200">
-          <div class="tilt-badge d-inline-block">
-            <img
-              src="images/stewart-badge.png"
-              alt="Trusted Provider by Stewart - Vetted and verified."
-              class="img-fluid"
-              style="max-width: 150px;"
-            />
-          </div>
-        </div>
-        -->
       </div>
     </div>
   </main>
@@ -205,20 +192,11 @@
       });
     }
 
-    // VanillaTilt for the badge
-    /*
-    VanillaTilt.init(document.querySelectorAll('.tilt-badge'), {
-      max: 5,
-      speed: 200,
-      glare: false
-    });
-    */
-
     // GSAP example fade-in
     gsap.from(".hero-overlay", {
       opacity: 0,
-      scale: 0.8,
-      duration: 1,
+      y: -50,
+      duration: 1.2,
       ease: "power2.out"
     });
 
