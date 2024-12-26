@@ -15,7 +15,7 @@ body {
 /* Navbar overrides */
 .navbar {
   font-size: 1rem;
-  background-color: rgba(0,0,0,1); /* Changed from semi-transparent to opaque */
+  background-color: rgba(0, 0, 0, 0.5); /* Reduced opacity for lighter overlay */
 }
 
 /* HERO SECTION with MP4 background 
@@ -46,6 +46,7 @@ body {
   width: 100%;
   height: 100%;
   padding: 2rem;
+  padding-top: 4rem; /* Increased top padding to move text higher */
   /* Removed the background-color to eliminate transparent overlay */
 }
 
@@ -53,8 +54,10 @@ body {
 .hero-title-text {
   color: #fff !important;
 }
+
 .hero-subtitle-text {
-  color: #f1f1f1 !important;
+  color: #000 !important; /* Changed from #f1f1f1 to black */
+  font-weight: bold;      /* Made the text bold */
 }
 
 /* Adjusting the hero logo for separate usage above the text */
@@ -185,7 +188,7 @@ img:not(.hero-logo):hover {
 /* OPTIONAL: A little style for .custom-header if you'd like */
 .custom-header {
   position: relative;
-  min-height: 180px; /* ensures some vertical space for the background image */
+  min-height: 250px; /* Increased from 180px to ensure full image visibility */
   overflow: hidden;
 }
 
@@ -196,11 +199,15 @@ img:not(.hero-logo):hover {
   }
 
   .navbar {
-    background-color: rgba(0,0,0,1); /* Ensure navbar remains opaque on smaller screens */
+    background-color: rgba(0, 0, 0, 0.5); /* Ensure navbar remains semi-transparent on smaller screens */
   }
 
   .hero-video {
     object-fit: contain; /* Ensure video scales properly */
+  }
+
+  .custom-header {
+    min-height: 200px; /* Adjusted for better fit on smaller screens */
   }
 }
 
@@ -210,6 +217,6 @@ img:not(.hero-logo):hover {
   }
 
   .custom-header {
-    min-height: 250px; /* Increased height for better visibility on larger screens */
+    min-height: 350px; /* Increased height for better visibility on larger screens */
   }
 }
