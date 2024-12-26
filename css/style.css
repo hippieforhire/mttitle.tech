@@ -15,7 +15,23 @@ body {
 /* Navbar overrides */
 .navbar {
   font-size: 1rem;
-  background-color: rgba(0, 0, 0, 0.5); /* Reduced opacity for lighter overlay */
+  background-color: transparent; /* Removed semi-transparent background */
+}
+
+.navbar .navbar-brand {
+  color: white !important;
+}
+
+.navbar .nav-link {
+  color: white !important;
+  background-color: transparent !important;
+  padding-bottom: 0.5rem; /* Positioning links towards the bottom */
+}
+
+.navbar .nav-link:hover {
+  color: #ffcc66 !important; /* A warm highlight on hover */
+  background-color: transparent !important;
+  border-radius: 0; 
 }
 
 /* HERO SECTION with MP4 background 
@@ -41,31 +57,23 @@ body {
 }
 
 .hero-overlay {
-  position: relative;
+  position: absolute;
+  top: 10%; /* Moved up closer to the top */
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 2;
   width: 100%;
-  height: 100%;
-  padding: 2rem;
-  padding-top: 4rem; /* Increased top padding to move text higher */
-  /* Removed the background-color to eliminate transparent overlay */
+  padding: 1rem 2rem;
 }
 
-/* Make sure text is visible */
 .hero-title-text {
   color: #fff !important;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }
 
 .hero-subtitle-text {
-  color: #000 !important; /* Changed from #f1f1f1 to black */
+  color: #fff !important; /* Changed from #000 to white for better visibility */
   font-weight: bold;      /* Made the text bold */
-}
-
-/* Adjusting the hero logo for separate usage above the text */
-.hero-logo {
-  display: block;
-  margin: 0 auto 1rem auto;
-  max-width: 150px;
-  height: auto;
 }
 
 /* Standard .hero (like in meet-our-staff / contact-us) */
@@ -102,25 +110,6 @@ footer {
 /* ADDED STYLES FOR ENHANCED "PIZAZZ" BELOW  */
 /* ------------------------------------------ */
 
-/* A subtle effect on nav links */
-.navbar .nav-link {
-  transition: color 0.3s ease, background-color 0.3s ease;
-}
-.navbar .nav-link:hover {
-  color: #ffcc66 !important; /* A warm highlight on hover */
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 4px; 
-}
-
-/* Slightly deeper overlay on hover in hero */
-/* Removed since the overlay has been eliminated */
-/*
-.hero-overlay:hover {
-  background-color: rgba(0, 0, 0, 0.75);
-  transition: background-color 0.4s ease;
-}
-*/
-
 /* Additional animation for .hero-title-text and .hero-subtitle-text 
    to fade + slide from the top slightly */
 .hero-title-text {
@@ -151,22 +140,6 @@ footer {
     transform: translateY(0);
   }
 }
-
-/* Add a gentle pulsing effect to the Stewart badge on hover */
-/* Removed since the Stewart badge has been removed */
-/*
-.tilt-badge:hover {
-  animation: pulseBadge 1.2s ease-in-out infinite alternate;
-}
-@keyframes pulseBadge {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.08);
-  }
-}
-*/
 
 /* A bit more flair for .staff-list items (fade on hover) */
 .staff-list li {
@@ -199,7 +172,7 @@ img:not(.hero-logo):hover {
   }
 
   .navbar {
-    background-color: rgba(0, 0, 0, 0.5); /* Ensure navbar remains semi-transparent on smaller screens */
+    background-color: transparent; /* Ensure navbar remains transparent on smaller screens */
   }
 
   .hero-video {
@@ -208,6 +181,19 @@ img:not(.hero-logo):hover {
 
   .custom-header {
     min-height: 200px; /* Adjusted for better fit on smaller screens */
+  }
+
+  .hero-overlay {
+    top: 5%; /* Further move up on smaller screens */
+    padding: 0.5rem 1rem;
+  }
+
+  .hero-title-text {
+    font-size: 1.8rem; /* Adjust font size for smaller screens */
+  }
+
+  .hero-subtitle-text {
+    font-size: 1rem; /* Adjust font size for smaller screens */
   }
 }
 
