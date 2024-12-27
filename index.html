@@ -7,7 +7,7 @@
   <!-- Responsive viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Fonts (example) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
@@ -23,10 +23,7 @@
   />
 
   <!-- AOS (Animate On Scroll) CSS -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/aos@2.3.1/dist/aos.css"
-  />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 
   <!-- Animate.css -->
   <link rel="stylesheet" href="css/animate.min.css" />
@@ -41,7 +38,7 @@
     class="custom-header"
     style="
       background: url('images/Untitled design.jpeg') no-repeat center center;
-      background-size: contain;
+      background-size: cover;
       background-position: center;
     "
   >
@@ -50,36 +47,14 @@
         <a class="navbar-brand fw-bold text-white" href="index.html">
           Mark Twain Title Co.
         </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navMenu"
-          aria-controls="navMenu"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navMenu">
-          <ul class="navbar-nav ms-auto">
-            <!-- We do NOT display Resources, Homebuyers & Sellers, or Order Center. -->
-            <li class="nav-item">
-              <a class="nav-link" href="meet-our-staff.html">Meet Our Staff</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact-us.html">Contact Us</a>
-            </li>
-          </ul>
-        </div>
+        <!-- Removed the navbar toggler and links as per request -->
       </div>
     </nav>
   </header>
 
   <!-- HERO SECTION with video background -->
   <section class="hero-section position-relative rellax" data-rellax-speed="-2">
-    <!-- Updated: remove loop, handle 2 plays via JS -->
+    <!-- Video Background -->
     <video
       class="hero-video"
       autoplay
@@ -92,7 +67,7 @@
 
     <!-- Text/logo overlay (positioned higher) -->
     <div
-      class="hero-overlay d-flex flex-column justify-content-start align-items-center text-center"
+      class="hero-overlay d-flex flex-column align-items-center text-center"
       data-aos="zoom-in"
     >
       <h1 class="display-4 fw-bold mb-2 hero-title-text">
@@ -106,7 +81,7 @@
     </div>
   </section>
 
-  <!-- MAIN CONTENT (added animate class for extra flair) -->
+  <!-- MAIN CONTENT -->
   <main class="my-5 container animate__animated animate__fadeIn">
     <div class="row">
       <div class="col-12">
@@ -195,7 +170,7 @@
     // GSAP example fade-in
     gsap.from(".hero-overlay", {
       opacity: 0,
-      y: -50,
+      y: -100, // Move from higher up
       duration: 1.2,
       ease: "power2.out"
     });
