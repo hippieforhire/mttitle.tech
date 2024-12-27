@@ -157,12 +157,12 @@ img:not(.hero-logo):hover {
 .custom-header {
   position: relative;
   width: 100%;
-  padding-top: 13.89%; /* Maintain aspect ratio (900/125=7.2, 100/7.2≈13.89%) */
-  background: url('images/Untitled design.jpeg') no-repeat center center;
+  height: 125px; /* Fixed height based on image height */
+  background: url('images/Untitled design.jpeg') no-repeat left top;
   background-size: contain; /* Prevent zooming */
-  background-position: center;
+  background-position: left top;
   margin: 0;
-  /* Removed padding: 0; to ensure padding-top is effective */
+  padding: 0;
   overflow: hidden;
 }
 
@@ -181,7 +181,7 @@ img:not(.hero-logo):hover {
   }
 
   .custom-header {
-    padding-top: 13.89%; /* Maintain aspect ratio */
+    height: 125px; /* Fixed height */
   }
 
   .hero-overlay {
@@ -210,7 +210,7 @@ img:not(.hero-logo):hover {
   }
 
   .custom-header {
-    padding-top: 13.89%; /* Maintain aspect ratio */
+    height: 125px; /* Fixed height */
   }
 
   .hero-overlay {
