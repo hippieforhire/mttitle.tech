@@ -3,7 +3,7 @@
   Common styling for your entire site
 */
 
-/* Basic resets / body */
+/* Basic resets / body and html */
 body, html {
   font-family: "Poppins", Arial, sans-serif;
   color: #333;
@@ -16,26 +16,21 @@ body, html {
 /* Navbar overrides */
 .navbar {
   font-size: 1rem;
-  background-color: transparent; /* Removed semi-transparent background */
+  background-color: transparent; /* Ensure navbar is transparent */
   margin: 0;
-  padding: 0.5rem 1rem; /* Adjust padding as needed */
+  padding: 0; /* Remove padding to eliminate gaps */
 }
 
-.navbar .navbar-brand {
-  color: white !important;
-  font-size: 1.5rem;
+/* Remove any padding/margin on container inside navbar */
+.navbar .container {
+  margin: 0;
+  padding: 0;
 }
 
-.navbar .navbar-brand:hover {
-  color: #ffcc66 !important;
-}
-
-/* HERO SECTION with MP4 background 
-   We position the <video> absolutely, then place an overlay for the text.
-*/
+/* HERO SECTION with MP4 background */
 .hero-section {
   width: 100%;
-  height: 70vh; /* adjust as needed */
+  height: 70vh; /* Adjust as needed */
   min-height: 400px;
   position: relative;
   overflow: hidden; /* so video doesn't overflow container */
@@ -48,20 +43,19 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Changed to cover for better scaling */
+  object-fit: cover; /* Ensures the video covers the section */
   z-index: 1;        /* behind overlay text */
 }
 
+/* Text/logo overlay positioned on the left, near the top */
 .hero-overlay {
   position: absolute;
-  top: 5%; /* Moved up closer to the top */
-  left: 50%;
-  transform: translateX(-50%);
+  top: 5%; /* Positioned near the top */
+  left: 5%; /* Positioned towards the left */
   z-index: 2;
-  width: 90%;
-  max-width: 800px;
-  padding: 0.5rem 1rem;
-  text-align: center;
+  width: auto; /* Width adjusts based on content */
+  padding: 0.5rem 1rem; /* Adjust padding as needed */
+  text-align: left; /* Align text to the left */
 }
 
 .hero-title-text {
@@ -72,8 +66,8 @@ body, html {
 }
 
 .hero-subtitle-text {
-  color: #fff !important; /* Changed from #000 to white for better visibility */
-  font-weight: bold;      /* Made the text bold */
+  color: #fff !important; /* Ensure subtitle is visible */
+  font-weight: bold;      /* Make the text bold */
   font-size: 1.25rem;
 }
 
@@ -162,10 +156,14 @@ img:not(.hero-logo):hover {
 /* OPTIONAL: A little style for .custom-header if you'd like */
 .custom-header {
   position: relative;
-  min-height: 250px; /* Adjusted to ensure full image visibility */
-  overflow: hidden;
+  width: 100%;
+  padding-top: 13.89%; /* Maintain aspect ratio (900/125=7.2, 100/7.2≈13.89%) */
+  background: url('images/Untitled design.jpeg') no-repeat center center;
+  background-size: contain; /* Prevent zooming */
+  background-position: center;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 /* Responsive adjustments to ensure proper display on mobile devices */
@@ -183,11 +181,12 @@ img:not(.hero-logo):hover {
   }
 
   .custom-header {
-    min-height: 200px; /* Adjusted for better fit on smaller screens */
+    padding-top: 13.89%; /* Maintain aspect ratio */
   }
 
   .hero-overlay {
     top: 3%; /* Further move up on smaller screens */
+    left: 3%; /* Adjust left positioning */
     padding: 0.25rem 0.5rem;
   }
 
@@ -198,6 +197,11 @@ img:not(.hero-logo):hover {
   .hero-subtitle-text {
     font-size: 1rem; /* Adjust font size for smaller screens */
   }
+
+  /* Adjust main content to prevent overlapping */
+  main {
+    margin-top: 5rem; /* Add top margin */
+  }
 }
 
 @media (min-width: 769px) {
@@ -206,6 +210,16 @@ img:not(.hero-logo):hover {
   }
 
   .custom-header {
-    min-height: 350px; /* Increased height for better visibility on larger screens */
+    padding-top: 13.89%; /* Maintain aspect ratio */
+  }
+
+  .hero-overlay {
+    top: 5%; /* Position closer to the top */
+    left: 5%; /* Position towards the left */
+  }
+
+  /* Adjust main content to prevent overlapping */
+  main {
+    margin-top: 3rem; /* Add top margin */
   }
 }
