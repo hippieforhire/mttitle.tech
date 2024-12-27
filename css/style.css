@@ -1,1 +1,225 @@
-dds
+/*
+  style.css
+  Common styling for your entire site
+*/
+
+/* Basic resets / body and html */
+body, html {
+  font-family: "Poppins", Arial, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth; /* nice smooth scrolling */
+  height: 100%;
+}
+
+/* Navbar overrides */
+.navbar {
+  font-size: 1rem;
+  background-color: transparent; /* Ensure navbar is transparent */
+  margin: 0;
+  padding: 0; /* Remove padding to eliminate gaps */
+}
+
+/* Remove any padding/margin on container inside navbar */
+.navbar .container {
+  margin: 0;
+  padding: 0;
+}
+
+/* HERO SECTION with MP4 background */
+.hero-section {
+  width: 100%;
+  height: 70vh; /* adjust as needed */
+  min-height: 400px;
+  position: relative;
+  overflow: hidden; /* so video doesn't overflow container */
+  background-color: #000; /* fallback background if video can't load */
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the video covers the section */
+  z-index: 1;        /* behind overlay text */
+}
+
+/* Text/logo overlay positioned on the left, near the top */
+.hero-overlay {
+  position: absolute;
+  top: 5%; /* Positioned near the top */
+  left: 5%; /* Positioned towards the left */
+  z-index: 2;
+  width: auto; /* Width adjusts based on content */
+  padding: 0.5rem 1rem; /* Adjust padding as needed */
+  text-align: left; /* Align text to the left */
+}
+
+.hero-title-text {
+  color: #fff !important;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle-text {
+  color: #fff !important; /* Ensure subtitle is visible */
+  font-weight: bold;      /* Make the text bold */
+  font-size: 1.25rem;
+}
+
+/* Standard .hero (like in meet-our-staff / contact-us) */
+.hero {
+  min-height: 50vh;
+  padding: 2rem;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url("../images/hero-bg.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+/* For extra spice, let's make the hero items fade in gently */
+.hero img.hero-logo {
+  transition: transform 0.4s ease;
+}
+.hero img.hero-logo:hover {
+  transform: scale(1.05);
+}
+
+/* Footer small override */
+footer {
+  font-size: 0.9rem;
+}
+
+/* Staff list styling */
+.staff-list {
+  line-height: 1.6;
+}
+
+/* ------------------------------------------ */
+/* ADDED STYLES FOR ENHANCED "PIZAZZ" BELOW  */
+/* ------------------------------------------ */
+
+/* Additional animation for .hero-title-text and .hero-subtitle-text 
+   to fade + slide from the top slightly */
+.hero-title-text {
+  animation: fadeDownHeroTitle 1.3s ease forwards;
+}
+@keyframes fadeDownHeroTitle {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-subtitle-text {
+  animation: fadeUpHeroSubtitle 1.3s ease forwards;
+  animation-delay: 0.5s; /* come in a bit after title */
+}
+@keyframes fadeUpHeroSubtitle {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* A bit more flair for .staff-list items (fade on hover) */
+.staff-list li {
+  transition: color 0.3s ease;
+}
+.staff-list li:hover {
+  color: #555;
+}
+
+/* Subtle fade/zoom on images site-wide (except hero logos above) */
+img:not(.hero-logo) {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+img:not(.hero-logo):hover {
+  transform: scale(1.04);
+  opacity: 0.9;
+}
+
+/* OPTIONAL: A little style for .custom-header if you'd like */
+.custom-header {
+  position: relative;
+  width: 100%;
+  padding-top: 13.89%; /* Maintain aspect ratio (900/125=7.2, 100/7.2≈13.89%) */
+  background: url('images/Untitled-design.jpeg') no-repeat center center;
+  background-size: contain; /* Prevent zooming */
+  background-position: center;
+  margin: 0;
+  /* Removed padding: 0; to ensure padding-top is effective */
+  overflow: hidden;
+}
+
+/* Responsive adjustments to ensure proper display on mobile devices */
+@media (max-width: 768px) {
+  .hero-section {
+    height: 50vh; /* Reduced height for smaller screens */
+  }
+
+  .navbar {
+    padding: 0.5rem 0.75rem; /* Adjust padding for smaller screens */
+  }
+
+  .hero-video {
+    object-fit: cover; /* Ensure video scales properly */
+  }
+
+  .custom-header {
+    padding-top: 13.89%; /* Maintain aspect ratio */
+  }
+
+  .hero-overlay {
+    top: 3%; /* Further move up on smaller screens */
+    left: 3%; /* Adjust left positioning */
+    padding: 0.25rem 0.5rem;
+  }
+
+  .hero-title-text {
+    font-size: 1.8rem; /* Adjust font size for smaller screens */
+  }
+
+  .hero-subtitle-text {
+    font-size: 1rem; /* Adjust font size for smaller screens */
+  }
+
+  /* Adjust main content to prevent overlapping */
+  main {
+    margin-top: 5rem; /* Add top margin */
+  }
+}
+
+@media (min-width: 769px) {
+  .hero-section {
+    height: 70vh; /* Maintain larger height on desktop */
+  }
+
+  .custom-header {
+    padding-top: 13.89%; /* Maintain aspect ratio */
+  }
+
+  .hero-overlay {
+    top: 5%; /* Position closer to the top */
+    left: 5%; /* Position towards the left */
+  }
+
+  /* Adjust main content to prevent overlapping */
+  main {
+    margin-top: 3rem; /* Add top margin */
+  }
+}
