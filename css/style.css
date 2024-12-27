@@ -27,6 +27,20 @@ body, html {
   padding: 0;
 }
 
+/* HEADER SECTION with Image */
+.site-header {
+  width: 100%;
+  background-color: #fff; /* Optional: background color if needed */
+  text-align: center; /* Center the image horizontally */
+}
+
+.header-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
 /* HERO SECTION with MP4 background */
 .hero-section {
   width: 100%;
@@ -189,6 +203,12 @@ img:not(.hero-logo):hover {
   main {
     margin-top: 0; /* Removed top margin since header is removed */
   }
+
+  /* Responsive styles for header image */
+  .header-image {
+    width: 100%;
+    height: auto;
+  }
 }
 
 @media (min-width: 769px) {
@@ -206,5 +226,14 @@ img:not(.hero-logo):hover {
   /* Adjust main content to prevent overlapping */
   main {
     margin-top: 0; /* Removed top margin since header is removed */
+  }
+}
+
+/* Additional responsive styling for header image on larger screens */
+@media (min-width: 769px) {
+  .header-image {
+    width: auto;
+    max-width: 900px; /* Ensure the image doesn't exceed its original width */
+    height: 125px; /* Maintain the original height */
   }
 }
