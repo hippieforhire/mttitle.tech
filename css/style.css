@@ -3,6 +3,11 @@
   Common styling for your entire site
 */
 
+/* Box-Sizing for Consistency */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 /* Basic resets / body and html */
 body, html {
   font-family: "Poppins", Arial, sans-serif;
@@ -32,11 +37,13 @@ body, html {
   width: 100%;
   background-color: #fff; /* Optional: background color if needed */
   text-align: center; /* Center the image horizontally */
+  padding: 0; /* Remove any padding */
+  margin: 0;  /* Remove any margin */
 }
 
 .header-image {
-  max-width: 100%;
-  height: auto;
+  width: 100%; /* Ensure the image takes full width */
+  height: auto; /* Maintain aspect ratio */
   display: block;
   margin: 0 auto;
 }
@@ -44,7 +51,7 @@ body, html {
 /* HERO SECTION with MP4 background */
 .hero-section {
   width: 100%;
-  height: 70vh; /* adjust as needed */
+  height: 80vh; /* Increased height to prevent video cutting */
   min-height: 400px;
   position: relative;
   overflow: hidden; /* so video doesn't overflow container */
@@ -53,12 +60,13 @@ body, html {
 
 .hero-video {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
   width: 100%;
   height: 100%;
   object-fit: cover; /* Ensures the video covers the section */
-  z-index: 1;        /* behind overlay text */
+  transform: translate(-50%, -50%); /* Center the video */
+  z-index: 1; /* behind overlay text */
 }
 
 /* Text/logo overlay positioned on the left, near the top */
@@ -181,6 +189,9 @@ img:not(.hero-logo):hover {
 
   .hero-video {
     object-fit: cover; /* Ensure video scales properly */
+    top: 50%; /* Ensure video remains centered */
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   /* Removed .custom-header styles */
@@ -213,7 +224,7 @@ img:not(.hero-logo):hover {
 
 @media (min-width: 769px) {
   .hero-section {
-    height: 70vh; /* Maintain larger height on desktop */
+    height: 80vh; /* Ensure sufficient height on desktop */
   }
 
   /* Removed .custom-header styles */
@@ -227,13 +238,13 @@ img:not(.hero-logo):hover {
   main {
     margin-top: 0; /* Removed top margin since header is removed */
   }
+
+  /* Ensure header image stretches fully across desktop */
+  .header-image {
+    width: 100%;
+    height: auto;
+  }
 }
 
 /* Additional responsive styling for header image on larger screens */
-@media (min-width: 769px) {
-  .header-image {
-    width: auto;
-    max-width: 900px; /* Ensure the image doesn't exceed its original width */
-    height: 125px; /* Maintain the original height */
-  }
-}
+/* No longer needed since width is set to 100% across all screens */
