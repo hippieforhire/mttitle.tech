@@ -153,18 +153,7 @@ img:not(.hero-logo):hover {
   opacity: 0.9;
 }
 
-/* OPTIONAL: A little style for .custom-header if you'd like */
-.custom-header {
-  position: relative;
-  width: 100%;
-  padding-top: 13.89%; /* Maintain aspect ratio (900/125=7.2, 100/7.2≈13.89%) */
-  background: url('images/Untitled-design.jpeg') no-repeat center center;
-  background-size: contain; /* Prevent zooming */
-  background-position: center;
-  margin: 0;
-  /* Removed padding: 0; to ensure padding-top is effective */
-  overflow: hidden;
-}
+/* Removed .custom-header styles */
 
 /* Responsive adjustments to ensure proper display on mobile devices */
 @media (max-width: 768px) {
@@ -180,9 +169,7 @@ img:not(.hero-logo):hover {
     object-fit: cover; /* Ensure video scales properly */
   }
 
-  .custom-header {
-    padding-top: 13.89%; /* Maintain aspect ratio */
-  }
+  /* Removed .custom-header styles */
 
   .hero-overlay {
     top: 3%; /* Further move up on smaller screens */
@@ -200,7 +187,7 @@ img:not(.hero-logo):hover {
 
   /* Adjust main content to prevent overlapping */
   main {
-    margin-top: 5rem; /* Add top margin */
+    margin-top: 0; /* Removed top margin since header is removed */
   }
 }
 
@@ -209,9 +196,7 @@ img:not(.hero-logo):hover {
     height: 70vh; /* Maintain larger height on desktop */
   }
 
-  .custom-header {
-    padding-top: 13.89%; /* Maintain aspect ratio */
-  }
+  /* Removed .custom-header styles */
 
   .hero-overlay {
     top: 5%; /* Position closer to the top */
@@ -220,6 +205,6 @@ img:not(.hero-logo):hover {
 
   /* Adjust main content to prevent overlapping */
   main {
-    margin-top: 3rem; /* Add top margin */
+    margin-top: 0; /* Removed top margin since header is removed */
   }
 }
