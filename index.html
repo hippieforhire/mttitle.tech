@@ -34,20 +34,10 @@
 <body>
 
   <!-- TOP HEADER with background image + NAVBAR -->
-  <header
-    class="custom-header"
-    style="
-      background: url('images/Untitled design.jpeg') no-repeat center center;
-      background-size: cover;
-      background-position: center;
-    "
-  >
+  <header class="custom-header">
     <nav class="navbar navbar-expand-md shadow-sm">
       <div class="container">
-        <a class="navbar-brand fw-bold text-white" href="index.html">
-          Mark Twain Title Co.
-        </a>
-        <!-- Removed the navbar toggler and links as per request -->
+        <!-- Navbar is intentionally left empty as per your request -->
       </div>
     </nav>
   </header>
@@ -65,9 +55,9 @@
       <source src="images/Logo.mp4" type="video/mp4" />
     </video>
 
-    <!-- Text/logo overlay (positioned higher) -->
+    <!-- Text/logo overlay (positioned on the left, near the top) -->
     <div
-      class="hero-overlay d-flex flex-column align-items-center text-center"
+      class="hero-overlay d-flex flex-column align-items-start"
       data-aos="zoom-in"
     >
       <h1 class="display-4 fw-bold mb-2 hero-title-text">
@@ -149,12 +139,12 @@
       once: true     // animations happen only once
     });
 
-    // Rellax for parallax effect
+    // Initialize Rellax for parallax effect
     var rellax = new Rellax('.rellax', {
       center: false
     });
 
-    // Typed.js for subtitle effect (slowed down)
+    // Initialize Typed.js for subtitle effect (slowed down)
     var typedSubtitleEl = document.getElementById('typedSubtitle');
     if (typedSubtitleEl) {
       new Typed('#typedSubtitle', {
@@ -167,10 +157,10 @@
       });
     }
 
-    // GSAP example fade-in
+    // GSAP example fade-in for hero-overlay
     gsap.from(".hero-overlay", {
       opacity: 0,
-      y: -100, // Move from higher up
+      y: -50, // Adjusted to move less vertically
       duration: 1.2,
       ease: "power2.out"
     });
