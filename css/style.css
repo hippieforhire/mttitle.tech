@@ -16,6 +16,10 @@ body, html {
   padding: 0;
   scroll-behavior: smooth; /* nice smooth scrolling */
   height: 100%;
+
+  /* Add a vibrant gradient background for more "pizzazz" */
+  background: linear-gradient(135deg, #f7f9fb 0%, #dde2f0 50%, #f7f9fb 100%);
+  background-attachment: fixed;
 }
 
 /* Navbar overrides */
@@ -39,6 +43,7 @@ body, html {
   text-align: center; /* Center the image horizontally */
   padding: 0; /* Remove any padding */
   margin: 0;  /* Remove any margin */
+  position: relative; /* so we can absolutely position nav */
 }
 
 .header-image {
@@ -46,6 +51,33 @@ body, html {
   height: auto; /* Maintain aspect ratio */
   display: block;
   margin: 0 auto;
+}
+
+/* Newly added nav in the header (bottom-right) */
+.header-nav {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+
+.header-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header-nav a {
+  color: #fff; /* White text on top of the header image if the area is dark */
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+  background-color: rgba(0,0,0,0.5); /* subtle dark background to stand out on light or busy image */
+  border-radius: 5px;
+}
+
+.header-nav a:hover {
+  color: #ffd700; /* golden hover for some "pizzazz" */
 }
 
 /* HERO SECTION with MP4 background */
@@ -85,12 +117,19 @@ body, html {
   text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
+
+  /* Additional animate.css for more flair */
+  animation: fadeDownHeroTitle 1.3s ease forwards;
+  /* You could combine an animate.css class but let's keep the custom keyframe */
 }
 
 .hero-subtitle-text {
   color: #fff !important; /* Ensure subtitle is visible */
   font-weight: bold;      /* Make the text bold */
   font-size: 1.25rem;
+
+  animation: fadeUpHeroSubtitle 1.3s ease forwards;
+  animation-delay: 0.5s; /* come in a bit after title */
 }
 
 /* Standard .hero (like in meet-our-staff / contact-us) */
@@ -127,11 +166,7 @@ footer {
 /* ADDED STYLES FOR ENHANCED "PIZAZZ" BELOW  */
 /* ------------------------------------------ */
 
-/* Additional animation for .hero-title-text and .hero-subtitle-text 
-   to fade + slide from the top slightly */
-.hero-title-text {
-  animation: fadeDownHeroTitle 1.3s ease forwards;
-}
+/* Keyframes for hero title/subtitle fade/slide */
 @keyframes fadeDownHeroTitle {
   0% {
     opacity: 0;
@@ -143,10 +178,6 @@ footer {
   }
 }
 
-.hero-subtitle-text {
-  animation: fadeUpHeroSubtitle 1.3s ease forwards;
-  animation-delay: 0.5s; /* come in a bit after title */
-}
 @keyframes fadeUpHeroSubtitle {
   0% {
     opacity: 0;
@@ -175,8 +206,6 @@ img:not(.hero-logo):hover {
   opacity: 0.9;
 }
 
-/* Removed .custom-header styles */
-
 /* Responsive adjustments to ensure proper display on mobile devices */
 @media (max-width: 768px) {
   .hero-section {
@@ -193,8 +222,6 @@ img:not(.hero-logo):hover {
     left: 50%;
     transform: translate(-50%, -50%);
   }
-
-  /* Removed .custom-header styles */
 
   .hero-overlay {
     top: 3%; /* Further move up on smaller screens */
@@ -220,6 +247,11 @@ img:not(.hero-logo):hover {
     width: 100%;
     height: auto;
   }
+
+  .header-nav {
+    bottom: 5px;
+    right: 10px;
+  }
 }
 
 @media (min-width: 769px) {
@@ -227,24 +259,17 @@ img:not(.hero-logo):hover {
     height: 80vh; /* Ensure sufficient height on desktop */
   }
 
-  /* Removed .custom-header styles */
-
   .hero-overlay {
     top: 5%; /* Position closer to the top */
     left: 5%; /* Position towards the left */
   }
 
-  /* Adjust main content to prevent overlapping */
   main {
     margin-top: 0; /* Removed top margin since header is removed */
   }
 
-  /* Ensure header image stretches fully across desktop */
   .header-image {
     width: 100%;
     height: auto;
   }
 }
-
-/* Additional responsive styling for header image on larger screens */
-/* No longer needed since width is set to 100% across all screens */
