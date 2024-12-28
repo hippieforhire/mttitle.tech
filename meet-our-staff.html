@@ -30,56 +30,49 @@
 </head>
 <body>
 
-  <!-- TOP HEADER with background image + NAVBAR -->
-  <header
-    class="custom-header"
-    style="
-      background: url('images/Untitled design.jpeg') no-repeat center center;
-      background-size: cover;
-      background-position: center;
-    "
-  >
-    <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: rgba(0,0,0,0.7)">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="index.html">
-          Mark Twain Title Co.
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navMenu"
-          aria-controls="navMenu"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+  <!-- MATCH THE HOME SCREEN HEADER EXACTLY (Removed old navbar/overlay) -->
+  <header class="site-header position-relative">
+    <img src="images/Untitled-design.jpeg" alt="Mark Twain Title Company Header" class="header-image">
 
-        <div class="collapse navbar-collapse" id="navMenu">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="meet-our-staff.html">Meet Our Staff</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact-us.html">Contact Us</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <!-- Same simple nav links in white text, bottom-right -->
+    <nav class="header-nav">
+      <ul class="list-inline mb-0">
+        <li class="list-inline-item">
+          <a href="meet-our-staff.html">Meet Our Staff</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="contact-us.html">Contact Us</a>
+        </li>
+      </ul>
     </nav>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero d-flex align-items-center justify-content-center text-center text-light animate__animated animate__fadeIn">
-    <div class="container" data-aos="fade-up">
-      <!-- Removed the <img src="images/Logoise.svg"...> as requested -->
-      <h1 class="display-4 fw-bold mb-2">Mark Twain Title Company</h1>
-      <p class="lead mb-4">"Lighting the path to home ownership"</p>
+  <!-- Same hero section with video background (for consistency) -->
+  <section class="hero-section position-relative rellax" data-rellax-speed="-1">
+    <video
+      class="hero-video"
+      autoplay
+      muted
+      playsinline
+      id="heroVideo"
+    >
+      <source src="images/Logo.mp4" type="video/mp4" />
+    </video>
+
+    <div
+      class="hero-overlay d-flex flex-column align-items-start"
+      data-aos="zoom-in"
+    >
+      <h1 class="display-4 fw-bold mb-2 hero-title-text">
+        Mark Twain Title Company
+      </h1>
+      <p class="lead mb-4 hero-subtitle-text">
+        "Lighting the path to home ownership"
+      </p>
     </div>
   </section>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN CONTENT (identical to old meet-our-staff) -->
   <main class="my-5 container animate__animated animate__fadeIn">
     <div class="row">
       <div class="col-12" data-aos="fade-in" data-aos-delay="100">
@@ -155,15 +148,15 @@
     integrity="sha384-ho+DgUN3jUpr3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
     crossorigin="anonymous"
   ></script>
-
   <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <!-- VanillaTilt -->
   <script src="js/vanilla-tilt.min.js"></script>
-  <!-- Animate / optional libraries -->
+  <!-- Anime.js -->
   <script src="js/anime.min.js"></script>
   <script src="js/scrollreveal.min.js"></script>
   <script src="js/gsap.min.js"></script>
+  <script src="js/rellax.min.js"></script>
 
   <script>
     AOS.init({
@@ -171,11 +164,27 @@
       once: true
     });
 
+    // Rellax init
+    var rellax = new Rellax('.rellax', {
+      center: false
+    });
+
     // Optional tilt effect
     VanillaTilt.init(document.querySelectorAll('.tilt-badge'), {
       max: 5,
       speed: 200,
       glare: false
+    });
+
+    // Play the MP4 exactly 2 times (same logic as index)
+    let playedCount = 0;
+    const heroVideo = document.getElementById('heroVideo');
+    heroVideo.addEventListener('ended', function() {
+      playedCount++;
+      if (playedCount < 2) {
+        heroVideo.currentTime = 0;
+        heroVideo.play();
+      }
     });
   </script>
 </body>
