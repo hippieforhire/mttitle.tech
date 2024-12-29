@@ -20,6 +20,9 @@ body, html {
   /* Add a vibrant gradient background for more "pizzazz" */
   background: linear-gradient(135deg, #f7f9fb 0%, #dde2f0 50%, #f7f9fb 100%);
   background-attachment: fixed;
+
+  /* Offset for fixed header (approx. header height) */
+  padding-top: 100px;
 }
 
 /* Navbar overrides */
@@ -38,12 +41,15 @@ body, html {
 
 /* HEADER SECTION with Image */
 .site-header {
+  /* Make header fixed so it remains on top when scrolling */
+  position: fixed;
+  top: 0;
   width: 100%;
-  background-color: #fff; /* Optional: background color if needed */
-  text-align: center; /* Center the image horizontally */
-  padding: 0; /* Remove any padding */
-  margin: 0;  /* Remove any margin */
-  position: relative; /* so we can absolutely position nav */
+  z-index: 999;
+  background-color: #fff; /* Optional background behind the main header image */
+  text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 .header-image {
@@ -67,14 +73,20 @@ body, html {
 }
 
 .header-nav a {
-  color: #fff;             /* Simple white text */
-  font-weight: 400;        /* Changed from 600 to 400 to remove boldness */
-  font-size: 0.875rem;     /* Smaller font size */
+  color: #fff;
+  font-weight: 400;      /* not bold */
+  font-size: 0.875rem;   /* smaller font size */
   text-decoration: none;
   padding: 0.5rem 1rem;
   transition: color 0.3s ease;
   background-color: transparent;
   border-radius: 0;
+}
+
+/* Active link highlight */
+.header-nav a.active {
+  text-decoration: underline;
+  color: #ffd700 !important;
 }
 
 .header-nav a:hover {
@@ -159,10 +171,6 @@ footer {
   line-height: 1.6;
 }
 
-/* ------------------------------------------ */
-/* ADDED STYLES FOR ENHANCED "PIZAZZ" BELOW  */
-/* ------------------------------------------ */
-
 /* Keyframes for hero title/subtitle fade/slide */
 @keyframes fadeDownHeroTitle {
   0% {
@@ -220,8 +228,34 @@ footer {
   z-index: 1;
 }
 
-/* Responsive adjustments to ensure proper display on mobile devices */
+/* Subtle background for the badge section */
+.badge-section {
+  background-color: #f2f2f2;
+  padding: 2rem 0;
+}
+
+/* SCROLL-TO-TOP BUTTON */
+.scroll-to-top {
+  display: none; /* shown via JS on scroll */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #333;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.25rem;
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+}
+
+/* Responsive adjustments for mobile */
 @media (max-width: 768px) {
+  body, html {
+    padding-top: 80px; /* slightly smaller offset for mobile header */
+  }
+
   .hero-section {
     height: 50vh;
   }
