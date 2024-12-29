@@ -33,8 +33,11 @@
 </head>
 <body>
 
+  <!-- TSPARTICLES BACKGROUND DIV -->
+  <div id="tsparticles"></div>
+
   <!-- HEADER SECTION with Image -->
-  <header class="site-header position-relative">
+  <header class="site-header position-relative" onclick="window.location.href='index.html'">
     <img src="images/Untitled-design.jpeg" alt="Mark Twain Title Company Header" class="header-image">
 
     <!-- Nav for links at bottom-right of the header (simple white text, side by side) -->
@@ -84,14 +87,14 @@
     <div class="row">
       <div class="col-12">
         <div data-aos="fade-in" data-aos-delay="100">
-          <p>
+          <p class="reveal-on-scroll">
             Mark Twain Title Company has been providing title services for over 100 years
             and is one of the oldest Title Companies in Missouri. We are an agent for
             Stewart Title Guaranty Company and authorized and licensed to issue title
             insurance in the state of Missouri. We primarily serve the northeast Missouri
             counties of Marion, Ralls, Lewis, Clark, Knox, Shelby and Monroe.
           </p>
-          <p>
+          <p class="reveal-on-scroll">
             Our staff includes some of the most wonderful, caring and knowledgeable
             Professionals in the Industry with their 65 years of combined experience,
             this is what sets us apart from any other Title Agency in Northeast Missouri.
@@ -124,36 +127,39 @@
   <!-- Bootstrap Bundle JS -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ho+DgUN3jUpr3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
+    integrity="sha384-ho+DgUN3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
     crossorigin="anonymous"
   ></script>
 
   <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-  <!-- Locomotive or Rellax (here we use Rellax) -->
+  <!-- Rellax (Parallax) -->
   <script src="js/rellax.min.js"></script>
 
-  <!-- Anime.js (optional) -->
+  <!-- Anime.js -->
   <script src="js/anime.min.js"></script>
 
   <!-- Typed.js -->
   <script src="js/typed.min.js"></script>
 
-  <!-- ScrollReveal (optional) -->
+  <!-- ScrollReveal -->
   <script src="js/scrollreveal.min.js"></script>
 
   <!-- GSAP -->
   <script src="js/gsap.min.js"></script>
 
-  <!-- VanillaTilt (for tilt effect) -->
+  <!-- VanillaTilt -->
   <script src="js/vanilla-tilt.min.js"></script>
+
+  <!-- TSPARTICLES (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest"></script>
 
   <script>
     // Initialize AOS
     AOS.init({
-      duration: 800, // animation duration
-      once: true     // animations happen only once
+      duration: 800,
+      once: true
     });
 
     // Initialize Rellax for parallax effect
@@ -177,7 +183,7 @@
     // GSAP example fade-in for hero-overlay
     gsap.from(".hero-overlay", {
       opacity: 0,
-      y: -50, // Adjusted to move less vertically
+      y: -50,
       duration: 1.2,
       ease: "power2.out"
     });
@@ -191,6 +197,32 @@
         heroVideo.currentTime = 0;
         heroVideo.play();
       }
+    });
+
+    // TSPARTICLES INIT
+    tsParticles.load("tsparticles", {
+      fpsLimit: 60,
+      particles: {
+        number: { value: 30 },
+        color: { value: ["#ffffff", "#ffd700", "#ff69b4"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.7 },
+        size: { value: { min: 1, max: 5 } },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          outModes: "out"
+        }
+      }
+    });
+
+    // SCROLLREVEAL INIT
+    ScrollReveal().reveal('.reveal-on-scroll', {
+      distance: '50px',
+      origin: 'bottom',
+      duration: 1000,
+      easing: 'ease-in-out'
     });
   </script>
 </body>
