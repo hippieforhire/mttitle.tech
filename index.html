@@ -37,17 +37,24 @@
   <div id="tsparticles"></div>
 
   <!-- HEADER SECTION with Image -->
-  <header class="site-header position-relative" onclick="window.location.href='index.html'">
-    <img src="images/Untitled-design.jpeg" alt="Mark Twain Title Company Header" class="header-image">
+  <header
+    class="site-header position-relative"
+    onclick="window.location.href='index.html'"
+  >
+    <img
+      src="images/Untitled-design.jpeg"
+      alt="Mark Twain Title Company Header"
+      class="header-image"
+    >
 
     <!-- Nav for links at bottom-right of the header (simple white text, side by side) -->
     <nav class="header-nav">
       <ul class="list-inline mb-0">
         <li class="list-inline-item">
-          <a href="meet-our-staff.html">Meet Our Staff</a>
+          <a href="meet-our-staff.html" id="staffLink">Meet Our Staff</a>
         </li>
         <li class="list-inline-item">
-          <a href="contact-us.html">Contact Us</a>
+          <a href="contact-us.html" id="contactLink">Contact Us</a>
         </li>
       </ul>
     </nav>
@@ -83,7 +90,10 @@
   </section>
 
   <!-- MAIN CONTENT -->
-  <main class="my-5 container animate__animated animate__fadeIn">
+  <main
+    class="my-5 container animate__animated animate__fadeIn"
+    data-lax-preset="fadeInOut"
+  >
     <div class="row">
       <div class="col-12">
         <div data-aos="fade-in" data-aos-delay="100">
@@ -105,12 +115,20 @@
   </main>
 
   <!-- Stewart "Vetted and Verified" badge (added at bottom, under main text) -->
-  <div class="container my-4 text-center" data-aos="zoom-in">
+  <div
+    class="container my-4 text-center badge-section"
+    data-aos="zoom-in"
+  >
     <img
       src="images/IMG_4305.png"
       alt="Stewart Vetted and Verified"
       style="max-width: 200px;"
     />
+  </div>
+
+  <!-- SCROLL TO TOP BUTTON -->
+  <div class="scroll-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+    ▲
   </div>
 
   <!-- FOOTER -->
@@ -137,7 +155,7 @@
   <!-- Rellax (Parallax) -->
   <script src="js/rellax.min.js"></script>
 
-  <!-- Anime.js -->
+  <!-- Anime.js (used for small micro-interactions) -->
   <script src="js/anime.min.js"></script>
 
   <!-- Typed.js -->
@@ -152,8 +170,14 @@
   <!-- VanillaTilt -->
   <script src="js/vanilla-tilt.min.js"></script>
 
+  <!-- Lax.js -->
+  <script src="js/lax.min.js"></script>
+
   <!-- TSPARTICLES (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest"></script>
+
+  <!-- Quicklink (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
 
   <script>
     // Initialize AOS
@@ -224,6 +248,41 @@
       duration: 1000,
       easing: 'ease-in-out'
     });
+
+    // LAX.JS INIT
+    lax.init();
+    lax.addDriver('scrollY', function () {
+      return window.scrollY;
+    });
+
+    // HIGHLIGHT ACTIVE LINK IF ANY (Here, index has no direct link to highlight)
+    // We only highlight Staff/Contact if we're on that respective page, so no highlight for index itself.
+
+    // ANIME.JS MICRO-INTERACTION (scale nav links on hover)
+    document.querySelectorAll('.header-nav a').forEach(link => {
+      link.addEventListener('mouseenter', (e) => {
+        anime({
+          targets: e.target,
+          scale: 1.2,
+          duration: 200,
+          easing: 'easeOutExpo',
+          direction: 'alternate'
+        });
+      });
+    });
+
+    // SCROLL-TO-TOP BUTTON VISIBILITY
+    const scrollBtn = document.querySelector('.scroll-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollBtn.style.display = 'block';
+      } else {
+        scrollBtn.style.display = 'none';
+      }
+    });
+
+    // QUICKLINK PREFETCH
+    quicklink.listen();
   </script>
 </body>
 </html>
