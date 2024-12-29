@@ -32,17 +32,24 @@
   <div id="tsparticles"></div>
 
   <!-- MATCH THE HOME SCREEN HEADER EXACTLY -->
-  <header class="site-header position-relative" onclick="window.location.href='index.html'">
-    <img src="images/Untitled-design.jpeg" alt="Mark Twain Title Company Header" class="header-image">
+  <header
+    class="site-header position-relative"
+    onclick="window.location.href='index.html'"
+  >
+    <img
+      src="images/Untitled-design.jpeg"
+      alt="Mark Twain Title Company Header"
+      class="header-image"
+    >
 
     <!-- Same simple nav links in white text, bottom-right -->
     <nav class="header-nav">
       <ul class="list-inline mb-0">
         <li class="list-inline-item">
-          <a href="meet-our-staff.html">Meet Our Staff</a>
+          <a href="meet-our-staff.html" id="staffLink">Meet Our Staff</a>
         </li>
         <li class="list-inline-item">
-          <a href="contact-us.html">Contact Us</a>
+          <a href="contact-us.html" id="contactLink">Contact Us</a>
         </li>
       </ul>
     </nav>
@@ -74,7 +81,10 @@
   </section>
 
   <!-- MAIN CONTENT (identical to old contact-us) -->
-  <main class="container my-5 animate__animated animate__fadeIn">
+  <main
+    class="container my-5 animate__animated animate__fadeIn"
+    data-lax-preset="fadeInOut"
+  >
     <div class="row g-5">
       <div class="col-md-6" data-aos="fade-right">
         <h2 class="mb-4 reveal-on-scroll">Get in Touch</h2>
@@ -109,6 +119,11 @@
     </div>
   </main>
 
+  <!-- SCROLL TO TOP BUTTON -->
+  <div class="scroll-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+    ▲
+  </div>
+
   <!-- FOOTER -->
   <footer class="bg-dark text-light text-center py-3">
     <div class="container">
@@ -125,18 +140,30 @@
     integrity="sha384-ho+DgUN3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
     crossorigin="anonymous"
   ></script>
+
   <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
   <!-- Rellax -->
   <script src="js/rellax.min.js"></script>
+
   <!-- Anime.js -->
   <script src="js/anime.min.js"></script>
+
   <!-- ScrollReveal -->
   <script src="js/scrollreveal.min.js"></script>
+
   <!-- GSAP -->
   <script src="js/gsap.min.js"></script>
+
+  <!-- Lax.js -->
+  <script src="js/lax.min.js"></script>
+
   <!-- TSPARTICLES (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest"></script>
+
+  <!-- Quicklink (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
 
   <script>
     AOS.init({
@@ -149,7 +176,7 @@
       center: false
     });
 
-    // Simple GSAP fade-in example (optional)
+    // Simple GSAP fade-in example
     gsap.from("h2.mb-4", {
       scrollTrigger: ".mb-4",
       y: 50,
@@ -193,6 +220,42 @@
       duration: 1000,
       easing: 'ease-in-out'
     });
+
+    // LAX.JS INIT
+    lax.init();
+    lax.addDriver('scrollY', function () {
+      return window.scrollY;
+    });
+
+    // HIGHLIGHT ACTIVE LINK
+    // This is the "Contact Us" page, so let's highlight it:
+    document.getElementById('contactLink').classList.add('active');
+
+    // ANIME.JS MICRO-INTERACTION (scale nav links on hover)
+    document.querySelectorAll('.header-nav a').forEach(link => {
+      link.addEventListener('mouseenter', (e) => {
+        anime({
+          targets: e.target,
+          scale: 1.2,
+          duration: 200,
+          easing: 'easeOutExpo',
+          direction: 'alternate'
+        });
+      });
+    });
+
+    // SCROLL-TO-TOP BUTTON VISIBILITY
+    const scrollBtn = document.querySelector('.scroll-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollBtn.style.display = 'block';
+      } else {
+        scrollBtn.style.display = 'none';
+      }
+    });
+
+    // QUICKLINK PREFETCH
+    quicklink.listen();
   </script>
 </body>
 </html>
