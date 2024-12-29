@@ -17,12 +17,9 @@ body, html {
   scroll-behavior: smooth; /* nice smooth scrolling */
   height: 100%;
 
-  /* Add a vibrant gradient background for more "pizzazz" */
+  /* Vibrant gradient background for more "pizzazz" */
   background: linear-gradient(135deg, #f7f9fb 0%, #dde2f0 50%, #f7f9fb 100%);
   background-attachment: fixed;
-
-  /* Offset for fixed header (approx. header height) */
-  padding-top: 100px;
 }
 
 /* Navbar overrides */
@@ -41,15 +38,13 @@ body, html {
 
 /* HEADER SECTION with Image */
 .site-header {
-  /* Make header fixed so it remains on top when scrolling */
-  position: fixed;
-  top: 0;
+  /* Reverted to position: relative (instead of fixed) to avoid mobile layout issues */
   width: 100%;
-  z-index: 999;
-  background-color: #fff; /* Optional background behind the main header image */
+  background-color: #fff; /* optional background behind header image */
   text-align: center;
   margin: 0;
   padding: 0;
+  position: relative;
 }
 
 .header-image {
@@ -252,10 +247,6 @@ footer {
 
 /* Responsive adjustments for mobile */
 @media (max-width: 768px) {
-  body, html {
-    padding-top: 80px; /* slightly smaller offset for mobile header */
-  }
-
   .hero-section {
     height: 50vh;
   }
