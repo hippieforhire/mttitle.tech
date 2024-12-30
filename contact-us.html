@@ -31,9 +31,10 @@
   <!-- TSPARTICLES BACKGROUND DIV -->
   <div id="tsparticles"></div>
 
-  <!-- MATCH THE HOME SCREEN HEADER EXACTLY -->
+  <!-- MATCH THE HOME SCREEN HEADER EXACTLY (Jarallax on header) -->
   <header
-    class="site-header position-relative"
+    class="site-header jarallax position-relative"
+    data-jarallax data-speed="0.25"
     onclick="window.location.href='index.html'"
   >
     <img
@@ -42,7 +43,7 @@
       class="header-image"
     >
 
-    <!-- Reordered: Contact Us first, then Meet Our Staff -->
+    <!-- Nav (Contact Us first, then Staff) -->
     <nav class="header-nav">
       <ul class="list-inline mb-0">
         <li class="list-inline-item">
@@ -140,28 +141,24 @@
     integrity="sha384-ho+DgUN3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
     crossorigin="anonymous"
   ></script>
-
   <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
   <!-- Rellax -->
   <script src="js/rellax.min.js"></script>
-
+  <!-- Jarallax -->
+  <script src="js/jarallax.min.js"></script>
   <!-- Anime.js -->
   <script src="js/anime.min.js"></script>
-
+  <!-- mo.js (global click effect) -->
+  <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
   <!-- ScrollReveal -->
   <script src="js/scrollreveal.min.js"></script>
-
   <!-- GSAP -->
   <script src="js/gsap.min.js"></script>
-
   <!-- Lax.js -->
   <script src="js/lax.min.js"></script>
-
   <!-- TSPARTICLES (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest"></script>
-
   <!-- Quicklink (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
 
@@ -176,7 +173,12 @@
       center: false
     });
 
-    // Simple GSAP fade-in example
+    // Jarallax init
+    jarallax(document.querySelectorAll('.jarallax'), {
+      speed: 0.25
+    });
+
+    // Simple GSAP fade-in
     gsap.from("h2.mb-4", {
       scrollTrigger: ".mb-4",
       y: 50,
@@ -184,18 +186,20 @@
       duration: 1
     });
 
-    // Play the MP4 exactly 2 times (same logic as index)
+    // Play MP4 exactly 2 times
     let playedCount = 0;
     const heroVideo = document.getElementById('heroVideo');
-    heroVideo.addEventListener('ended', function() {
-      playedCount++;
-      if (playedCount < 2) {
-        heroVideo.currentTime = 0;
-        heroVideo.play();
-      }
-    });
+    if (heroVideo) {
+      heroVideo.addEventListener('ended', function() {
+        playedCount++;
+        if (playedCount < 2) {
+          heroVideo.currentTime = 0;
+          heroVideo.play();
+        }
+      });
+    }
 
-    // TSPARTICLES INIT
+    // TSPARTICLES
     tsParticles.load("tsparticles", {
       fpsLimit: 60,
       particles: {
@@ -213,7 +217,7 @@
       }
     });
 
-    // SCROLLREVEAL INIT
+    // SCROLLREVEAL
     ScrollReveal().reveal('.reveal-on-scroll', {
       distance: '50px',
       origin: 'bottom',
@@ -221,30 +225,38 @@
       easing: 'ease-in-out'
     });
 
-    // LAX.JS INIT
+    // LAX.JS
     lax.init();
     lax.addDriver('scrollY', function () {
       return window.scrollY;
     });
 
-    // HIGHLIGHT ACTIVE LINK
-    // This is the "Contact Us" page:
+    // ACTIVE LINK
     document.getElementById('contactLink').classList.add('active');
 
-    // ANIME.JS MICRO-INTERACTION (scale nav links on hover)
+    // ANIME.JS link hover micro-interaction
     document.querySelectorAll('.header-nav a').forEach(link => {
       link.addEventListener('mouseenter', (e) => {
         anime({
           targets: e.target,
           scale: 1.2,
-          duration: 200,
-          easing: 'easeOutExpo',
-          direction: 'alternate'
+          backgroundColor: 'rgba(0,0,0,0.6)',
+          duration: 300,
+          easing: 'easeOutExpo'
+        });
+      });
+      link.addEventListener('mouseleave', (e) => {
+        anime({
+          targets: e.target,
+          scale: 1,
+          backgroundColor: 'rgba(0,0,0,0.4)',
+          duration: 300,
+          easing: 'easeOutExpo'
         });
       });
     });
 
-    // SCROLL-TO-TOP BUTTON VISIBILITY
+    // Scroll-to-top
     const scrollBtn = document.querySelector('.scroll-to-top');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 300) {
@@ -254,8 +266,29 @@
       }
     });
 
-    // QUICKLINK PREFETCH
+    // QUICKLINK
     quicklink.listen();
+
+    // Global mo.js burst on click
+    const mojs = window.mojs;
+    const globalBurst = new mojs.Burst({
+      radius: { 0: 80 },
+      count: 10,
+      children: {
+        shape: 'polygon',
+        points: 7,
+        fill: [ '#FFD700', '#FF69B4', '#FFFFFF' ],
+        duration: 800,
+        easing: 'cubic.out'
+      }
+    });
+    document.addEventListener('click', (e) => {
+      if (e.target.tagName.toLowerCase() !== 'a') {
+        globalBurst
+          .tune({ x: e.pageX, y: e.pageY })
+          .replay();
+      }
+    });
   </script>
 </body>
 </html>
