@@ -39,7 +39,7 @@
   <!-- HEADER SECTION with Image -->
   <header
     class="site-header jarallax position-relative"
-    data-jarallax data-speed="0.25"
+    data-jarallax data-speed="0.15" <!-- reduced speed so it's thinner/less tall -->
     onclick="window.location.href='index.html'"
   >
     <img
@@ -63,16 +63,18 @@
 
   <!-- HERO SECTION with video background -->
   <section class="hero-section position-relative rellax" data-rellax-speed="-1">
-    <!-- Video Background -->
-    <video
-      class="hero-video"
-      autoplay
-      muted
-      playsinline
-      id="heroVideo"
-    >
-      <source src="images/Logo.mp4" type="video/mp4" />
-    </video>
+    <!-- The container has a green background to match your video edges -->
+    <div class="video-container">
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        playsinline
+        id="heroVideo"
+      >
+        <source src="images/Logo.mp4" type="video/mp4" />
+      </video>
+    </div>
 
     <!-- Text/logo overlay (positioned on the left, near the top) -->
     <div
@@ -83,7 +85,7 @@
         Mark Twain Title Company
       </h1>
 
-      <!-- Slowed-down typed effect (with new readability style) -->
+      <!-- Typed effect is back! -->
       <p class="lead mb-4 hero-subtitle-text typed-bg" id="typedSubtitle">
         "Lighting the path to home ownership"
       </p>
@@ -149,6 +151,7 @@
     integrity="sha384-ho+DgUN3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
     crossorigin="anonymous"
   ></script>
+
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="js/rellax.min.js"></script>
   <script src="js/jarallax.min.js"></script>
@@ -161,14 +164,11 @@
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
 
   <script>
-    AOS.init({
-      duration: 800,
-      once: true
-    });
+    AOS.init({ duration: 800, once: true });
     var rellax = new Rellax('.rellax', { center: false });
-    jarallax(document.querySelectorAll('.jarallax'), { speed: 0.25 });
+    jarallax(document.querySelectorAll('.jarallax'), { speed: 0.15 });
 
-    // Typed text
+    // Bring back typed text effect
     const typedSubtitleEl = document.getElementById('typedSubtitle');
     if (typedSubtitleEl) {
       new Typed('#typedSubtitle', {
