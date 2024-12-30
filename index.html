@@ -36,9 +36,10 @@
   <!-- TSPARTICLES BACKGROUND DIV -->
   <div id="tsparticles"></div>
 
-  <!-- HEADER SECTION with Image -->
+  <!-- HEADER SECTION with Image (Jarallax for parallax) -->
   <header
-    class="site-header position-relative"
+    class="site-header jarallax position-relative"
+    data-jarallax data-speed="0.25"
     onclick="window.location.href='index.html'"
   >
     <img
@@ -155,8 +156,14 @@
   <!-- Rellax (Parallax) -->
   <script src="js/rellax.min.js"></script>
 
+  <!-- Jarallax (for parallax on header image) -->
+  <script src="js/jarallax.min.js"></script>
+
   <!-- Anime.js (used for small micro-interactions) -->
   <script src="js/anime.min.js"></script>
+
+  <!-- mo.js (global click effect below) -->
+  <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
 
   <!-- Typed.js -->
   <script src="js/typed.min.js"></script>
@@ -191,7 +198,12 @@
       center: false
     });
 
-    // Initialize Typed.js for subtitle effect (slowed down)
+    // Initialize Jarallax (for the header parallax effect)
+    jarallax(document.querySelectorAll('.jarallax'), {
+      speed: 0.25
+    });
+
+    // Initialize Typed.js for subtitle effect (slowed down, plus a color wave)
     var typedSubtitleEl = document.getElementById('typedSubtitle');
     if (typedSubtitleEl) {
       new Typed('#typedSubtitle', {
@@ -200,7 +212,19 @@
         backSpeed: 30,
         startDelay: 300,
         backDelay: 1200,
-        loop: true
+        loop: true,
+        onComplete: (self) => {
+          // Anime.js color wave after typing
+          anime({
+            targets: '#typedSubtitle',
+            color: [
+              { value: '#ffd700', duration: 500 },
+              { value: '#ffffff', duration: 500 }
+            ],
+            loop: true,
+            easing: 'easeInOutSine'
+          });
+        }
       });
     }
 
@@ -215,13 +239,15 @@
     // Play the MP4 exactly 2 times
     let playedCount = 0;
     const heroVideo = document.getElementById('heroVideo');
-    heroVideo.addEventListener('ended', function() {
-      playedCount++;
-      if (playedCount < 2) {
-        heroVideo.currentTime = 0;
-        heroVideo.play();
-      }
-    });
+    if (heroVideo) {
+      heroVideo.addEventListener('ended', function() {
+        playedCount++;
+        if (playedCount < 2) {
+          heroVideo.currentTime = 0;
+          heroVideo.play();
+        }
+      });
+    }
 
     // TSPARTICLES INIT
     tsParticles.load("tsparticles", {
@@ -255,15 +281,24 @@
       return window.scrollY;
     });
 
-    // ANIME.JS MICRO-INTERACTION (scale nav links on hover)
+    // ANIME.JS MICRO-INTERACTION for nav link hover (color wave)
     document.querySelectorAll('.header-nav a').forEach(link => {
       link.addEventListener('mouseenter', (e) => {
         anime({
           targets: e.target,
           scale: 1.2,
-          duration: 200,
-          easing: 'easeOutExpo',
-          direction: 'alternate'
+          backgroundColor: 'rgba(0,0,0,0.6)',
+          duration: 300,
+          easing: 'easeOutExpo'
+        });
+      });
+      link.addEventListener('mouseleave', (e) => {
+        anime({
+          targets: e.target,
+          scale: 1,
+          backgroundColor: 'rgba(0,0,0,0.4)',
+          duration: 300,
+          easing: 'easeOutExpo'
         });
       });
     });
@@ -280,6 +315,28 @@
 
     // QUICKLINK PREFETCH
     quicklink.listen();
+
+    // Global mo.js burst on click for "wow" factor
+    const mojs = window.mojs;
+    const globalBurst = new mojs.Burst({
+      radius: { 0: 80 },
+      count: 10,
+      children: {
+        shape: 'polygon',
+        points: 7,
+        fill: [ '#FFD700', '#FF69B4', '#FFFFFF' ],
+        duration: 800,
+        easing: 'cubic.out'
+      }
+    });
+    document.addEventListener('click', (e) => {
+      // avoid if user is clicking a link
+      if (e.target.tagName.toLowerCase() !== 'a') {
+        globalBurst
+          .tune({ x: e.pageX, y: e.pageY })
+          .replay();
+      }
+    });
   </script>
 </body>
 </html>
