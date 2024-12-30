@@ -99,35 +99,33 @@ body, html {
 /* HERO SECTION with MP4 background */
 .hero-section {
   width: 100%;
-  /* Slightly increased height so more of the lighthouse top is visible */
-  height: 90vh;
-  min-height: 500px;
+  height: 80vh; /* how tall the hero is by default */
+  min-height: 450px;
   position: relative;
   overflow: hidden;
-  background-color: #000; /* fallback if video can't load */
+  background-color: #000; /* fallback background if video can't load */
 }
 
+/* Instead of "cover" or "top," we do "contain" so entire MP4 is visible */
 .hero-video {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-
-  /* Ensures we see the top portion of the video */
-  object-position: top;
-
+  object-fit: contain;  /* fit entire animation */
+  object-position: center; /* center it in the space */
   transform: translate(-50%, -50%);
   z-index: 1;
 }
 
-/* On extra-large screens, let it fill the entire viewport if desired */
+/* If you want it to fill more space on big monitors:
 @media (min-width: 1200px) {
   .hero-section {
-    height: 100vh; /* up to full screen height on large desktops */
+    height: 90vh;
   }
 }
+*/
 
 /* Text/logo overlay positioned on the left, near the top */
 .hero-overlay {
@@ -283,8 +281,8 @@ footer {
 /* Responsive adjustments for mobile */
 @media (max-width: 768px) {
   .hero-section {
-    height: 50vh;
-    min-height: 400px; /* ensure enough space for smaller screens too */
+    height: 50vh; /* optional if you want smaller on phone */
+    min-height: 300px;
   }
 
   .navbar {
@@ -292,7 +290,7 @@ footer {
   }
 
   .hero-video {
-    object-fit: cover;
+    object-fit: contain;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -329,7 +327,7 @@ footer {
 
 @media (min-width: 769px) {
   .hero-section {
-    height: 90vh;
+    height: 80vh; /* or 90vh if you want more space for the entire video */
   }
 
   .hero-overlay {
