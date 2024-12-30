@@ -25,7 +25,7 @@ body, html {
 /* Navbar overrides */
 .navbar {
   font-size: 1rem;
-  background-color: transparent; /* Ensure navbar is transparent */
+  background-color: transparent;
   margin: 0;
   padding: 0;
 }
@@ -36,10 +36,14 @@ body, html {
   padding: 0;
 }
 
-/* HEADER SECTION with Image */
+/* A helper class to keep nav links from wrapping on larger screens */
+.nav-no-wrap {
+  white-space: nowrap;
+}
+
+/* HEADER SECTION with Image (Jarallax) */
 .site-header {
   width: 100%;
-  background-color: #fff; /* optional background behind header image */
   text-align: center;
   margin: 0;
   padding: 0;
@@ -66,6 +70,10 @@ body, html {
   margin: 0;
 }
 
+.header-nav li {
+  display: inline-block;
+}
+
 .header-nav a {
   color: #fff;
   font-weight: 400;
@@ -73,20 +81,19 @@ body, html {
   text-decoration: none;
   padding: 0.5rem 0.75rem;
   transition: color 0.3s ease;
-  background-color: rgba(0,0,0,0.4); /* Subtle dark background under each link */
   margin-left: 5px;
-  border-radius: 3px;
+  border-radius: 0;
+  background-color: transparent;
 }
 
 .header-nav a.active {
   text-decoration: underline;
   color: #ffd700 !important;
-  background-color: rgba(0,0,0,0.6);
 }
 
 .header-nav a:hover {
   color: #ffd700;
-  background-color: rgba(0,0,0,0.6);
+  background-color: transparent;
 }
 
 /* HERO SECTION with MP4 background */
