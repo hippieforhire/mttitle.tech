@@ -115,7 +115,7 @@
     </div>
   </main>
 
-  <!-- Stewart "Vetted and Verified" badge (added at bottom, under main text) -->
+  <!-- Stewart "Vetted and Verified" badge -->
   <div
     class="container my-4 text-center badge-section"
     data-aos="zoom-in"
@@ -143,67 +143,32 @@
     </div>
   </footer>
 
-  <!-- Bootstrap Bundle JS -->
+  <!-- Scripts -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ho+DgUN3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
     crossorigin="anonymous"
   ></script>
-
-  <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-  <!-- Rellax (Parallax) -->
   <script src="js/rellax.min.js"></script>
-
-  <!-- Jarallax (for parallax on header image) -->
   <script src="js/jarallax.min.js"></script>
-
-  <!-- Anime.js (used for small micro-interactions) -->
   <script src="js/anime.min.js"></script>
-
-  <!-- mo.js (global click effect below) -->
   <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
-
-  <!-- Typed.js -->
-  <script src="js/typed.min.js"></script>
-
-  <!-- ScrollReveal -->
   <script src="js/scrollreveal.min.js"></script>
-
-  <!-- GSAP -->
   <script src="js/gsap.min.js"></script>
-
-  <!-- VanillaTilt -->
-  <script src="js/vanilla-tilt.min.js"></script>
-
-  <!-- Lax.js -->
   <script src="js/lax.min.js"></script>
-
-  <!-- TSPARTICLES (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest"></script>
-
-  <!-- Quicklink (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
 
   <script>
-    // Initialize AOS
     AOS.init({
       duration: 800,
       once: true
     });
+    var rellax = new Rellax('.rellax', { center: false });
+    jarallax(document.querySelectorAll('.jarallax'), { speed: 0.25 });
 
-    // Initialize Rellax
-    var rellax = new Rellax('.rellax', {
-      center: false
-    });
-
-    // Jarallax init
-    jarallax(document.querySelectorAll('.jarallax'), {
-      speed: 0.25
-    });
-
-    // Typed.js effect
+    // Typed text
     const typedSubtitleEl = document.getElementById('typedSubtitle');
     if (typedSubtitleEl) {
       new Typed('#typedSubtitle', {
@@ -214,7 +179,6 @@
         backDelay: 1200,
         loop: true,
         onComplete: (self) => {
-          // Anime color wave
           anime({
             targets: '#typedSubtitle',
             color: [
@@ -228,7 +192,7 @@
       });
     }
 
-    // GSAP fade for hero-overlay
+    // GSAP fade
     gsap.from(".hero-overlay", {
       opacity: 0,
       y: -50,
@@ -236,7 +200,7 @@
       ease: "power2.out"
     });
 
-    // MP4 plays exactly 2 times
+    // MP4 exactly 2 times
     let playedCount = 0;
     const heroVideo = document.getElementById('heroVideo');
     if (heroVideo) {
@@ -258,12 +222,7 @@
         shape: { type: "circle" },
         opacity: { value: 0.7 },
         size: { value: { min: 1, max: 5 } },
-        move: {
-          enable: true,
-          speed: 2,
-          direction: "none",
-          outModes: "out"
-        }
+        move: { enable: true, speed: 2, direction: "none", outModes: "out" }
       }
     });
 
@@ -275,46 +234,30 @@
       easing: 'ease-in-out'
     });
 
-    // Lax.js
+    // Lax
     lax.init();
-    lax.addDriver('scrollY', function () {
-      return window.scrollY;
-    });
+    lax.addDriver('scrollY', () => window.scrollY);
 
-    // Anime.js nav link hover
+    // Nav hover
     document.querySelectorAll('.header-nav a').forEach(link => {
-      link.addEventListener('mouseenter', (e) => {
-        anime({
-          targets: e.target,
-          scale: 1.2,
-          duration: 300,
-          easing: 'easeOutExpo'
-        });
+      link.addEventListener('mouseenter', e => {
+        anime({ targets: e.target, scale: 1.2, duration: 300, easing: 'easeOutExpo' });
       });
-      link.addEventListener('mouseleave', (e) => {
-        anime({
-          targets: e.target,
-          scale: 1,
-          duration: 300,
-          easing: 'easeOutExpo'
-        });
+      link.addEventListener('mouseleave', e => {
+        anime({ targets: e.target, scale: 1, duration: 300, easing: 'easeOutExpo' });
       });
     });
 
     // Scroll-to-top
     const scrollBtn = document.querySelector('.scroll-to-top');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        scrollBtn.style.display = 'block';
-      } else {
-        scrollBtn.style.display = 'none';
-      }
+      scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
     });
 
     // Quicklink
     quicklink.listen();
 
-    // Global mo.js burst on click
+    // mo.js global burst
     const mojs = window.mojs;
     const globalBurst = new mojs.Burst({
       radius: { 0: 80 },
@@ -322,16 +265,14 @@
       children: {
         shape: 'polygon',
         points: 7,
-        fill: [ '#FFD700', '#FF69B4', '#FFFFFF' ],
+        fill: ['#FFD700', '#FF69B4', '#FFFFFF'],
         duration: 800,
         easing: 'cubic.out'
       }
     });
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', e => {
       if (e.target.tagName.toLowerCase() !== 'a') {
-        globalBurst
-          .tune({ x: e.pageX, y: e.pageY })
-          .replay();
+        globalBurst.tune({ x: e.pageX, y: e.pageY }).replay();
       }
     });
   </script>
