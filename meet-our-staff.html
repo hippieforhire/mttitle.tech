@@ -35,7 +35,8 @@
 
   <!-- MATCH THE HOME SCREEN HEADER EXACTLY -->
   <header
-    class="site-header position-relative"
+    class="site-header jarallax position-relative"
+    data-jarallax data-speed="0.25"
     onclick="window.location.href='index.html'"
   >
     <img
@@ -169,14 +170,13 @@
     integrity="sha384-ho+DgUN3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
     crossorigin="anonymous"
   ></script>
-
   <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <!-- VanillaTilt -->
   <script src="js/vanilla-tilt.min.js"></script>
   <!-- Anime.js -->
   <script src="js/anime.min.js"></script>
-  <!-- mo.js (CDN) for small bursts on staff hover, optional) -->
+  <!-- mo.js -->
   <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
   <script src="js/scrollreveal.min.js"></script>
   <script src="js/gsap.min.js"></script>
@@ -199,6 +199,11 @@
       center: false
     });
 
+    // Jarallax init
+    jarallax(document.querySelectorAll('.jarallax'), {
+      speed: 0.25
+    });
+
     // Optional tilt effect
     VanillaTilt.init(document.querySelectorAll('.tilt-badge'), {
       max: 5,
@@ -209,15 +214,17 @@
     // Play the MP4 exactly 2 times
     let playedCount = 0;
     const heroVideo = document.getElementById('heroVideo');
-    heroVideo.addEventListener('ended', function() {
-      playedCount++;
-      if (playedCount < 2) {
-        heroVideo.currentTime = 0;
-        heroVideo.play();
-      }
-    });
+    if (heroVideo) {
+      heroVideo.addEventListener('ended', function() {
+        playedCount++;
+        if (playedCount < 2) {
+          heroVideo.currentTime = 0;
+          heroVideo.play();
+        }
+      });
+    }
 
-    // TSPARTICLES INIT
+    // TSPARTICLES
     tsParticles.load("tsparticles", {
       fpsLimit: 60,
       particles: {
@@ -235,7 +242,7 @@
       }
     });
 
-    // SCROLLREVEAL INIT
+    // SCROLLREVEAL
     ScrollReveal().reveal('.reveal-on-scroll', {
       distance: '50px',
       origin: 'bottom',
@@ -243,30 +250,38 @@
       easing: 'ease-in-out'
     });
 
-    // LAX.JS INIT
+    // LAX.JS
     lax.init();
     lax.addDriver('scrollY', function () {
       return window.scrollY;
     });
 
     // HIGHLIGHT ACTIVE LINK
-    // This is the "Meet Our Staff" page:
     document.getElementById('staffLink').classList.add('active');
 
-    // ANIME.JS MICRO-INTERACTION (scale nav links on hover)
+    // ANIME.JS nav link hover
     document.querySelectorAll('.header-nav a').forEach(link => {
       link.addEventListener('mouseenter', (e) => {
         anime({
           targets: e.target,
           scale: 1.2,
-          duration: 200,
-          easing: 'easeOutExpo',
-          direction: 'alternate'
+          backgroundColor: 'rgba(0,0,0,0.6)',
+          duration: 300,
+          easing: 'easeOutExpo'
+        });
+      });
+      link.addEventListener('mouseleave', (e) => {
+        anime({
+          targets: e.target,
+          scale: 1,
+          backgroundColor: 'rgba(0,0,0,0.4)',
+          duration: 300,
+          easing: 'easeOutExpo'
         });
       });
     });
 
-    // SCROLL-TO-TOP BUTTON VISIBILITY
+    // SCROLL-TO-TOP
     const scrollBtn = document.querySelector('.scroll-to-top');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 300) {
@@ -276,10 +291,10 @@
       }
     });
 
-    // QUICKLINK PREFETCH
+    // QUICKLINK
     quicklink.listen();
 
-    // TYPED JS for subtitle
+    // TYPED JS
     const typedSubtitleEl = document.getElementById('typedSubtitle');
     if (typedSubtitleEl) {
       new Typed('#typedSubtitle', {
@@ -288,11 +303,23 @@
         backSpeed: 30,
         startDelay: 300,
         backDelay: 1200,
-        loop: true
+        loop: true,
+        onComplete: (self) => {
+          // Anime.js color wave after typing
+          anime({
+            targets: '#typedSubtitle',
+            color: [
+              { value: '#ffd700', duration: 500 },
+              { value: '#ffffff', duration: 500 }
+            ],
+            loop: true,
+            easing: 'easeInOutSine'
+          });
+        }
       });
     }
 
-    // MO.JS BURST on Staff Name Hover (optional "pizzazz")
+    // mo.js staff hover burst
     const mojs = window.mojs;
     const burst = new mojs.Burst({
       radius: { 0: 60 },
@@ -306,7 +333,6 @@
         easing: 'cubic.out'
       }
     });
-
     document.querySelectorAll('.mojs-target').forEach((el) => {
       el.addEventListener('mouseenter', (e) => {
         const rect = e.target.getBoundingClientRect();
@@ -315,6 +341,26 @@
           y: rect.top + rect.height / 2
         }).replay();
       });
+    });
+
+    // Global mo.js burst on click
+    const globalBurst = new mojs.Burst({
+      radius: { 0: 80 },
+      count: 10,
+      children: {
+        shape: 'polygon',
+        points: 7,
+        fill: [ '#FFD700', '#FF69B4', '#FFFFFF' ],
+        duration: 800,
+        easing: 'cubic.out'
+      }
+    });
+    document.addEventListener('click', (e) => {
+      if (e.target.tagName.toLowerCase() !== 'a') {
+        globalBurst
+          .tune({ x: e.pageX, y: e.pageY })
+          .replay();
+      }
     });
   </script>
 </body>
