@@ -36,7 +36,7 @@
   <!-- TSPARTICLES BACKGROUND DIV -->
   <div id="tsparticles"></div>
 
-  <!-- HEADER SECTION with Image (Jarallax for parallax) -->
+  <!-- HEADER SECTION with Image -->
   <header
     class="site-header jarallax position-relative"
     data-jarallax data-speed="0.25"
@@ -48,9 +48,9 @@
       class="header-image"
     >
 
-    <!-- Nav for links at top-right of the header (Contact Us first) -->
+    <!-- Nav for links at top-right (Contact Us first) -->
     <nav class="header-nav">
-      <ul class="list-inline mb-0">
+      <ul class="list-inline mb-0 nav-no-wrap">
         <li class="list-inline-item">
           <a href="contact-us.html" id="contactLink">Contact Us</a>
         </li>
@@ -193,18 +193,18 @@
       once: true
     });
 
-    // Initialize Rellax for parallax effect
+    // Initialize Rellax
     var rellax = new Rellax('.rellax', {
       center: false
     });
 
-    // Initialize Jarallax (for the header parallax effect)
+    // Jarallax init
     jarallax(document.querySelectorAll('.jarallax'), {
       speed: 0.25
     });
 
-    // Initialize Typed.js for subtitle effect (slowed down, plus a color wave)
-    var typedSubtitleEl = document.getElementById('typedSubtitle');
+    // Typed.js effect
+    const typedSubtitleEl = document.getElementById('typedSubtitle');
     if (typedSubtitleEl) {
       new Typed('#typedSubtitle', {
         strings: ['"Lighting the path to home ownership"'],
@@ -214,7 +214,7 @@
         backDelay: 1200,
         loop: true,
         onComplete: (self) => {
-          // Anime.js color wave after typing
+          // Anime color wave
           anime({
             targets: '#typedSubtitle',
             color: [
@@ -228,7 +228,7 @@
       });
     }
 
-    // GSAP example fade-in for hero-overlay
+    // GSAP fade for hero-overlay
     gsap.from(".hero-overlay", {
       opacity: 0,
       y: -50,
@@ -236,7 +236,7 @@
       ease: "power2.out"
     });
 
-    // Play the MP4 exactly 2 times
+    // MP4 plays exactly 2 times
     let playedCount = 0;
     const heroVideo = document.getElementById('heroVideo');
     if (heroVideo) {
@@ -249,7 +249,7 @@
       });
     }
 
-    // TSPARTICLES INIT
+    // TSParticles
     tsParticles.load("tsparticles", {
       fpsLimit: 60,
       particles: {
@@ -267,7 +267,7 @@
       }
     });
 
-    // SCROLLREVEAL INIT
+    // ScrollReveal
     ScrollReveal().reveal('.reveal-on-scroll', {
       distance: '50px',
       origin: 'bottom',
@@ -275,19 +275,18 @@
       easing: 'ease-in-out'
     });
 
-    // LAX.JS INIT
+    // Lax.js
     lax.init();
     lax.addDriver('scrollY', function () {
       return window.scrollY;
     });
 
-    // ANIME.JS MICRO-INTERACTION for nav link hover (color wave)
+    // Anime.js nav link hover
     document.querySelectorAll('.header-nav a').forEach(link => {
       link.addEventListener('mouseenter', (e) => {
         anime({
           targets: e.target,
           scale: 1.2,
-          backgroundColor: 'rgba(0,0,0,0.6)',
           duration: 300,
           easing: 'easeOutExpo'
         });
@@ -296,14 +295,13 @@
         anime({
           targets: e.target,
           scale: 1,
-          backgroundColor: 'rgba(0,0,0,0.4)',
           duration: 300,
           easing: 'easeOutExpo'
         });
       });
     });
 
-    // SCROLL-TO-TOP BUTTON VISIBILITY
+    // Scroll-to-top
     const scrollBtn = document.querySelector('.scroll-to-top');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 300) {
@@ -313,10 +311,10 @@
       }
     });
 
-    // QUICKLINK PREFETCH
+    // Quicklink
     quicklink.listen();
 
-    // Global mo.js burst on click for "wow" factor
+    // Global mo.js burst on click
     const mojs = window.mojs;
     const globalBurst = new mojs.Burst({
       radius: { 0: 80 },
@@ -330,7 +328,6 @@
       }
     });
     document.addEventListener('click', (e) => {
-      // avoid if user is clicking a link
       if (e.target.tagName.toLowerCase() !== 'a') {
         globalBurst
           .tune({ x: e.pageX, y: e.pageY })
