@@ -31,7 +31,7 @@
   <!-- TSPARTICLES BACKGROUND DIV -->
   <div id="tsparticles"></div>
 
-  <!-- MATCH THE HOME SCREEN HEADER EXACTLY (Jarallax on header) -->
+  <!-- MATCH THE HOME SCREEN HEADER EXACTLY (Jarallax) -->
   <header
     class="site-header jarallax position-relative"
     data-jarallax data-speed="0.25"
@@ -43,9 +43,9 @@
       class="header-image"
     >
 
-    <!-- Nav (Contact Us first, then Staff) -->
+    <!-- Nav (Contact Us first, then Meet Our Staff) -->
     <nav class="header-nav">
-      <ul class="list-inline mb-0">
+      <ul class="list-inline mb-0 nav-no-wrap">
         <li class="list-inline-item">
           <a href="contact-us.html" id="contactLink">Contact Us</a>
         </li>
@@ -81,7 +81,7 @@
     </div>
   </section>
 
-  <!-- MAIN CONTENT (identical to old contact-us) -->
+  <!-- MAIN CONTENT -->
   <main
     class="container my-5 animate__animated animate__fadeIn"
     data-lax-preset="fadeInOut"
@@ -106,7 +106,7 @@
         </p>
       </div>
       <div class="col-md-6" data-aos="fade-left">
-        <!-- Embedded Google map iframe -->
+        <!-- Google map iframe -->
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3092.1411774522147!2d-91.52442368463936!3d39.79805009960667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87dde2784748b70d%3A0xf8586c5320e0651f!2s123+S+Main+St%2C+Palmyra%2C+MO+63461!5e0!3m2!1sen!2sus!4v1692230446930!5m2!1sen!2sus"
           width="100%"
@@ -135,50 +135,28 @@
     </div>
   </footer>
 
-  <!-- Bootstrap JS -->
+  <!-- Scripts -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ho+DgUN3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
     crossorigin="anonymous"
   ></script>
-  <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <!-- Rellax -->
   <script src="js/rellax.min.js"></script>
-  <!-- Jarallax -->
   <script src="js/jarallax.min.js"></script>
-  <!-- Anime.js -->
   <script src="js/anime.min.js"></script>
-  <!-- mo.js (global click effect) -->
   <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
-  <!-- ScrollReveal -->
   <script src="js/scrollreveal.min.js"></script>
-  <!-- GSAP -->
   <script src="js/gsap.min.js"></script>
-  <!-- Lax.js -->
   <script src="js/lax.min.js"></script>
-  <!-- TSPARTICLES (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest"></script>
-  <!-- Quicklink (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
 
   <script>
-    AOS.init({
-      duration: 800,
-      once: true
-    });
+    AOS.init({ duration: 800, once: true });
+    var rellax = new Rellax('.rellax', { center: false });
+    jarallax(document.querySelectorAll('.jarallax'), { speed: 0.25 });
 
-    // Rellax init
-    var rellax = new Rellax('.rellax', {
-      center: false
-    });
-
-    // Jarallax init
-    jarallax(document.querySelectorAll('.jarallax'), {
-      speed: 0.25
-    });
-
-    // Simple GSAP fade-in
     gsap.from("h2.mb-4", {
       scrollTrigger: ".mb-4",
       y: 50,
@@ -186,7 +164,6 @@
       duration: 1
     });
 
-    // Play MP4 exactly 2 times
     let playedCount = 0;
     const heroVideo = document.getElementById('heroVideo');
     if (heroVideo) {
@@ -199,7 +176,6 @@
       });
     }
 
-    // TSPARTICLES
     tsParticles.load("tsparticles", {
       fpsLimit: 60,
       particles: {
@@ -208,68 +184,35 @@
         shape: { type: "circle" },
         opacity: { value: 0.7 },
         size: { value: { min: 1, max: 5 } },
-        move: {
-          enable: true,
-          speed: 2,
-          direction: "none",
-          outModes: "out"
-        }
+        move: { enable: true, speed: 2, direction: "none", outModes: "out" }
       }
     });
 
-    // SCROLLREVEAL
     ScrollReveal().reveal('.reveal-on-scroll', {
-      distance: '50px',
-      origin: 'bottom',
-      duration: 1000,
-      easing: 'ease-in-out'
+      distance: '50px', origin: 'bottom', duration: 1000, easing: 'ease-in-out'
     });
 
-    // LAX.JS
     lax.init();
-    lax.addDriver('scrollY', function () {
-      return window.scrollY;
-    });
+    lax.addDriver('scrollY', () => window.scrollY);
 
-    // ACTIVE LINK
     document.getElementById('contactLink').classList.add('active');
 
-    // ANIME.JS link hover micro-interaction
     document.querySelectorAll('.header-nav a').forEach(link => {
-      link.addEventListener('mouseenter', (e) => {
-        anime({
-          targets: e.target,
-          scale: 1.2,
-          backgroundColor: 'rgba(0,0,0,0.6)',
-          duration: 300,
-          easing: 'easeOutExpo'
-        });
+      link.addEventListener('mouseenter', e => {
+        anime({ targets: e.target, scale: 1.2, duration: 300, easing: 'easeOutExpo' });
       });
-      link.addEventListener('mouseleave', (e) => {
-        anime({
-          targets: e.target,
-          scale: 1,
-          backgroundColor: 'rgba(0,0,0,0.4)',
-          duration: 300,
-          easing: 'easeOutExpo'
-        });
+      link.addEventListener('mouseleave', e => {
+        anime({ targets: e.target, scale: 1, duration: 300, easing: 'easeOutExpo' });
       });
     });
 
-    // Scroll-to-top
     const scrollBtn = document.querySelector('.scroll-to-top');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        scrollBtn.style.display = 'block';
-      } else {
-        scrollBtn.style.display = 'none';
-      }
+      scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
     });
 
-    // QUICKLINK
     quicklink.listen();
 
-    // Global mo.js burst on click
     const mojs = window.mojs;
     const globalBurst = new mojs.Burst({
       radius: { 0: 80 },
@@ -282,11 +225,9 @@
         easing: 'cubic.out'
       }
     });
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', e => {
       if (e.target.tagName.toLowerCase() !== 'a') {
-        globalBurst
-          .tune({ x: e.pageX, y: e.pageY })
-          .replay();
+        globalBurst.tune({ x: e.pageX, y: e.pageY }).replay();
       }
     });
   </script>
