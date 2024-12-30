@@ -14,7 +14,7 @@ body, html {
   color: #333;
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth; /* nice smooth scrolling */
+  scroll-behavior: smooth;
   height: 100%;
 
   /* Vibrant gradient background for more "pizzazz" */
@@ -48,6 +48,7 @@ body, html {
   margin: 0;
   padding: 0;
   position: relative;
+  /* If you want it thinner by default, you can add a smaller height or reduce jarallax speed further. */
 }
 
 .header-image {
@@ -99,33 +100,33 @@ body, html {
 /* HERO SECTION with MP4 background */
 .hero-section {
   width: 100%;
-  height: 80vh; /* how tall the hero is by default */
+  height: 80vh; 
   min-height: 450px;
   position: relative;
   overflow: hidden;
-  background-color: #000; /* fallback background if video can't load */
+  background-color: #000; /* fallback if nothing else loads */
 }
 
-/* Instead of "cover" or "top," we do "contain" so entire MP4 is visible */
+/* A container for the video, with a green background to match the edges of your MP4 */
+.video-container {
+  width: 100%;
+  height: 100%;
+  background-color: #046330; /* or whichever exact green you want */
+  position: relative;
+}
+
+/* The video itself, set to contain so it's fully visible, centered. */
 .hero-video {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 100%;
   height: 100%;
-  object-fit: contain;  /* fit entire animation */
-  object-position: center; /* center it in the space */
+  object-fit: contain;
+  object-position: center;
   transform: translate(-50%, -50%);
   z-index: 1;
 }
-
-/* If you want it to fill more space on big monitors:
-@media (min-width: 1200px) {
-  .hero-section {
-    height: 90vh;
-  }
-}
-*/
 
 /* Text/logo overlay positioned on the left, near the top */
 .hero-overlay {
@@ -146,7 +147,7 @@ body, html {
   animation: fadeDownHeroTitle 1.3s ease forwards;
 }
 
-/* For the typed text, adding a subtle background behind it */
+/* The typed text background */
 .typed-bg {
   display: inline-block;
   background-color: rgba(0,0,0,0.6);
@@ -192,7 +193,7 @@ footer {
   line-height: 1.6;
 }
 
-/* Add subtle background to each staff item (like a card) */
+/* Subtle background for staff items */
 .staff-card {
   background-color: rgba(0,0,0,0.05);
   padding: 0.75rem;
@@ -281,12 +282,12 @@ footer {
 /* Responsive adjustments for mobile */
 @media (max-width: 768px) {
   .hero-section {
-    height: 50vh; /* optional if you want smaller on phone */
+    height: 50vh;
     min-height: 300px;
   }
 
-  .navbar {
-    padding: 0.5rem 0.75rem;
+  .video-container {
+    background-color: #046330; /* ensure consistent color on mobile too */
   }
 
   .hero-video {
@@ -327,7 +328,7 @@ footer {
 
 @media (min-width: 769px) {
   .hero-section {
-    height: 80vh; /* or 90vh if you want more space for the entire video */
+    height: 80vh;
   }
 
   .hero-overlay {
