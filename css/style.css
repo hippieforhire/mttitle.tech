@@ -16,7 +16,6 @@ body, html {
   padding: 0;
   scroll-behavior: smooth;
   height: 100%;
-
   background: linear-gradient(135deg, #f7f9fb 0%, #dde2f0 50%, #f7f9fb 100%);
   background-attachment: fixed;
 }
@@ -40,32 +39,31 @@ body, html {
   white-space: nowrap;
 }
 
-/* HEADER SECTION with smaller height */
+/* HEADER SECTION smaller, no cropping */
 .site-header {
   width: 100%;
   text-align: center;
   margin: 0;
   padding: 0;
   position: relative;
-
-  /* force it about 1/4 smaller:
-     let's pick a height ~150px or 200px, as an example. */
-  height: 200px; /* adjust as you like */
+  max-height: 200px; /* or 180px, 220px—whatever you prefer */
+  background-color: #fff; /* fallback behind the image if needed */
   overflow: hidden;
 }
 
 .header-image {
-  width: 100%;
+  width: auto;
   height: 100%;
-  object-fit: cover; /* keeps image centered within smaller height */
+  object-fit: contain; /* entire image is visible */
+  object-position: center;
   display: block;
   margin: 0 auto;
 }
 
-/* The simple side-by-side links at bottom-right of header */
+/* Nav links at the bottom-right of the header */
 .header-nav {
   position: absolute;
-  bottom: 10px; /* place at bottom instead of top */
+  bottom: 10px; 
   right: 20px;
 }
 
@@ -104,14 +102,14 @@ body, html {
 /* HERO SECTION with MP4 background */
 .hero-section {
   width: 100%;
-  height: 80vh; 
+  height: 80vh;
   min-height: 450px;
   position: relative;
   overflow: hidden;
-  background-color: #000; /* fallback if nothing else loads */
+  background-color: #000;
 }
 
-/* Container that has a green background matching your MP4 edges */
+/* Container with green background for the letterbox behind your MP4 */
 .video-container {
   width: 100%;
   height: 100%;
@@ -119,7 +117,6 @@ body, html {
   position: relative;
 }
 
-/* The video itself, set to contain so it's fully visible, centered. */
 .hero-video {
   position: absolute;
   top: 50%;
@@ -151,14 +148,7 @@ body, html {
   animation: fadeDownHeroTitle 1.3s ease forwards;
 }
 
-/* The typed text background */
-.typed-bg {
-  display: inline-block;
-  background-color: rgba(0,0,0,0.6);
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-}
-
+/* No background for typed text now */
 .hero-subtitle-text {
   color: #fff !important;
   font-weight: bold;
@@ -167,7 +157,6 @@ body, html {
   animation-delay: 0.5s;
 }
 
-/* Standard .hero (like in meet-our-staff / contact-us) */
 .hero {
   min-height: 50vh;
   padding: 2rem;
@@ -179,7 +168,6 @@ body, html {
   background-size: cover;
 }
 
-/* Subtle fade on hero images */
 .hero img.hero-logo {
   transition: transform 0.4s ease;
 }
@@ -253,6 +241,7 @@ img:not(.hero-logo):hover {
   height: 100%;
   z-index: 0;
 }
+
 .site-header,
 .hero-section,
 main,
@@ -261,7 +250,6 @@ footer {
   z-index: 1;
 }
 
-/* Subtle background for the badge section */
 .badge-section {
   background-color: #f2f2f2;
   padding: 2rem 0;
@@ -269,7 +257,7 @@ footer {
 
 /* SCROLL-TO-TOP BUTTON */
 .scroll-to-top {
-  display: none; /* shown via JS on scroll */
+  display: none;
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -283,7 +271,7 @@ footer {
   transition: opacity 0.3s ease;
 }
 
-/* Responsive adjustments for mobile */
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .hero-section {
     height: 50vh;
@@ -320,8 +308,9 @@ footer {
   }
 
   .header-image {
-    width: 100%;
-    height: auto;
+    object-fit: contain;
+    width: auto;
+    height: 100%;
   }
 
   .header-nav {
@@ -342,11 +331,5 @@ footer {
 
   main {
     margin-top: 0;
-  }
-
-  .header-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 }
