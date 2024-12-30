@@ -47,7 +47,7 @@
 
     <!-- Nav reversed: Contact Us first, then Meet Our Staff -->
     <nav class="header-nav">
-      <ul class="list-inline mb-0">
+      <ul class="list-inline mb-0 nav-no-wrap">
         <li class="list-inline-item">
           <a href="contact-us.html" id="contactLink">Contact Us</a>
         </li>
@@ -106,8 +106,6 @@
 
         <hr />
         <h2 class="reveal-on-scroll">Our Team</h2>
-
-        <!-- Example "staff-card" class for subtle background & mo.js effect -->
         <ul class="list-unstyled staff-list mt-3 animate__animated animate__fadeInUp">
           <li class="reveal-on-scroll staff-card mojs-target">
             <strong>Donald M Bastian, Attorney, Owner</strong><br/>
@@ -164,54 +162,32 @@
     </div>
   </footer>
 
-  <!-- Bootstrap JS -->
+  <!-- Scripts -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ho+DgUN3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
     crossorigin="anonymous"
   ></script>
-  <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <!-- VanillaTilt -->
-  <script src="js/vanilla-tilt.min.js"></script>
-  <!-- Anime.js -->
+  <script src="js/rellax.min.js"></script>
+  <script src="js/jarallax.min.js"></script>
   <script src="js/anime.min.js"></script>
-  <!-- mo.js -->
   <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
   <script src="js/scrollreveal.min.js"></script>
   <script src="js/gsap.min.js"></script>
-  <script src="js/rellax.min.js"></script>
-  <!-- Lax.js -->
   <script src="js/lax.min.js"></script>
-  <!-- TSPARTICLES (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest"></script>
-  <!-- Quicklink (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
 
   <script>
-    AOS.init({
-      duration: 800,
-      once: true
-    });
+    AOS.init({ duration: 800, once: true });
+    var rellax = new Rellax('.rellax', { center: false });
+    jarallax(document.querySelectorAll('.jarallax'), { speed: 0.25 });
 
-    // Rellax init
-    var rellax = new Rellax('.rellax', {
-      center: false
-    });
-
-    // Jarallax init
-    jarallax(document.querySelectorAll('.jarallax'), {
-      speed: 0.25
-    });
-
-    // Optional tilt effect
     VanillaTilt.init(document.querySelectorAll('.tilt-badge'), {
-      max: 5,
-      speed: 200,
-      glare: false
+      max: 5, speed: 200, glare: false
     });
 
-    // Play the MP4 exactly 2 times
     let playedCount = 0;
     const heroVideo = document.getElementById('heroVideo');
     if (heroVideo) {
@@ -224,7 +200,6 @@
       });
     }
 
-    // TSPARTICLES
     tsParticles.load("tsparticles", {
       fpsLimit: 60,
       particles: {
@@ -233,68 +208,35 @@
         shape: { type: "circle" },
         opacity: { value: 0.7 },
         size: { value: { min: 1, max: 5 } },
-        move: {
-          enable: true,
-          speed: 2,
-          direction: "none",
-          outModes: "out"
-        }
+        move: { enable: true, speed: 2, direction: "none", outModes: "out" }
       }
     });
 
-    // SCROLLREVEAL
     ScrollReveal().reveal('.reveal-on-scroll', {
-      distance: '50px',
-      origin: 'bottom',
-      duration: 1000,
-      easing: 'ease-in-out'
+      distance: '50px', origin: 'bottom', duration: 1000, easing: 'ease-in-out'
     });
 
-    // LAX.JS
     lax.init();
-    lax.addDriver('scrollY', function () {
-      return window.scrollY;
-    });
+    lax.addDriver('scrollY', () => window.scrollY);
 
-    // HIGHLIGHT ACTIVE LINK
     document.getElementById('staffLink').classList.add('active');
 
-    // ANIME.JS nav link hover
     document.querySelectorAll('.header-nav a').forEach(link => {
-      link.addEventListener('mouseenter', (e) => {
-        anime({
-          targets: e.target,
-          scale: 1.2,
-          backgroundColor: 'rgba(0,0,0,0.6)',
-          duration: 300,
-          easing: 'easeOutExpo'
-        });
+      link.addEventListener('mouseenter', e => {
+        anime({ targets: e.target, scale: 1.2, duration: 300, easing: 'easeOutExpo' });
       });
-      link.addEventListener('mouseleave', (e) => {
-        anime({
-          targets: e.target,
-          scale: 1,
-          backgroundColor: 'rgba(0,0,0,0.4)',
-          duration: 300,
-          easing: 'easeOutExpo'
-        });
+      link.addEventListener('mouseleave', e => {
+        anime({ targets: e.target, scale: 1, duration: 300, easing: 'easeOutExpo' });
       });
     });
 
-    // SCROLL-TO-TOP
     const scrollBtn = document.querySelector('.scroll-to-top');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        scrollBtn.style.display = 'block';
-      } else {
-        scrollBtn.style.display = 'none';
-      }
+      scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
     });
 
-    // QUICKLINK
     quicklink.listen();
 
-    // TYPED JS
     const typedSubtitleEl = document.getElementById('typedSubtitle');
     if (typedSubtitleEl) {
       new Typed('#typedSubtitle', {
@@ -305,7 +247,6 @@
         backDelay: 1200,
         loop: true,
         onComplete: (self) => {
-          // Anime.js color wave after typing
           anime({
             targets: '#typedSubtitle',
             color: [
@@ -319,7 +260,6 @@
       });
     }
 
-    // mo.js staff hover burst
     const mojs = window.mojs;
     const burst = new mojs.Burst({
       radius: { 0: 60 },
@@ -333,17 +273,13 @@
         easing: 'cubic.out'
       }
     });
-    document.querySelectorAll('.mojs-target').forEach((el) => {
-      el.addEventListener('mouseenter', (e) => {
+    document.querySelectorAll('.mojs-target').forEach(el => {
+      el.addEventListener('mouseenter', e => {
         const rect = e.target.getBoundingClientRect();
-        burst.tune({
-          x: rect.left + rect.width / 2,
-          y: rect.top + rect.height / 2
-        }).replay();
+        burst.tune({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }).replay();
       });
     });
 
-    // Global mo.js burst on click
     const globalBurst = new mojs.Burst({
       radius: { 0: 80 },
       count: 10,
@@ -355,11 +291,9 @@
         easing: 'cubic.out'
       }
     });
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', e => {
       if (e.target.tagName.toLowerCase() !== 'a') {
-        globalBurst
-          .tune({ x: e.pageX, y: e.pageY })
-          .replay();
+        globalBurst.tune({ x: e.pageX, y: e.pageY }).replay();
       }
     });
   </script>
