@@ -36,7 +36,7 @@
   <!-- TSPARTICLES BACKGROUND DIV -->
   <div id="tsparticles"></div>
 
-  <!-- HEADER SECTION with smaller height -->
+  <!-- HEADER SECTION (smaller, entire image contained) -->
   <header
     class="site-header position-relative"
     onclick="window.location.href='index.html'"
@@ -47,7 +47,7 @@
       class="header-image"
     >
 
-    <!-- Nav for links at BOTTOM-right of the header -->
+    <!-- Nav at bottom-right of the header -->
     <nav class="header-nav">
       <ul class="list-inline mb-0 nav-no-wrap">
         <li class="list-inline-item">
@@ -74,7 +74,7 @@
       </video>
     </div>
 
-    <!-- Text/logo overlay (positioned on the left, near the top) -->
+    <!-- Text/logo overlay -->
     <div
       class="hero-overlay d-flex flex-column align-items-start"
       data-aos="zoom-in"
@@ -83,8 +83,8 @@
         Mark Twain Title Company
       </h1>
 
-      <!-- Typed effect text -->
-      <p class="lead mb-4 hero-subtitle-text typed-bg" id="typedSubtitle">
+      <!-- Typed text (no background now) -->
+      <p class="lead mb-4 hero-subtitle-text" id="typedSubtitle">
         "Lighting the path to home ownership"
       </p>
     </div>
@@ -159,22 +159,14 @@
   <script src="js/jarallax.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
-  <!-- Typed.js (make sure it's loaded before we call it) -->
   <script src="js/typed.min.js"></script>
 
   <script>
-    // Make sure everything is loaded before starting typed
     document.addEventListener('DOMContentLoaded', function() {
-
       AOS.init({ duration: 800, once: true });
       var rellax = new Rellax('.rellax', { center: false });
 
-      // Jarallax: if you prefer to keep some parallax on the header, set speed>0. 
-      // But we want the header smaller, so let's keep speed very low or 0.
-      jarallax(document.querySelectorAll('.site-header'), { speed: 0.0 });
-
-      // Anime.js text
-      // TYPED effect to animate the "Lighting the path..."
+      // typed effect
       const typedSubtitleEl = document.getElementById('typedSubtitle');
       if (typedSubtitleEl) {
         let typed = new Typed('#typedSubtitle', {
@@ -185,7 +177,6 @@
           backDelay: 1200,
           loop: true,
           onComplete: function() {
-            // Animate text color wave via Anime.js
             anime({
               targets: '#typedSubtitle',
               color: [
@@ -199,7 +190,7 @@
         });
       }
 
-      // GSAP example fade
+      // GSAP fade
       gsap.from(".hero-overlay", {
         opacity: 0,
         y: -50,
@@ -245,13 +236,23 @@
       lax.init();
       lax.addDriver('scrollY', () => window.scrollY);
 
-      // Nav hover
+      // Hover effect for nav
       document.querySelectorAll('.header-nav a').forEach(link => {
         link.addEventListener('mouseenter', e => {
-          anime({ targets: e.target, scale: 1.2, duration: 300, easing: 'easeOutExpo' });
+          anime({
+            targets: e.target,
+            scale: 1.2,
+            duration: 300,
+            easing: 'easeOutExpo'
+          });
         });
         link.addEventListener('mouseleave', e => {
-          anime({ targets: e.target, scale: 1, duration: 300, easing: 'easeOutExpo' });
+          anime({
+            targets: e.target,
+            scale: 1,
+            duration: 300,
+            easing: 'easeOutExpo'
+          });
         });
       });
 
