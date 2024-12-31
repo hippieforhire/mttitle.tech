@@ -36,7 +36,7 @@
   <!-- TSPARTICLES BACKGROUND DIV -->
   <div id="tsparticles"></div>
 
-  <!-- HEADER SECTION (smaller, entire image contained) -->
+  <!-- HEADER (smaller, fully visible, with hamburger for mobile) -->
   <header
     class="site-header position-relative"
     onclick="window.location.href='index.html'"
@@ -46,9 +46,15 @@
       alt="Mark Twain Title Company Header"
       class="header-image"
     >
+    <!-- HAMBURGER for mobile, hidden on desktop -->
+    <div class="hamburger" onclick="toggleMenu(event)">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
 
-    <!-- Nav at bottom-right of the header -->
-    <nav class="header-nav">
+    <!-- Nav for links at bottom-right on desktop, collapses on mobile -->
+    <nav class="header-nav" id="mainNav">
       <ul class="list-inline mb-0 nav-no-wrap">
         <li class="list-inline-item">
           <a href="contact-us.html" id="contactLink">Contact Us</a>
@@ -83,7 +89,7 @@
         Mark Twain Title Company
       </h1>
 
-      <!-- Typed text (no background now) -->
+      <!-- Typed text (no background) -->
       <p class="lead mb-4 hero-subtitle-text" id="typedSubtitle">
         "Lighting the path to home ownership"
       </p>
@@ -162,6 +168,15 @@
   <script src="js/typed.min.js"></script>
 
   <script>
+    // Toggle hamburger on mobile
+    function toggleMenu(e) {
+      e.stopPropagation();
+      const nav = document.getElementById('mainNav');
+      nav.classList.toggle('nav-open');
+      const hamburger = document.querySelector('.hamburger');
+      hamburger.classList.toggle('is-active');
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
       AOS.init({ duration: 800, once: true });
       var rellax = new Rellax('.rellax', { center: false });
@@ -236,7 +251,7 @@
       lax.init();
       lax.addDriver('scrollY', () => window.scrollY);
 
-      // Hover effect for nav
+      // Hover effect for nav (desktop)
       document.querySelectorAll('.header-nav a').forEach(link => {
         link.addEventListener('mouseenter', e => {
           anime({
