@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Our Timeline | Mark Twain Title Company</title>
+
+  <!-- Responsive viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Bootstrap 5 (CDN) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-WqQ1D4nD9pI+kv3mxrjfR15d8gB4DDlCDPH9a1/ttbk68DsGaY8Q/QtrSlCJm7c6"
+    crossorigin="anonymous"
+  />
+
+  <!-- AOS (Animate On Scroll) CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="css/animate.min.css" />
+
+  <!-- Our existing stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- TSPARTICLES BACKGROUND DIV (optional) -->
+  <div id="tsparticles"></div>
+
+  <!-- A simple header (could reuse your smaller header or any style) -->
+  <header class="site-header position-relative" onclick="window.location.href='index.html'">
+    <img
+      src="images/Untitled-design.jpeg"
+      alt="Mark Twain Title Company Header"
+      class="header-image"
+      style="object-fit: contain; max-height: 200px; width: auto;"
+    >
+
+    <!-- Possibly a simple nav for going back to main pages -->
+    <nav class="header-nav" style="bottom: 10px; right: 20px;">
+      <ul class="list-inline mb-0 nav-no-wrap">
+        <li class="list-inline-item">
+          <a href="index.html">Home</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="contact-us.html">Contact Us</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="meet-our-staff.html">Meet Our Staff</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- TIMELINE INTRO -->
+  <section class="container my-4">
+    <h1 class="text-center mb-5" data-aos="fade-up">Company Timeline</h1>
+    <p data-aos="fade-in" class="text-center">
+      Explore the history of Mark Twain Title Company through this interactive timeline.
+      Click each milestone to learn more and see accompanying newspaper clippings or photos!
+    </p>
+  </section>
+
+  <!-- TIMELINE (vertical example) -->
+  <section class="container timeline-container" data-aos="fade-up" data-aos-delay="100">
+    <!-- TIMELINE ITEM 1 -->
+    <div class="timeline-item mb-5">
+      <div class="timeline-year fw-bold mb-2">1900</div>
+      <div class="timeline-image mb-2">
+        <img
+          src="images/1.jpg"
+          alt="Newspaper clipping from 1900"
+          style="max-width: 300px; width: 100%; height: auto; cursor: pointer;"
+          onclick="toggleDetails('details1')"
+        />
+      </div>
+      <p id="details1" class="timeline-details collapse">
+        This is a summary of the event or milestone from 1900. Perhaps a newspaper clipping
+        announcing the start of the company, or a major achievement. The user clicked on the
+        image to reveal this text.
+      </p>
+    </div>
+
+    <!-- TIMELINE ITEM 2 -->
+    <div class="timeline-item mb-5">
+      <div class="timeline-year fw-bold mb-2">1920</div>
+      <div class="timeline-image mb-2">
+        <img
+          src="images/2.jpg"
+          alt="Newspaper clipping from 1920"
+          style="max-width: 300px; width: 100%; height: auto; cursor: pointer;"
+          onclick="toggleDetails('details2')"
+        />
+      </div>
+      <p id="details2" class="timeline-details collapse">
+        By 1920, Mark Twain Title Company expanded to other counties...
+      </p>
+    </div>
+
+    <!-- Repeat for each event up to 24 if you like. -->
+    <!-- TIMELINE ITEM 3 -->
+    <div class="timeline-item mb-5">
+      <div class="timeline-year fw-bold mb-2">1950</div>
+      <div class="timeline-image mb-2">
+        <img
+          src="images/3.jpg"
+          alt="Newspaper clipping from 1950"
+          style="max-width: 300px; width: 100%; height: auto; cursor: pointer;"
+          onclick="toggleDetails('details3')"
+        />
+      </div>
+      <p id="details3" class="timeline-details collapse">
+        Another milestone in 1950...  
+      </p>
+    </div>
+
+  </section>
+
+  <!-- SCROLL TO TOP BUTTON -->
+  <div class="scroll-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+    ▲
+  </div>
+
+  <footer class="bg-dark text-light text-center py-3">
+    <div class="container">
+      <p class="mb-0">
+        COPYRIGHT © 2024 Title Agency <br />
+        ALL RIGHTS RESERVED.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Standard Scripts (like your index) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+DgUN3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/rellax.min.js"></script>
+  <script src="js/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
+  <script src="js/scrollreveal.min.js"></script>
+  <script src="js/gsap.min.js"></script>
+  <script src="js/lax.min.js"></script>
+  <script src="js/jarallax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <script src="js/typed.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({ duration: 800, once: true });
+      var rellax = new Rellax('.rellax', { center: false });
+
+      // Example typed effect if you want it on this page too:
+      // new Typed('#someElement', { ... });
+
+      // GSAP example fade
+      // etc.
+
+      // Quicklink
+      quicklink.listen();
+    });
+
+    // Simple toggle for collapse
+    function toggleDetails(id) {
+      const detailsEl = document.getElementById(id);
+      detailsEl.classList.toggle('show'); // bootstrap .collapse => .show
+    }
+  </script>
+</body>
+</html>
