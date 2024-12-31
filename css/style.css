@@ -20,61 +20,58 @@ body, html {
   background-attachment: fixed;
 }
 
-/* Navbar overrides */
-.navbar {
-  font-size: 1rem;
-  background-color: transparent;
-  margin: 0;
-  padding: 0;
-}
-
-/* Remove any padding/margin on container inside navbar */
-.navbar .container {
-  margin: 0;
-  padding: 0;
-}
-
-/* A helper class to keep nav links from wrapping on larger screens */
+/* Helper to avoid wrapping on bigger screens */
 .nav-no-wrap {
   white-space: nowrap;
 }
 
-/* HEADER SECTION smaller, no cropping */
+/* HEADER: smaller, fully visible image */
 .site-header {
   width: 100%;
   text-align: center;
   margin: 0;
   padding: 0;
   position: relative;
-  max-height: 200px; /* or 180px, 220px—whatever you prefer */
-  background-color: #fff; /* fallback behind the image if needed */
+  max-height: 200px; /* or tweak as needed */
+  background-color: #fff;
   overflow: hidden;
 }
 
 .header-image {
   width: auto;
   height: 100%;
-  object-fit: contain; /* entire image is visible */
+  object-fit: contain;
   object-position: center;
   display: block;
   margin: 0 auto;
 }
 
-/* Nav links at the bottom-right of the header */
+/* Nav at the bottom-right for desktop */
 .header-nav {
   position: absolute;
   bottom: 10px; 
   right: 20px;
+
+  /* For mobile/hamburger transitions */
+  background-color: rgba(0,0,0,0.7);
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  max-height: 999px; /* large so desktop is fully shown by default */
+  opacity: 1;
 }
 
+/* By default, the nav is open on desktop. We'll close it on mobile with a media query or .nav-open class. */
 .header-nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  text-align: right; /* so the links appear side by side on bigger screens */
 }
 
 .header-nav li {
   display: inline-block;
+  margin-left: 0;
 }
 
 .header-nav a {
@@ -82,11 +79,11 @@ body, html {
   font-weight: 400;
   font-size: 0.875rem;
   text-decoration: none;
-  padding: 0.5rem 0.75rem;
-  transition: color 0.3s ease;
   margin-left: 5px;
+  padding: 0.5rem 0.75rem;
   border-radius: 0;
   background-color: transparent;
+  transition: color 0.3s ease;
 }
 
 .header-nav a.active {
@@ -99,7 +96,45 @@ body, html {
   background-color: transparent;
 }
 
-/* HERO SECTION with MP4 background */
+/* HAMBURGER MENU */
+.hamburger {
+  display: none; /* hidden on desktop, shown on mobile with media queries */
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  z-index: 9999;
+}
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  margin-bottom: 5px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+.hamburger.is-active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.is-active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.is-active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* When .nav-open is not present (on mobile), hide nav */
+.header-nav {
+  /* We override in mobile media query to hide it by default. */
+}
+.header-nav.nav-open {
+  max-height: 999px; /* expanded */
+  opacity: 1;
+}
+
+/* Hero with MP4 */
 .hero-section {
   width: 100%;
   height: 80vh;
@@ -109,7 +144,6 @@ body, html {
   background-color: #000;
 }
 
-/* Container with green background for the letterbox behind your MP4 */
 .video-container {
   width: 100%;
   height: 100%;
@@ -129,7 +163,7 @@ body, html {
   z-index: 1;
 }
 
-/* Text/logo overlay positioned on the left, near the top */
+/* Hero overlay text */
 .hero-overlay {
   position: absolute;
   top: 5%;
@@ -148,7 +182,7 @@ body, html {
   animation: fadeDownHeroTitle 1.3s ease forwards;
 }
 
-/* No background for typed text now */
+/* typed text, no background */
 .hero-subtitle-text {
   color: #fff !important;
   font-weight: bold;
@@ -157,42 +191,7 @@ body, html {
   animation-delay: 0.5s;
 }
 
-.hero {
-  min-height: 50vh;
-  padding: 2rem;
-  background: linear-gradient(
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.6)
-    ),
-    url("../images/hero-bg.jpg") no-repeat center center;
-  background-size: cover;
-}
-
-.hero img.hero-logo {
-  transition: transform 0.4s ease;
-}
-.hero img.hero-logo:hover {
-  transform: scale(1.05);
-}
-
-/* Footer small override */
-footer {
-  font-size: 0.9rem;
-}
-
-/* Staff list styling */
-.staff-list {
-  line-height: 1.6;
-}
-
-/* Subtle background for staff items */
-.staff-card {
-  background-color: rgba(0,0,0,0.05);
-  padding: 0.75rem;
-  border-radius: 6px;
-}
-
-/* Keyframes for hero title/subtitle fade/slide */
+/* Keyframes */
 @keyframes fadeDownHeroTitle {
   0% {
     opacity: 0;
@@ -203,7 +202,6 @@ footer {
     transform: translateY(0);
   }
 }
-
 @keyframes fadeUpHeroSubtitle {
   0% {
     opacity: 0;
@@ -215,12 +213,31 @@ footer {
   }
 }
 
-/* .staff-list hover flair */
-.staff-list li {
-  transition: color 0.3s ease;
+/* Some other styling for your main hero background if you want */
+.hero {
+  min-height: 50vh;
+  padding: 2rem;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url("../images/hero-bg.jpg") no-repeat center center;
+  background-size: cover;
 }
-.staff-list li:hover {
-  color: #555;
+
+/* FOOTER */
+footer {
+  font-size: 0.9rem;
+}
+
+/* Staff list styling, etc. */
+.staff-list {
+  line-height: 1.6;
+}
+.staff-card {
+  background-color: rgba(0,0,0,0.05);
+  padding: 0.75rem;
+  border-radius: 6px;
 }
 
 /* Subtle fade/zoom on images site-wide (except hero logos above) */
@@ -232,7 +249,7 @@ img:not(.hero-logo):hover {
   opacity: 0.9;
 }
 
-/* TSPARTICLES BACKGROUND */
+/* TSPARTICLES BG */
 #tsparticles {
   position: fixed;
   top: 0;
@@ -241,7 +258,6 @@ img:not(.hero-logo):hover {
   height: 100%;
   z-index: 0;
 }
-
 .site-header,
 .hero-section,
 main,
@@ -250,12 +266,13 @@ footer {
   z-index: 1;
 }
 
+/* Subtle background for the badge section */
 .badge-section {
   background-color: #f2f2f2;
   padding: 2rem 0;
 }
 
-/* SCROLL-TO-TOP BUTTON */
+/* SCROLL-TO-TOP */
 .scroll-to-top {
   display: none;
   position: fixed;
@@ -271,51 +288,62 @@ footer {
   transition: opacity 0.3s ease;
 }
 
-/* Responsive adjustments */
+/* MEDIA QUERIES */
 @media (max-width: 768px) {
-  .hero-section {
-    height: 50vh;
-    min-height: 300px;
+  /* Show hamburger, hide nav by default */
+  .hamburger {
+    display: block;
+  }
+  .header-nav {
+    position: static;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-top: 0.5rem;
+  }
+  .header-nav.nav-open {
+    max-height: 200px; /* enough to show your links */
+    opacity: 1;
   }
 
-  .video-container {
-    background-color: #046330;
+  /* Place nav below the image if you prefer, or keep it in the .hamburger toggle */
+  .header-nav ul {
+    text-align: left;
+  }
+  .header-nav li {
+    display: block;
+    margin: 0.5rem 0;
+  }
+  .header-nav a {
+    display: inline-block;
   }
 
-  .hero-video {
-    object-fit: contain;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  /* The site-header image is smaller but contained */
+  .site-header {
+    max-height: 160px; /* you can adjust for mobile */
   }
-
-  .hero-overlay {
-    top: 3%;
-    left: 3%;
-    padding: 0.25rem 0.5rem;
-  }
-
-  .hero-title-text {
-    font-size: 1.8rem;
-  }
-
-  .hero-subtitle-text {
-    font-size: 1rem;
-  }
-
-  main {
-    margin-top: 0;
-  }
-
   .header-image {
     object-fit: contain;
     width: auto;
     height: 100%;
   }
 
-  .header-nav {
-    bottom: 5px;
-    right: 10px;
+  .hero-section {
+    height: 50vh;
+    min-height: 300px;
+  }
+  .video-container {
+    background-color: #046330;
+  }
+  .hero-overlay {
+    top: 3%;
+    left: 3%;
+  }
+  .hero-title-text {
+    font-size: 1.8rem;
+  }
+  .hero-subtitle-text {
+    font-size: 1rem;
   }
 }
 
@@ -323,13 +351,8 @@ footer {
   .hero-section {
     height: 80vh;
   }
-
   .hero-overlay {
     top: 5%;
     left: 5%;
-  }
-
-  main {
-    margin-top: 0;
   }
 }
