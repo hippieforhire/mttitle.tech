@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Horizontal Sticky Timeline | Mark Twain Title Company</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Bootstrap 5 -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-WqQ1D4nD9pI+kv3mxrjfR15d8gB4DDlCDPH9a1/ttbk68DsGaY8Q/QtrSlCJm7c6"
+    crossorigin="anonymous"
+  />
+
+  <!-- Our existing stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .horizontal-section {
+      height: 100vh;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .horizontal-inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      height: 100%;
+      /* We have 25 items. Each ~350px wide (including margin),
+         total ~ 25 * 350 = 8750. Adjust as needed. */
+      width: 8750px;
+      transition: transform 0.3s ease;
+    }
+    .horizontal-item {
+      width: 300px;
+      margin: 25px;
+      background-color: #fff;
+      text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .horizontal-item img {
+      max-width: 280px;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 4px;
+    }
+    .horizontal-date {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .horizontal-desc {
+      width: 280px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header position-relative" onclick="window.location.href='index.html'">
+    <img
+      src="images/Untitled-design.jpeg"
+      alt="Mark Twain Title Company Header"
+      class="header-image"
+      style="width: 100%; height: auto; object-fit: contain;"
+    >
+    <nav class="header-nav" style="bottom: 10px; right: 20px;">
+      <ul class="list-inline mb-0 nav-no-wrap">
+        <li class="list-inline-item"><a href="index.html">Home</a></li>
+        <li class="list-inline-item"><a href="contact-us.html">Contact Us</a></li>
+        <li class="list-inline-item"><a href="meet-our-staff.html">Meet Our Staff</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="container my-5">
+      <h1 class="text-center mb-4">
+        The History of Mark Twain Title Company
+      </h1>
+      <p class="text-center mx-auto" style="max-width: 600px;">
+        Mark Twain Title Company started as, and traces its origins back to 1898, 
+        when it was originally named “Marion County Abstract Company, which we still hold the rights to.” 
+        This horizontal timeline highlights each key date as you scroll down.
+      </p>
+    </section>
+
+    <section class="horizontal-section" id="hSection">
+      <div class="horizontal-inner" id="hInner">
+        <!-- 25 items side by side -->
+        <div class="horizontal-item">
+          <img src="images/1.jpg" alt="1/20/1898" />
+          <div class="horizontal-date">January 20, 1898</div>
+          <div class="horizontal-desc">
+            The formation of the Marion County Abstract Company... 
+            (Palmyra Spectator 1/20/1898)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/2.jpg" alt="1/27/1898" />
+          <div class="horizontal-date">January 27, 1898</div>
+          <div class="horizontal-desc">
+            Announcement of location for the company...
+            (Palmyra Spectator 1/27/1898)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/3.jpg" alt="2/3/1898" />
+          <div class="horizontal-date">February 3, 1898</div>
+          <div class="horizontal-desc">
+            Announcement of the election of members...
+            (Palmyra Spectator 2/3/1898)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/5.jpg" alt="2/17/1898" />
+          <div class="horizontal-date">February 17, 1898</div>
+          <div class="horizontal-desc">
+            Announcement of anticipated opening of facility...
+            (Palmyra Spectator 2/17/1898)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/6.jpg" alt="3/24/1898" />
+          <div class="horizontal-date">March 24, 1898</div>
+          <div class="horizontal-desc">
+            Advertisement for Marion County Abstract Company...
+            (Palmyra Spectator 3/24/1898)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/7.jpg" alt="4/28/1898" />
+          <div class="horizontal-date">April 28, 1898</div>
+          <div class="horizontal-desc">
+            Advertisement for Marion County Abstract Company...
+            (Palmyra Spectator 4/28/1898)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/4.jpg" alt="4/16/1902" />
+          <div class="horizontal-date">April 16, 1902</div>
+          <div class="horizontal-desc">
+            Spectator profile of R. L. Doherty, skipping telescope references...
+            (Palmyra Spectator 4/16/1902)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/8.jpg" alt="4/10/1912" />
+          <div class="horizontal-date">April 10, 1912</div>
+          <div class="horizontal-desc">
+            R. L. Doherty mention in the Spectator, no telescope mention...
+            (Palmyra Spectator 4/10/1912)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/9.jpg" alt="4/8/1914" />
+          <div class="horizontal-date">April 8, 1914</div>
+          <div class="horizontal-desc">
+            Announcement of William P Johnson purchasing majority stock...
+            (Palmyra Spectator 4/8/1914)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/10.jpg" alt="7/1/1914" />
+          <div class="horizontal-date">July 1, 1914</div>
+          <div class="horizontal-desc">
+            R. L. Doherty remained with the company after its sale...
+            (Palmyra Spectator 7/1/1914)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/11.jpg" alt="6/12/1935" />
+          <div class="horizontal-date">June 12, 1935</div>
+          <div class="horizontal-desc">
+            William P Johnson passed away and left the company to his sons...
+            (Palmyra Spectator 6/12/1935)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/12.jpg" alt="1/6/1943" />
+          <div class="horizontal-date">January 6, 1943</div>
+          <div class="horizontal-desc">
+            Both Stewart Johnson and Robert Johnson inducted into WWII...
+            (Palmyra Spectator 1/6/1943)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/13.jpg" alt="10/20/1943" />
+          <div class="horizontal-date">October 20, 1943</div>
+          <div class="horizontal-desc">
+            Stewart & Robert Johnson war service profile...
+            (Palmyra Spectator 10/20/1943)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/14.jpg" alt="11/14/1945" />
+          <div class="horizontal-date">November 14, 1945</div>
+          <div class="horizontal-desc">
+            Announcement of re-opening the Marion County Abstract Company...
+            (Palmyra Spectator 11/14/1945)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/15.jpg" alt="11/14/1945" />
+          <div class="horizontal-date">November 14, 1945</div>
+          <div class="horizontal-desc">
+            Profile for re-opening of the Marion County Abstract Company...
+            (Palmyra Spectator 11/14/1945)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/16.jpg" alt="10/3/1957" />
+          <div class="horizontal-date">October 3, 1957</div>
+          <div class="horizontal-desc">
+            Announcement of Bob Johnson purchasing the company...
+            (Palmyra Spectator 10/3/1957)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/17.jpg" alt="3/9/1960" />
+          <div class="horizontal-date">March 9, 1960</div>
+          <div class="horizontal-desc">
+            Article on the Palmyra Explosion of 1960 (March 2)...
+            (Palmyra Spectator 3/9/1960)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/18.jpg" alt="3/9/1960" />
+          <div class="horizontal-date">March 9, 1960</div>
+          <div class="horizontal-desc">
+            Another article on the Palmyra Explosion...
+            (Palmyra Spectator 3/9/1960)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/19.jpg" alt="3/9/1960" />
+          <div class="horizontal-date">March 9, 1960</div>
+          <div class="horizontal-desc">
+            Photo showing building damage...
+            (Palmyra Spectator 3/9/1960)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/20.jpg" alt="3/10/1960" />
+          <div class="horizontal-date">March 10, 1960</div>
+          <div class="horizontal-desc">
+            Thanking everyone for help after the explosion...
+            (Palmyra Spectator 3/10/1960)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/21.jpg" alt="11/24/1960" />
+          <div class="horizontal-date">November 24, 1960</div>
+          <div class="horizontal-desc">
+            Photograph of the new building rebuilt after the explosion...
+            (Palmyra Spectator 11/24/1960)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/22.jpg" alt="11/24/1960" />
+          <div class="horizontal-date">November 24, 1960</div>
+          <div class="horizontal-desc">
+            Article showing the new building after the explosion...
+            (Palmyra Spectator 11/24/1960)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/23.jpg" alt="11/24/1960" />
+          <div class="horizontal-date">November 24, 1960</div>
+          <div class="horizontal-desc">
+            Century Press post congratulating Marion County Abstract...
+            (Palmyra Spectator 11/24/1960)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/24.jpg" alt="11/24/1960" />
+          <div class="horizontal-date">November 24, 1960</div>
+          <div class="horizontal-desc">
+            Deed writing process used...
+            (Palmyra Spectator 11/24/1960)
+          </div>
+        </div>
+
+        <div class="horizontal-item">
+          <img src="images/25.jpg" alt="11/24/1960" />
+          <div class="horizontal-date">November 24, 1960</div>
+          <div class="horizontal-desc">
+            Photo showing the microfilm process...
+            (Palmyra Spectator 11/24/1960)
+          </div>
+        </div>
+
+      </div> <!-- end horizontal-inner -->
+    </section>
+  </main>
+
+  <footer class="bg-dark text-light text-center py-3">
+    <div class="container">
+      <p class="mb-0">
+        COPYRIGHT © 2024 Title Agency<br/>
+        ALL RIGHTS RESERVED.
+      </p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/gsap.min.js"></script>
+  <script src="js/ScrollTrigger.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      gsap.registerPlugin(ScrollTrigger);
+
+      let hInner = document.getElementById('hInner');
+      // 25 items * ~350px each = 8750, adjust if needed
+      let totalWidth = 8750;
+      let trigger = ScrollTrigger.create({
+        trigger: '#hSection',
+        pin: true,
+        scrub: 1,
+        start: 'top top',
+        end: () => `+=${(totalWidth - window.innerWidth)}`,
+        onUpdate: self => {
+          // progress from 0 to 1
+          let prog = self.progress;
+          // x from 0 to negative (totalWidth - window.innerWidth)
+          let moveX = -prog * (totalWidth - window.innerWidth);
+          hInner.style.transform = `translateX(${moveX}px)`;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
