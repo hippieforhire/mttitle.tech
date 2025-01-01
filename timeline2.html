@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Timeline (Relume-Style) | Mark Twain Title Company</title>
+
+  <!-- Prevent iOS auto-zoom -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Bootstrap 5 (CDN) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-WqQ1D4nD9pI+kv3mxrjfR15d8gB4DDlCDPH9a1/ttbk68DsGaY8Q/QtrSlCJm7c6"
+    crossorigin="anonymous"
+  />
+
+  <!-- AOS (Animate On Scroll) CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="css/animate.min.css" />
+
+  <!-- GLightbox, etc. if we want -->
+  <link rel="stylesheet" href="css/glightbox.min.css" />
+
+  <!-- Our existing stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* Additional Relume-inspired timeline style overrides */
+
+    .timeline2-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      position: relative;
+    }
+
+    /* The line that connects timeline cards */
+    .timeline2-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background-color: #ccc;
+      transform: translateX(-50%);
+    }
+
+    .timeline2-card {
+      position: relative;
+      width: 45%;
+      margin-bottom: 4rem;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 1rem;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .timeline2-card:hover {
+      transform: translateY(-4px);
+    }
+
+    /* We alternate left and right sides */
+    .timeline2-card-left {
+      margin-left: 0;
+      float: left;
+      clear: left;
+    }
+    .timeline2-card-right {
+      margin-right: 0;
+      float: right;
+      clear: right;
+    }
+
+    .timeline2-dot {
+      position: absolute;
+      top: 20px; /* approximate alignment */
+      width: 16px;
+      height: 16px;
+      background-color: #ffd700;
+      border-radius: 50%;
+      z-index: 2;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .timeline2-dot-left {
+      left: 50%;
+    }
+    .timeline2-dot-right {
+      left: 50%;
+    }
+
+    .timeline2-date {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline2-img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+    }
+
+    .timeline2-summary {
+      margin-top: 1rem;
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    /* Clear floats after timeline items */
+    .timeline2-wrapper::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    @media (max-width: 768px) {
+      /* For mobile, let timeline cards be full width */
+      .timeline2-card {
+        width: 100%;
+        float: none !important;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .timeline2-line {
+        left: 20px; /* or hide it */
+      }
+      .timeline2-dot, .timeline2-dot-left, .timeline2-dot-right {
+        left: 20px;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- TSParticles background (optional) -->
+  <div id="tsparticles"></div>
+
+  <!-- HEADER (same as your site) -->
+  <header
+    class="site-header position-relative"
+    onclick="window.location.href='index.html'"
+  >
+    <img
+      src="images/Untitled-design.jpeg"
+      alt="Mark Twain Title Company Header"
+      class="header-image"
+    >
+    <!-- Simple nav at bottom-right -->
+    <nav class="header-nav" style="bottom: 10px; right: 20px;">
+      <ul class="list-inline mb-0 nav-no-wrap">
+        <li class="list-inline-item"><a href="index.html">Home</a></li>
+        <li class="list-inline-item"><a href="contact-us.html">Contact Us</a></li>
+        <li class="list-inline-item"><a href="meet-our-staff.html">Meet Our Staff</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT for timeline2 -->
+  <main class="container my-5">
+    <h1 class="text-center mb-4" data-aos="zoom-in">
+      The History of Mark Twain Title Company
+    </h1>
+    <p data-aos="fade-up" class="text-center mx-auto" style="max-width: 600px;">
+      Mark Twain Title Company started as, and traces its origins back to 1898, 
+      when it was originally named “Marion County Abstract Company, which we still hold the rights to.” 
+      Over the decades, the company evolved, faced challenges, and rebuilt stronger each time. 
+      Below is a journey through our story—highlighting key moments, expansions, and changes.
+    </p>
+
+    <div class="timeline2-wrapper position-relative">
+      <div class="timeline2-line"></div>
+
+      <!-- ITEM 1 (1/20/1898) -->
+      <div class="timeline2-card timeline2-card-left" data-aos="fade-up">
+        <div class="timeline2-dot timeline2-dot-left"></div>
+        <div class="timeline2-date">January 20, 1898</div>
+        <img
+          src="images/1.jpg"
+          alt="1-20-1898"
+          class="timeline2-img glightbox tilt-img"
+          data-gallery="timeline2"
+          data-title="Formation of the Marion County Abstract Company"
+        />
+        <p class="timeline2-summary">
+          The formation of the Marion County Abstract Company is announced.
+          A. R. Levering, J. J. Cruickshank, T. G. Dulaney, R. H. Stillwell, F. H. Schofield,
+          A. C. Miller, Geo D. Clayton, J. H. McVey and R. L. Doherty are among the founding members.
+          (Palmyra Spectator 1/20/1898)
+        </p>
+      </div>
+
+      <!-- ITEM 2 (1/27/1898) -->
+      <div class="timeline2-card timeline2-card-right" data-aos="fade-up">
+        <div class="timeline2-dot timeline2-dot-right"></div>
+        <div class="timeline2-date">January 27, 1898</div>
+        <img
+          src="images/2.jpg"
+          alt="1-27-1898"
+          class="timeline2-img glightbox tilt-img"
+          data-gallery="timeline2"
+          data-title="Announcement of location"
+        />
+        <p class="timeline2-summary">
+          Announcement of location for the company.
+          (Palmyra Spectator 1/27/1898)
+        </p>
+      </div>
+
+      <!-- ITEM 3 (2/3/1898) -->
+      <div class="timeline2-card timeline2-card-left" data-aos="fade-up">
+        <div class="timeline2-dot timeline2-dot-left"></div>
+        <div class="timeline2-date">February 3, 1898</div>
+        <img
+          src="images/3.jpg"
+          alt="2-3-1898"
+          class="timeline2-img glightbox tilt-img"
+          data-gallery="timeline2"
+          data-title="Election of members"
+        />
+        <p class="timeline2-summary">
+          Announcement of the election of members for Marion County Abstract Company.
+          (Palmyra Spectator 2/3/1898)
+        </p>
+      </div>
+
+      <!-- ITEM 4 (2/17/1898) -->
+      <div class="timeline2-card timeline2-card-right" data-aos="fade-up">
+        <div class="timeline2-dot timeline2-dot-right"></div>
+        <div class="timeline2-date">February 17, 1898</div>
+        <img
+          src="images/5.jpg"
+          alt="2-17-1898"
+          class="timeline2-img glightbox tilt-img"
+          data-gallery="timeline2"
+          data-title="Anticipated Opening"
+        />
+        <p class="timeline2-summary">
+          Announcement of anticipated opening of facility.
+          (Palmyra Spectator 2/17/1898)
+        </p>
+      </div>
+
+      <!-- Repeat for all 25 items in chronological order,
+           omitting telescope references from 8.jpg. 
+           We'll show just a few more for brevity. -->
+
+      <!-- ITEM 25 (11/24/1960) -->
+      <div class="timeline2-card timeline2-card-left" data-aos="fade-up">
+        <div class="timeline2-dot timeline2-dot-left"></div>
+        <div class="timeline2-date">November 24, 1960</div>
+        <img
+          src="images/25.jpg"
+          alt="11-24-1960"
+          class="timeline2-img glightbox tilt-img"
+          data-gallery="timeline2"
+          data-title="Microfilm process"
+        />
+        <p class="timeline2-summary">
+          Photo showing the microfilm process.
+          (Palmyra Spectator 11/24/1960)
+        </p>
+      </div>
+
+    </div> <!-- end timeline2-wrapper -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-dark text-light text-center py-3">
+    <div class="container">
+      <p class="mb-0">
+        COPYRIGHT © 2024 Title Agency<br />
+        ALL RIGHTS RESERVED.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+DgUN3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/anime.min.js"></script>
+  <script src="js/glightbox.min.js"></script>
+  <script src="js/vanilla-tilt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <script src="js/scrollreveal.min.js"></script>
+  <script src="js/typed.min.js"></script>
+  <!-- TSParticles, mo.js, etc. if needed -->
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({ duration: 800, once: true });
+      quicklink.listen();
+
+      // Lightbox init
+      const lightbox = GLightbox({ selector: '.glightbox' });
+
+      // Tilt
+      VanillaTilt.init(document.querySelectorAll('.tilt-img'), {
+        max: 5,
+        speed: 400,
+        glare: true,
+        'max-glare': 0.2
+      });
+
+      // TSParticles
+      tsParticles.load("tsparticles", {
+        fpsLimit: 60,
+        particles: {
+          number: { value: 30 },
+          color: { value: ["#ffffff", "#ffd700", "#ff69b4"] },
+          shape: { type: "circle" },
+          opacity: { value: 0.7 },
+          size: { value: { min: 1, max: 5 } },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            outModes: "out"
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
