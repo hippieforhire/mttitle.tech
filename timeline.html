@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <title>Epic Interactive Timeline | Mark Twain Title Company</title>
 
-  <!-- Responsive viewport -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Prevent iOS from auto-zooming or messing up initial scale -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -34,7 +34,7 @@
   <!-- GLightbox CSS -->
   <link rel="stylesheet" href="css/glightbox.min.css" />
 
-  <!-- Our existing stylesheet (same as your site) -->
+  <!-- Our existing stylesheet -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -42,23 +42,17 @@
   <!-- TSParticles background for extra flair -->
   <div id="tsparticles"></div>
 
-  <!-- LOCOMOTIVE SCROLL WRAPPER (smooth scrolling) -->
+  <!-- LOCOMOTIVE SCROLL WRAPPER (smooth scrolling only for main content) -->
   <div data-scroll-container>
 
-    <!-- SMALL HEADER (similar to your site-header, pinned height) -->
-    <header
-      class="site-header position-relative"
-      data-scroll-section
-      onclick="window.location.href='index.html'"
-      style="max-height:200px; overflow:hidden;"
-    >
+    <!-- Header (no parallax/pinned for better iOS compliance) -->
+    <header class="site-header position-relative" onclick="window.location.href='index.html'">
       <img
         src="images/Untitled-design.jpeg"
         alt="Mark Twain Title Company Header"
         class="header-image"
-        style="object-fit: contain; max-height: 200px; width: auto;"
+        style="width: 100%; height: auto; object-fit: contain;"
       >
-
       <!-- Simple nav at bottom-right -->
       <nav class="header-nav" style="bottom: 10px; right: 20px;">
         <ul class="list-inline mb-0 nav-no-wrap">
@@ -69,7 +63,7 @@
       </nav>
     </header>
 
-    <!-- INTRO SECTION -->
+    <!-- INTRO SECTION (Locomotive-scrolled) -->
     <section class="container my-5" data-scroll-section>
       <h1 class="text-center mb-4" data-aos="zoom-in">
         Epic Interactive Timeline
@@ -82,7 +76,7 @@
       </p>
     </section>
 
-    <!-- THE PINNED TIMELINE SECTION (GSAP + SCROLLTRIGGER) -->
+    <!-- THE PINNED TIMELINE SECTION (Locomotive + GSAP) -->
     <section class="timeline-wrapper" data-scroll-section>
       <div class="pin-container">
 
@@ -91,7 +85,8 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             January 20, 1898
           </h3>
-          <a href="images/1.jpg" class="glightbox tilt-img" data-gallery="timeline"
+          <a href="images/1.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
              data-title="January 20, 1898 - Formation of the Marion County Abstract Company">
             <img
               src="images/1.jpg"
@@ -112,8 +107,9 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             January 27, 1898
           </h3>
-          <a href="images/2.jpg" class="glightbox tilt-img" data-gallery="timeline"
-             data-title="January 27, 1898 - Announcement of location for the company.">
+          <a href="images/2.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
+             data-title="January 27, 1898 - Announcement of location">
             <img
               src="images/2.jpg"
               alt="Newspaper Clipping"
@@ -131,7 +127,8 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             February 3, 1898
           </h3>
-          <a href="images/3.jpg" class="glightbox tilt-img" data-gallery="timeline"
+          <a href="images/3.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
              data-title="February 3, 1898 - Election of members">
             <img
               src="images/3.jpg"
@@ -150,8 +147,9 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             February 17, 1898
           </h3>
-          <a href="images/5.jpg" class="glightbox tilt-img" data-gallery="timeline"
-             data-title="February 17, 1898 - Announcement of anticipated opening">
+          <a href="images/5.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
+             data-title="February 17, 1898 - Anticipated opening">
             <img
               src="images/5.jpg"
               alt="Newspaper Clipping"
@@ -169,7 +167,8 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             March 24, 1898
           </h3>
-          <a href="images/6.jpg" class="glightbox tilt-img" data-gallery="timeline"
+          <a href="images/6.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
              data-title="March 24, 1898 - Advertisement for Marion County Abstract Co.">
             <img
               src="images/6.jpg"
@@ -188,8 +187,9 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             April 28, 1898
           </h3>
-          <a href="images/7.jpg" class="glightbox tilt-img" data-gallery="timeline"
-             data-title="April 28, 1898 - Advertisement">
+          <a href="images/7.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
+             data-title="April 28, 1898 - More advertisement">
             <img
               src="images/7.jpg"
               alt="Newspaper Clipping"
@@ -207,7 +207,8 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             April 16, 1902
           </h3>
-          <a href="images/4.jpg" class="glightbox tilt-img" data-gallery="timeline"
+          <a href="images/4.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
              data-title="April 16, 1902 - Profile of R. L. Doherty">
             <img
               src="images/4.jpg"
@@ -227,8 +228,9 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             April 10, 1912
           </h3>
-          <a href="images/8.jpg" class="glightbox tilt-img" data-gallery="timeline"
-             data-title="April 10, 1912 - R.L. Doherty telescope hobby">
+          <a href="images/8.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
+             data-title="April 10, 1912 - Telescope hobby">
             <img
               src="images/8.jpg"
               alt="Newspaper Clipping"
@@ -246,7 +248,8 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             April 8, 1914
           </h3>
-          <a href="images/9.jpg" class="glightbox tilt-img" data-gallery="timeline"
+          <a href="images/9.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
              data-title="April 8, 1914 - W. P. Johnson buys majority stock">
             <img
               src="images/9.jpg"
@@ -265,8 +268,9 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             July 1, 1914
           </h3>
-          <a href="images/10.jpg" class="glightbox tilt-img" data-gallery="timeline"
-             data-title="July 1, 1914 - R.L. Doherty remains after sale">
+          <a href="images/10.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
+             data-title="July 1, 1914 - R. L. Doherty remains">
             <img
               src="images/10.jpg"
               alt="Newspaper Clipping"
@@ -284,7 +288,8 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             June 12, 1935
           </h3>
-          <a href="images/11.jpg" class="glightbox tilt-img" data-gallery="timeline"
+          <a href="images/11.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
              data-title="June 12, 1935 - W. P. Johnson passed away">
             <img
               src="images/11.jpg"
@@ -304,8 +309,9 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             January 6, 1943
           </h3>
-          <a href="images/12.jpg" class="glightbox tilt-img" data-gallery="timeline"
-             data-title="January 6, 1943 - WWII induction">
+          <a href="images/12.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
+             data-title="January 6, 1943 - Inducted into WWII">
             <img
               src="images/12.jpg"
               alt="Newspaper Clipping"
@@ -324,8 +330,9 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             October 20, 1943
           </h3>
-          <a href="images/13.jpg" class="glightbox tilt-img" data-gallery="timeline"
-             data-title="October 20, 1943 - Stewart & Robert Johnson war service">
+          <a href="images/13.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
+             data-title="October 20, 1943 - Stewart and Robert service in war">
             <img
               src="images/13.jpg"
               alt="Newspaper Clipping"
@@ -343,7 +350,8 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             November 14, 1945
           </h3>
-          <a href="images/14.jpg" class="glightbox tilt-img" data-gallery="timeline"
+          <a href="images/14.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
              data-title="November 14, 1945 - Re-opening announced">
             <img
               src="images/14.jpg"
@@ -362,7 +370,8 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             November 14, 1945
           </h3>
-          <a href="images/15.jpg" class="glightbox tilt-img" data-gallery="timeline"
+          <a href="images/15.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
              data-title="November 14, 1945 - Profile for re-opening">
             <img
               src="images/15.jpg"
@@ -381,7 +390,8 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             October 3, 1957
           </h3>
-          <a href="images/16.jpg" class="glightbox tilt-img" data-gallery="timeline"
+          <a href="images/16.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
              data-title="October 3, 1957 - Bob Johnson purchase">
             <img
               src="images/16.jpg"
@@ -400,8 +410,9 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             March 9, 1960
           </h3>
-          <a href="images/17.jpg" class="glightbox tilt-img" data-gallery="timeline"
-             data-title="March 9, 1960 - Palmyra Explosion (3/2/1960)">
+          <a href="images/17.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
+             data-title="March 9, 1960 - Palmyra Explosion(3/2/1960)">
             <img
               src="images/17.jpg"
               alt="Newspaper Clipping"
@@ -419,7 +430,8 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             March 9, 1960
           </h3>
-          <a href="images/18.jpg" class="glightbox tilt-img" data-gallery="timeline"
+          <a href="images/18.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
              data-title="March 9, 1960 - More Palmyra Explosion detail">
             <img
               src="images/18.jpg"
@@ -438,7 +450,8 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             March 9, 1960
           </h3>
-          <a href="images/19.jpg" class="glightbox tilt-img" data-gallery="timeline"
+          <a href="images/19.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
              data-title="March 9, 1960 - Photo of building damage">
             <img
               src="images/19.jpg"
@@ -457,8 +470,9 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             March 10, 1960
           </h3>
-          <a href="images/20.jpg" class="glightbox tilt-img" data-gallery="timeline"
-             data-title="March 10, 1960 - Thanking for help after explosion">
+          <a href="images/20.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
+             data-title="March 10, 1960 - Thanking everyone after explosion">
             <img
               src="images/20.jpg"
               alt="Newspaper Clipping"
@@ -476,8 +490,9 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             November 24, 1960
           </h3>
-          <a href="images/21.jpg" class="glightbox tilt-img" data-gallery="timeline"
-             data-title="November 24, 1960 - New building photo">
+          <a href="images/21.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
+             data-title="November 24, 1960 - Rebuilt building photo">
             <img
               src="images/21.jpg"
               alt="Newspaper Clipping"
@@ -495,7 +510,8 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             November 24, 1960
           </h3>
-          <a href="images/22.jpg" class="glightbox tilt-img" data-gallery="timeline"
+          <a href="images/22.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
              data-title="November 24, 1960 - Article on new building">
             <img
               src="images/22.jpg"
@@ -514,7 +530,8 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             November 24, 1960
           </h3>
-          <a href="images/23.jpg" class="glightbox tilt-img" data-gallery="timeline"
+          <a href="images/23.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
              data-title="November 24, 1960 - Century Press post">
             <img
               src="images/23.jpg"
@@ -534,7 +551,8 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             November 24, 1960
           </h3>
-          <a href="images/24.jpg" class="glightbox tilt-img" data-gallery="timeline"
+          <a href="images/24.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
              data-title="November 24, 1960 - Deed writing process photo">
             <img
               src="images/24.jpg"
@@ -553,7 +571,8 @@
           <h3 class="timeline-date" onclick="burstAnimation(event)">
             November 24, 1960
           </h3>
-          <a href="images/25.jpg" class="glightbox tilt-img" data-gallery="timeline"
+          <a href="images/25.jpg" class="glightbox tilt-img"
+             data-gallery="timeline"
              data-title="November 24, 1960 - Microfilm process photo">
             <img
               src="images/25.jpg"
@@ -584,10 +603,9 @@
         </p>
       </div>
     </footer>
-
   </div> <!-- end data-scroll-container -->
 
-  <!-- SCRIPTS -->
+  <!-- Scripts -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ho+DgUN3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
@@ -599,8 +617,8 @@
   <script src="js/locomotive-scroll.min.js"></script>
   <!-- GSAP -->
   <script src="js/gsap.min.js"></script>
-  <!-- If you have a separate file for ScrollTrigger, load it. Otherwise it may be in gsap extras -->
-  <script src="js/ScrollTrigger.min.js"></script> 
+  <!-- ScrollTrigger (if not included in gsap.min.js) -->
+  <script src="js/ScrollTrigger.min.js"></script>
   <!-- mo.js -->
   <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
   <!-- GLightbox -->
@@ -611,7 +629,7 @@
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest"></script>
   <!-- Quicklink -->
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
-  <!-- For animate.js, scrollreveal, typed, etc. if needed -->
+  <!-- Optionally animate.js, scrollreveal, typed, etc. -->
   <script src="js/anime.min.js"></script>
   <script src="js/scrollreveal.min.js"></script>
   <script src="js/typed.min.js"></script>
@@ -636,9 +654,7 @@
     }
 
     // GLightbox init
-    const lightbox = GLightbox({
-      selector: '.glightbox'
-    });
+    const lightbox = GLightbox({ selector: '.glightbox' });
 
     // VanillaTilt init (3D tilt on images)
     VanillaTilt.init(document.querySelectorAll('.tilt-img'), {
@@ -666,43 +682,27 @@
       }
     });
 
-    // AOS
+    // AOS fade-ups
     AOS.init({
       duration: 800,
       once: true
     });
 
-    // Locomotive Scroll init for smooth parallax scrolling
+    // Locomotive Scroll init
     const scrollContainer = document.querySelector('[data-scroll-container]');
     const locoScroll = new LocomotiveScroll({
       el: scrollContainer,
       smooth: true
     });
 
-    // each time locomotive scroll updates, tell ScrollTrigger
-    locoScroll.on("scroll", ScrollTrigger.update);
-
-    // GSAP + ScrollTrigger pinned timeline approach
-    gsap.registerPlugin(ScrollTrigger);
-
-    // We'll pin each .pinned item for a short distance
-    document.querySelectorAll('.pinned').forEach(item => {
-      ScrollTrigger.create({
-        trigger: item,
-        start: 'top 70%',
-        end: 'bottom top',
-        pin: true,
-        pinSpacing: false,
-        scrub: 1,
-        markers: false, // set true for debugging
-        scroller: scrollContainer // connect to locomotive
-      });
+    locoScroll.on("scroll", () => {
+      ScrollTrigger.update();
     });
 
-    // each time we do a locomotive scroll, update ScrollTrigger
-    locoScroll.on("scroll", ScrollTrigger.update);
+    // GSAP pinned approach
+    gsap.registerPlugin(ScrollTrigger);
 
-    // use ScrollTrigger's scrollerProxy for locomotive
+    // scrollerProxy for locomotive
     ScrollTrigger.scrollerProxy(scrollContainer, {
       scrollTop(value) {
         return arguments.length
@@ -720,11 +720,25 @@
       pinType: scrollContainer.style.transform ? "transform" : "fixed"
     });
 
-    // after setup, refresh
+    // Pin each .pinned timeline item
+    document.querySelectorAll('.pinned').forEach(item => {
+      ScrollTrigger.create({
+        trigger: item,
+        start: 'top 70%',
+        end: 'bottom top',
+        pin: true,
+        pinSpacing: false,
+        scrub: 1,
+        scroller: scrollContainer
+      });
+    });
+
+    // keep loco & scrollTrigger in sync
+    locoScroll.on("scroll", ScrollTrigger.update);
     ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
     ScrollTrigger.refresh();
 
-    // Quicklink
+    // quicklink
     quicklink.listen();
   </script>
 </body>
