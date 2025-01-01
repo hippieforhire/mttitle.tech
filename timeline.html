@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Company Timeline | Mark Twain Title Company</title>
+  <title>Epic Interactive Timeline | Mark Twain Title Company</title>
 
   <!-- Responsive viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,577 +28,704 @@
   <!-- Animate.css -->
   <link rel="stylesheet" href="css/animate.min.css" />
 
+  <!-- Locomotive Scroll CSS -->
+  <link rel="stylesheet" href="css/locomotive-scroll.css" />
+
+  <!-- GLightbox CSS -->
+  <link rel="stylesheet" href="css/glightbox.min.css" />
+
   <!-- Our existing stylesheet (same as your site) -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <!-- TSPARTICLES BACKGROUND (optional) -->
+
+  <!-- TSParticles background for extra flair -->
   <div id="tsparticles"></div>
 
-  <!-- Small header with your standard image -->
-  <header class="site-header position-relative" onclick="window.location.href='index.html'">
-    <img
-      src="images/Untitled-design.jpeg"
-      alt="Mark Twain Title Company Header"
-      class="header-image"
-      style="object-fit: contain; max-height: 200px; width: auto;"
+  <!-- LOCOMOTIVE SCROLL WRAPPER (smooth scrolling) -->
+  <div data-scroll-container>
+
+    <!-- SMALL HEADER (similar to your site-header, pinned height) -->
+    <header
+      class="site-header position-relative"
+      data-scroll-section
+      onclick="window.location.href='index.html'"
+      style="max-height:200px; overflow:hidden;"
     >
-    <!-- Simple nav to return to main site pages -->
-    <nav class="header-nav" style="bottom: 10px; right: 20px;">
-      <ul class="list-inline mb-0 nav-no-wrap">
-        <li class="list-inline-item">
-          <a href="index.html">Home</a>
-        </li>
-        <li class="list-inline-item">
-          <a href="contact-us.html">Contact Us</a>
-        </li>
-        <li class="list-inline-item">
-          <a href="meet-our-staff.html">Meet Our Staff</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+      <img
+        src="images/Untitled-design.jpeg"
+        alt="Mark Twain Title Company Header"
+        class="header-image"
+        style="object-fit: contain; max-height: 200px; width: auto;"
+      >
 
-  <!-- TIMELINE INTRO -->
-  <section class="container my-4">
-    <h1 class="text-center mb-5" data-aos="fade-up">Our Interactive Timeline</h1>
-    <p data-aos="fade-in" class="text-center">
-      Discover the milestones that shaped Mark Twain Title Company. Click each photo or heading to
-      reveal more details about that particular clipping or event.
-    </p>
-  </section>
+      <!-- Simple nav at bottom-right -->
+      <nav class="header-nav" style="bottom: 10px; right: 20px;">
+        <ul class="list-inline mb-0 nav-no-wrap">
+          <li class="list-inline-item"><a href="index.html">Home</a></li>
+          <li class="list-inline-item"><a href="contact-us.html">Contact Us</a></li>
+          <li class="list-inline-item"><a href="meet-our-staff.html">Meet Our Staff</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <!-- VERTICAL TIMELINE -->
-  <section class="container timeline-container">
-    <!-- TIMELINE ITEM 1 (1.jpg - 1/20/1898) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details1')">
-        January 20, 1898
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/1.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details1')"
-        />
+    <!-- INTRO SECTION -->
+    <section class="container my-5" data-scroll-section>
+      <h1 class="text-center mb-4" data-aos="zoom-in">
+        Epic Interactive Timeline
+      </h1>
+      <p data-aos="fade-up" class="text-center mx-auto" style="max-width: 600px;">
+        Dive into the rich history of Mark Twain Title Company with advanced animations,
+        smooth scrolling, interactive images, pinned sections, and more. Scroll to see each
+        milestone “pinned” and highlighted, click images to enlarge in a lightbox, and enjoy
+        mo.js bursts whenever you click a date!
+      </p>
+    </section>
+
+    <!-- THE PINNED TIMELINE SECTION (GSAP + SCROLLTRIGGER) -->
+    <section class="timeline-wrapper" data-scroll-section>
+      <div class="pin-container">
+
+        <!-- 1.jpg - 1/20/1898 -->
+        <div class="timeline-item pinned" data-year="1898-01-20">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            January 20, 1898
+          </h3>
+          <a href="images/1.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="January 20, 1898 - Formation of the Marion County Abstract Company">
+            <img
+              src="images/1.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            The formation of the Marion County Abstract Company is announced.
+            A. R. Levering, J. J. Cruickshank, T. G. Dulaney, R. H. Stillwell, F. H. Schofield,
+            A. C. Miller, Geo D. Clayton, J. H. McVey and R. L. Doherty are among the founding members.
+            (Palmyra Spectator 1/20/1898)
+          </p>
+        </div>
+
+        <!-- 2.jpg - 1/27/1898 -->
+        <div class="timeline-item pinned" data-year="1898-01-27">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            January 27, 1898
+          </h3>
+          <a href="images/2.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="January 27, 1898 - Announcement of location for the company.">
+            <img
+              src="images/2.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Announcement of location for the company.
+            (Palmyra Spectator 1/27/1898)
+          </p>
+        </div>
+
+        <!-- 3.jpg - 2/3/1898 -->
+        <div class="timeline-item pinned" data-year="1898-02-03">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            February 3, 1898
+          </h3>
+          <a href="images/3.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="February 3, 1898 - Election of members">
+            <img
+              src="images/3.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Announcement of the election of members for Marion County Abstract Company.
+            (Palmyra Spectator 2/3/1898)
+          </p>
+        </div>
+
+        <!-- 5.jpg - 2/17/1898 -->
+        <div class="timeline-item pinned" data-year="1898-02-17">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            February 17, 1898
+          </h3>
+          <a href="images/5.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="February 17, 1898 - Announcement of anticipated opening">
+            <img
+              src="images/5.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Announcement of anticipated opening of facility.
+            (Palmyra Spectator 2/17/1898)
+          </p>
+        </div>
+
+        <!-- 6.jpg - 3/24/1898 -->
+        <div class="timeline-item pinned" data-year="1898-03-24">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            March 24, 1898
+          </h3>
+          <a href="images/6.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="March 24, 1898 - Advertisement for Marion County Abstract Co.">
+            <img
+              src="images/6.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Advertisement for Marion County Abstract Company.
+            (Palmyra Spectator 3/24/1898)
+          </p>
+        </div>
+
+        <!-- 7.jpg - 4/28/1898 -->
+        <div class="timeline-item pinned" data-year="1898-04-28">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            April 28, 1898
+          </h3>
+          <a href="images/7.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="April 28, 1898 - Advertisement">
+            <img
+              src="images/7.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Advertisement for Marion County Abstract Company.
+            (Palmyra Spectator 4/28/1898)
+          </p>
+        </div>
+
+        <!-- 4.jpg - 4/16/1902 -->
+        <div class="timeline-item pinned" data-year="1902-04-16">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            April 16, 1902
+          </h3>
+          <a href="images/4.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="April 16, 1902 - Profile of R. L. Doherty">
+            <img
+              src="images/4.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Spectator profile of the then-owner of the Marion County Abstract Company,
+            Robert Lee Doherty, AKA R. L. Doherty.
+            (Palmyra Spectator 4/16/1902)
+          </p>
+        </div>
+
+        <!-- 8.jpg - 4/10/1912 -->
+        <div class="timeline-item pinned" data-year="1912-04-10">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            April 10, 1912
+          </h3>
+          <a href="images/8.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="April 10, 1912 - R.L. Doherty telescope hobby">
+            <img
+              src="images/8.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            R. L. Doherty profile in the Spectator about his telescope hobby.
+            (Palmyra Spectator 4/10/1912)
+          </p>
+        </div>
+
+        <!-- 9.jpg - 4/8/1914 -->
+        <div class="timeline-item pinned" data-year="1914-04-08">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            April 8, 1914
+          </h3>
+          <a href="images/9.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="April 8, 1914 - W. P. Johnson buys majority stock">
+            <img
+              src="images/9.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Announcement of William P Johnson purchasing a majority stock in the company.
+            (Palmyra Spectator 4/8/1914)
+          </p>
+        </div>
+
+        <!-- 10.jpg - 7/1/1914 -->
+        <div class="timeline-item pinned" data-year="1914-07-01">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            July 1, 1914
+          </h3>
+          <a href="images/10.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="July 1, 1914 - R.L. Doherty remains after sale">
+            <img
+              src="images/10.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            R. L. Doherty remained with the company after its sale.
+            (Palmyra Spectator 7/1/1914)
+          </p>
+        </div>
+
+        <!-- 11.jpg - 6/12/1935 -->
+        <div class="timeline-item pinned" data-year="1935-06-12">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            June 12, 1935
+          </h3>
+          <a href="images/11.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="June 12, 1935 - W. P. Johnson passed away">
+            <img
+              src="images/11.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            William P Johnson passed away and left the company to his 2 sons,
+            Robert Johnson and Stewart Johnson.
+            (Palmyra Spectator 6/12/1935)
+          </p>
+        </div>
+
+        <!-- 12.jpg - 1/6/1943 -->
+        <div class="timeline-item pinned" data-year="1943-01-06">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            January 6, 1943
+          </h3>
+          <a href="images/12.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="January 6, 1943 - WWII induction">
+            <img
+              src="images/12.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Both Stewart Johnson and Robert Johnson were inducted into World War II
+            and had to close the company down for “the duration.”
+            (Palmyra Spectator 1/6/1943)
+          </p>
+        </div>
+
+        <!-- 13.jpg - 10/20/1943 -->
+        <div class="timeline-item pinned" data-year="1943-10-20">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            October 20, 1943
+          </h3>
+          <a href="images/13.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="October 20, 1943 - Stewart & Robert Johnson war service">
+            <img
+              src="images/13.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Stewart Johnson and Robert Johnson profile on their service in the war.
+            (Palmyra Spectator 10/20/1943)
+          </p>
+        </div>
+
+        <!-- 14.jpg - 11/14/1945 -->
+        <div class="timeline-item pinned" data-year="1945-11-14">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            November 14, 1945
+          </h3>
+          <a href="images/14.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="November 14, 1945 - Re-opening announced">
+            <img
+              src="images/14.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Announcement of the re-opening of the Marion County Abstract Company.
+            (Palmyra Spectator 11/14/1945)
+          </p>
+        </div>
+
+        <!-- 15.jpg - 11/14/1945 -->
+        <div class="timeline-item pinned" data-year="1945-11-14-2">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            November 14, 1945
+          </h3>
+          <a href="images/15.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="November 14, 1945 - Profile for re-opening">
+            <img
+              src="images/15.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Profile for the re-opening of the Marion County Abstract Company.
+            (Palmyra Spectator 11/14/1945)
+          </p>
+        </div>
+
+        <!-- 16.jpg - 10/3/1957 -->
+        <div class="timeline-item pinned" data-year="1957-10-03">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            October 3, 1957
+          </h3>
+          <a href="images/16.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="October 3, 1957 - Bob Johnson purchase">
+            <img
+              src="images/16.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Announcement of Bob Johnson purchasing the company.
+            (Palmyra Spectator 10/3/1957)
+          </p>
+        </div>
+
+        <!-- 17.jpg - 3/9/1960 -->
+        <div class="timeline-item pinned" data-year="1960-03-09">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            March 9, 1960
+          </h3>
+          <a href="images/17.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="March 9, 1960 - Palmyra Explosion (3/2/1960)">
+            <img
+              src="images/17.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Article detailing the Palmyra Explosion of 1960, which occurred March 2, 1960.
+            (Palmyra Spectator 3/9/1960)
+          </p>
+        </div>
+
+        <!-- 18.jpg - 3/9/1960 -->
+        <div class="timeline-item pinned" data-year="1960-03-09-2">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            March 9, 1960
+          </h3>
+          <a href="images/18.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="March 9, 1960 - More Palmyra Explosion detail">
+            <img
+              src="images/18.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Article detailing the Palmyra Explosion of 1960, which occurred March 2, 1960.
+            (Palmyra Spectator 3/9/1960)
+          </p>
+        </div>
+
+        <!-- 19.jpg - 3/9/1960 -->
+        <div class="timeline-item pinned" data-year="1960-03-09-3">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            March 9, 1960
+          </h3>
+          <a href="images/19.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="March 9, 1960 - Photo of building damage">
+            <img
+              src="images/19.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Photo showing the building damage.
+            (Palmyra Spectator 3/9/1960)
+          </p>
+        </div>
+
+        <!-- 20.jpg - 3/10/1960 -->
+        <div class="timeline-item pinned" data-year="1960-03-10">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            March 10, 1960
+          </h3>
+          <a href="images/20.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="March 10, 1960 - Thanking for help after explosion">
+            <img
+              src="images/20.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Announcement thanking everyone for the help after the explosion.
+            (Palmyra Spectator 3/10/1960)
+          </p>
+        </div>
+
+        <!-- 21.jpg - 11/24/1960 -->
+        <div class="timeline-item pinned" data-year="1960-11-24">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            November 24, 1960
+          </h3>
+          <a href="images/21.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="November 24, 1960 - New building photo">
+            <img
+              src="images/21.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Photograph showing the new building rebuilt after the explosion.
+            (Palmyra Spectator 11/24/1960)
+          </p>
+        </div>
+
+        <!-- 22.jpg - 11/24/1960 -->
+        <div class="timeline-item pinned" data-year="1960-11-24-2">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            November 24, 1960
+          </h3>
+          <a href="images/22.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="November 24, 1960 - Article on new building">
+            <img
+              src="images/22.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Article showing the new building rebuilt after the explosion.
+            (Palmyra Spectator 11/24/1960)
+          </p>
+        </div>
+
+        <!-- 23.jpg - 11/24/1960 -->
+        <div class="timeline-item pinned" data-year="1960-11-24-3">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            November 24, 1960
+          </h3>
+          <a href="images/23.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="November 24, 1960 - Century Press post">
+            <img
+              src="images/23.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Century Press newspaper post congratulating Marion County Abstract Company
+            on their new building.
+            (Palmyra Spectator 11/24/1960)
+          </p>
+        </div>
+
+        <!-- 24.jpg - 11/24/1960 -->
+        <div class="timeline-item pinned" data-year="1960-11-24-4">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            November 24, 1960
+          </h3>
+          <a href="images/24.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="November 24, 1960 - Deed writing process photo">
+            <img
+              src="images/24.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Photo showing the deed writing process used.
+            (Palmyra Spectator 11/24/1960)
+          </p>
+        </div>
+
+        <!-- 25.jpg - 11/24/1960 -->
+        <div class="timeline-item pinned" data-year="1960-11-24-5">
+          <h3 class="timeline-date" onclick="burstAnimation(event)">
+            November 24, 1960
+          </h3>
+          <a href="images/25.jpg" class="glightbox tilt-img" data-gallery="timeline"
+             data-title="November 24, 1960 - Microfilm process photo">
+            <img
+              src="images/25.jpg"
+              alt="Newspaper Clipping"
+              class="timeline-img"
+            />
+          </a>
+          <p class="timeline-text">
+            Photo showing the microfilm process.
+            (Palmyra Spectator 11/24/1960)
+          </p>
+        </div>
+
+      </div> <!-- end pin-container -->
+    </section>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <div class="scroll-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+      ▲
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-light text-center py-3" data-scroll-section>
+      <div class="container">
+        <p class="mb-0">
+          COPYRIGHT © 2024 Title Agency<br/>
+          ALL RIGHTS RESERVED.
+        </p>
       </div>
-      <p id="details1" class="timeline-details collapse">
-        The formation of the Marion County Abstract Company is announced.
-        A. R. Levering, J. J. Cruickshank, T. G. Dulaney, R. H. Stillwell, F. H. Schofield,
-        A. C. Miller, Geo D. Clayton, J. H. McVey and R. L. Doherty are among the founding members.
-        (Palmyra Spectator 1/20/1898)
-      </p>
-    </div>
+    </footer>
 
-    <!-- TIMELINE ITEM 2 (2.jpg - 1/27/1898) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details2')">
-        January 27, 1898
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/2.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details2')"
-        />
-      </div>
-      <p id="details2" class="timeline-details collapse">
-        Announcement of location for the company.
-        (Palmyra Spectator 1/27/1898)
-      </p>
-    </div>
+  </div> <!-- end data-scroll-container -->
 
-    <!-- TIMELINE ITEM 3 (3.jpg - 2/3/1898) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details3')">
-        February 3, 1898
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/3.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details3')"
-        />
-      </div>
-      <p id="details3" class="timeline-details collapse">
-        Announcement of the election of members for Marion County Abstract Company.
-        (Palmyra Spectator 2/3/1898)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 4 (5.jpg - 2/17/1898) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details4')">
-        February 17, 1898
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/5.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details4')"
-        />
-      </div>
-      <p id="details4" class="timeline-details collapse">
-        Announcement of anticipated opening of facility.
-        (Palmyra Spectator 2/17/1898)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 5 (6.jpg - 3/24/1898) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details5')">
-        March 24, 1898
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/6.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details5')"
-        />
-      </div>
-      <p id="details5" class="timeline-details collapse">
-        Advertisement for Marion County Abstract Company.
-        (Palmyra Spectator 3/24/1898)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 6 (7.jpg - 4/28/1898) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details6')">
-        April 28, 1898
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/7.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details6')"
-        />
-      </div>
-      <p id="details6" class="timeline-details collapse">
-        Advertisement for Marion County Abstract Company.
-        (Palmyra Spectator 4/28/1898)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 7 (4.jpg - 4/16/1902) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details7')">
-        April 16, 1902
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/4.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details7')"
-        />
-      </div>
-      <p id="details7" class="timeline-details collapse">
-        Spectator profile of the then-owner of the Marion County Abstract Company, Robert Lee Doherty,
-        AKA R. L. Doherty.
-        (Palmyra Spectator 4/16/1902)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 8 (8.jpg - 4/10/1912) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details8')">
-        April 10, 1912
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/8.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details8')"
-        />
-      </div>
-      <p id="details8" class="timeline-details collapse">
-        R. L. Doherty profile in the Spectator about his telescope hobby.
-        (Palmyra Spectator 4/10/1912)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 9 (9.jpg - 4/8/1914) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details9')">
-        April 8, 1914
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/9.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details9')"
-        />
-      </div>
-      <p id="details9" class="timeline-details collapse">
-        Announcement of William P Johnson purchasing a majority stock in the company.
-        (Palmyra Spectator 4/8/1914)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 10 (10.jpg - 7/1/1914) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details10')">
-        July 1, 1914
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/10.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details10')"
-        />
-      </div>
-      <p id="details10" class="timeline-details collapse">
-        R. L. Doherty remained with the company after its sale.
-        (Palmyra Spectator 7/1/1914)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 11 (11.jpg - 6/12/1935) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details11')">
-        June 12, 1935
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/11.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details11')"
-        />
-      </div>
-      <p id="details11" class="timeline-details collapse">
-        William P Johnson passed away and left the company to his 2 sons, Robert Johnson and Stewart Johnson.
-        (Palmyra Spectator 6/12/1935)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 12 (12.jpg - 1/6/1943) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details12')">
-        January 6, 1943
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/12.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details12')"
-        />
-      </div>
-      <p id="details12" class="timeline-details collapse">
-        Both Stewart Johnson and Robert Johnson were inducted into World War II and had to close
-        the company down for “the duration.”
-        (Palmyra Spectator 1/6/1943)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 13 (13.jpg - 10/20/1943) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details13')">
-        October 20, 1943
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/13.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details13')"
-        />
-      </div>
-      <p id="details13" class="timeline-details collapse">
-        Stewart Johnson and Robert Johnson profile on their service in the war.
-        (Palmyra Spectator 10/20/1943)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 14 (14.jpg - 11/14/1945) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details14')">
-        November 14, 1945
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/14.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details14')"
-        />
-      </div>
-      <p id="details14" class="timeline-details collapse">
-        Announcement of the re-opening of the Marion County Abstract Company.
-        (Palmyra Spectator 11/14/1945)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 15 (15.jpg - 11/14/1945) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details15')">
-        November 14, 1945
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/15.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details15')"
-        />
-      </div>
-      <p id="details15" class="timeline-details collapse">
-        Profile for the re-opening of the Marion County Abstract Company.
-        (Palmyra Spectator 11/14/1945)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 16 (16.jpg - 10/3/1957) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details16')">
-        October 3, 1957
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/16.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details16')"
-        />
-      </div>
-      <p id="details16" class="timeline-details collapse">
-        Announcement of Bob Johnson purchasing the company.
-        (Palmyra Spectator 10/3/1957)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 17 (17.jpg - 3/9/1960) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details17')">
-        March 9, 1960
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/17.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details17')"
-        />
-      </div>
-      <p id="details17" class="timeline-details collapse">
-        Article detailing the Palmyra Explosion of 1960, which occurred March 2, 1960.
-        (Palmyra Spectator 3/9/1960)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 18 (18.jpg - 3/9/1960) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details18')">
-        March 9, 1960
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/18.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details18')"
-        />
-      </div>
-      <p id="details18" class="timeline-details collapse">
-        Article detailing the Palmyra Explosion of 1960, which occurred March 2, 1960.
-        (Palmyra Spectator 3/9/1960)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 19 (19.jpg - 3/9/1960) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details19')">
-        March 9, 1960
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/19.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details19')"
-        />
-      </div>
-      <p id="details19" class="timeline-details collapse">
-        Photo showing the building damage.
-        (Palmyra Spectator 3/9/1960)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 20 (20.jpg - 3/10/1960) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details20')">
-        March 10, 1960
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/20.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details20')"
-        />
-      </div>
-      <p id="details20" class="timeline-details collapse">
-        Announcement thanking everyone for the help after the explosion.
-        (Palmyra Spectator 3/10/1960)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 21 (21.jpg - 11/24/1960) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details21')">
-        November 24, 1960
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/21.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details21')"
-        />
-      </div>
-      <p id="details21" class="timeline-details collapse">
-        Photograph showing the new building rebuilt after the explosion.
-        (Palmyra Spectator 11/24/1960)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 22 (22.jpg - 11/24/1960) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details22')">
-        November 24, 1960
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/22.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details22')"
-        />
-      </div>
-      <p id="details22" class="timeline-details collapse">
-        Article showing the new building rebuilt after the explosion.
-        (Palmyra Spectator 11/24/1960)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 23 (23.jpg - 11/24/1960) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details23')">
-        November 24, 1960
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/23.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details23')"
-        />
-      </div>
-      <p id="details23" class="timeline-details collapse">
-        Century Press newspaper post congratulating Marion County Abstract Company
-        on their new building.
-        (Palmyra Spectator 11/24/1960)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 24 (24.jpg - 11/24/1960) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details24')">
-        November 24, 1960
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/24.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details24')"
-        />
-      </div>
-      <p id="details24" class="timeline-details collapse">
-        Photo showing the deed writing process used.
-        (Palmyra Spectator 11/24/1960)
-      </p>
-    </div>
-
-    <!-- TIMELINE ITEM 25 (25.jpg - 11/24/1960) -->
-    <div class="timeline-item mb-5" data-aos="fade-up">
-      <h4 class="fw-bold mb-2" onclick="toggleDetails('details25')">
-        November 24, 1960
-      </h4>
-      <div class="timeline-image mb-2">
-        <img
-          src="images/25.jpg"
-          alt="Newspaper Clipping"
-          style="max-width: 400px; width: 100%; height: auto; cursor: pointer;"
-          onclick="toggleDetails('details25')"
-        />
-      </div>
-      <p id="details25" class="timeline-details collapse">
-        Photo showing the microfilm process.
-        (Palmyra Spectator 11/24/1960)
-      </p>
-    </div>
-
-  </section>
-
-  <!-- SCROLL TO TOP BUTTON -->
-  <div class="scroll-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
-    ▲
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="bg-dark text-light text-center py-3">
-    <div class="container">
-      <p class="mb-0">
-        COPYRIGHT © 2024 Title Agency<br />
-        ALL RIGHTS RESERVED.
-      </p>
-    </div>
-  </footer>
-
-  <!-- Standard Scripts (like your index) -->
+  <!-- SCRIPTS -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ho+DgUN3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
     crossorigin="anonymous"
   ></script>
+  <!-- AOS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="js/rellax.min.js"></script>
-  <script src="js/anime.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
-  <script src="js/scrollreveal.min.js"></script>
+  <!-- Locomotive Scroll -->
+  <script src="js/locomotive-scroll.min.js"></script>
+  <!-- GSAP -->
   <script src="js/gsap.min.js"></script>
-  <script src="js/lax.min.js"></script>
-  <script src="js/jarallax.min.js"></script>
+  <!-- If you have a separate file for ScrollTrigger, load it. Otherwise it may be in gsap extras -->
+  <script src="js/ScrollTrigger.min.js"></script> 
+  <!-- mo.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
+  <!-- GLightbox -->
+  <script src="js/glightbox.min.js"></script>
+  <!-- VanillaTilt -->
+  <script src="js/vanilla-tilt.min.js"></script>
+  <!-- TSParticles -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest"></script>
+  <!-- Quicklink -->
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+  <!-- For animate.js, scrollreveal, typed, etc. if needed -->
+  <script src="js/anime.min.js"></script>
+  <script src="js/scrollreveal.min.js"></script>
   <script src="js/typed.min.js"></script>
 
   <script>
-    // Simple toggle for collapse paragraphs
-    function toggleDetails(id) {
-      const detailsEl = document.getElementById(id);
-      detailsEl.classList.toggle('show');
+    // mo.js burst on date click
+    const burst = new mojs.Burst({
+      radius: { 0: 80 },
+      count: 8,
+      children: {
+        shape: 'circle',
+        radius: 10,
+        fill: [ '#FFD700', '#FF69B4', '#FFF' ],
+        duration: 600,
+        easing: 'cubic.out'
+      }
+    });
+    function burstAnimation(e) {
+      const x = e.pageX;
+      const y = e.pageY;
+      burst.tune({ x, y }).replay();
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-      AOS.init({ duration: 800, once: true });
-      var rellax = new Rellax('.rellax', { center: false });
-
-      // Quicklink for prefetching
-      quicklink.listen();
+    // GLightbox init
+    const lightbox = GLightbox({
+      selector: '.glightbox'
     });
+
+    // VanillaTilt init (3D tilt on images)
+    VanillaTilt.init(document.querySelectorAll('.tilt-img'), {
+      max: 5,
+      speed: 400,
+      glare: true,
+      'max-glare': 0.15
+    });
+
+    // TSParticles init (background flair)
+    tsParticles.load("tsparticles", {
+      fpsLimit: 60,
+      particles: {
+        number: { value: 30 },
+        color: { value: ["#ffffff", "#ffd700", "#ff69b4"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.7 },
+        size: { value: { min: 1, max: 5 } },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          outModes: "out"
+        }
+      }
+    });
+
+    // AOS
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+
+    // Locomotive Scroll init for smooth parallax scrolling
+    const scrollContainer = document.querySelector('[data-scroll-container]');
+    const locoScroll = new LocomotiveScroll({
+      el: scrollContainer,
+      smooth: true
+    });
+
+    // each time locomotive scroll updates, tell ScrollTrigger
+    locoScroll.on("scroll", ScrollTrigger.update);
+
+    // GSAP + ScrollTrigger pinned timeline approach
+    gsap.registerPlugin(ScrollTrigger);
+
+    // We'll pin each .pinned item for a short distance
+    document.querySelectorAll('.pinned').forEach(item => {
+      ScrollTrigger.create({
+        trigger: item,
+        start: 'top 70%',
+        end: 'bottom top',
+        pin: true,
+        pinSpacing: false,
+        scrub: 1,
+        markers: false, // set true for debugging
+        scroller: scrollContainer // connect to locomotive
+      });
+    });
+
+    // each time we do a locomotive scroll, update ScrollTrigger
+    locoScroll.on("scroll", ScrollTrigger.update);
+
+    // use ScrollTrigger's scrollerProxy for locomotive
+    ScrollTrigger.scrollerProxy(scrollContainer, {
+      scrollTop(value) {
+        return arguments.length
+          ? locoScroll.scrollTo(value, 0, 0)
+          : locoScroll.scroll.instance.scroll.y;
+      },
+      getBoundingClientRect() {
+        return {
+          top: 0,
+          left: 0,
+          width: window.innerWidth,
+          height: window.innerHeight
+        };
+      },
+      pinType: scrollContainer.style.transform ? "transform" : "fixed"
+    });
+
+    // after setup, refresh
+    ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
+    ScrollTrigger.refresh();
+
+    // Quicklink
+    quicklink.listen();
   </script>
 </body>
 </html>
