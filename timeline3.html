@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Black-Box Carousel Timeline | Mark Twain Title Company</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Bootstrap 5 (CDN) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-WqQ1D4nD9pI+kv3mxrjfR15d8gB4DDlCDPH9a1/ttbk68DsGaY8Q/QtrSlCJm7c6"
+    crossorigin="anonymous"
+  />
+
+  <!-- Flickity (carousel) CSS -->
+  <link rel="stylesheet" href="css/flickity.min.css" />
+
+  <!-- Our existing stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .black-box {
+      background-color: #000;
+      padding: 1rem;
+      margin: 2rem 0;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .flickity-viewport {
+      height: 400px; /* approximate desired carousel height */
+    }
+    .carousel-cell {
+      width: 300px; /* each image's width */
+      margin-right: 1rem;
+      border-radius: 4px;
+      overflow: hidden;
+      transform: scale(0.95);
+      transition: transform 0.3s;
+    }
+    .carousel-cell.is-selected {
+      transform: scale(1);
+    }
+    .carousel-cell img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .timeline3-summary {
+      margin-top: 1rem;
+      background-color: #f2f2f2;
+      padding: 1rem;
+      border-radius: 6px;
+    }
+    .timeline3-summary h4 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header position-relative" onclick="window.location.href='index.html'">
+    <img
+      src="images/Untitled-design.jpeg"
+      alt="Mark Twain Title Company Header"
+      class="header-image"
+      style="width: 100%; height: auto; object-fit: contain;"
+    >
+    <nav class="header-nav" style="bottom: 10px; right: 20px;">
+      <ul class="list-inline mb-0 nav-no-wrap">
+        <li class="list-inline-item"><a href="index.html">Home</a></li>
+        <li class="list-inline-item"><a href="contact-us.html">Contact Us</a></li>
+        <li class="list-inline-item"><a href="meet-our-staff.html">Meet Our Staff</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container my-5">
+    <h1 class="text-center mb-4">
+      The History of Mark Twain Title Company
+    </h1>
+    <p class="text-center mx-auto" style="max-width: 600px;">
+      Mark Twain Title Company started as, and traces its origins back to 1898, 
+      when it was originally named “Marion County Abstract Company, which we still hold the rights to.” 
+      Below is a horizontal carousel of all historic photos, followed by each date’s summary below.
+    </p>
+
+    <!-- BLACK BOX with Flickity carousel -->
+    <div class="black-box">
+      <div class="main-carousel"
+           data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": false, "autoPlay": false, "prevNextButtons": true, "pageDots": false }'>
+
+        <!-- 25 carousel cells, one per photo -->
+        <div class="carousel-cell">
+          <img src="images/1.jpg" alt="1/20/1898" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/2.jpg" alt="1/27/1898" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/3.jpg" alt="2/3/1898" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/5.jpg" alt="2/17/1898" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/6.jpg" alt="3/24/1898" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/7.jpg" alt="4/28/1898" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/4.jpg" alt="4/16/1902" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/8.jpg" alt="4/10/1912" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/9.jpg" alt="4/8/1914" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/10.jpg" alt="7/1/1914" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/11.jpg" alt="6/12/1935" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/12.jpg" alt="1/6/1943" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/13.jpg" alt="10/20/1943" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/14.jpg" alt="11/14/1945" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/15.jpg" alt="11/14/1945" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/16.jpg" alt="10/3/1957" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/17.jpg" alt="3/9/1960" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/18.jpg" alt="3/9/1960" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/19.jpg" alt="3/9/1960" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/20.jpg" alt="3/10/1960" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/21.jpg" alt="11/24/1960" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/22.jpg" alt="11/24/1960" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/23.jpg" alt="11/24/1960" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/24.jpg" alt="11/24/1960" />
+        </div>
+        <div class="carousel-cell">
+          <img src="images/25.jpg" alt="11/24/1960" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Summaries below for all 25 -->
+    <div class="timeline3-summary">
+      <h4>January 20, 1898</h4>
+      <p>
+        The formation of the Marion County Abstract Company is announced...
+        (Palmyra Spectator 1/20/1898)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>January 27, 1898</h4>
+      <p>
+        Announcement of location for the company...
+        (Palmyra Spectator 1/27/1898)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>February 3, 1898</h4>
+      <p>
+        Announcement of the election of members for Marion County Abstract Company...
+        (Palmyra Spectator 2/3/1898)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>February 17, 1898</h4>
+      <p>
+        Announcement of anticipated opening of facility...
+        (Palmyra Spectator 2/17/1898)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>March 24, 1898</h4>
+      <p>
+        Advertisement for Marion County Abstract Company...
+        (Palmyra Spectator 3/24/1898)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>April 28, 1898</h4>
+      <p>
+        Advertisement for Marion County Abstract Company...
+        (Palmyra Spectator 4/28/1898)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>April 16, 1902</h4>
+      <p>
+        Spectator profile of Robert Lee Doherty, skipping telescope references...
+        (Palmyra Spectator 4/16/1902)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>April 10, 1912</h4>
+      <p>
+        R. L. Doherty mention in the Spectator, omitting telescope talk...
+        (Palmyra Spectator 4/10/1912)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>April 8, 1914</h4>
+      <p>
+        Announcement of William P Johnson purchasing a majority stock in the company...
+        (Palmyra Spectator 4/8/1914)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>July 1, 1914</h4>
+      <p>
+        R. L. Doherty remained with the company after its sale...
+        (Palmyra Spectator 7/1/1914)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>June 12, 1935</h4>
+      <p>
+        William P Johnson passed away and left the company to his 2 sons...
+        (Palmyra Spectator 6/12/1935)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>January 6, 1943</h4>
+      <p>
+        Both Stewart Johnson and Robert Johnson were inducted into WWII...
+        (Palmyra Spectator 1/6/1943)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>October 20, 1943</h4>
+      <p>
+        Stewart & Robert Johnson profile on their service in the war...
+        (Palmyra Spectator 10/20/1943)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>November 14, 1945</h4>
+      <p>
+        Announcement of the re-opening of the Marion County Abstract Company...
+        (Palmyra Spectator 11/14/1945)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>November 14, 1945</h4>
+      <p>
+        Profile for the re-opening of the Marion County Abstract Company...
+        (Palmyra Spectator 11/14/1945)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>October 3, 1957</h4>
+      <p>
+        Announcement of Bob Johnson purchasing the company...
+        (Palmyra Spectator 10/3/1957)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>March 9, 1960</h4>
+      <p>
+        Article detailing the Palmyra Explosion of 1960, which occurred March 2, 1960...
+        (Palmyra Spectator 3/9/1960)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>March 9, 1960</h4>
+      <p>
+        Another article detailing the Palmyra Explosion...
+        (Palmyra Spectator 3/9/1960)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>March 9, 1960</h4>
+      <p>
+        Photo showing the building damage...
+        (Palmyra Spectator 3/9/1960)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>March 10, 1960</h4>
+      <p>
+        Announcement thanking everyone for the help after the explosion...
+        (Palmyra Spectator 3/10/1960)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>November 24, 1960</h4>
+      <p>
+        Photograph showing the new building rebuilt after the explosion...
+        (Palmyra Spectator 11/24/1960)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>November 24, 1960</h4>
+      <p>
+        Article showing the new building rebuilt after the explosion...
+        (Palmyra Spectator 11/24/1960)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>November 24, 1960</h4>
+      <p>
+        Century Press newspaper post congratulating Marion County Abstract Co...
+        (Palmyra Spectator 11/24/1960)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>November 24, 1960</h4>
+      <p>
+        Photo showing the deed writing process used...
+        (Palmyra Spectator 11/24/1960)
+      </p>
+    </div>
+
+    <div class="timeline3-summary">
+      <h4>November 24, 1960</h4>
+      <p>
+        Photo showing the microfilm process...
+        (Palmyra Spectator 11/24/1960)
+      </p>
+    </div>
+  </main>
+
+  <footer class="bg-dark text-light text-center py-3">
+    <div class="container">
+      <p class="mb-0">
+        COPYRIGHT © 2024 Title Agency<br/>
+        ALL RIGHTS RESERVED.
+      </p>
+    </div>
+  </footer>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+DgUN3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
+    crossorigin="anonymous"
+  ></script>
+  <script src="js/flickity.min.js"></script>
+</body>
+</html>
