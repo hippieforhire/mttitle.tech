@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <title>Epic Interactive Timeline | Mark Twain Title Company</title>
 
-  <!-- Prevent iOS from auto-zooming or messing up initial scale -->
+  <!-- Prevent iOS auto-zoom -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
   <!-- Google Fonts -->
@@ -36,6 +36,29 @@
 
   <!-- Our existing stylesheet -->
   <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* Additional overrides to shrink images and center them */
+
+    .timeline-item {
+      text-align: center; /* Center each item’s content */
+      margin-bottom: 3rem;
+    }
+
+    .timeline-item .timeline-img {
+      /* Force smaller max width so they aren’t huge on mobile */
+      max-width: 300px; 
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto; 
+    }
+
+    .timeline-text {
+      text-align: left; /* keep text left if you prefer */
+      margin-top: 1rem;
+    }
+  </style>
 </head>
 <body>
 
@@ -45,7 +68,7 @@
   <!-- LOCOMOTIVE SCROLL WRAPPER (smooth scrolling only for main content) -->
   <div data-scroll-container>
 
-    <!-- Header (no parallax/pinned for better iOS compliance) -->
+    <!-- HEADER (no advanced parallax/pin on header) -->
     <header class="site-header position-relative" onclick="window.location.href='index.html'">
       <img
         src="images/Untitled-design.jpeg"
@@ -63,7 +86,7 @@
       </nav>
     </header>
 
-    <!-- INTRO SECTION (Locomotive-scrolled) -->
+    <!-- INTRO SECTION -->
     <section class="container my-5" data-scroll-section>
       <h1 class="text-center mb-4" data-aos="zoom-in">
         Epic Interactive Timeline
@@ -189,7 +212,7 @@
           </h3>
           <a href="images/7.jpg" class="glightbox tilt-img"
              data-gallery="timeline"
-             data-title="April 28, 1898 - More advertisement">
+             data-title="April 28, 1898 - Ad for Marion County Abstract">
             <img
               src="images/7.jpg"
               alt="Newspaper Clipping"
@@ -230,7 +253,7 @@
           </h3>
           <a href="images/8.jpg" class="glightbox tilt-img"
              data-gallery="timeline"
-             data-title="April 10, 1912 - Telescope hobby">
+             data-title="April 10, 1912 - R. L. Doherty telescope hobby">
             <img
               src="images/8.jpg"
               alt="Newspaper Clipping"
@@ -270,7 +293,7 @@
           </h3>
           <a href="images/10.jpg" class="glightbox tilt-img"
              data-gallery="timeline"
-             data-title="July 1, 1914 - R. L. Doherty remains">
+             data-title="July 1, 1914 - R. L. Doherty remains after sale">
             <img
               src="images/10.jpg"
               alt="Newspaper Clipping"
@@ -332,7 +355,7 @@
           </h3>
           <a href="images/13.jpg" class="glightbox tilt-img"
              data-gallery="timeline"
-             data-title="October 20, 1943 - Stewart and Robert service in war">
+             data-title="October 20, 1943 - Stewart and Robert Johnson war service">
             <img
               src="images/13.jpg"
               alt="Newspaper Clipping"
@@ -611,23 +634,14 @@
     integrity="sha384-ho+DgUN3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
     crossorigin="anonymous"
   ></script>
-  <!-- AOS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <!-- Locomotive Scroll -->
   <script src="js/locomotive-scroll.min.js"></script>
-  <!-- GSAP -->
   <script src="js/gsap.min.js"></script>
-  <!-- ScrollTrigger (if not included in gsap.min.js) -->
   <script src="js/ScrollTrigger.min.js"></script>
-  <!-- mo.js -->
   <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
-  <!-- GLightbox -->
   <script src="js/glightbox.min.js"></script>
-  <!-- VanillaTilt -->
   <script src="js/vanilla-tilt.min.js"></script>
-  <!-- TSParticles -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest"></script>
-  <!-- Quicklink -->
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
   <!-- Optionally animate.js, scrollreveal, typed, etc. -->
   <script src="js/anime.min.js"></script>
@@ -664,7 +678,7 @@
       'max-glare': 0.15
     });
 
-    // TSParticles init (background flair)
+    // TSParticles init
     tsParticles.load("tsparticles", {
       fpsLimit: 60,
       particles: {
@@ -683,10 +697,7 @@
     });
 
     // AOS fade-ups
-    AOS.init({
-      duration: 800,
-      once: true
-    });
+    AOS.init({ duration: 800, once: true });
 
     // Locomotive Scroll init
     const scrollContainer = document.querySelector('[data-scroll-container]');
@@ -694,7 +705,6 @@
       el: scrollContainer,
       smooth: true
     });
-
     locoScroll.on("scroll", () => {
       ScrollTrigger.update();
     });
