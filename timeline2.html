@@ -1,459 +1,692 @@
 <!DOCTYPE html>
-<html lang="en">
+<html
+  lang="en"
+  data-wf-domain="mttitle.tech"
+  data-wf-page="some-page-id"
+  data-wf-site="some-site-id"
+>
 <head>
   <meta charset="utf-8" />
-  <title>Relume-Style Timeline with Bullets | Mark Twain Title Company</title>
+  <title>Mark Twain Title Company | Relume-Style Timeline</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
 
-  <!-- Prevent iOS auto-zoom -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <!-- 1) Link to the Relume Timeline's original CSS on Webflow's CDN -->
+  <!--    This CSS includes all styling for .timeline_component, .timeline_item,
+         .timeline_progress-bar, .timeline_left, .timeline_right, etc. -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    href="https://cdn.prod.website-files.com/60dd72519d9f9f67690ae425/css/relume-timeline-cloneable.webflow.dee96ca0d.css"
     rel="stylesheet"
+    type="text/css"
   />
 
-  <!-- Bootstrap 5 (CDN) -->
+  <!-- (Optional) Favicon or skip it -->
   <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-    integrity="sha384-WqQ1D4nD9pI+kv3mxrjfR15d8gB4DDlCDPH9a1/ttbk68DsGaY8Q/QtrSlCJm7c6"
-    crossorigin="anonymous"
+    href="https://cdn.prod.website-files.com/60dd72519d9f9f67690ae425/60de8d357335a42da7f2fd77_Favicon.png"
+    rel="shortcut icon"
+    type="image/x-icon"
   />
-
-  <!-- Our existing stylesheet -->
-  <link rel="stylesheet" href="css/style.css" />
 
   <style>
+    /* OVERRIDES or your own site’s styling */
     body {
-      background-color: #111; /* Darkish background to mimic Relume’s vibe */
-      color: #fff;
       margin: 0;
-      padding: 0;
-      font-family: "Poppins", sans-serif;
+      font-family: Arial, sans-serif; /* Or "Poppins", etc. */
+      background-color: #f7f9fb;      /* If you want the gradient background from your site */
     }
-
-    /* HEADER override: keep your site’s style */
-    .site-header {
-      background-color: #fff; /* If you want the original white header */
-      /* or remove if you want black. */
+    .page-wrapper {
+      overflow: visible; /* Ensure we can scroll fully */
     }
-    .header-image {
-      object-fit: contain;
-      width: 100%;
-      height: auto;
-      display: block;
+    /* Tweak the text sizes if desired */
+    .timeline_date-text {
+      font-size: 1.2rem;
+      font-weight: 600;
     }
-
-    .relume-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-      position: relative;
-    }
-
-    /* THE LEFT LINE that stays fixed, with a vertical gradient. */
-    .relume-line {
-      position: fixed;
-      left: 40px; 
-      top: 0;
-      width: 4px;
-      height: 100vh;
-      background: linear-gradient(
-        to bottom,
-        #ff0080 0%,
-        #ff8f00 50%,
-        #ffd700 100%
-      );
-      z-index: 9999;
-    }
-
-    /* The bullet container that holds all bullet dots, each absolutely positioned. */
-    .bullet-container {
-      position: absolute;
-      left: calc(40px - 8px); /* center bullets around the line */
-      top: 0;
-      width: 16px;
-      height: 100%;
-    }
-
-    .bullet-dot {
-      position: absolute;
-      left: 0;
-      width: 16px;
-      height: 16px;
-      background-color: #555; /* default “unfilled” color */
-      border-radius: 50%;
-      transition: background-color 0.3s;
-      border: 2px solid #111; /* so it looks a bit embedded in background */
-      box-sizing: content-box;
-    }
-    .bullet-dot.active {
-      background-color: #ffd700; /* highlight color when in view */
-      border-color: #ffd700;
-    }
-
-    /* TIMELINE ITEM styling (dark “card” approach) */
-    .relume-item {
-      background-color: #222;
-      border-radius: 8px;
-      padding: 2rem;
-      margin-bottom: 6rem; /* enough space to see bullets in between */
-      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
-      position: relative;
-    }
-    .relume-item h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #fff;
-    }
-    .relume-item p {
-      color: #ccc;
+    .timeline_text {
+      font-size: 1rem;
       line-height: 1.6;
     }
-    .relume-item img {
-      margin-top: 1rem;
-      max-width: 100%;
-      border-radius: 6px;
-    }
-
-    /* For narrower screens, reduce padding. */
-    @media (max-width: 768px) {
-      .relume-item {
-        margin-bottom: 4rem;
-        padding: 1.5rem;
-      }
-      .relume-item h2 {
-        font-size: 1.5rem;
-      }
+    /* Dark card override for each timeline item */
+    .timeline_item {
+      background-color: #222; 
+      color: #fff;
+      border-radius: 8px;
+      padding: 1rem;
     }
   </style>
 </head>
+
 <body>
+  <!-- Outer wrapper (Webflow structure) -->
+  <div class="page-wrapper">
 
-  <!-- HEADER -->
-  <header
-    class="site-header position-relative"
-    onclick="window.location.href='index.html'"
-  >
-    <img
-      src="images/Untitled-design.jpeg"
-      alt="Mark Twain Title Company Header"
-      class="header-image"
-    >
-    <nav class="header-nav" style="bottom: 10px; right: 20px;">
-      <ul class="list-inline mb-0 nav-no-wrap">
-        <li class="list-inline-item"><a href="index.html">Home</a></li>
-        <li class="list-inline-item"><a href="contact-us.html">Contact Us</a></li>
-        <li class="list-inline-item"><a href="meet-our-staff.html">Meet Our Staff</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- The gradient line on the left -->
-  <div class="relume-line"></div>
-
-  <!-- MAIN CONTENT -->
-  <main class="relume-container">
-    <div class="bullet-container" id="bulletContainer">
-      <!-- We’ll place bullet dots for each of the 25 items via JS or manually. 
-           Let’s do it via JS for convenience. -->
+    <!-- Example hero/section heading (customizable). Replace with your own header if you prefer. -->
+    <div class="section-hero">
+      <div class="background-layer"></div>
+      <div class="hero-nav">
+        <!-- Your site’s brand or nav link -->
+        <a href="index.html" class="relume-link w-inline-block" style="text-decoration:none;">
+          <div style="color:#fff; font-weight:bold; font-size:1.2rem;">
+            Mark Twain Title Company
+          </div>
+        </a>
+      </div>
+      <div class="container">
+        <div class="padding-vertical-xxlarge">
+          <div class="timeline-hero_heading-wrapper">
+            <h1 style="color:#fff;">Our Relume-Style Timeline</h1>
+            <h4 style="color:#fff;">Historic Milestones since 1898</h4>
+            <p class="paragraph-large" style="color:#ddd;">
+              Mark Twain Title Company started as, and traces its origins back to 1898...
+              <br />This timeline replicates the style and pinned gradient from the Relume cloneable example.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <h1 class="text-center my-4">
-      The History of Mark Twain Title Company
-    </h1>
-    <p class="text-center" style="max-width: 600px; margin: 0 auto 2rem;">
-      Mark Twain Title Company started as, and traces its origins back to 1898, 
-      when it was originally named “Marion County Abstract Company, which we still hold the rights to.” 
-      Over the decades, the company evolved, faced challenges, and rebuilt stronger each time. 
-      Below is a journey through our story—highlighting key moments, expansions, and changes.
-    </p>
-
-    <!-- 25 timeline items -->
-    <div class="relume-item" data-bullet="1">
-      <h2>January 20, 1898</h2>
-      <p>
-        The formation of the Marion County Abstract Company is announced...
-        (Palmyra Spectator 1/20/1898)
-      </p>
-      <img src="images/1.jpg" alt="1-20-1898" />
-    </div>
-    <div class="relume-item" data-bullet="2">
-      <h2>January 27, 1898</h2>
-      <p>
-        Announcement of location for the company...
-        (Palmyra Spectator 1/27/1898)
-      </p>
-      <img src="images/2.jpg" alt="1-27-1898" />
-    </div>
-    <div class="relume-item" data-bullet="3">
-      <h2>February 3, 1898</h2>
-      <p>
-        Announcement of the election of members for Marion County Abstract Co...
-        (Palmyra Spectator 2/3/1898)
-      </p>
-      <img src="images/3.jpg" alt="2-3-1898" />
-    </div>
-    <div class="relume-item" data-bullet="4">
-      <h2>February 17, 1898</h2>
-      <p>
-        Announcement of anticipated opening of facility...
-        (Palmyra Spectator 2/17/1898)
-      </p>
-      <img src="images/5.jpg" alt="2-17-1898" />
-    </div>
-    <div class="relume-item" data-bullet="5">
-      <h2>March 24, 1898</h2>
-      <p>
-        Advertisement for Marion County Abstract Company...
-        (Palmyra Spectator 3/24/1898)
-      </p>
-      <img src="images/6.jpg" alt="3-24-1898" />
-    </div>
-    <div class="relume-item" data-bullet="6">
-      <h2>April 28, 1898</h2>
-      <p>
-        Advertisement for Marion County Abstract Company...
-        (Palmyra Spectator 4/28/1898)
-      </p>
-      <img src="images/7.jpg" alt="4-28-1898" />
-    </div>
-    <div class="relume-item" data-bullet="7">
-      <h2>April 16, 1902</h2>
-      <p>
-        Spectator profile of Robert Lee Doherty, skipping telescope references...
-        (Palmyra Spectator 4/16/1902)
-      </p>
-      <img src="images/4.jpg" alt="4-16-1902" />
-    </div>
-    <div class="relume-item" data-bullet="8">
-      <h2>April 10, 1912</h2>
-      <p>
-        R. L. Doherty mention in the Spectator (no telescope)...
-        (Palmyra Spectator 4/10/1912)
-      </p>
-      <img src="images/8.jpg" alt="4-10-1912" />
-    </div>
-    <div class="relume-item" data-bullet="9">
-      <h2>April 8, 1914</h2>
-      <p>
-        Announcement of William P Johnson purchasing majority stock...
-        (Palmyra Spectator 4/8/1914)
-      </p>
-      <img src="images/9.jpg" alt="4-8-1914" />
-    </div>
-    <div class="relume-item" data-bullet="10">
-      <h2>July 1, 1914</h2>
-      <p>
-        R. L. Doherty remained with the company after its sale...
-        (Palmyra Spectator 7/1/1914)
-      </p>
-      <img src="images/10.jpg" alt="7-1-1914" />
-    </div>
-    <div class="relume-item" data-bullet="11">
-      <h2>June 12, 1935</h2>
-      <p>
-        William P Johnson passed away and left the company to his 2 sons...
-        (Palmyra Spectator 6/12/1935)
-      </p>
-      <img src="images/11.jpg" alt="6-12-1935" />
-    </div>
-    <div class="relume-item" data-bullet="12">
-      <h2>January 6, 1943</h2>
-      <p>
-        Both Stewart and Robert Johnson inducted into WWII...
-        (Palmyra Spectator 1/6/1943)
-      </p>
-      <img src="images/12.jpg" alt="1-6-1943" />
-    </div>
-    <div class="relume-item" data-bullet="13">
-      <h2>October 20, 1943</h2>
-      <p>
-        Stewart & Robert Johnson profile on war service...
-        (Palmyra Spectator 10/20/1943)
-      </p>
-      <img src="images/13.jpg" alt="10-20-1943" />
-    </div>
-    <div class="relume-item" data-bullet="14">
-      <h2>November 14, 1945</h2>
-      <p>
-        Announcement of the re-opening of the Marion County Abstract Company...
-        (Palmyra Spectator 11/14/1945)
-      </p>
-      <img src="images/14.jpg" alt="11-14-1945" />
-    </div>
-    <div class="relume-item" data-bullet="15">
-      <h2>November 14, 1945</h2>
-      <p>
-        Profile for the re-opening of the Marion County Abstract Company...
-        (Palmyra Spectator 11/14/1945)
-      </p>
-      <img src="images/15.jpg" alt="11-14-1945" />
-    </div>
-    <div class="relume-item" data-bullet="16">
-      <h2>October 3, 1957</h2>
-      <p>
-        Announcement of Bob Johnson purchasing the company...
-        (Palmyra Spectator 10/3/1957)
-      </p>
-      <img src="images/16.jpg" alt="10-3-1957" />
-    </div>
-    <div class="relume-item" data-bullet="17">
-      <h2>March 9, 1960</h2>
-      <p>
-        Article detailing the Palmyra Explosion of 1960 (March 2)...
-        (Palmyra Spectator 3/9/1960)
-      </p>
-      <img src="images/17.jpg" alt="3-9-1960" />
-    </div>
-    <div class="relume-item" data-bullet="18">
-      <h2>March 9, 1960</h2>
-      <p>
-        Another article on the Palmyra Explosion...
-        (Palmyra Spectator 3/9/1960)
-      </p>
-      <img src="images/18.jpg" alt="3-9-1960" />
-    </div>
-    <div class="relume-item" data-bullet="19">
-      <h2>March 9, 1960</h2>
-      <p>
-        Photo showing the building damage...
-        (Palmyra Spectator 3/9/1960)
-      </p>
-      <img src="images/19.jpg" alt="3-9-1960" />
-    </div>
-    <div class="relume-item" data-bullet="20">
-      <h2>March 10, 1960</h2>
-      <p>
-        Announcement thanking everyone for help after the explosion...
-        (Palmyra Spectator 3/10/1960)
-      </p>
-      <img src="images/20.jpg" alt="3-10-1960" />
-    </div>
-    <div class="relume-item" data-bullet="21">
-      <h2>November 24, 1960</h2>
-      <p>
-        Photograph showing the new building rebuilt after the explosion...
-        (Palmyra Spectator 11/24/1960)
-      </p>
-      <img src="images/21.jpg" alt="11-24-1960" />
-    </div>
-    <div class="relume-item" data-bullet="22">
-      <h2>November 24, 1960</h2>
-      <p>
-        Article showing the new building rebuilt after the explosion...
-        (Palmyra Spectator 11/24/1960)
-      </p>
-      <img src="images/22.jpg" alt="11-24-1960" />
-    </div>
-    <div class="relume-item" data-bullet="23">
-      <h2>November 24, 1960</h2>
-      <p>
-        Century Press newspaper post congratulating Marion County Abstract Co...
-        (Palmyra Spectator 11/24/1960)
-      </p>
-      <img src="images/23.jpg" alt="11-24-1960" />
-    </div>
-    <div class="relume-item" data-bullet="24">
-      <h2>November 24, 1960</h2>
-      <p>
-        Photo showing the deed writing process used...
-        (Palmyra Spectator 11/24/1960)
-      </p>
-      <img src="images/24.jpg" alt="11-24-1960" />
-    </div>
-    <div class="relume-item" data-bullet="25">
-      <h2>November 24, 1960</h2>
-      <p>
-        Photo showing the microfilm process...
-        (Palmyra Spectator 11/24/1960)
-      </p>
-      <img src="images/25.jpg" alt="11-24-1960" />
+    <!-- Section heading, like “The story of how we got started on Webflow” in Relume’s sample -->
+    <div class="section-timeline-heading">
+      <div class="container">
+        <div class="padding-vertical-xlarge">
+          <div class="timeline-main_heading-wrapper">
+            <h2>The History of Mark Twain Title Company</h2>
+            <p class="paragraph-large">
+              We have served the region for over 100 years. Scroll to see each milestone,
+              with the pink-orange timeline pinned on the left, just like the original
+              Relume example.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
-  </main>
+    <!-- The main timeline from the relume cloneable -->
+    <div class="section-timeline">
+      <div class="container">
+        <div class="timeline_component">
+          <!-- The pinned gradient line: .timeline_progress + .timeline_progress-bar -->
+          <div class="timeline_progress">
+            <div
+              data-w-id="d5abcf1f-3370-3eea-ccfd-66f076babfdd"
+              class="timeline_progress-bar"
+            ></div>
+          </div>
 
-  <footer class="bg-dark text-light text-center py-3">
-    <div class="container">
-      <p class="mb-0">
-        COPYRIGHT © 2024 Title Agency<br />
-        ALL RIGHTS RESERVED.
-      </p>
+          <!-- ============== All 25 items below ============== -->
+
+          <!-- 1) January 20, 1898 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">January 20, 1898</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  The formation of the Marion County Abstract Company is announced...
+                  (Palmyra Spectator 1/20/1898)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/1.jpg" alt="1-20-1898" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 2) January 27, 1898 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">January 27, 1898</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Announcement of location for the company.
+                  (Palmyra Spectator 1/27/1898)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/2.jpg" alt="1/27/1898" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 3) February 3, 1898 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">February 3, 1898</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Announcement of the election of members for Marion County Abstract Co...
+                  (Palmyra Spectator 2/3/1898)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/3.jpg" alt="2/3/1898" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 4) February 17, 1898 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">February 17, 1898</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Announcement of anticipated opening of facility...
+                  (Palmyra Spectator 2/17/1898)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/5.jpg" alt="2/17/1898" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 5) March 24, 1898 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">March 24, 1898</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Advertisement for Marion County Abstract Company...
+                  (Palmyra Spectator 3/24/1898)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/6.jpg" alt="3/24/1898" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 6) April 28, 1898 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">April 28, 1898</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Advertisement for Marion County Abstract Company...
+                  (Palmyra Spectator 4/28/1898)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/7.jpg" alt="4/28/1898" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 7) April 16, 1902 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">April 16, 1902</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Spectator profile of the then-owner of the Marion County Abstract Company,
+                  Robert Lee Doherty (skipping telescope references)...
+                  (Palmyra Spectator 4/16/1902)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/4.jpg" alt="4/16/1902" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 8) April 10, 1912 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">April 10, 1912</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  R. L. Doherty mention in the Spectator (telescope omitted).
+                  (Palmyra Spectator 4/10/1912)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/8.jpg" alt="4/10/1912" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 9) April 8, 1914 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">April 8, 1914</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Announcement of William P Johnson purchasing majority stock...
+                  (Palmyra Spectator 4/8/1914)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/9.jpg" alt="4/8/1914" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 10) July 1, 1914 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">July 1, 1914</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  R. L. Doherty remained with the company after its sale.
+                  (Palmyra Spectator 7/1/1914)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/10.jpg" alt="7/1/1914" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 11) June 12, 1935 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">June 12, 1935</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  William P Johnson passed away and left the company to his 2 sons,
+                  Robert Johnson and Stewart Johnson. (Palmyra Spectator 6/12/1935)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/11.jpg" alt="6/12/1935" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 12) January 6, 1943 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">January 6, 1943</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Both Stewart Johnson and Robert Johnson were inducted into World War II
+                  and had to close the company for the duration.
+                  (Palmyra Spectator 1/6/1943)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/12.jpg" alt="1/6/1943" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 13) October 20, 1943 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">October 20, 1943</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Stewart Johnson and Robert Johnson profile on war service.
+                  (Palmyra Spectator 10/20/1943)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/13.jpg" alt="10/20/1943" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 14) November 14, 1945 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">November 14, 1945</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Announcement of the re-opening of the Marion County Abstract Company.
+                  (Palmyra Spectator 11/14/1945)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/14.jpg" alt="11/14/1945" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 15) November 14, 1945 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">November 14, 1945</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Profile for the re-opening of the Marion County Abstract Company.
+                  (Palmyra Spectator 11/14/1945)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/15.jpg" alt="11/14/1945" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 16) October 3, 1957 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">October 3, 1957</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Announcement of Bob Johnson purchasing the company.
+                  (Palmyra Spectator 10/3/1957)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/16.jpg" alt="10/3/1957" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 17) March 9, 1960 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">March 9, 1960</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Article detailing the Palmyra Explosion of 1960 (March 2).
+                  (Palmyra Spectator 3/9/1960)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/17.jpg" alt="3/9/1960" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 18) March 9, 1960 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">March 9, 1960</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Another article detailing the Palmyra Explosion.
+                  (Palmyra Spectator 3/9/1960)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/18.jpg" alt="3/9/1960" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 19) March 9, 1960 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">March 9, 1960</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Photo showing the building damage.
+                  (Palmyra Spectator 3/9/1960)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/19.jpg" alt="3/9/1960" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 20) March 10, 1960 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">March 10, 1960</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Announcement thanking everyone for help after the explosion.
+                  (Palmyra Spectator 3/10/1960)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/20.jpg" alt="3/10/1960" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 21) November 24, 1960 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">November 24, 1960</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Photograph showing the new building rebuilt after the explosion.
+                  (Palmyra Spectator 11/24/1960)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/21.jpg" alt="11/24/1960" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 22) November 24, 1960 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">November 24, 1960</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Article showing the new building rebuilt after the explosion.
+                  (Palmyra Spectator 11/24/1960)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/22.jpg" alt="11/24/1960" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 23) November 24, 1960 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">November 24, 1960</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Century Press newspaper post congratulating Marion County Abstract Company
+                  on their new building. (Palmyra Spectator 11/24/1960)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/23.jpg" alt="11/24/1960" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 24) November 24, 1960 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">November 24, 1960</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Photo showing the deed writing process used.
+                  (Palmyra Spectator 11/24/1960)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/24.jpg" alt="11/24/1960" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 25) November 24, 1960 -->
+          <div class="timeline_item">
+            <div class="timeline_left">
+              <div class="timeline_date-text">November 24, 1960</div>
+            </div>
+            <div class="timeline_centre">
+              <div class="timeline_circle"></div>
+            </div>
+            <div class="timeline_right">
+              <div class="margin-bottom-xlarge">
+                <div class="timeline_text">
+                  Photo showing the microfilm process.
+                  (Palmyra Spectator 11/24/1960)
+                </div>
+              </div>
+              <div class="timeline_image-wrapper">
+                <img src="images/25.jpg" alt="11/24/1960" width="480" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Fade overlays, as in the original -->
+          <div class="overlay-fade-bottom"></div>
+          <div class="overlay-fade-top"></div>
+        </div><!-- end .timeline_component -->
+      </div><!-- end .container -->
+    </div><!-- end .section-timeline -->
+
+    <!-- Optional CTA / "Today" block -->
+    <div class="section-timeline-cta">
+      <div class="container">
+        <div class="padding-vertical-xlarge">
+          <div style="opacity:0.25" class="timeline-main_heading-wrapper">
+            <div class="margin-bottom-medium">
+              <div class="timeline_date-text">Today</div>
+            </div>
+            <div class="margin-bottom-small">
+              <div class="timeline_text">
+                Our story continues onward with even more milestones. Thanks for reading!
+              </div>
+            </div>
+            <div class="margin-bottom-large">
+              <p class="paragraph-large">
+                We hope you enjoyed this demonstration of a Relume-style timeline.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </footer>
+  </div><!-- end page-wrapper -->
 
-  <!-- Scripts -->
+  <!-- A quick footer example (replace with yours) -->
+  <div style="background:#222; color:#aaa; text-align:center; padding:1rem;">
+    <p>© 2024 Mark Twain Title Company - All Rights Reserved.</p>
+  </div>
+
+  <!-- jQuery & the Webflow JS to power the pinned bar & circle animations -->
   <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ho+DgUN3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
+    src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js"
+    type="text/javascript"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
     crossorigin="anonymous"
   ></script>
-
-  <!-- GSAP + ScrollTrigger for bullet activation -->
-  <script src="js/gsap.min.js"></script>
-  <script src="js/ScrollTrigger.min.js"></script>
-
-  <script>
-    // We'll create bullet dots for each item dynamically, then highlight them as that item is scrolled into view
-    document.addEventListener('DOMContentLoaded', function() {
-      const items = document.querySelectorAll('.relume-item');
-      const bulletContainer = document.getElementById('bulletContainer');
-
-      // Create bullet dots for each item
-      items.forEach(item => {
-        const bulletIndex = item.getAttribute('data-bullet');
-        const dot = document.createElement('div');
-        dot.classList.add('bullet-dot');
-        dot.id = 'bulletDot' + bulletIndex;
-        // We'll place them proportionally down the container
-        // We can do it after we do a layout pass or just approximate
-        bulletContainer.appendChild(dot);
-      });
-
-      // GSAP approach: for each item, create a ScrollTrigger that toggles the bullet
-      gsap.registerPlugin(ScrollTrigger);
-
-      items.forEach((item, i) => {
-        let bulletIndex = item.getAttribute('data-bullet');
-        let bulletDot = document.getElementById('bulletDot' + bulletIndex);
-
-        // Position bullet dot based on item offset. Alternatively, do an IntersectionObserver approach
-        // but let's do a simpler approach: We'll let each bullet's Y be computed via onUpdate
-        ScrollTrigger.create({
-          trigger: item,
-          start: "top center",
-          end: "bottom center",
-          onEnter: () => bulletDot.classList.add('active'),
-          onLeave: () => bulletDot.classList.remove('active'),
-          onEnterBack: () => bulletDot.classList.add('active'),
-          onLeaveBack: () => bulletDot.classList.remove('active'),
-        });
-      });
-
-      // Now we want to place bullets along the bulletContainer from top to bottom
-      // We'll do it after next frame so we can measure item offsets
-      requestAnimationFrame(() => {
-        let containerRect = bulletContainer.getBoundingClientRect();
-        let containerHeight = containerRect.height;
-        // total doc height minus some margin
-        let docHeight = document.body.scrollHeight - window.innerHeight;
-
-        items.forEach((item, i) => {
-          let bulletIndex = item.getAttribute('data-bullet');
-          let bulletDot = document.getElementById('bulletDot' + bulletIndex);
-          // compute vertical position as item offset
-          let itemRect = item.getBoundingClientRect();
-          let itemY = itemRect.top + window.scrollY;
-          // ratio of itemY to docHeight
-          let ratio = itemY / (docHeight + window.innerHeight);
-          let dotY = ratio * containerHeight;
-
-          bulletDot.style.top = dotY + "px";
-        });
-      });
-    });
-  </script>
+  <script
+    src="https://cdn.prod.website-files.com/60dd72519d9f9f67690ae425/js/webflow.acbf1153764746a5fab6b814dbf8a12a.js"
+    type="text/javascript"
+  ></script>
 </body>
 </html>
