@@ -8,6 +8,7 @@
   <!-- GSAP + ScrollTrigger from CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" defer></script>
 
   <!-- Google Fonts (Poppins) -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -56,22 +57,25 @@
       text-align: center;
     }
     .top-header-content h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin-bottom: 0.5rem;
+      color: #fff;
     }
     .top-header-links {
       margin-top: 1rem;
       display: flex;
       gap: 1.5rem;
       justify-content: center;
+      flex-wrap: wrap;
     }
     .top-header-links a {
       font-weight: 600;
       color: #fff;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 1.5rem;
       border: 2px solid #fff;
       border-radius: 4px;
       transition: 0.3s ease;
+      white-space: nowrap;
     }
     .top-header-links a:hover {
       background: #fff;
@@ -87,18 +91,19 @@
       height: 100%;
       overflow: hidden;
       z-index: 0;
+      opacity: 0.3; /* Adjust opacity as needed */
     }
     .mp4-wrapper video {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0; /* Hidden; adjust if needed */
     }
 
     /* INTRO SECTION */
     .intro-section {
       padding: 3rem 1rem 2rem;
       text-align: center;
+      background: #111;
     }
     .intro-section h2 {
       font-size: 2.2rem;
@@ -110,13 +115,14 @@
       margin: 0 auto;
       line-height: 1.6;
       color: #ccc;
+      font-size: 1rem;
     }
 
     /* MAIN TIMELINE SECTION */
     .timeline-section {
       position: relative;
       width: 100%;
-      padding: 0;
+      padding: 5rem 0;
       background: #111;
     }
 
@@ -282,6 +288,49 @@
       }
       .item-text {
         font-size: 0.9rem;
+      }
+      .timeline-line {
+        width: 4px;
+      }
+      .bullet {
+        width: 10px;
+        height: 10px;
+      }
+      .timeline-item::before {
+        width: 16px;
+        height: 16px;
+        left: -8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .top-header-content h1 {
+        font-size: 2rem;
+      }
+      .top-header-links a {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+      .intro-section h2 {
+        font-size: 1.8rem;
+      }
+      .intro-section p {
+        font-size: 0.9rem;
+      }
+      .timeline-item {
+        padding: 1rem;
+        margin-bottom: 4rem;
+      }
+      .item-date {
+        font-size: 1.1rem;
+      }
+      .item-text {
+        font-size: 0.85rem;
+      }
+      .timeline-item::before {
+        width: 14px;
+        height: 14px;
+        left: -7px;
       }
     }
   </style>
@@ -569,7 +618,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
       /* 
         Play the MP4 behind the scenes exactly 2 times (non-loop).
@@ -661,6 +710,20 @@
           onLeave: () => bullet.classList.remove('active'),
           onEnterBack: () => bullet.classList.add('active'),
           onLeaveBack: () => bullet.classList.remove('active'),
+        });
+      });
+
+      // Optional: Click on bullets to scroll to respective timeline item
+      bullets.forEach((bullet, i) => {
+        bullet.style.cursor = 'pointer';
+        bullet.addEventListener('click', () => {
+          gsap.to(window, { 
+            scrollTo: { 
+              y: items[i], 
+              offsetY: 50 
+            }, 
+            duration: 1 
+          });
         });
       });
 
