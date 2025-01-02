@@ -5,7 +5,7 @@
   <title>Mark Twain Title Company | Relume-Style Pinned Timeline</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- GSAP + ScrollTrigger from CDN -->
+  <!-- GSAP + ScrollTrigger + ScrollToPlugin from CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" defer></script>
@@ -352,6 +352,7 @@
       <video id="headerVideo" preload="auto" muted>
         <source src="images/Logo.mp4" type="video/mp4" />
         <!-- fallback if needed -->
+        Your browser does not support the video tag.
       </video>
     </div>
   </div>
@@ -388,7 +389,7 @@
             The formation of the Marion County Abstract Company is announced...
             (Palmyra Spectator 1/20/1898)
           </div>
-          <img src="images/1.jpg" alt="1-20-1898" class="item-img" />
+          <img src="images/1.jpg" alt="1-20-1898" class="item-img" loading="lazy" />
         </div>
         <!-- 2) -->
         <div class="timeline-item" data-index="2">
@@ -396,7 +397,7 @@
           <div class="item-text">
             Announcement of location for the company. (Palmyra Spectator 1/27/1898)
           </div>
-          <img src="images/2.jpg" alt="1/27/1898" class="item-img" />
+          <img src="images/2.jpg" alt="1/27/1898" class="item-img" loading="lazy" />
         </div>
         <!-- 3) -->
         <div class="timeline-item" data-index="3">
@@ -405,7 +406,7 @@
             Announcement of the election of members for Marion County Abstract Co...
             (Palmyra Spectator 2/3/1898)
           </div>
-          <img src="images/3.jpg" alt="2/3/1898" class="item-img" />
+          <img src="images/3.jpg" alt="2/3/1898" class="item-img" loading="lazy" />
         </div>
         <!-- 4) -->
         <div class="timeline-item" data-index="4">
@@ -414,7 +415,7 @@
             Announcement of anticipated opening of facility...
             (Palmyra Spectator 2/17/1898)
           </div>
-          <img src="images/5.jpg" alt="2/17/1898" class="item-img" />
+          <img src="images/5.jpg" alt="2/17/1898" class="item-img" loading="lazy" />
         </div>
         <!-- 5) -->
         <div class="timeline-item" data-index="5">
@@ -423,7 +424,7 @@
             Advertisement for Marion County Abstract Company...
             (Palmyra Spectator 3/24/1898)
           </div>
-          <img src="images/6.jpg" alt="3/24/1898" class="item-img" />
+          <img src="images/6.jpg" alt="3/24/1898" class="item-img" loading="lazy" />
         </div>
         <!-- 6) -->
         <div class="timeline-item" data-index="6">
@@ -432,7 +433,7 @@
             Advertisement for Marion County Abstract Company...
             (Palmyra Spectator 4/28/1898)
           </div>
-          <img src="images/7.jpg" alt="4/28/1898" class="item-img" />
+          <img src="images/7.jpg" alt="4/28/1898" class="item-img" loading="lazy" />
         </div>
         <!-- 7) -->
         <div class="timeline-item" data-index="7">
@@ -442,7 +443,7 @@
             Robert Lee Doherty, skipping telescope references...
             (Palmyra Spectator 4/16/1902)
           </div>
-          <img src="images/4.jpg" alt="4/16/1902" class="item-img" />
+          <img src="images/4.jpg" alt="4/16/1902" class="item-img" loading="lazy" />
         </div>
         <!-- 8) -->
         <div class="timeline-item" data-index="8">
@@ -451,7 +452,7 @@
             R. L. Doherty mention in the Spectator (telescope omitted).
             (Palmyra Spectator 4/10/1912)
           </div>
-          <img src="images/8.jpg" alt="4/10/1912" class="item-img" />
+          <img src="images/8.jpg" alt="4/10/1912" class="item-img" loading="lazy" />
         </div>
         <!-- 9) -->
         <div class="timeline-item" data-index="9">
@@ -460,7 +461,7 @@
             Announcement of William P Johnson purchasing a majority stock...
             (Palmyra Spectator 4/8/1914)
           </div>
-          <img src="images/9.jpg" alt="4/8/1914" class="item-img" />
+          <img src="images/9.jpg" alt="4/8/1914" class="item-img" loading="lazy" />
         </div>
         <!-- 10) -->
         <div class="timeline-item" data-index="10">
@@ -469,7 +470,7 @@
             R. L. Doherty remained with the company after its sale.
             (Palmyra Spectator 7/1/1914)
           </div>
-          <img src="images/10.jpg" alt="7/1/1914" class="item-img" />
+          <img src="images/10.jpg" alt="7/1/1914" class="item-img" loading="lazy" />
         </div>
         <!-- 11) -->
         <div class="timeline-item" data-index="11">
@@ -478,7 +479,7 @@
             William P Johnson passed away and left the company to his 2 sons,
             Robert Johnson and Stewart Johnson. (Palmyra Spectator 6/12/1935)
           </div>
-          <img src="images/11.jpg" alt="6/12/1935" class="item-img" />
+          <img src="images/11.jpg" alt="6/12/1935" class="item-img" loading="lazy" />
         </div>
         <!-- 12) -->
         <div class="timeline-item" data-index="12">
@@ -488,7 +489,7 @@
             and had to close the company down for “the duration.”
             (Palmyra Spectator 1/6/1943)
           </div>
-          <img src="images/12.jpg" alt="1/6/1943" class="item-img" />
+          <img src="images/12.jpg" alt="1/6/1943" class="item-img" loading="lazy" />
         </div>
         <!-- 13) -->
         <div class="timeline-item" data-index="13">
@@ -497,7 +498,7 @@
             Stewart Johnson and Robert Johnson profile on their service in the war.
             (Palmyra Spectator 10/20/1943)
           </div>
-          <img src="images/13.jpg" alt="10/20/1943" class="item-img" />
+          <img src="images/13.jpg" alt="10/20/1943" class="item-img" loading="lazy" />
         </div>
         <!-- 14) -->
         <div class="timeline-item" data-index="14">
@@ -506,7 +507,7 @@
             Announcement of the re-opening of the Marion County Abstract Company.
             (Palmyra Spectator 11/14/1945)
           </div>
-          <img src="images/14.jpg" alt="11/14/1945" class="item-img" />
+          <img src="images/14.jpg" alt="11/14/1945" class="item-img" loading="lazy" />
         </div>
         <!-- 15) -->
         <div class="timeline-item" data-index="15">
@@ -515,7 +516,7 @@
             Profile for the re-opening of the Marion County Abstract Company.
             (Palmyra Spectator 11/14/1945)
           </div>
-          <img src="images/15.jpg" alt="11/14/1945" class="item-img" />
+          <img src="images/15.jpg" alt="11/14/1945" class="item-img" loading="lazy" />
         </div>
         <!-- 16) -->
         <div class="timeline-item" data-index="16">
@@ -524,7 +525,7 @@
             Announcement of Bob Johnson purchasing the company.
             (Palmyra Spectator 10/3/1957)
           </div>
-          <img src="images/16.jpg" alt="10/3/1957" class="item-img" />
+          <img src="images/16.jpg" alt="10/3/1957" class="item-img" loading="lazy" />
         </div>
         <!-- 17) -->
         <div class="timeline-item" data-index="17">
@@ -533,7 +534,7 @@
             Article detailing the Palmyra Explosion of 1960 (March 2).
             (Palmyra Spectator 3/9/1960)
           </div>
-          <img src="images/17.jpg" alt="3/9/1960" class="item-img" />
+          <img src="images/17.jpg" alt="3/9/1960" class="item-img" loading="lazy" />
         </div>
         <!-- 18) -->
         <div class="timeline-item" data-index="18">
@@ -542,7 +543,7 @@
             Another article detailing the Palmyra Explosion of 1960...
             (Palmyra Spectator 3/9/1960)
           </div>
-          <img src="images/18.jpg" alt="3/9/1960" class="item-img" />
+          <img src="images/18.jpg" alt="3/9/1960" class="item-img" loading="lazy" />
         </div>
         <!-- 19) -->
         <div class="timeline-item" data-index="19">
@@ -551,7 +552,7 @@
             Photo showing the building damage.
             (Palmyra Spectator 3/9/1960)
           </div>
-          <img src="images/19.jpg" alt="3/9/1960" class="item-img" />
+          <img src="images/19.jpg" alt="3/9/1960" class="item-img" loading="lazy" />
         </div>
         <!-- 20) -->
         <div class="timeline-item" data-index="20">
@@ -560,7 +561,7 @@
             Announcement thanking everyone for help after the explosion.
             (Palmyra Spectator 3/10/1960)
           </div>
-          <img src="images/20.jpg" alt="3/10/1960" class="item-img" />
+          <img src="images/20.jpg" alt="3/10/1960" class="item-img" loading="lazy" />
         </div>
         <!-- 21) -->
         <div class="timeline-item" data-index="21">
@@ -569,7 +570,7 @@
             Photograph showing the new building rebuilt after the explosion.
             (Palmyra Spectator 11/24/1960)
           </div>
-          <img src="images/21.jpg" alt="11/24/1960" class="item-img" />
+          <img src="images/21.jpg" alt="11/24/1960" class="item-img" loading="lazy" />
         </div>
         <!-- 22) -->
         <div class="timeline-item" data-index="22">
@@ -578,7 +579,7 @@
             Article showing the new building rebuilt after the explosion.
             (Palmyra Spectator 11/24/1960)
           </div>
-          <img src="images/22.jpg" alt="11/24/1960" class="item-img" />
+          <img src="images/22.jpg" alt="11/24/1960" class="item-img" loading="lazy" />
         </div>
         <!-- 23) -->
         <div class="timeline-item" data-index="23">
@@ -587,7 +588,7 @@
             Century Press newspaper post congratulating Marion County Abstract Company
             on their new building. (Palmyra Spectator 11/24/1960)
           </div>
-          <img src="images/23.jpg" alt="11/24/1960" class="item-img" />
+          <img src="images/23.jpg" alt="11/24/1960" class="item-img" loading="lazy" />
         </div>
         <!-- 24) -->
         <div class="timeline-item" data-index="24">
@@ -596,7 +597,7 @@
             Photo showing the deed writing process used.
             (Palmyra Spectator 11/24/1960)
           </div>
-          <img src="images/24.jpg" alt="11/24/1960" class="item-img" />
+          <img src="images/24.jpg" alt="11/24/1960" class="item-img" loading="lazy" />
         </div>
         <!-- 25) -->
         <div class="timeline-item" data-index="25">
@@ -605,7 +606,7 @@
             Photo showing the microfilm process.
             (Palmyra Spectator 11/24/1960)
           </div>
-          <img src="images/25.jpg" alt="11/24/1960" class="item-img" />
+          <img src="images/25.jpg" alt="11/24/1960" class="item-img" loading="lazy" />
         </div>
       </div>
     </div>
@@ -668,7 +669,8 @@
         }
       });
 
-      // 4) Pin the entire timeline section
+      // Removed pinning of the entire timeline section to fix infinite scroll
+      /*
       ScrollTrigger.create({
         trigger: timelineSection,
         start: 'top top',
@@ -676,8 +678,9 @@
         pin: true,
         pinSpacing: true,
       });
+      */
 
-      // 5) Animate timeline items and handle bullet activation
+      // 4) Animate timeline items and handle bullet activation
       items.forEach((item, i) => {
         const bullet = document.getElementById('bullet-' + (i + 1));
 
@@ -713,7 +716,7 @@
         });
       });
 
-      // Optional: Click on bullets to scroll to respective timeline item
+      // 5) Click on bullets to scroll to respective timeline item
       bullets.forEach((bullet, i) => {
         bullet.style.cursor = 'pointer';
         bullet.addEventListener('click', () => {
