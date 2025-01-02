@@ -581,7 +581,7 @@
       headerVideo.addEventListener('ended', () => {
         if (!playedOnce) {
           playedOnce = true;
-          headerVideo.play(); // play second time
+          headerVideo.play(); // Play second time
         }
       });
       // Autoplay it once everything loads
@@ -623,7 +623,7 @@
       ScrollTrigger.create({
         trigger: timelineSection,
         start: 'top top',
-        end: () => `+=${timelineSection.offsetHeight}`,
+        end: 'bottom bottom',
         pin: true,
         pinSpacing: true,
       });
