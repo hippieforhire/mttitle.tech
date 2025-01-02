@@ -9,6 +9,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
+  <!-- We use the same Poppins font as the rest of the site, no text changes. -->
+  <!-- We also bring in the same styling approach as requested. -->
+
   <style>
     /* RESET & GLOBALS */
     * {
@@ -18,7 +21,7 @@
     }
     body {
       font-family: "Poppins", sans-serif;
-      background: #111; /* Dark background to mimic Relume vibe */
+      background: #111; /* Keep a dark background to mimic the Relume vibe */
       color: #fff;
       overflow-x: hidden;
     }
@@ -27,23 +30,69 @@
       text-decoration: none;
     }
 
-    /* SIMPLE HEADER */
-    .hero-header {
+    /* NAV/HEADER AT THE TOP */
+    /* We add a background image you mentioned (the “Untitled design.jpeg”), 
+       to make the top look better, plus your navigation links. */
+    .top-header {
+      position: relative;
+      width: 100%;
+      min-height: 200px;
+      background: url("images/Untitled design.jpeg") no-repeat center center;
+      background-size: cover;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      background: #000;
-      padding: 1rem;
     }
-    .hero-header h1 {
-      margin: 0;
-      font-size: 1.2rem;
+    /* A subtle overlay to darken the top image so links are more visible */
+    .top-header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+    .top-header-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .top-header-links {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .top-header-links a {
+      font-weight: 600;
       color: #fff;
+      padding: 0.5rem 1rem;
+      border: 2px solid #fff;
+      border-radius: 4px;
+      transition: 0.3s ease;
+    }
+    .top-header-links a:hover {
+      background: #fff;
+      color: #000;
     }
 
-    /* INTRO SECTION */
+    /* We'll incorporate your MP4 animated logo as a background or hidden 
+       autoplay video at the top, set to NOT loop. We'll run it once or twice. */
+    .mp4-wrapper {
+      position: relative;
+      width: 0;
+      height: 0;
+      overflow: hidden; /* we just let it auto-play behind the scenes */
+    }
+    .mp4-wrapper video {
+      display: none; /* not displayed; we rely on the top header BG for visuals */
+      /* If you wanted it visible, you could place it absolutely. But you asked 
+         to keep it from looping, so we do controls behind the scenes. */
+    }
+
+    /* INTRO SECTION (below the new fancy header) */
     .intro-section {
-      padding: 5rem 1rem 3rem;
+      padding: 3rem 1rem 2rem;
       text-align: center;
     }
     .intro-section h2 {
@@ -61,14 +110,12 @@
     /* 
       MAIN TIMELINE WRAPPER 
       We'll have a large "section" pinned; inside it we animate each item 
-      so that we get a progressive "vertical line fill" and item pins
+      so that we get the progressive "vertical line fill" and item pins
     */
     .timeline-section {
       position: relative;
       width: 100%;
       padding: 0;
-      /* We'll let ScrollTrigger handle the pin. 
-         We'll make the entire section extra tall to scroll through pinned items. */
     }
 
     /* The container that holds the pinned line + the item stack */
@@ -85,7 +132,6 @@
       position: relative;
       flex-shrink: 0;
       width: 80px; /* wide enough to show the vertical gradient line + bullets */
-      /* We'll place a background line & a fill line inside here. */
     }
     .line-gradient {
       position: absolute;
@@ -106,10 +152,7 @@
       z-index: 1;
     }
 
-    /* 
-      We'll place bullet dots next to each item. 
-      We'll do it in JS or inline for each item. 
-    */
+    /* Bullets container next to the fill line */
     .bullets-container {
       position: absolute;
       left: 37px; /* near the fill line */
@@ -140,10 +183,6 @@
       margin-left: 2rem;
       position: relative;
     }
-
-    /* Each item is a "section" we will pin for a portion of the scroll, 
-       so that it mimics the stepping effect. 
-    */
     .timeline-item {
       background: #222;
       color: #fff;
@@ -151,11 +190,15 @@
       padding: 1rem;
       margin-bottom: 8rem; /* enough spacing so we can see the pinned effect */
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      /* We'll do a small "hidden until fade in" approach for extra pop */
+      opacity: 0; 
+      transform: translateX(50px);
     }
     .item-date {
       font-size: 1.5rem;
       font-weight: 600;
       margin-bottom: 0.75rem;
+      color: #fff;
     }
     .item-text {
       line-height: 1.6;
@@ -206,13 +249,29 @@
 </head>
 <body>
 
-<!-- Header bar -->
-<div class="hero-header">
-  <h1>Mark Twain Title Company</h1>
-  <a href="index.html">Back to Home</a>
+<!-- TOP HEADER with better nav, plus your non-looping MP4 hidden behind the scenes -->
+<div class="top-header">
+  <div class="top-header-content">
+    <!-- You can add a site title or “Mark Twain Title Co.” or leave it blank. -->
+    <h1 style="font-size:2rem; margin-bottom:0.5rem;">Mark Twain Title Company</h1>
+    <!-- Our new nav links, for consistent look. -->
+    <div class="top-header-links">
+      <a href="meet-our-staff.html">Meet Our Staff</a>
+      <a href="contact-us.html">Contact Us</a>
+      <a href="index.html">Home</a>
+    </div>
+  </div>
+  <!-- The hidden mp4 so it doesn't loop. We'll just play it 2 times by listening 
+       to ended event and re-playing once, then stop. -->
+  <div class="mp4-wrapper">
+    <video id="headerVideo" preload="auto" muted>
+      <source src="images/Logo.mp4" type="video/mp4" />
+      <!-- fallback if needed -->
+    </video>
+  </div>
 </div>
 
-<!-- Intro text -->
+<!-- INTRO TEXT -->
 <section class="intro-section">
   <h2>Our Relume-Style Pinned Timeline</h2>
   <p>
@@ -475,12 +534,28 @@
 document.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger);
 
+  /* 
+    Play the MP4 behind the scenes exactly 2 times (non-loop).
+    If you prefer 1 time only, you can remove the “playOnceMore” logic.
+  */
+  const headerVideo = document.getElementById('headerVideo');
+  let playedOnce = false;
+
+  headerVideo.addEventListener('ended', () => {
+    if (!playedOnce) {
+      playedOnce = true;
+      headerVideo.play(); // play second time
+    }
+  });
+  // Autoplay it once everything loads
+  headerVideo.play().catch(() => {});
+
   const items = document.querySelectorAll('.timeline-item');
   const lineFill = document.getElementById('lineFill');
   const bulletsContainer = document.getElementById('bulletsContainer');
   const timelineSection = document.getElementById('timelineSection');
   
-  // 1) For each item, create a bullet
+  // 1) Create bullets for each item
   items.forEach((item, i) => {
     const bullet = document.createElement('div');
     bullet.classList.add('bullet');
@@ -506,33 +581,30 @@ document.addEventListener('DOMContentLoaded', () => {
   positionBullets();
   window.addEventListener('resize', positionBullets);
 
-  // 3) Pin the entire .timeline-section, so the line remains fixed
+  // 3) Pin the entire .timeline-section
   ScrollTrigger.create({
     trigger: timelineSection,
     start: 'top top',
     end: () => (items.length * window.innerHeight * 0.9), 
     pin: true,
     pinSpacing: true,
-    // markers: true, // for debugging
   });
 
-  // 4) Animate the fill line from 0 to 300vh as we scroll from start->end
+  // 4) Animate the fill line from 0 -> 300vh
   gsap.to(lineFill, {
     height: '300vh',
     scrollTrigger: {
       trigger: timelineSection,
       start: 'top top',
       end: () => (items.length * window.innerHeight * 0.9),
-      scrub: 1,
-      // markers: true,
+      scrub: 1
     }
   });
 
-  // 5) Pin each item for a portion of the scroll, highlight bullet 
+  // 5) Pin each item for a portion of the scroll, highlight bullet, plus fade in
   items.forEach((item, i) => {
     const bulletEl = document.getElementById('bullet-' + (i + 1));
 
-    // We'll pin the item for some fraction of the viewport
     ScrollTrigger.create({
       trigger: item,
       start: 'top center',
@@ -544,24 +616,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Pin the item for ~80% of the viewport height
-    gsap.from(item, {
-      scrollTrigger: {
-        trigger: item,
-        start: 'top center',
-        end: 'bottom center+=10%',
-        scrub: true,
-        pin: true,
-        pinSpacing: false,
-        // markers: true,
-      },
-      // no actual motion, we just want the pin effect
-    });
+    // Also fade it in from the right with a small delay for more pizzazz.
+    gsap.fromTo(
+      item,
+      { x: 50, opacity: 0 },
+      { 
+        x: 0,
+        opacity: 1,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: item,
+          start: 'top center',
+          end: 'bottom center+=10%',
+          scrub: true,
+          pin: true,
+          pinSpacing: false
+        }
+      }
+    );
   });
 
+  // Re-calc bullet positions on refresh
   ScrollTrigger.addEventListener("refresh", positionBullets);
   ScrollTrigger.refresh();
 });
 </script>
-
 </body>
 </html>
