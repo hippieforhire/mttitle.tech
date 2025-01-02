@@ -9,8 +9,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-  <!-- We use the same Poppins font as the rest of the site, no text changes. -->
-  <!-- We also bring in the same styling approach as requested. -->
+  <!-- Google Fonts (Poppins) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     /* RESET & GLOBALS */
@@ -21,7 +21,7 @@
     }
     body {
       font-family: "Poppins", sans-serif;
-      background: #111; /* Keep a dark background to mimic the Relume vibe */
+      background: #111; /* Dark background for Relume vibe */
       color: #fff;
       overflow-x: hidden;
     }
@@ -30,9 +30,7 @@
       text-decoration: none;
     }
 
-    /* NAV/HEADER AT THE TOP */
-    /* We add a background image you mentioned (the “Untitled design.jpeg”), 
-       to make the top look better, plus your navigation links. */
+    /* NAV/HEADER */
     .top-header {
       position: relative;
       width: 100%;
@@ -43,8 +41,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      padding: 2rem 1rem;
     }
-    /* A subtle overlay to darken the top image so links are more visible */
     .top-header::before {
       content: "";
       position: absolute;
@@ -56,6 +54,10 @@
       position: relative;
       z-index: 1;
       text-align: center;
+    }
+    .top-header-content h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
     }
     .top-header-links {
       margin-top: 1rem;
@@ -76,21 +78,24 @@
       color: #000;
     }
 
-    /* We'll incorporate your MP4 animated logo as a background or hidden 
-       autoplay video at the top, set to NOT loop. We'll run it once or twice. */
+    /* MP4 Wrapper */
     .mp4-wrapper {
-      position: relative;
-      width: 0;
-      height: 0;
-      overflow: hidden; /* we just let it auto-play behind the scenes */
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
     }
     .mp4-wrapper video {
-      display: none; /* not displayed; we rely on the top header BG for visuals */
-      /* If you wanted it visible, you could place it absolutely. But you asked 
-         to keep it from looping, so we do controls behind the scenes. */
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0; /* Hidden; adjust if needed */
     }
 
-    /* INTRO SECTION (below the new fancy header) */
+    /* INTRO SECTION */
     .intro-section {
       padding: 3rem 1rem 2rem;
       text-align: center;
@@ -107,18 +112,14 @@
       color: #ccc;
     }
 
-    /* 
-      MAIN TIMELINE WRAPPER 
-      We'll have a large "section" pinned; inside it we animate each item 
-      so that we get the progressive "vertical line fill" and item pins
-    */
+    /* MAIN TIMELINE SECTION */
     .timeline-section {
       position: relative;
       width: 100%;
       padding: 0;
+      background: #111;
     }
 
-    /* The container that holds the pinned line + the item stack */
     .timeline-container {
       position: relative;
       width: 90%;
@@ -127,72 +128,78 @@
       display: flex;
     }
 
-    /* The pinned colored line on the left */
+    /* Timeline Line */
     .timeline-line {
       position: relative;
       flex-shrink: 0;
-      width: 80px; /* wide enough to show the vertical gradient line + bullets */
+      width: 60px; /* Adjusted for better alignment */
+      display: flex;
+      justify-content: center;
     }
     .line-gradient {
       position: absolute;
-      left: 40px; 
-      top: 0;
-      width: 6px;
-      height: 300vh; /* artificially tall; we animate a fill on top */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 100%;
       background: linear-gradient(180deg, #ff0080 0%, #ff8f00 50%, #ffd700 100%);
-      opacity: 0.2; /* faint gradient behind fill line */
+      opacity: 0.2;
     }
     .line-fill {
       position: absolute;
-      left: 40px;
-      bottom: 0;
-      width: 6px;
-      height: 0; /* we animate from 0 -> 300vh */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 0;
       background: linear-gradient(180deg, #ff0080 0%, #ff8f00 50%, #ffd700 100%);
       z-index: 1;
     }
 
-    /* Bullets container next to the fill line */
+    /* Bullets */
     .bullets-container {
       position: absolute;
-      left: 37px; /* near the fill line */
       top: 0;
-      width: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
     }
     .bullet {
       position: absolute;
-      width: 16px;
-      height: 16px;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       background: #fff;
       border: 2px solid #fff;
-      transform: translate(-5px, 0);
       opacity: 0.7;
       transition: all 0.3s ease;
+      pointer-events: none;
     }
     .bullet.active {
       background: #ff8f00; 
       border-color: #ff8f00;
       opacity: 1;
-      transform: translate(-5px, -3px) scale(1.2);
+      transform: translate(-50%, -50%) scale(1.2);
     }
 
-    /* TIMELINE ITEMS (right side) */
+    /* Timeline Items */
     .timeline-items {
       flex: 1;
-      margin-left: 2rem;
+      margin-left: 3rem;
       position: relative;
     }
     .timeline-item {
       background: #222;
       color: #fff;
       border-radius: 8px;
-      padding: 1rem;
-      margin-bottom: 8rem; /* enough spacing so we can see the pinned effect */
+      padding: 1.5rem;
+      margin-bottom: 5rem; /* Reduced spacing */
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      /* We'll do a small "hidden until fade in" approach for extra pop */
       opacity: 0; 
       transform: translateX(50px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
     .item-date {
       font-size: 1.5rem;
@@ -207,8 +214,8 @@
       color: #ccc;
     }
     .item-img {
-      max-width: 350px;
-      width: 100%;
+      max-width: 100%;
+      height: auto;
       display: block;
       border-radius: 4px;
       margin-top: 0.5rem;
@@ -223,423 +230,202 @@
     }
 
     /* MEDIA QUERIES */
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       .timeline-container {
         flex-direction: column;
+        align-items: center;
       }
       .timeline-line {
-        width: 60px;
-      }
-      .line-gradient,
-      .line-fill {
-        left: 30px;
-      }
-      .bullets-container {
-        left: 28px;
+        width: 4px;
+        height: 100%;
+        margin-bottom: 2rem;
       }
       .timeline-items {
         margin-left: 0;
-        margin-top: 2rem;
       }
-      .timeline-item {
-        margin-bottom: 5rem;
+      .bullet {
+        left: 50%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .timeline-items {
+        padding: 0 1rem;
+      }
+      .item-date {
+        font-size: 1.2rem;
+      }
+      .item-text {
+        font-size: 0.9rem;
       }
     }
   </style>
 </head>
 <body>
 
-<!-- TOP HEADER with better nav, plus your non-looping MP4 hidden behind the scenes -->
-<div class="top-header">
-  <div class="top-header-content">
-    <!-- You can add a site title or “Mark Twain Title Co.” or leave it blank. -->
-    <h1 style="font-size:2rem; margin-bottom:0.5rem;">Mark Twain Title Company</h1>
-    <!-- Our new nav links, for consistent look. -->
-    <div class="top-header-links">
-      <a href="meet-our-staff.html">Meet Our Staff</a>
-      <a href="contact-us.html">Contact Us</a>
-      <a href="index.html">Home</a>
-    </div>
-  </div>
-  <!-- The hidden mp4 so it doesn't loop. We'll just play it 2 times by listening 
-       to ended event and re-playing once, then stop. -->
-  <div class="mp4-wrapper">
-    <video id="headerVideo" preload="auto" muted>
-      <source src="images/Logo.mp4" type="video/mp4" />
-      <!-- fallback if needed -->
-    </video>
-  </div>
-</div>
-
-<!-- INTRO TEXT -->
-<section class="intro-section">
-  <h2>Our Relume-Style Pinned Timeline</h2>
-  <p>
-    Below is a single-page pinned timeline that mimics the step-by-step scroll
-    effect at <em>relume-timeline-cloneable.webflow.io</em>. Each item is pinned
-    briefly, the vertical line on the left is pinned with a color fill, and bullets
-    highlight as you scroll. All 25 items are included.
-  </p>
-</section>
-
-<!-- MAIN TIMELINE SECTION -->
-<section class="timeline-section" id="timelineSection">
-  <!-- Container with pinned left line + bullets, plus the items on right -->
-  <div class="timeline-container">
-    <!-- The pinned line (gradient + fill) -->
-    <div class="timeline-line">
-      <div class="line-gradient" id="lineGradient"></div>
-      <div class="line-fill" id="lineFill"></div>
-      <div class="bullets-container" id="bulletsContainer"></div>
-    </div>
-
-    <!-- The list of timeline items -->
-    <div class="timeline-items" id="timelineItems">
-      <!-- 1) -->
-      <div class="timeline-item" data-index="1">
-        <div class="item-date">January 20, 1898</div>
-        <div class="item-text">
-          The formation of the Marion County Abstract Company is announced...
-          (Palmyra Spectator 1/20/1898)
-        </div>
-        <img src="images/1.jpg" alt="1-20-1898" class="item-img" />
-      </div>
-      <!-- 2) -->
-      <div class="timeline-item" data-index="2">
-        <div class="item-date">January 27, 1898</div>
-        <div class="item-text">
-          Announcement of location for the company. (Palmyra Spectator 1/27/1898)
-        </div>
-        <img src="images/2.jpg" alt="1/27/1898" class="item-img" />
-      </div>
-      <!-- 3) -->
-      <div class="timeline-item" data-index="3">
-        <div class="item-date">February 3, 1898</div>
-        <div class="item-text">
-          Announcement of the election of members for Marion County Abstract Co...
-          (Palmyra Spectator 2/3/1898)
-        </div>
-        <img src="images/3.jpg" alt="2/3/1898" class="item-img" />
-      </div>
-      <!-- 4) -->
-      <div class="timeline-item" data-index="4">
-        <div class="item-date">February 17, 1898</div>
-        <div class="item-text">
-          Announcement of anticipated opening of facility...
-          (Palmyra Spectator 2/17/1898)
-        </div>
-        <img src="images/5.jpg" alt="2/17/1898" class="item-img" />
-      </div>
-      <!-- 5) -->
-      <div class="timeline-item" data-index="5">
-        <div class="item-date">March 24, 1898</div>
-        <div class="item-text">
-          Advertisement for Marion County Abstract Company...
-          (Palmyra Spectator 3/24/1898)
-        </div>
-        <img src="images/6.jpg" alt="3/24/1898" class="item-img" />
-      </div>
-      <!-- 6) -->
-      <div class="timeline-item" data-index="6">
-        <div class="item-date">April 28, 1898</div>
-        <div class="item-text">
-          Advertisement for Marion County Abstract Company...
-          (Palmyra Spectator 4/28/1898)
-        </div>
-        <img src="images/7.jpg" alt="4/28/1898" class="item-img" />
-      </div>
-      <!-- 7) -->
-      <div class="timeline-item" data-index="7">
-        <div class="item-date">April 16, 1902</div>
-        <div class="item-text">
-          Spectator profile of the then-owner of the Marion County Abstract Company,
-          Robert Lee Doherty, skipping telescope references...
-          (Palmyra Spectator 4/16/1902)
-        </div>
-        <img src="images/4.jpg" alt="4/16/1902" class="item-img" />
-      </div>
-      <!-- 8) -->
-      <div class="timeline-item" data-index="8">
-        <div class="item-date">April 10, 1912</div>
-        <div class="item-text">
-          R. L. Doherty mention in the Spectator (telescope omitted).
-          (Palmyra Spectator 4/10/1912)
-        </div>
-        <img src="images/8.jpg" alt="4/10/1912" class="item-img" />
-      </div>
-      <!-- 9) -->
-      <div class="timeline-item" data-index="9">
-        <div class="item-date">April 8, 1914</div>
-        <div class="item-text">
-          Announcement of William P Johnson purchasing a majority stock...
-          (Palmyra Spectator 4/8/1914)
-        </div>
-        <img src="images/9.jpg" alt="4/8/1914" class="item-img" />
-      </div>
-      <!-- 10) -->
-      <div class="timeline-item" data-index="10">
-        <div class="item-date">July 1, 1914</div>
-        <div class="item-text">
-          R. L. Doherty remained with the company after its sale.
-          (Palmyra Spectator 7/1/1914)
-        </div>
-        <img src="images/10.jpg" alt="7/1/1914" class="item-img" />
-      </div>
-      <!-- 11) -->
-      <div class="timeline-item" data-index="11">
-        <div class="item-date">June 12, 1935</div>
-        <div class="item-text">
-          William P Johnson passed away and left the company to his 2 sons,
-          Robert Johnson and Stewart Johnson. (Palmyra Spectator 6/12/1935)
-        </div>
-        <img src="images/11.jpg" alt="6/12/1935" class="item-img" />
-      </div>
-      <!-- 12) -->
-      <div class="timeline-item" data-index="12">
-        <div class="item-date">January 6, 1943</div>
-        <div class="item-text">
-          Both Stewart Johnson and Robert Johnson were inducted into World War II
-          and had to close the company down for “the duration.”
-          (Palmyra Spectator 1/6/1943)
-        </div>
-        <img src="images/12.jpg" alt="1/6/1943" class="item-img" />
-      </div>
-      <!-- 13) -->
-      <div class="timeline-item" data-index="13">
-        <div class="item-date">October 20, 1943</div>
-        <div class="item-text">
-          Stewart Johnson and Robert Johnson profile on their service in the war.
-          (Palmyra Spectator 10/20/1943)
-        </div>
-        <img src="images/13.jpg" alt="10/20/1943" class="item-img" />
-      </div>
-      <!-- 14) -->
-      <div class="timeline-item" data-index="14">
-        <div class="item-date">November 14, 1945</div>
-        <div class="item-text">
-          Announcement of the re-opening of the Marion County Abstract Company.
-          (Palmyra Spectator 11/14/1945)
-        </div>
-        <img src="images/14.jpg" alt="11/14/1945" class="item-img" />
-      </div>
-      <!-- 15) -->
-      <div class="timeline-item" data-index="15">
-        <div class="item-date">November 14, 1945</div>
-        <div class="item-text">
-          Profile for the re-opening of the Marion County Abstract Company.
-          (Palmyra Spectator 11/14/1945)
-        </div>
-        <img src="images/15.jpg" alt="11/14/1945" class="item-img" />
-      </div>
-      <!-- 16) -->
-      <div class="timeline-item" data-index="16">
-        <div class="item-date">October 3, 1957</div>
-        <div class="item-text">
-          Announcement of Bob Johnson purchasing the company.
-          (Palmyra Spectator 10/3/1957)
-        </div>
-        <img src="images/16.jpg" alt="10/3/1957" class="item-img" />
-      </div>
-      <!-- 17) -->
-      <div class="timeline-item" data-index="17">
-        <div class="item-date">March 9, 1960</div>
-        <div class="item-text">
-          Article detailing the Palmyra Explosion of 1960 (March 2).
-          (Palmyra Spectator 3/9/1960)
-        </div>
-        <img src="images/17.jpg" alt="3/9/1960" class="item-img" />
-      </div>
-      <!-- 18) -->
-      <div class="timeline-item" data-index="18">
-        <div class="item-date">March 9, 1960</div>
-        <div class="item-text">
-          Another article detailing the Palmyra Explosion of 1960...
-          (Palmyra Spectator 3/9/1960)
-        </div>
-        <img src="images/18.jpg" alt="3/9/1960" class="item-img" />
-      </div>
-      <!-- 19) -->
-      <div class="timeline-item" data-index="19">
-        <div class="item-date">March 9, 1960</div>
-        <div class="item-text">
-          Photo showing the building damage.
-          (Palmyra Spectator 3/9/1960)
-        </div>
-        <img src="images/19.jpg" alt="3/9/1960" class="item-img" />
-      </div>
-      <!-- 20) -->
-      <div class="timeline-item" data-index="20">
-        <div class="item-date">March 10, 1960</div>
-        <div class="item-text">
-          Announcement thanking everyone for help after the explosion.
-          (Palmyra Spectator 3/10/1960)
-        </div>
-        <img src="images/20.jpg" alt="3/10/1960" class="item-img" />
-      </div>
-      <!-- 21) -->
-      <div class="timeline-item" data-index="21">
-        <div class="item-date">November 24, 1960</div>
-        <div class="item-text">
-          Photograph showing the new building rebuilt after the explosion.
-          (Palmyra Spectator 11/24/1960)
-        </div>
-        <img src="images/21.jpg" alt="11/24/1960" class="item-img" />
-      </div>
-      <!-- 22) -->
-      <div class="timeline-item" data-index="22">
-        <div class="item-date">November 24, 1960</div>
-        <div class="item-text">
-          Article showing the new building rebuilt after the explosion.
-          (Palmyra Spectator 11/24/1960)
-        </div>
-        <img src="images/22.jpg" alt="11/24/1960" class="item-img" />
-      </div>
-      <!-- 23) -->
-      <div class="timeline-item" data-index="23">
-        <div class="item-date">November 24, 1960</div>
-        <div class="item-text">
-          Century Press newspaper post congratulating Marion County Abstract Company
-          on their new building. (Palmyra Spectator 11/24/1960)
-        </div>
-        <img src="images/23.jpg" alt="11/24/1960" class="item-img" />
-      </div>
-      <!-- 24) -->
-      <div class="timeline-item" data-index="24">
-        <div class="item-date">November 24, 1960</div>
-        <div class="item-text">
-          Photo showing the deed writing process used.
-          (Palmyra Spectator 11/24/1960)
-        </div>
-        <img src="images/24.jpg" alt="11/24/1960" class="item-img" />
-      </div>
-      <!-- 25) -->
-      <div class="timeline-item" data-index="25">
-        <div class="item-date">November 24, 1960</div>
-        <div class="item-text">
-          Photo showing the microfilm process.
-          (Palmyra Spectator 11/24/1960)
-        </div>
-        <img src="images/25.jpg" alt="11/24/1960" class="item-img" />
+  <!-- TOP HEADER with better nav, plus your non-looping MP4 hidden behind the scenes -->
+  <div class="top-header">
+    <div class="top-header-content">
+      <h1>Mark Twain Title Company</h1>
+      <div class="top-header-links">
+        <a href="meet-our-staff.html">Meet Our Staff</a>
+        <a href="contact-us.html">Contact Us</a>
+        <a href="index.html">Home</a>
       </div>
     </div>
+    <!-- The hidden mp4 so it doesn't loop -->
+    <div class="mp4-wrapper">
+      <video id="headerVideo" preload="auto" muted>
+        <source src="images/Logo.mp4" type="video/mp4" />
+        <!-- fallback if needed -->
+      </video>
+    </div>
   </div>
-</section>
 
-<!-- FOOTER -->
-<div class="footer-section">
-  <p>© 2024 Title Agency. All Rights Reserved.</p>
-</div>
+  <!-- INTRO TEXT -->
+  <section class="intro-section">
+    <h2>Our Relume-Style Pinned Timeline</h2>
+    <p>
+      Below is a single-page pinned timeline that mimics the step-by-step scroll
+      effect at <em>relume-timeline-cloneable.webflow.io</em>. Each item is pinned
+      briefly, the vertical line on the left is pinned with a color fill, and bullets
+      highlight as you scroll. All 25 items are included.
+    </p>
+  </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  gsap.registerPlugin(ScrollTrigger);
+  <!-- MAIN TIMELINE SECTION -->
+  <section class="timeline-section" id="timelineSection">
+    <div class="timeline-container">
+      <!-- The pinned line (gradient + fill) -->
+      <div class="timeline-line">
+        <div class="line-gradient" id="lineGradient"></div>
+        <div class="line-fill" id="lineFill"></div>
+        <div class="bullets-container" id="bulletsContainer">
+          <!-- Bullets will be positioned via JavaScript -->
+        </div>
+      </div>
 
-  /* 
-    Play the MP4 behind the scenes exactly 2 times (non-loop).
-    If you prefer 1 time only, you can remove the “playOnceMore” logic.
-  */
-  const headerVideo = document.getElementById('headerVideo');
-  let playedOnce = false;
+      <!-- The list of timeline items -->
+      <div class="timeline-items" id="timelineItems">
+        <!-- Example Timeline Items -->
+        <!-- Repeat similar structure for all 25 items -->
+        <div class="timeline-item" data-index="1">
+          <div class="item-date">January 20, 1898</div>
+          <div class="item-text">
+            The formation of the Marion County Abstract Company is announced...
+            (Palmyra Spectator 1/20/1898)
+          </div>
+          <img src="images/1.jpg" alt="1-20-1898" class="item-img" />
+        </div>
+        <!-- ... Add other timeline items similarly ... -->
+      </div>
+    </div>
+  </section>
 
-  headerVideo.addEventListener('ended', () => {
-    if (!playedOnce) {
-      playedOnce = true;
-      headerVideo.play(); // play second time
-    }
-  });
-  // Autoplay it once everything loads
-  headerVideo.play().catch(() => {});
+  <!-- FOOTER -->
+  <div class="footer-section">
+    <p>© 2024 Title Agency. All Rights Reserved.</p>
+  </div>
 
-  const items = document.querySelectorAll('.timeline-item');
-  const lineFill = document.getElementById('lineFill');
-  const bulletsContainer = document.getElementById('bulletsContainer');
-  const timelineSection = document.getElementById('timelineSection');
-  
-  // 1) Create bullets for each item
-  items.forEach((item, i) => {
-    const bullet = document.createElement('div');
-    bullet.classList.add('bullet');
-    bullet.id = 'bullet-' + (i + 1);
-    bulletsContainer.appendChild(bullet);
-  });
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      gsap.registerPlugin(ScrollTrigger);
 
-  // 2) Position bullets once everything is loaded
-  function positionBullets() {
-    const containerTop = document
-      .getElementById('timelineItems')
-      .getBoundingClientRect().top + window.scrollY;
+      /* 
+        Play the MP4 behind the scenes exactly 2 times (non-loop).
+        If you prefer 1 time only, you can remove the “playOnceMore” logic.
+      */
+      const headerVideo = document.getElementById('headerVideo');
+      let playedOnce = false;
 
-    items.forEach((item, i) => {
-      const bulletEl = document.getElementById('bullet-' + (i + 1));
-      const rect = item.getBoundingClientRect();
-      const itemTop = rect.top + window.scrollY;
-      // offset from container top
-      const offset = itemTop - containerTop + rect.height * 0.3;
-      bulletEl.style.top = offset + 'px';
-    });
-  }
-  positionBullets();
-  window.addEventListener('resize', positionBullets);
+      headerVideo.addEventListener('ended', () => {
+        if (!playedOnce) {
+          playedOnce = true;
+          headerVideo.play(); // play second time
+        }
+      });
+      // Autoplay it once everything loads
+      headerVideo.play().catch(() => {});
 
-  // 3) Pin the entire .timeline-section
-  ScrollTrigger.create({
-    trigger: timelineSection,
-    start: 'top top',
-    end: () => (items.length * window.innerHeight * 0.9), 
-    pin: true,
-    pinSpacing: true,
-  });
+      const items = document.querySelectorAll('.timeline-item');
+      const lineFill = document.getElementById('lineFill');
+      const bulletsContainer = document.getElementById('bulletsContainer');
+      const timelineSection = document.getElementById('timelineSection');
+      const timelineItemsContainer = document.getElementById('timelineItems');
 
-  // 4) Animate the fill line from 0 -> 300vh
-  gsap.to(lineFill, {
-    height: '300vh',
-    scrollTrigger: {
-      trigger: timelineSection,
-      start: 'top top',
-      end: () => (items.length * window.innerHeight * 0.9),
-      scrub: 1
-    }
-  });
+      // 1) Create bullets for each item
+      items.forEach((item, i) => {
+        const bullet = document.createElement('div');
+        bullet.classList.add('bullet');
+        bullet.id = 'bullet-' + (i + 1);
+        bullet.style.top = `${(i / (items.length - 1)) * 100}%`; // Evenly distribute bullets
+        bulletsContainer.appendChild(bullet);
+      });
 
-  // 5) Pin each item for a portion of the scroll, highlight bullet, plus fade in
-  items.forEach((item, i) => {
-    const bulletEl = document.getElementById('bullet-' + (i + 1));
-
-    ScrollTrigger.create({
-      trigger: item,
-      start: 'top center',
-      end: 'bottom center',
-      onEnter: () => bulletEl.classList.add('active'),
-      onLeave: () => bulletEl.classList.remove('active'),
-      onEnterBack: () => bulletEl.classList.add('active'),
-      onLeaveBack: () => bulletEl.classList.remove('active'),
-    });
-
-    // Pin the item for ~80% of the viewport height
-    // Also fade it in from the right with a small delay for more pizzazz.
-    gsap.fromTo(
-      item,
-      { x: 50, opacity: 0 },
-      { 
-        x: 0,
-        opacity: 1,
-        duration: 0.8,
+      // 2) Adjust line-fill based on scroll
+      gsap.to(lineFill, {
+        height: '100%',
         scrollTrigger: {
+          trigger: timelineSection,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: true,
+        }
+      });
+
+      // 3) Pin the entire .timeline-section
+      ScrollTrigger.create({
+        trigger: timelineSection,
+        start: 'top top',
+        end: 'bottom bottom',
+        pin: true,
+        pinSpacing: true,
+      });
+
+      // 4) Animate timeline items
+      items.forEach((item, i) => {
+        const bulletEl = document.getElementById('bullet-' + (i + 1));
+
+        gsap.fromTo(item, 
+          { 
+            opacity: 0, 
+            x: 50 
+          },
+          { 
+            opacity: 1, 
+            x: 0,
+            duration: 0.6,
+            ease: 'power1.out',
+            scrollTrigger: {
+              trigger: item,
+              containerAnimation: ScrollTrigger.getById('timelinePin'), // Associate with timeline pin
+              start: 'top 80%',
+              end: 'top 60%',
+              scrub: true,
+              // markers: true, // Uncomment for debugging
+            }
+          }
+        );
+
+        // Highlight bullet on enter
+        ScrollTrigger.create({
           trigger: item,
           start: 'top center',
-          end: 'bottom center+=10%',
-          scrub: true,
-          pin: true,
-          pinSpacing: false
-        }
-      }
-    );
-  });
+          end: 'bottom center',
+          onEnter: () => bulletEl.classList.add('active'),
+          onLeave: () => bulletEl.classList.remove('active'),
+          onEnterBack: () => bulletEl.classList.add('active'),
+          onLeaveBack: () => bulletEl.classList.remove('active'),
+        });
+      });
 
-  // Re-calc bullet positions on refresh
-  ScrollTrigger.addEventListener("refresh", positionBullets);
-  ScrollTrigger.refresh();
-});
-</script>
+      // Refresh ScrollTrigger on window resize
+      window.addEventListener('resize', () => {
+        ScrollTrigger.refresh();
+      });
+
+      ScrollTrigger.refresh();
+    });
+  </script>
 </body>
 </html>
