@@ -33,7 +33,7 @@ body, html {
   padding: 0;
   position: relative;
   max-height: 200px; /* or tweak as needed */
-  background-color: #fff;
+  background-color: #19794A; /* Updated from #fff to #19794A */
   overflow: hidden;
 }
 
@@ -141,13 +141,13 @@ body, html {
   min-height: 450px;
   position: relative;
   overflow: hidden;
-  background-color: #000;
+  background-color: #19794A; /* Updated to match header */
 }
 
 .video-container {
   width: 100%;
   height: 100%;
-  background-color: #046330;
+  background-color: #19794A; /* Updated from #046330 to #19794A */
   position: relative;
 }
 
@@ -223,6 +223,15 @@ body, html {
     ),
     url("../images/hero-bg.jpg") no-repeat center center;
   background-size: cover;
+}
+
+/* MAIN CONTENT */
+main {
+  margin-top: 2rem; /* Adds space above the main content */
+}
+
+.reveal-on-scroll {
+  margin-top: 1rem; /* Additional spacing for each paragraph if needed */
 }
 
 /* FOOTER */
@@ -333,7 +342,7 @@ footer {
     min-height: 300px;
   }
   .video-container {
-    background-color: #046330;
+    background-color: #19794A; /* Ensure consistency on mobile */
   }
   .hero-overlay {
     top: 3%;
@@ -344,6 +353,11 @@ footer {
   }
   .hero-subtitle-text {
     font-size: 1rem;
+  }
+
+  /* Adjust main content spacing for mobile */
+  main {
+    margin-top: 1.5rem;
   }
 }
 
