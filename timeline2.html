@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- GSAP + ScrollTrigger from CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 
   <!-- Google Fonts (Poppins) -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -126,18 +126,23 @@
       max-width: 1200px;
       margin: 0 auto;
       display: flex;
+      flex-direction: row;
+      align-items: flex-start;
     }
 
     /* Timeline Line */
     .timeline-line {
       position: relative;
+      width: 60px; /* Width for the timeline line and bullets */
       flex-shrink: 0;
-      width: 60px; /* Adjusted for better alignment */
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 2rem;
     }
     .line-gradient {
       position: absolute;
+      top: 0;
       left: 50%;
       transform: translateX(-50%);
       width: 4px;
@@ -147,6 +152,7 @@
     }
     .line-fill {
       position: absolute;
+      top: 0;
       left: 50%;
       transform: translateX(-50%);
       width: 4px;
@@ -162,6 +168,8 @@
       left: 50%;
       transform: translateX(-50%);
       width: 20px;
+      height: 100%;
+      pointer-events: none;
     }
     .bullet {
       position: absolute;
@@ -200,6 +208,20 @@
       opacity: 0; 
       transform: translateX(50px);
       transition: opacity 0.6s ease, transform 0.6s ease;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      top: 1.5rem;
+      left: -9px; /* Half of bullet width + margin */
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
     }
     .item-date {
       font-size: 1.5rem;
@@ -245,6 +267,9 @@
       }
       .bullet {
         left: 50%;
+      }
+      .timeline-item::before {
+        left: -9px;
       }
     }
 
@@ -298,8 +323,8 @@
     <div class="timeline-container">
       <!-- The pinned line (gradient + fill) -->
       <div class="timeline-line">
-        <div class="line-gradient" id="lineGradient"></div>
-        <div class="line-fill" id="lineFill"></div>
+        <div class="line-gradient"></div>
+        <div class="line-fill"></div>
         <div class="bullets-container" id="bulletsContainer">
           <!-- Bullets will be positioned via JavaScript -->
         </div>
@@ -307,8 +332,7 @@
 
       <!-- The list of timeline items -->
       <div class="timeline-items" id="timelineItems">
-        <!-- Example Timeline Items -->
-        <!-- Repeat similar structure for all 25 items -->
+        <!-- 1) -->
         <div class="timeline-item" data-index="1">
           <div class="item-date">January 20, 1898</div>
           <div class="item-text">
@@ -317,7 +341,223 @@
           </div>
           <img src="images/1.jpg" alt="1-20-1898" class="item-img" />
         </div>
-        <!-- ... Add other timeline items similarly ... -->
+        <!-- 2) -->
+        <div class="timeline-item" data-index="2">
+          <div class="item-date">January 27, 1898</div>
+          <div class="item-text">
+            Announcement of location for the company. (Palmyra Spectator 1/27/1898)
+          </div>
+          <img src="images/2.jpg" alt="1/27/1898" class="item-img" />
+        </div>
+        <!-- 3) -->
+        <div class="timeline-item" data-index="3">
+          <div class="item-date">February 3, 1898</div>
+          <div class="item-text">
+            Announcement of the election of members for Marion County Abstract Co...
+            (Palmyra Spectator 2/3/1898)
+          </div>
+          <img src="images/3.jpg" alt="2/3/1898" class="item-img" />
+        </div>
+        <!-- 4) -->
+        <div class="timeline-item" data-index="4">
+          <div class="item-date">February 17, 1898</div>
+          <div class="item-text">
+            Announcement of anticipated opening of facility...
+            (Palmyra Spectator 2/17/1898)
+          </div>
+          <img src="images/5.jpg" alt="2/17/1898" class="item-img" />
+        </div>
+        <!-- 5) -->
+        <div class="timeline-item" data-index="5">
+          <div class="item-date">March 24, 1898</div>
+          <div class="item-text">
+            Advertisement for Marion County Abstract Company...
+            (Palmyra Spectator 3/24/1898)
+          </div>
+          <img src="images/6.jpg" alt="3/24/1898" class="item-img" />
+        </div>
+        <!-- 6) -->
+        <div class="timeline-item" data-index="6">
+          <div class="item-date">April 28, 1898</div>
+          <div class="item-text">
+            Advertisement for Marion County Abstract Company...
+            (Palmyra Spectator 4/28/1898)
+          </div>
+          <img src="images/7.jpg" alt="4/28/1898" class="item-img" />
+        </div>
+        <!-- 7) -->
+        <div class="timeline-item" data-index="7">
+          <div class="item-date">April 16, 1902</div>
+          <div class="item-text">
+            Spectator profile of the then-owner of the Marion County Abstract Company,
+            Robert Lee Doherty, skipping telescope references...
+            (Palmyra Spectator 4/16/1902)
+          </div>
+          <img src="images/4.jpg" alt="4/16/1902" class="item-img" />
+        </div>
+        <!-- 8) -->
+        <div class="timeline-item" data-index="8">
+          <div class="item-date">April 10, 1912</div>
+          <div class="item-text">
+            R. L. Doherty mention in the Spectator (telescope omitted).
+            (Palmyra Spectator 4/10/1912)
+          </div>
+          <img src="images/8.jpg" alt="4/10/1912" class="item-img" />
+        </div>
+        <!-- 9) -->
+        <div class="timeline-item" data-index="9">
+          <div class="item-date">April 8, 1914</div>
+          <div class="item-text">
+            Announcement of William P Johnson purchasing a majority stock...
+            (Palmyra Spectator 4/8/1914)
+          </div>
+          <img src="images/9.jpg" alt="4/8/1914" class="item-img" />
+        </div>
+        <!-- 10) -->
+        <div class="timeline-item" data-index="10">
+          <div class="item-date">July 1, 1914</div>
+          <div class="item-text">
+            R. L. Doherty remained with the company after its sale.
+            (Palmyra Spectator 7/1/1914)
+          </div>
+          <img src="images/10.jpg" alt="7/1/1914" class="item-img" />
+        </div>
+        <!-- 11) -->
+        <div class="timeline-item" data-index="11">
+          <div class="item-date">June 12, 1935</div>
+          <div class="item-text">
+            William P Johnson passed away and left the company to his 2 sons,
+            Robert Johnson and Stewart Johnson. (Palmyra Spectator 6/12/1935)
+          </div>
+          <img src="images/11.jpg" alt="6/12/1935" class="item-img" />
+        </div>
+        <!-- 12) -->
+        <div class="timeline-item" data-index="12">
+          <div class="item-date">January 6, 1943</div>
+          <div class="item-text">
+            Both Stewart Johnson and Robert Johnson were inducted into World War II
+            and had to close the company down for “the duration.”
+            (Palmyra Spectator 1/6/1943)
+          </div>
+          <img src="images/12.jpg" alt="1/6/1943" class="item-img" />
+        </div>
+        <!-- 13) -->
+        <div class="timeline-item" data-index="13">
+          <div class="item-date">October 20, 1943</div>
+          <div class="item-text">
+            Stewart Johnson and Robert Johnson profile on their service in the war.
+            (Palmyra Spectator 10/20/1943)
+          </div>
+          <img src="images/13.jpg" alt="10/20/1943" class="item-img" />
+        </div>
+        <!-- 14) -->
+        <div class="timeline-item" data-index="14">
+          <div class="item-date">November 14, 1945</div>
+          <div class="item-text">
+            Announcement of the re-opening of the Marion County Abstract Company.
+            (Palmyra Spectator 11/14/1945)
+          </div>
+          <img src="images/14.jpg" alt="11/14/1945" class="item-img" />
+        </div>
+        <!-- 15) -->
+        <div class="timeline-item" data-index="15">
+          <div class="item-date">November 14, 1945</div>
+          <div class="item-text">
+            Profile for the re-opening of the Marion County Abstract Company.
+            (Palmyra Spectator 11/14/1945)
+          </div>
+          <img src="images/15.jpg" alt="11/14/1945" class="item-img" />
+        </div>
+        <!-- 16) -->
+        <div class="timeline-item" data-index="16">
+          <div class="item-date">October 3, 1957</div>
+          <div class="item-text">
+            Announcement of Bob Johnson purchasing the company.
+            (Palmyra Spectator 10/3/1957)
+          </div>
+          <img src="images/16.jpg" alt="10/3/1957" class="item-img" />
+        </div>
+        <!-- 17) -->
+        <div class="timeline-item" data-index="17">
+          <div class="item-date">March 9, 1960</div>
+          <div class="item-text">
+            Article detailing the Palmyra Explosion of 1960 (March 2).
+            (Palmyra Spectator 3/9/1960)
+          </div>
+          <img src="images/17.jpg" alt="3/9/1960" class="item-img" />
+        </div>
+        <!-- 18) -->
+        <div class="timeline-item" data-index="18">
+          <div class="item-date">March 9, 1960</div>
+          <div class="item-text">
+            Another article detailing the Palmyra Explosion of 1960...
+            (Palmyra Spectator 3/9/1960)
+          </div>
+          <img src="images/18.jpg" alt="3/9/1960" class="item-img" />
+        </div>
+        <!-- 19) -->
+        <div class="timeline-item" data-index="19">
+          <div class="item-date">March 9, 1960</div>
+          <div class="item-text">
+            Photo showing the building damage.
+            (Palmyra Spectator 3/9/1960)
+          </div>
+          <img src="images/19.jpg" alt="3/9/1960" class="item-img" />
+        </div>
+        <!-- 20) -->
+        <div class="timeline-item" data-index="20">
+          <div class="item-date">March 10, 1960</div>
+          <div class="item-text">
+            Announcement thanking everyone for help after the explosion.
+            (Palmyra Spectator 3/10/1960)
+          </div>
+          <img src="images/20.jpg" alt="3/10/1960" class="item-img" />
+        </div>
+        <!-- 21) -->
+        <div class="timeline-item" data-index="21">
+          <div class="item-date">November 24, 1960</div>
+          <div class="item-text">
+            Photograph showing the new building rebuilt after the explosion.
+            (Palmyra Spectator 11/24/1960)
+          </div>
+          <img src="images/21.jpg" alt="11/24/1960" class="item-img" />
+        </div>
+        <!-- 22) -->
+        <div class="timeline-item" data-index="22">
+          <div class="item-date">November 24, 1960</div>
+          <div class="item-text">
+            Article showing the new building rebuilt after the explosion.
+            (Palmyra Spectator 11/24/1960)
+          </div>
+          <img src="images/22.jpg" alt="11/24/1960" class="item-img" />
+        </div>
+        <!-- 23) -->
+        <div class="timeline-item" data-index="23">
+          <div class="item-date">November 24, 1960</div>
+          <div class="item-text">
+            Century Press newspaper post congratulating Marion County Abstract Company
+            on their new building. (Palmyra Spectator 11/24/1960)
+          </div>
+          <img src="images/23.jpg" alt="11/24/1960" class="item-img" />
+        </div>
+        <!-- 24) -->
+        <div class="timeline-item" data-index="24">
+          <div class="item-date">November 24, 1960</div>
+          <div class="item-text">
+            Photo showing the deed writing process used.
+            (Palmyra Spectator 11/24/1960)
+          </div>
+          <img src="images/24.jpg" alt="11/24/1960" class="item-img" />
+        </div>
+        <!-- 25) -->
+        <div class="timeline-item" data-index="25">
+          <div class="item-date">November 24, 1960</div>
+          <div class="item-text">
+            Photo showing the microfilm process.
+            (Palmyra Spectator 11/24/1960)
+          </div>
+          <img src="images/25.jpg" alt="11/24/1960" class="item-img" />
+        </div>
       </div>
     </div>
   </section>
@@ -348,23 +588,29 @@
       headerVideo.play().catch(() => {});
 
       const items = document.querySelectorAll('.timeline-item');
-      const lineFill = document.getElementById('lineFill');
+      const lineFill = document.querySelector('.line-fill');
       const bulletsContainer = document.getElementById('bulletsContainer');
       const timelineSection = document.getElementById('timelineSection');
-      const timelineItemsContainer = document.getElementById('timelineItems');
 
       // 1) Create bullets for each item
       items.forEach((item, i) => {
         const bullet = document.createElement('div');
         bullet.classList.add('bullet');
         bullet.id = 'bullet-' + (i + 1);
-        bullet.style.top = `${(i / (items.length - 1)) * 100}%`; // Evenly distribute bullets
         bulletsContainer.appendChild(bullet);
       });
 
-      // 2) Adjust line-fill based on scroll
+      // 2) Distribute bullets evenly along the timeline
+      const bullets = document.querySelectorAll('.bullet');
+      bullets.forEach((bullet, i) => {
+        const total = bullets.length;
+        bullet.style.top = `${(i / (total - 1)) * 100}%`;
+      });
+
+      // 3) Animate the line-fill based on scroll progress
       gsap.to(lineFill, {
         height: '100%',
+        ease: 'none',
         scrollTrigger: {
           trigger: timelineSection,
           start: 'top top',
@@ -373,19 +619,20 @@
         }
       });
 
-      // 3) Pin the entire .timeline-section
+      // 4) Pin the entire timeline section
       ScrollTrigger.create({
         trigger: timelineSection,
         start: 'top top',
-        end: 'bottom bottom',
+        end: () => `+=${timelineSection.offsetHeight}`,
         pin: true,
         pinSpacing: true,
       });
 
-      // 4) Animate timeline items
+      // 5) Animate timeline items and handle bullet activation
       items.forEach((item, i) => {
-        const bulletEl = document.getElementById('bullet-' + (i + 1));
+        const bullet = document.getElementById('bullet-' + (i + 1));
 
+        // Timeline item animation
         gsap.fromTo(item, 
           { 
             opacity: 0, 
@@ -398,24 +645,22 @@
             ease: 'power1.out',
             scrollTrigger: {
               trigger: item,
-              containerAnimation: ScrollTrigger.getById('timelinePin'), // Associate with timeline pin
               start: 'top 80%',
               end: 'top 60%',
               scrub: true,
-              // markers: true, // Uncomment for debugging
             }
           }
         );
 
-        // Highlight bullet on enter
+        // Bullet activation
         ScrollTrigger.create({
           trigger: item,
           start: 'top center',
           end: 'bottom center',
-          onEnter: () => bulletEl.classList.add('active'),
-          onLeave: () => bulletEl.classList.remove('active'),
-          onEnterBack: () => bulletEl.classList.add('active'),
-          onLeaveBack: () => bulletEl.classList.remove('active'),
+          onEnter: () => bullet.classList.add('active'),
+          onLeave: () => bullet.classList.remove('active'),
+          onEnterBack: () => bullet.classList.add('active'),
+          onLeaveBack: () => bullet.classList.remove('active'),
         });
       });
 
