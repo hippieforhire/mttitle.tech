@@ -126,6 +126,47 @@
       object-fit: cover;
       z-index: -1;
     }
+
+    /* Responsive Timeline Adjustments */
+    @media screen and (max-width: 767px) {
+      /* Maintain the same grid layout on mobile */
+      .timeline_item {
+        grid-template-columns: 1fr 180px 1fr;
+      }
+
+      /* Adjust positioning of timeline_date-text and timeline_circle */
+      .timeline_date-text,
+      .timeline_circle {
+        position: relative;
+        top: auto;
+      }
+
+      /* Adjust the timeline_progress-bar */
+      .timeline_progress-bar {
+        height: 100%;
+        inset: 0 auto 0;
+      }
+    }
+
+    @media screen and (max-width: 479px) {
+      /* Maintain the same grid layout on smaller mobile */
+      .timeline_item {
+        grid-template-columns: 1fr 180px 1fr;
+      }
+
+      /* Adjust positioning of timeline_date-text and timeline_circle */
+      .timeline_date-text,
+      .timeline_circle {
+        position: relative;
+        top: auto;
+      }
+
+      /* Adjust the timeline_progress-bar */
+      .timeline_progress-bar {
+        height: 100%;
+        inset: 0 auto 0;
+      }
+    }
   </style>
   
   <!-- Facebook Pixel Code -->
@@ -396,7 +437,7 @@
             <div id="new-id-8-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
-                  R. L. Doherty profile in the Spectator about his telescope hobby.
+                  R. L. Doherty profile on their service in the war.
                 </div>
               </div>
               <div class="timeline_image-wrapper">
