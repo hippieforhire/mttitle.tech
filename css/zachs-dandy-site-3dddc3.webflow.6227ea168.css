@@ -28,7 +28,7 @@ audio:not([controls]) {
 }
 
 a {
-  background-color: #0000;
+  background-color: transparent;
 }
 
 a:active, a:hover {
@@ -695,7 +695,7 @@ textarea.w-input, textarea.w-select {
 .w-widget-twitter-count-shim:not(.w--vertical):before, .w-widget-twitter-count-shim:not(.w--vertical):after {
   content: " ";
   pointer-events: none;
-  border: solid #0000;
+  border: solid transparent;
   width: 0;
   height: 0;
   position: absolute;
@@ -738,7 +738,7 @@ textarea.w-input, textarea.w-select {
 .w-widget-twitter-count-shim.w--vertical:before, .w-widget-twitter-count-shim.w--vertical:after {
   content: " ";
   pointer-events: none;
-  border: solid #0000;
+  border: solid transparent;
   width: 0;
   height: 0;
   position: absolute;
@@ -788,7 +788,7 @@ textarea.w-input, textarea.w-select {
   height: 100%;
   margin: auto;
   position: absolute;
-  inset: -100%;
+  inset: 0;
 }
 
 .w-background-video > video::-webkit-media-controls-start-playback-button {
@@ -797,7 +797,7 @@ textarea.w-input, textarea.w-select {
 }
 
 .w-background-video--control {
-  background-color: #0000;
+  background-color: transparent;
   padding: 0;
   position: absolute;
   bottom: 1em;
@@ -812,8 +812,8 @@ textarea.w-input, textarea.w-select {
 .w-slider {
   text-align: center;
   clear: both;
-  -webkit-tap-highlight-color: #0000;
-  tap-highlight-color: #0000;
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
   background: #ddd;
   height: 300px;
   position: relative;
@@ -843,13 +843,13 @@ textarea.w-input, textarea.w-select {
 .w-slider-nav {
   z-index: 2;
   text-align: center;
-  -webkit-tap-highlight-color: #0000;
-  tap-highlight-color: #0000;
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
   height: 40px;
   margin: auto;
   padding-top: 10px;
   position: absolute;
-  inset: auto 0 0;
+  bottom: 0;
 }
 
 .w-slider-nav.w-round > div {
@@ -907,15 +907,15 @@ textarea.w-input, textarea.w-select {
 .w-slider-arrow-left, .w-slider-arrow-right {
   cursor: pointer;
   color: #fff;
-  -webkit-tap-highlight-color: #0000;
-  tap-highlight-color: #0000;
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
   -webkit-user-select: none;
   user-select: none;
   width: 80px;
   margin: auto;
   font-size: 40px;
   position: absolute;
-  inset: 0;
+  top: 0;
 }
 
 .w-slider-arrow-left:before, .w-slider-arrow-right:before, .w-slider-arrow-left:after, .w-slider-arrow-right:after {
@@ -976,7 +976,7 @@ textarea.w-input, textarea.w-select {
   -webkit-user-select: none;
   -moz-user-select: none;
   -webkit-tap-highlight-color: transparent;
-  background: #19794A e6; /* Changed from #000000e6 */
+  background: rgba(25, 121, 74, 0.9); /* Changed to rgba for better opacity handling */
   outline: 0;
   font-family: Helvetica Neue, Helvetica, Ubuntu, Segoe UI, Verdana, sans-serif;
   font-size: 17px;
@@ -1052,7 +1052,7 @@ textarea.w-input, textarea.w-select {
   text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
-  background: #0006;
+  background: rgba(0, 0, 0, 0.4);
   padding: .5em 1em;
   position: absolute;
   bottom: 0;
@@ -1141,13 +1141,13 @@ textarea.w-input, textarea.w-select {
 
 .w-lightbox-spinner {
   box-sizing: border-box;
-  border: 5px solid #0006;
+  border: 5px solid rgba(0, 0, 0, 0.4);
   border-radius: 50%;
   width: 40px;
   height: 40px;
   margin-top: -20px;
   margin-left: -20px;
-  animation: .8s linear infinite spin;
+  animation: spin .8s linear infinite;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1155,7 +1155,7 @@ textarea.w-input, textarea.w-select {
 
 .w-lightbox-spinner:after {
   content: "";
-  border: 3px solid #0000;
+  border: 3px solid transparent;
   border-bottom-color: #fff;
   border-radius: 50%;
   position: absolute;
@@ -1298,13 +1298,13 @@ p {
 /* Updated timeline section background color */
 .section-timeline {
   z-index: -3;
-  background-color: #19794A; /* Changed from #0a0a0a to #19794A */
+  background-color: #19794A; /* Changed to green */
   position: relative;
 }
 
 /* Updated timeline CTA section background color */
 .section-timeline-cta {
-  background-color: #19794A; /* Changed from #0a0a0a to #19794A */
+  background-color: #19794A; /* Changed to green */
 }
 
 .padding-vertical-xlarge {
@@ -1393,6 +1393,8 @@ p {
   width: 3px;
   height: 100%;
   position: absolute;
+  left: 50px; /* Adjusted to position correctly */
+  top: 0;
 }
 
 /* Updated timeline progress bar background color and z-index */
@@ -1403,17 +1405,18 @@ p {
   width: 3px;
   height: 50vh;
   position: fixed;
-  inset: 0 auto 50vh;
+  top: 0;
+  left: 50px; /* Ensure it aligns with timeline_progress */
 }
 
 .section-timeline {
   z-index: -3;
-  background-color: #19794A; /* Changed from #0a0a0a to #19794A */
+  background-color: #19794A; /* Confirmed green background */
   position: relative;
 }
 
 .section-timeline-cta {
-  background-color: #19794A; /* Changed from #0a0a0a to #19794A */
+  background-color: #19794A; /* Confirmed green background */
 }
 
 .margin-bottom-xlarge {
@@ -1549,17 +1552,21 @@ p {
 }
 
 .overlay-fade-top {
-  background-image: linear-gradient(#19794A, #19794A00); /* Changed from #0a0a0a */
+  background-image: linear-gradient(#19794A, #19794A00); /* Changed to green gradient */
   height: 80px;
   position: absolute;
-  inset: 0% 0% auto;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .overlay-fade-bottom {
-  background-image: linear-gradient(to top, #19794A, #19794A00); /* Changed from #0a0a0a */
+  background-image: linear-gradient(to top, #19794A, #19794A00); /* Changed to green gradient */
   height: 80px;
   position: absolute;
-  inset: auto 0% 0%;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .margin-bottom-small {
@@ -1578,8 +1585,8 @@ p {
   color: #fff;
   letter-spacing: .8px;
   text-transform: uppercase;
-  background-color: #19794A; /* Changed from #0a0a0a */
-  border: 2px solid #19794A; /* Changed from #0a0a0a */
+  background-color: #19794A; /* Changed to green */
+  border: 2px solid #19794A; /* Changed to green */
   border-radius: 8px;
   align-items: center;
   padding: 12px 20px 12px 18px;
@@ -1613,7 +1620,7 @@ p {
   letter-spacing: .8px;
   text-transform: uppercase;
   background-color: #fff;
-  border: 2px solid #19794A; /* Changed from #0a0a0a */
+  border: 2px solid #19794A; /* Changed to green */
   border-radius: 8px;
   align-items: center;
   padding: 12px 20px 12px 18px;
@@ -1676,7 +1683,9 @@ p {
   padding-bottom: 24px;
   display: flex;
   position: absolute;
-  inset: 0% 0% auto;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .relume-link {
@@ -1816,6 +1825,8 @@ p {
   .timeline_item {
     grid-template-columns: 1fr; /* Change to single column for stacking */
     width: 100%;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 
   .timeline_left {
@@ -1896,7 +1907,7 @@ p {
     padding-bottom: 16px;
   }
 
-  /* Ensure that all timeline_right elements span full width */
+  /* Ensure that all timeline_right elements span full width on mobile */
   .timeline_right {
     width: 100%;
   }
@@ -2113,7 +2124,9 @@ p {
   padding-bottom: 24px;
   display: flex;
   position: absolute;
-  inset: 0% 0% auto;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .relume-link {
