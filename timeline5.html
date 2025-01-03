@@ -45,58 +45,53 @@
   <div class="page-wrapper">
     
     <!-- HEADER (smaller, fully visible, with hamburger for mobile) -->
-    <header
-      class="site-header position-relative"
-      onclick="window.location.href='index.html'"
-    >
-      <img
-        src="images/Untitled-design.jpeg"
-        alt="Mark Twain Title Company Header"
-        class="header-image"
-      >
-      <!-- HAMBURGER for mobile, hidden on desktop -->
-      <div class="hamburger" onclick="toggleMenu(event)">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+    <header class="site-header position-relative">
+      <div class="hero-nav">
+        <!-- Animated Logo -->
+        <div class="relume-link" onclick="window.location.href='index.html'">
+          <div class="relume-logo-primary">
+            <img src="images/animated-logo.gif" alt="Animated Logo" class="header-image">
+          </div>
+          <div class="relume-logo-secondary">
+            <!-- If there's an alternative logo for secondary states -->
+          </div>
+        </div>
+        
+        <!-- HAMBURGER for mobile, hidden on desktop -->
+        <div class="hamburger" onclick="toggleMenu(event)">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
 
-      <!-- Nav for links at bottom-right on desktop, collapses on mobile -->
-      <nav class="header-nav" id="mainNav">
-        <ul class="list-inline mb-0 nav-no-wrap">
-          <li class="list-inline-item">
-            <a href="contact-us.html" id="contactLink">Contact Us</a>
-          </li>
-          <li class="list-inline-item">
-            <a href="meet-our-staff.html" id="staffLink">Meet Our Staff</a>
-          </li>
-          <!-- New "Our History" Link -->
-          <li class="list-inline-item">
-            <a href="timeline5.html" id="historyLink">Our History</a>
-          </li>
-        </ul>
-      </nav>
+        <!-- Nav for links at bottom-right on desktop, collapses on mobile -->
+        <nav class="header-nav" id="mainNav">
+          <ul class="list-inline mb-0 nav-no-wrap">
+            <li class="list-inline-item">
+              <a href="contact-us.html" id="contactLink">Contact Us</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="meet-our-staff.html" id="staffLink">Meet Our Staff</a>
+            </li>
+            <!-- New "Our History" Link -->
+            <li class="list-inline-item">
+              <a href="timeline5.html" id="historyLink">Our History</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
     
     <!-- HERO SECTION with video background -->
     <section class="hero-section position-relative rellax" data-rellax-speed="-1">
       <div class="video-container">
-        <video
-          class="hero-video"
-          autoplay
-          muted
-          playsinline
-          id="heroVideo"
-        >
+        <video class="hero-video" autoplay muted playsinline id="heroVideo">
           <source src="images/Logo.mp4" type="video/mp4" />
         </video>
       </div>
 
       <!-- Text/logo overlay -->
-      <div
-        class="hero-overlay d-flex flex-column align-items-start"
-        data-aos="zoom-in"
-      >
+      <div class="hero-overlay d-flex flex-column align-items-start" data-aos="zoom-in">
         <h1 class="display-4 fw-bold mb-2 hero-title-text">
           A Timeline of the Mark Twain Title Company
         </h1>
@@ -536,5 +531,12 @@
   <script src="js/webflow.bff22e984a003de0f3db4fc8d933478f.js" type="text/javascript"></script>
   
   <!-- Additional Scripts (if any) -->
+  
+  <!-- Prevent Dragging of Timeline -->
+  <script>
+    document.querySelector('.section-timeline').addEventListener('dragstart', function(e) {
+      e.preventDefault();
+    });
+  </script>
 </body>
 </html>
