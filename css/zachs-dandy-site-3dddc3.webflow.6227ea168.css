@@ -1213,7 +1213,6 @@ textarea.w-input, textarea.w-select {
   font-size: 40px;
   position: absolute;
   inset: 0;
-  overflow: hidden;
 }
 
 .w-slider-arrow-left [class^="w-icon-"], .w-slider-arrow-right [class^="w-icon-"], .w-slider-arrow-left [class*=" w-icon-"], .w-slider-arrow-right [class*=" w-icon-"] {
@@ -2117,6 +2116,25 @@ p {
   position: relative;
 }
 
+/* Responsive Adjustments for timeline_item */
+@media screen and (max-width: 991px) {
+  .timeline_item {
+    grid-template-columns: 80px 1fr; /* Adjusted from 64px to 80px for better alignment */
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .timeline_item {
+    grid-template-columns: 64px 1fr; /* Original value retained */
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .timeline_item {
+    grid-template-columns: 48px 1fr; /* Original value retained */
+  }
+}
+
 .timeline_left {
   text-align: right;
   justify-content: flex-end;
@@ -2163,8 +2181,11 @@ p {
   z-index: -2;
   background-color: #414141;
   width: 3px;
-  height: 100%;
-  position: absolute;
+  height: 100%; /* Changed from 100% to ensure full height */
+  position: absolute; /* Changed from fixed to absolute */
+  top: 0; /* Align to the top */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust for perfect centering */
 }
 
 .timeline_progress-bar {
@@ -2172,9 +2193,11 @@ p {
   background-color: #fff;
   background-image: linear-gradient(#ff7448, #ff4848 51%, #6248ff);
   width: 3px;
-  height: 50vh;
-  position: fixed;
-  inset: 0 auto 50vh;
+  height: 100%; /* Changed from 50vh to 100% to cover the entire timeline */
+  position: absolute; /* Changed from fixed to absolute for proper alignment */
+  top: 0; /* Align to the top of the container */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust for perfect centering */
 }
 
 .section-timeline {
@@ -2635,6 +2658,7 @@ p {
   }
 }
 
+/* Specific Grid Area Assignments */
 @media screen and (max-width: 767px) {
   #w-node-d5abcf1f-3370-3eea-ccfd-66f076babfe1-047360b0 {
     grid-area: 1 / 2 / 2 / 3;
@@ -2730,4 +2754,68 @@ p {
   src: url('../fonts/6775fb2abc5d894e047360b9_Relative-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
+}
+
+/* Additional Custom Styles */
+
+/* Ensure the timeline_progress and timeline_progress-bar span the entire timeline */
+.timeline_progress {
+  z-index: -4; /* Lowered z-index to keep it behind the progress bar */
+  background-color: #414141;
+  width: 3px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.timeline_progress-bar {
+  z-index: -1;
+  background-color: #fff;
+  background-image: linear-gradient(#ff7448, #ff4848 51%, #6248ff);
+  width: 3px;
+  height: 100%; /* Ensures the progress bar covers the entire timeline */
+  position: absolute;
+  top: 0; /* Aligns to the top */
+  left: 50%; /* Centers horizontally */
+  transform: translateX(-50%); /* Perfect centering */
+}
+
+/* Ensure images are properly sized and responsive */
+.timeline_right .timeline_image-wrapper img {
+  width: 100%; /* Ensures images take full width of their container */
+  height: auto; /* Maintains aspect ratio */
+}
+
+/* Optional: Add some padding to the right side to prevent text from being too close to the progress bar */
+.timeline_right {
+  padding-left: 20px;
+}
+
+/* Adjust grid-template-columns in media queries to provide more space for images */
+@media screen and (max-width: 991px) {
+  .timeline_item {
+    grid-template-columns: 80px 1fr; /* Increased left column width for better spacing */
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .timeline_item {
+    grid-template-columns: 64px 1fr; /* Retained original value */
+  }
+
+  .timeline_progress-bar {
+    height: 100%; /* Ensure the progress bar still spans full height */
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .timeline_item {
+    grid-template-columns: 48px 1fr; /* Retained original value */
+  }
+
+  .timeline_progress-bar {
+    height: 100%; /* Ensure the progress bar still spans full height */
+  }
 }
