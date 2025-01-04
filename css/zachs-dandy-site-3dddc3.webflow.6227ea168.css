@@ -6,6 +6,8 @@ html {
 
 body {
   margin: 0;
+  /* NEW: prevent horizontal scroll on mobile */
+  overflow-x: hidden; /* added so user can't move screen around sideways */
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
@@ -307,37 +309,31 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   margin-top: 20px;
   font-size: 38px;
-  line-height: 44px;
 }
 
 h2 {
   margin-top: 20px;
   font-size: 32px;
-  line-height: 36px;
 }
 
 h3 {
   margin-top: 20px;
   font-size: 24px;
-  line-height: 30px;
 }
 
 h4 {
   margin-top: 10px;
   font-size: 18px;
-  line-height: 24px;
 }
 
 h5 {
   margin-top: 10px;
   font-size: 14px;
-  line-height: 20px;
 }
 
 h6 {
   margin-top: 10px;
   font-size: 12px;
-  line-height: 18px;
 }
 
 p {
@@ -801,6 +797,13 @@ textarea.w-input, textarea.w-select {
     height: 100%;
     inset: 0 auto 0;
   }
+
+  /* NEW: Slightly smaller 'top' for date/circle if you still want them sticky. 
+     We won't remove sticky, just override for smaller screens */
+  .timeline_date-text,
+  .timeline_circle {
+    top: 20vh !important;
+  }
 }
 
 @media screen and (max-width: 479px) {
@@ -820,6 +823,13 @@ textarea.w-input, textarea.w-select {
   .timeline_progress-bar {
     height: 100%;
     inset: 0 auto 0;
+  }
+
+  /* If you want the date/circle less cut off on very small screens,
+     you can further reduce the top offset: */
+  .timeline_date-text,
+  .timeline_circle {
+    top: 10vh !important;
   }
 }
 
@@ -1698,7 +1708,8 @@ p {
   background-color: #fff;
   background-image: linear-gradient(#ff7448, #ff4848 51%, #6248ff);
   width: 3px;
-  height: 50vh;
+  /* originally had height: 50vh; now we rely on JS to set height on scroll */
+  height: 0; /* new: start at 0, let JS handle the growth */
   position: fixed;
   inset: 0 auto 50vh;
 }
@@ -2091,8 +2102,5 @@ p {
   object-fit: cover;
   z-index: -1;
 }
-
-/* Dimming Effect for Timeline Items */
-/* Already handled in the HTML <style> section */
 
 /* ========================================================= */
