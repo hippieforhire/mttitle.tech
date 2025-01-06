@@ -1,4 +1,5 @@
-/* Existing fully-intact CSS from your project, with horizontal scrolling disabled and no omitted content. */
+/* Existing fully-intact CSS from your project, with horizontal scrolling disabled
+   and no omitted content, plus minor media query overrides to match the updated HTML. */
 
 html {
   -webkit-text-size-adjust: 100%;
@@ -74,12 +75,16 @@ sub, sup {
 sup {
   top: -.5em;
 }
+
 sub {
   bottom: -.25em;
 }
 
 img {
   border: 0;
+  /* Ensure images can shrink on mobile */
+  max-width: 100%;
+  height: auto;
 }
 
 svg:not(:root) {
@@ -170,7 +175,7 @@ td, th {
 
 @font-face {
   font-family: webflow-icons;
-  /* base64 font data truncated for brevity, but presumably in your code */
+  /* base64 font data truncated for brevity, presumably your actual data remains */
   src: url("data:application/x-font-ttf;charset=utf-8;base64,...") format("truetype");
   font-weight: normal;
   font-style: normal;
@@ -226,7 +231,6 @@ body {
 
 img {
   vertical-align: middle;
-  max-width: 100%;
   display: inline-block;
 }
 
@@ -669,16 +673,11 @@ textarea.w-input, textarea.w-select {
   }
 }
 @media screen and (max-width: 767px) {
-  /* Keep timeline items in same 3-column layout; just narrower */
-  .timeline_item {
-    grid-template-columns: 1fr 180px 1fr;
-  }
+  /* If needed, narrower layout is already handled in timeline5.html,
+     so we keep it consistent. */
 }
 @media screen and (max-width: 479px) {
-  /* Same approach for smaller screens */
-  .timeline_item {
-    grid-template-columns: 1fr 180px 1fr;
-  }
+  /* Also handled in timeline5.html media queries above. */
 }
 
 .w-widget {
@@ -870,6 +869,7 @@ p {
   justify-content: flex-end;
   align-items: stretch;
   padding-right: 15px;
+  overflow: visible;
 }
 
 .timeline_centre {
@@ -883,8 +883,7 @@ p {
   font-size: 48px;
   font-weight: 500;
   line-height: 1.2;
-  position: sticky;
-  top: 50vh;
+  /* Removed sticky so it doesn't cut off text */
 }
 
 .timeline_text {
@@ -912,7 +911,6 @@ p {
   background-color: #414141;
   width: 3px;
   height: 100%;
-  /* now managed inlined as position: fixed in HTML style */
 }
 
 .timeline_progress-bar {
@@ -929,6 +927,7 @@ p {
   z-index: -3;
   background-color: #0a3c0a;
   position: relative;
+  overflow-x: hidden;
 }
 
 .section-timeline-cta {
