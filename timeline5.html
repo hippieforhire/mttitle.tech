@@ -15,12 +15,13 @@
   <!-- Custom CSS for Timeline & Header Fixes -->
   <style>
     /*************************************************************
-     *  HEADER FIX: remove large white space, fill with image
+     *  HEADER FIX: reduce height so it's half as tall (150px),
+     *  ensuring image not stretched, no white area below
      *************************************************************/
     header {
       position: relative;
       width: 100%;
-      height: 300px; /* fixed height so we can fill it fully */
+      height: 150px; /* Reduced from 300px to half the height */
       overflow: hidden; /* no white margin/gap at the bottom */
     }
     header img {
@@ -117,17 +118,20 @@
     }
 
     /*************************************************************
-     *  TIMELINE VERTICAL LINE (fixed in center) + SCROLL PROGRESS
+     *  TIMELINE VERTICAL LINE + SCROLL PROGRESS
+     *   - Initially hidden, will appear once .section-timeline
+     *     is in view (via IntersectionObserver).
      *************************************************************/
     .timeline_progress {
-      position: fixed;          /* lock it so it never vanishes */
-      left: 50%;                /* center of screen */
+      position: fixed;
+      left: 50%;
       transform: translateX(-50%);
       top: 0;
       bottom: 0;
       width: 3px;
       background-color: #414141;
-      z-index: 10; /* ensure it’s on top of timeline items */
+      z-index: 10; 
+      display: none; /* hide until timeline enters view */
     }
     .timeline_progress-bar {
       position: absolute;
@@ -143,7 +147,6 @@
      *  TIMELINE ITEMS: dim, then fade in
      *************************************************************/
     .timeline_item {
-      /* Already in your code: start dimmed + IntersectionObserver */
       opacity: 0.5;
       filter: brightness(0.7);
       transition: opacity 0.6s, filter 0.6s;
@@ -158,13 +161,14 @@
       filter: brightness(1);
     }
 
-    /* Keep text off the left edge */
+    /* Keep text off the left edge & allow overflow so text not cut */
     .timeline_left {
       text-align: right;
-      padding-right: 15px; /* extra padding so date isn’t cut */
+      padding-right: 15px;
+      overflow: visible;
     }
 
-    /* We keep the bullet circle sticky, but you can remove if needed */
+    /* We keep the bullet circle sticky; date text is not sticky anymore */
     .timeline_circle {
       position: sticky;
       top: 50vh;
@@ -172,18 +176,41 @@
       border-radius: 100%;
       width: 15px;
       height: 15px;
-      box-shadow: 0 0 0 8px #0a0a0a; /* green or black behind bullet? */
+      box-shadow: 0 0 0 8px #0a0a0a;
     }
 
-    /* Darker hunter green */
+    /* Darker hunter green for timeline area */
     .section-timeline {
       background-color: #0a3c0a !important;
       position: relative;
-      z-index: 1; /* a bit higher than the big fixed line behind it */
+      z-index: 1;
+      overflow-x: hidden; /* prevent horizontal dragging in timeline */
     }
     .section-timeline-heading,
     .section-timeline-cta {
       background-color: #0a3c0a !important;
+    }
+
+    /*************************************************************
+     *  MEDIA QUERIES to prevent horizontal scroll & date cutoff
+     *************************************************************/
+    @media screen and (max-width: 991px) {
+      /* Reduce the center column from 180px to 60px so it doesn't
+         force wide layout. This helps keep text fully visible. */
+      .timeline_item {
+        grid-template-columns: 1fr 60px 1fr;
+      }
+    }
+    @media screen and (max-width: 767px) {
+      .timeline_item {
+        grid-template-columns: 1fr 60px 1fr;
+      }
+    }
+    @media screen and (max-width: 479px) {
+      /* Even narrower bullet space on very small phones */
+      .timeline_item {
+        grid-template-columns: 1fr 40px 1fr;
+      }
     }
   </style>
 
@@ -982,24 +1009,44 @@
     });
   </script>
 
-  <!-- Animate the .timeline_progress-bar as you scroll -->
+  <!-- Animate the .timeline_progress-bar as you scroll, only shown after timeline is in view -->
   <script>
-    document.addEventListener("scroll", function() {
+    document.addEventListener("DOMContentLoaded", function() {
       const progressContainer = document.querySelector(".timeline_progress");
       const progressBar = document.querySelector(".timeline_progress-bar");
-      if(!progressContainer || !progressBar) return;
+      const timelineSection = document.querySelector(".section-timeline");
 
-      // total doc height minus viewport
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const docHeight = document.body.scrollHeight;
-      const winHeight = window.innerHeight;
-      const trackLength = docHeight - winHeight;
-      const scrollPercent = scrollTop / trackLength;
+      // Show/hide the vertical line based on whether .section-timeline is in view
+      if(timelineSection && progressContainer) {
+        const timelineObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if(entry.isIntersecting) {
+              progressContainer.style.display = "block";
+            } else {
+              progressContainer.style.display = "none";
+            }
+          });
+        }, {threshold: 0});
+        timelineObserver.observe(timelineSection);
+      }
 
-      // fill the bar from top to bottom
-      const containerHeight = progressContainer.offsetHeight; // full window
-      const barHeight = containerHeight * scrollPercent;
-      progressBar.style.height = barHeight + "px";
+      // Keep your existing scroll-based fill logic
+      document.addEventListener("scroll", function() {
+        if(!progressContainer || !progressBar) return;
+        if(progressContainer.style.display === "none") return;
+
+        // total doc height minus viewport
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const docHeight = document.body.scrollHeight;
+        const winHeight = window.innerHeight;
+        const trackLength = docHeight - winHeight;
+        const scrollPercent = scrollTop / trackLength;
+
+        // fill the bar from top to bottom
+        const containerHeight = progressContainer.offsetHeight; 
+        const barHeight = containerHeight * scrollPercent;
+        progressBar.style.height = barHeight + "px";
+      });
     });
   </script>
 
