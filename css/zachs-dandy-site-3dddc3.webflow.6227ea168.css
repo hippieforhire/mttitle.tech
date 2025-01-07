@@ -30,7 +30,8 @@ a {
   background-color: #0000;
 }
 
-a:active, a:hover {
+a:active,
+a:hover {
   outline: 0;
 }
 
@@ -38,7 +39,8 @@ abbr[title] {
   border-bottom: 1px dotted;
 }
 
-b, strong {
+b,
+strong {
   font-weight: bold;
 }
 
@@ -60,7 +62,8 @@ small {
   font-size: 80%;
 }
 
-sub, sup {
+sub,
+sup {
   vertical-align: baseline;
   font-size: 75%;
   line-height: 0;
@@ -92,12 +95,19 @@ pre {
   overflow: auto;
 }
 
-code, kbd, pre, samp {
+code,
+kbd,
+pre,
+samp {
   font-family: monospace;
   font-size: 1em;
 }
 
-button, input, optgroup, select, textarea {
+button,
+input,
+optgroup,
+select,
+textarea {
   color: inherit;
   font: inherit;
   margin: 0;
@@ -107,20 +117,25 @@ button {
   overflow: visible;
 }
 
-button, select {
+button,
+select {
   text-transform: none;
 }
 
-button, html input[type="button"], input[type="reset"] {
+button,
+html input[type="button"],
+input[type="reset"] {
   -webkit-appearance: button;
   cursor: pointer;
 }
 
-button[disabled], html input[disabled] {
+button[disabled],
+html input[disabled] {
   cursor: default;
 }
 
-button::-moz-focus-inner, input::-moz-focus-inner {
+button::-moz-focus-inner,
+input::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
@@ -129,7 +144,8 @@ input {
   line-height: normal;
 }
 
-input[type="checkbox"], input[type="radio"] {
+input[type="checkbox"],
+input[type="radio"] {
   box-sizing: border-box;
   padding: 0;
 }
@@ -166,7 +182,8 @@ table {
   border-spacing: 0;
 }
 
-td, th {
+td,
+th {
   padding: 0;
 }
 
@@ -177,7 +194,8 @@ td, th {
   font-style: normal;
 }
 
-[class^="w-icon-"], [class*=" w-icon-"] {
+[class^="w-icon-"],
+[class*=" w-icon-"] {
   speak: none;
   font-variant: normal;
   text-transform: none;
@@ -304,7 +322,12 @@ pre.w-code-block code {
   display: none !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-bottom: 10px;
   font-weight: bold;
 }
@@ -319,6 +342,17 @@ h2 {
   margin-top: 20px;
   font-size: 32px;
   line-height: 36px;
+}
+
+/* Make the timeline heading a bit more visually appealing */
+.section-timeline-heading h2 {
+  letter-spacing: -0.02em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  transition: color 0.3s ease;
+}
+
+.section-timeline-heading h2:hover {
+  color: #ffcd00; /* subtle hover effect if you’d like */
 }
 
 h3 {
@@ -367,7 +401,8 @@ figcaption {
   margin-top: 5px;
 }
 
-ul, ol {
+ul,
+ol {
   margin-top: 0;
   margin-bottom: 10px;
   padding-left: 40px;
@@ -2120,14 +2155,16 @@ p {
 
 /* ----------------------------- */
 /* Changed background to #014E2C */
+/* Also keep z-index >= 0 so mobile doesn't break */
 /* ----------------------------- */
 
 .section-timeline {
-  z-index: -3;
-  background-color: #014E2C; /* was #0a0a0a */
+  z-index: 0; /* was -3 */
+  background-color: #014E2C;
   position: relative;
 }
 
+/* Increase timeline to ensure it extends to "Today" */
 .timeline_component {
   flex-direction: column;
   justify-content: center;
@@ -2202,19 +2239,17 @@ p {
   position: absolute;
 }
 
+/* Let the progress bar grow so it can reach the final item */
 .timeline_progress-bar {
   z-index: -1;
   background-color: #fff;
   background-image: linear-gradient(#ff7448, #ff4848 51%, #6248ff);
   width: 3px;
-  height: 50vh;
+  /* Instead of fixed 50vh, let’s extend more so it goes beyond last item: */
+  height: 200vh;
   position: fixed;
-  inset: 0 auto 50vh;
+  inset: 0 auto auto;
 }
-
-/* ----------------------------- */
-/* Changed background to #014E2C */
-/* ----------------------------- */
 
 .section-timeline-cta {
   background-color: #014E2C; /* was #0a0a0a */
