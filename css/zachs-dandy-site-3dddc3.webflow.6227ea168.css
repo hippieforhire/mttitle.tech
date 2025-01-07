@@ -2164,7 +2164,8 @@ p {
   position: relative;
 }
 
-/* Increase timeline to ensure it extends to "Today" */
+/* Increase timeline to ensure it extends to final item, 
+   but keep it only inside the timeline, not the entire page. */
 .timeline_component {
   flex-direction: column;
   justify-content: center;
@@ -2173,7 +2174,7 @@ p {
   margin-left: auto;
   margin-right: auto;
   display: flex;
-  position: relative;
+  position: relative; /* ensures absolutely-positioned children stay within this container */
 }
 
 .timeline_item {
@@ -2231,24 +2232,27 @@ p {
   box-shadow: 0 0 0 8px #0a0a0a;
 }
 
+/* The parent .timeline_component is position: relative 
+   so we can keep this line just in the section. */
 .timeline_progress {
   z-index: -2;
   background-color: #414141;
   width: 3px;
-  height: 100%;
   position: absolute;
+  top: 0;
+  bottom: 0;
 }
 
-/* Let the progress bar grow so it can reach the final item */
+/* Use absolute instead of fixed so it stays inside timeline, 
+   from top:0 to bottom:0 of .timeline_component. */
 .timeline_progress-bar {
   z-index: -1;
   background-color: #fff;
   background-image: linear-gradient(#ff7448, #ff4848 51%, #6248ff);
   width: 3px;
-  /* Instead of fixed 50vh, let’s extend more so it goes beyond last item: */
-  height: 200vh;
-  position: fixed;
-  inset: 0 auto auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
 }
 
 .section-timeline-cta {
