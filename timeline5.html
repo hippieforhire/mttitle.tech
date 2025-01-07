@@ -1,215 +1,133 @@
 <!DOCTYPE html>
+<!-- This site was created in Webflow. https://webflow.com -->
+<!-- Last Published: Thu Jan 02 2025 19:35:45 GMT+0000 (Coordinated Universal Time) -->
 <html data-wf-domain="zachs-dandy-site-3dddc3.webflow.io" data-wf-page="6775fb2abc5d894e047360b0" data-wf-site="6775fb2abc5d894e04736079" data-wf-status="1" class=" w-mod-js">
 <head>
   <meta charset="utf-8">
   <title>A History of Mark Twain Title Company</title>
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta content="Webflow" name="generator">
-
+  
   <!-- GLightbox CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
-
-  <!-- Existing/Updated CSS -->
+  
+  <!-- Existing CSS -->
   <link href="css/zachs-dandy-site-3dddc3.webflow.6227ea168.css" rel="stylesheet" type="text/css">
-
-  <!-- Custom CSS for Timeline & Header Fixes -->
+  
+  <!-- Custom CSS for Header and Navigation -->
   <style>
-    /*************************************************************
-     *  HEADER FIX: reduce height so it's half as tall (150px),
-     *  ensuring image not stretched, no white area below
-     *************************************************************/
+    /* Header Styling */
     header {
       position: relative;
       width: 100%;
-      height: 150px; /* Reduced from 300px to half the height */
-      overflow: hidden; /* no white margin/gap at the bottom */
+      height: auto;
     }
+
     header img {
       width: 100%;
-      height: 100%;
-      object-fit: cover; /* fill entire header area */
+      height: auto;
       display: block;
     }
 
-    /* Desktop nav in the bottom-right corner. Hidden below 991px. */
+    /* Navigation Styling */
     header nav {
       position: absolute;
-      bottom: 20px;
-      right: 20px;
+      bottom: 20px; /* Adjust as needed */
+      right: 20px;  /* Adjust as needed */
     }
+
     header nav ul {
       list-style: none;
       margin: 0;
       padding: 0;
       display: flex;
-      gap: 20px;
+      gap: 20px; /* Space between links */
     }
+
+    header nav ul li {
+      /* Optional: Add any additional styling for list items */
+    }
+
     header nav ul li a {
-      color: #fff;
+      color: #ffffff; /* White text for visibility over image */
       text-decoration: none;
       font-weight: bold;
       font-size: 16px;
       transition: color 0.3s ease;
     }
+
     header nav ul li a:hover {
-      color: #ff7448;
+      color: #ff7448; /* Example hover color */
     }
-    @media screen and (max-width: 991px) {
+
+    /* Responsive Adjustments */
+    @media screen and (max-width: 767px) {
       header nav {
-        display: none; /* show hamburger instead */
+        bottom: 15px;
+        right: 15px;
+      }
+
+      header nav ul {
+        gap: 15px;
+      }
+
+      header nav ul li a {
+        font-size: 14px;
       }
     }
 
-    /*************************************************************
-     *  MOBILE HAMBURGER MENU
-     *************************************************************/
-    .hamburger-button {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 30px;
-      height: 24px;
-      display: none; /* only show on mobile */
-      flex-direction: column;
-      justify-content: space-between;
-      cursor: pointer;
-      z-index: 999;
-    }
-    .hamburger-button .line {
-      background-color: #fff;
-      height: 3px;
-      border-radius: 2px;
-    }
-    @media screen and (max-width: 991px) {
-      .hamburger-button {
-        display: flex;
+    @media screen and (max-width: 479px) {
+      header nav {
+        bottom: 10px;
+        right: 10px;
+      }
+
+      header nav ul {
+        gap: 10px;
+      }
+
+      header nav ul li a {
+        font-size: 12px;
       }
     }
-    .mobile-nav {
-      display: none;
-      position: absolute;
-      top: 60px; 
-      left: 20px;
-      background-color: rgba(0,0,0,0.8);
-      padding: 10px 20px;
-      border-radius: 8px;
-      z-index: 999;
-    }
-    .mobile-nav.open {
-      display: block;
-    }
-    .mobile-nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    .mobile-nav ul li {
-      margin-bottom: 10px;
-    }
-    .mobile-nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
-      transition: color 0.3s ease;
-    }
-    .mobile-nav ul li a:hover {
-      color: #ff7448;
-    }
 
-    /*************************************************************
-     *  TIMELINE VERTICAL LINE + SCROLL PROGRESS
-     *   - Always visible for demonstration
-     *************************************************************/
-    .timeline_progress {
-      position: fixed;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background-color: #414141;
-      z-index: 10;
-    }
-    .timeline_progress-bar {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 3px;
-      height: 0;
-      background-color: #fff;
-      background-image: linear-gradient(#ff7448, #ff4848 51%, #6248ff);
-    }
-
-    /*************************************************************
-     *  TIMELINE ITEMS: normal flow (bullets push down as you scroll)
-     *************************************************************/
+    /* Dimming Effect for Timeline Items */
     .timeline_item {
+      /* Existing styles */
+      z-index: 2;
+      grid-column-gap: 0px;
+      grid-row-gap: 0px;
+      grid-template-rows: auto;
+      grid-template-columns: 1fr 180px 1fr;
+      grid-auto-columns: 1fr;
+      padding-top: 80px;
+      padding-bottom: 80px;
+      display: grid;
+      position: relative;
+
+      /* New styles for dimming effect */
       opacity: 0.5;
       filter: brightness(0.7);
       transition: opacity 0.6s, filter 0.6s;
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr 180px 1fr;
-      padding-top: 80px;
-      padding-bottom: 80px;
     }
+
     .timeline_item.visible {
       opacity: 1;
       filter: brightness(1);
     }
 
-    /* Keep text off the left edge & allow overflow so text not cut */
-    .timeline_left {
-      text-align: right;
-      padding-right: 15px;
-      overflow: visible;
-    }
-
-    /* Bullet circle in normal flow (no sticky), so it moves down with each item */
-    .timeline_circle {
-      position: relative;
-      background-color: #fff;
-      border-radius: 100%;
-      width: 15px;
-      height: 15px;
-      margin: 0 auto;
-      box-shadow: 0 0 0 8px #0a0a0a;
-    }
-
-    /* Darker hunter green for timeline area */
-    .section-timeline {
-      background-color: #0a3c0a !important;
-      position: relative;
-      z-index: 1;
-      overflow-x: hidden; /* prevent horizontal dragging in timeline */
-    }
-    .section-timeline-heading,
-    .section-timeline-cta {
-      background-color: #0a3c0a !important;
-    }
-
-    /*************************************************************
-     *  MEDIA QUERIES to prevent horizontal scroll & date cutoff
-     *************************************************************/
-    @media screen and (max-width: 991px) {
-      /* Reduce center column so it doesn't force wide layout. */
-      .timeline_item {
-        grid-template-columns: 1fr 60px 1fr;
-      }
-    }
-    @media screen and (max-width: 767px) {
-      .timeline_item {
-        grid-template-columns: 1fr 60px 1fr;
-      }
-    }
-    @media screen and (max-width: 479px) {
-      .timeline_item {
-        grid-template-columns: 1fr 40px 1fr;
-      }
+    /* Background Video Styling */
+    .background-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
     }
   </style>
-
+  
   <!-- Facebook Pixel Code -->
   <script async src="js/fbevents.js"></script>
   <script type="text/javascript">
@@ -222,15 +140,14 @@
   </script>
   <link href="images/6775fb2abc5d894e047360de_Favicon.png" rel="shortcut icon" type="image/x-icon">
   <link href="images/6775fb2abc5d894e047360df_Webclip.png" rel="apple-touch-icon">
-
+  
   <!-- Facebook Pixel Code Continued -->
   <script>
     !function(f,b,e,v,n,t,s){
       if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
       if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];
-      t=b.createElement(e);t.async=!0;
+      n.queue=[];t=b.createElement(e);t.async=!0;
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)
     }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
@@ -242,12 +159,14 @@
          src="https://www.facebook.com/tr?id=4826335367381214&ev=PageView&noscript=1"/>
   </noscript>
   <!-- End Facebook Pixel Code -->
-
+  
   <!-- GLightbox JS -->
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  
+  <!-- Initialize GLightbox -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      GLightbox({
+      const lightbox = GLightbox({
         selector: '.glightbox',
         touchNavigation: true,
         loop: true,
@@ -255,28 +174,12 @@
       });
     });
   </script>
-
+  
 </head>
 <body>
-  <!-- HEADER with “object-fit: cover” -->
+  <!-- Updated Header with Navigation at Bottom Right -->
   <header>
     <img src="images/Header1.jpg" alt="Header Image">
-    
-    <!-- Hamburger for mobile -->
-    <div class="hamburger-button" onclick="toggleMenu()">
-      <div class="line"></div>
-      <div class="line"></div>
-      <div class="line"></div>
-    </div>
-    <nav id="mobile-menu" class="mobile-nav" aria-label="Mobile Navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="contact-us.html">Contact Us</a></li>
-        <li><a href="meet-our-staff.html">Meet Our Staff</a></li>
-      </ul>
-    </nav>
-
-    <!-- Desktop Nav (shown on screens > 991px) -->
     <nav aria-label="Main Navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -285,11 +188,11 @@
       </ul>
     </nav>
   </header>
-
+  
   <div class="page-wrapper">
     <div class="section-hero">
       <div class="background-layer">
-        <!-- Animated Logo Video -->
+        <!-- Replaced Gradient SVG with Animated Logo Video -->
         <video autoplay muted loop playsinline class="background-video">
           <source src="videos/Logo.mp4" type="video/mp4">
           Your browser does not support the video tag.
@@ -319,26 +222,22 @@
         </div>
       </div>
     </div>
-
-    <!-- TIMELINE SECTION (HUNTER GREEN) -->
     <div class="section-timeline">
       <div class="container">
         <div class="timeline_component">
-          <!-- The fixed vertical line in the center (progress container) -->
           <div class="timeline_progress">
-            <div class="timeline_progress-bar"></div>
+            <div data-w-id="d5abcf1f-3370-3eea-ccfd-66f076babfdd" class="timeline_progress-bar"></div>
           </div>
-
-          <!-- Timeline items -->
-          <!-- 1898 item -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <!-- Existing Timeline Items -->
+          <div data-w-id="d5abcf1f-3370-3eea-ccfd-66f076babfe0" class="timeline_item">
+            <div id="w-node-d5abcf1f-3370-3eea-ccfd-66f076babfe1-047360b0" class="timeline_left">
               <div class="timeline_date-text">January 20, 1898</div>
             </div>
-            <div class="timeline_centre">
+            <div id="w-node-d5abcf1f-3370-3eea-ccfd-66f076babfe4-047360b0" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="w-node-d5abcf1f-3370-3eea-ccfd-66f076babfe6-047360b0" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   The formation of the Marion County Abstract Company is announced.<br> (Palmyra Spectator 1/20/1898)
@@ -346,23 +245,23 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/6776e3e4c1806fbafe108a66_1.jpg" class="glightbox" data-gallery="timeline">
-                  <img 
-                    src="images/6776e3e4c1806fbafe108a66_1.jpg"
-                    alt="Formation of Marion County Abstract Company - 1898" 
-                    style="width:100%; height:auto;">
+                  <img src="images/6776e3e4c1806fbafe108a66_1.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/6776e3e4c1806fbafe108a66_1-p-500.jpg 500w, images/6776e3e4c1806fbafe108a66_1.jpg 800w" alt="Formation of Marion County Abstract Company - 1898">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 1/27/1898 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <!-- Re-Added Missing Timeline Items -->
+          
+          <!-- January 27, 1898 - 2.jpg -->
+          <div data-w-id="new-id-2" class="timeline_item">
+            <div id="new-id-2-left" class="timeline_left">
               <div class="timeline_date-text">January 27, 1898</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-2-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-2-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Announcement of location for the company.
@@ -370,23 +269,21 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/2.jpg" class="glightbox" data-gallery="timeline">
-                  <img
-                    src="images/2.jpg"
-                    alt="Announcement of Location for the Company - 1/27/1898"
-                    style="width:100%; height:auto;">
+                  <img src="images/2.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/2-p-500.jpg 500w, images/2.jpg 800w" alt="Announcement of Location for the Company - 1/27/1898">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 2/3/1898 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <!-- February 3, 1898 - 3.jpg -->
+          <div data-w-id="new-id-3" class="timeline_item">
+            <div id="new-id-3-left" class="timeline_left">
               <div class="timeline_date-text">February 3, 1898</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-3-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-3-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Announcement of the election of members for Marion County Abstract Company.
@@ -394,23 +291,21 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/3.jpg" class="glightbox" data-gallery="timeline">
-                  <img 
-                    src="images/3.jpg"
-                    alt="Election of Members for Marion County Abstract Company - 2/3/1898"
-                    style="width:100%; height:auto;">
+                  <img src="images/3.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/3-p-500.jpg 500w, images/3.jpg 800w" alt="Election of Members for Marion County Abstract Company - 2/3/1898">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 2/17/1898 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <!-- February 17, 1898 - 5.jpg -->
+          <div data-w-id="new-id-5" class="timeline_item">
+            <div id="new-id-5-left" class="timeline_left">
               <div class="timeline_date-text">February 17, 1898</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-5-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-5-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Announcement of anticipated opening of facility.
@@ -418,23 +313,21 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/5.jpg" class="glightbox" data-gallery="timeline">
-                  <img 
-                    src="images/5.jpg"
-                    alt="Announcement of Anticipated Opening of Facility - 2/17/1898"
-                    style="width:100%; height:auto;">
+                  <img src="images/5.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/5-p-500.jpg 500w, images/5.jpg 800w" alt="Announcement of Anticipated Opening of Facility - 2/17/1898">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 3/24/1898 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <!-- March 24, 1898 - 6.jpg -->
+          <div data-w-id="new-id-6" class="timeline_item">
+            <div id="new-id-6-left" class="timeline_left">
               <div class="timeline_date-text">March 24, 1898</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-6-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-6-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Advertisement for Marion County Abstract Company.
@@ -442,23 +335,21 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/6.jpg" class="glightbox" data-gallery="timeline">
-                  <img 
-                    src="images/6.jpg"
-                    alt="Advertisement for Marion County Abstract Company - 3/24/1898"
-                    style="width:100%; height:auto;">
+                  <img src="images/6.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/6-p-500.jpg 500w, images/6.jpg 800w" alt="Advertisement for Marion County Abstract Company - 3/24/1898">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 4/28/1898 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <!-- April 28, 1898 - 7.jpg -->
+          <div data-w-id="new-id-7" class="timeline_item">
+            <div id="new-id-7-left" class="timeline_left">
               <div class="timeline_date-text">April 28, 1898</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-7-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-7-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Advertisement for Marion County Abstract Company.
@@ -466,23 +357,21 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/7.jpg" class="glightbox" data-gallery="timeline">
-                  <img 
-                    src="images/7.jpg"
-                    alt="Advertisement for Marion County Abstract Company - 4/28/1898"
-                    style="width:100%; height:auto;">
+                  <img src="images/7.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/7-p-500.jpg 500w, images/7.jpg 800w" alt="Advertisement for Marion County Abstract Company - 4/28/1898">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 4/16/1902 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <!-- April 16, 1902 - 4.jpg -->
+          <div data-w-id="new-id-4" class="timeline_item">
+            <div id="new-id-4-left" class="timeline_left">
               <div class="timeline_date-text">April 16, 1902</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-4-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-4-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Spectator profile of the then-owner of the Marion County Abstract Company, Robert Lee Doherty, AKA R. L. Doherty.
@@ -490,47 +379,44 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/4.jpg" class="glightbox" data-gallery="timeline">
-                  <img 
-                    src="images/4.jpg"
-                    alt="Profile of R. L. Doherty - 4/16/1902"
-                    style="width:100%; height:auto;">
+                  <img src="images/4.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/4-p-500.jpg 500w, images/4.jpg 800w" alt="Profile of R. L. Doherty - 4/16/1902">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 4/10/1912 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <!-- April 10, 1912 - 8.jpg -->
+          <div data-w-id="new-id-8" class="timeline_item">
+            <div id="new-id-8-left" class="timeline_left">
               <div class="timeline_date-text">April 10, 1912</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-8-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-8-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
-                  R. L. Doherty profile on their service in the war.
+                  R. L. Doherty profile in the Spectator about his telescope hobby.
                 </div>
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/8.jpg" class="glightbox" data-gallery="timeline">
-                  <img 
-                    src="images/8.jpg"
-                    alt="R. L. Doherty's Telescope Hobby - 4/10/1912"
-                    style="width:100%; height:auto;">
+                  <img src="images/8.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/8-p-500.jpg 500w, images/8.jpg 800w" alt="R. L. Doherty's Telescope Hobby - 4/10/1912">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 7/1/1914 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <!-- New Timeline Items Start Here -->
+          
+          <div data-w-id="new-id-10" class="timeline_item">
+            <div id="new-id-10-left" class="timeline_left">
               <div class="timeline_date-text">July 1, 1914</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-10-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-10-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   R. L. Doherty remained with the company after its sale.
@@ -538,23 +424,20 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/10.jpg" class="glightbox" data-gallery="timeline">
-                  <img
-                    src="images/10.jpg"
-                    alt="R. L. Doherty Remained with the Company After Sale - 1914"
-                    style="width:100%; height:auto;">
+                  <img src="images/10.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/10-p-500.jpg 500w, images/10.jpg 800w" alt="R. L. Doherty Remained with the Company After Sale - 1914">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 6/12/1935 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <div data-w-id="new-id-11" class="timeline_item">
+            <div id="new-id-11-left" class="timeline_left">
               <div class="timeline_date-text">June 12, 1935</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-11-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-11-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   William P Johnson passed away and left the company to his 2 sons, Robert Johnson and Stewart Johnson.
@@ -562,23 +445,20 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/11.jpg" class="glightbox" data-gallery="timeline">
-                  <img 
-                    src="images/11.jpg"
-                    alt="William P Johnson Passed Away - 1935"
-                    style="width:100%; height:auto;">
+                  <img src="images/11.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/11-p-500.jpg 500w, images/11.jpg 800w" alt="William P Johnson Passed Away - 1935">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 1/6/1943 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <div data-w-id="new-id-12" class="timeline_item">
+            <div id="new-id-12-left" class="timeline_left">
               <div class="timeline_date-text">January 6, 1943</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-12-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-12-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Both Stewart Johnson and Robert Johnson were inducted into World War II and had to close the company down for “the duration.”
@@ -586,23 +466,20 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/12.jpg" class="glightbox" data-gallery="timeline">
-                  <img 
-                    src="images/12.jpg"
-                    alt="Company Closed During WWII - 1943"
-                    style="width:100%; height:auto;">
+                  <img src="images/12.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/12-p-500.jpg 500w, images/12.jpg 800w" alt="Company Closed During WWII - 1943">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 10/20/1943 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <div data-w-id="new-id-13" class="timeline_item">
+            <div id="new-id-13-left" class="timeline_left">
               <div class="timeline_date-text">October 20, 1943</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-13-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-13-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Stewart Johnson and Robert Johnson profile on their service in the war.
@@ -610,23 +487,20 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/13.jpg" class="glightbox" data-gallery="timeline">
-                  <img 
-                    src="images/13.jpg"
-                    alt="Johnson Brothers' Service in WWII - 1943"
-                    style="width:100%; height:auto;">
+                  <img src="images/13.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/13-p-500.jpg 500w, images/13.jpg 800w" alt="Johnson Brothers' Service in WWII - 1943">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 11/14/1945 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <div data-w-id="new-id-14" class="timeline_item">
+            <div id="new-id-14-left" class="timeline_left">
               <div class="timeline_date-text">November 14, 1945</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-14-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-14-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Announcement of the re-opening of the Marion County Abstract Company.
@@ -634,23 +508,20 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/14.jpg" class="glightbox" data-gallery="timeline">
-                  <img
-                    src="images/14.jpg"
-                    alt="Re-opening of Marion County Abstract Company - 1945"
-                    style="width:100%; height:auto;">
+                  <img src="images/14.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/14-p-500.jpg 500w, images/14.jpg 800w" alt="Re-opening of Marion County Abstract Company - 1945">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 11/14/1945 #2 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <div data-w-id="new-id-15" class="timeline_item">
+            <div id="new-id-15-left" class="timeline_left">
               <div class="timeline_date-text">November 14, 1945</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-15-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-15-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Profile for the re-opening of the Marion County Abstract Company.
@@ -658,23 +529,20 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/15.jpg" class="glightbox" data-gallery="timeline">
-                  <img
-                    src="images/15.jpg"
-                    alt="Profile of Re-opening - 1945"
-                    style="width:100%; height:auto;">
+                  <img src="images/15.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/15-p-500.jpg 500w, images/15.jpg 800w" alt="Profile of Re-opening - 1945">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 10/3/1957 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <div data-w-id="new-id-16" class="timeline_item">
+            <div id="new-id-16-left" class="timeline_left">
               <div class="timeline_date-text">October 3, 1957</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-16-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-16-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Announcement of Bob Johnson purchasing the company.
@@ -682,23 +550,20 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/16.jpg" class="glightbox" data-gallery="timeline">
-                  <img
-                    src="images/16.jpg"
-                    alt="Bob Johnson Purchases the Company - 1957"
-                    style="width:100%; height:auto;">
+                  <img src="images/16.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/16-p-500.jpg 500w, images/16.jpg 800w" alt="Bob Johnson Purchases the Company - 1957">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 3/9/1960 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <div data-w-id="new-id-17" class="timeline_item">
+            <div id="new-id-17-left" class="timeline_left">
               <div class="timeline_date-text">March 9, 1960</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-17-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-17-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Article detailing the Palmyra Explosion of 1960, which occurred March 2, 1960.
@@ -706,23 +571,20 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/17.jpg" class="glightbox" data-gallery="timeline">
-                  <img
-                    src="images/17.jpg"
-                    alt="Palmyra Explosion Article - 1960"
-                    style="width:100%; height:auto;">
+                  <img src="images/17.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/17-p-500.jpg 500w, images/17.jpg 800w" alt="Palmyra Explosion Article - 1960">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 3/9/1960 #2 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <div data-w-id="new-id-18" class="timeline_item">
+            <div id="new-id-18-left" class="timeline_left">
               <div class="timeline_date-text">March 9, 1960</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-18-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-18-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Article detailing the Palmyra Explosion of 1960, which occurred March 2, 1960.
@@ -730,23 +592,20 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/18.jpg" class="glightbox" data-gallery="timeline">
-                  <img
-                    src="images/18.jpg"
-                    alt="Palmyra Explosion Article - 1960"
-                    style="width:100%; height:auto;">
+                  <img src="images/18.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/18-p-500.jpg 500w, images/18.jpg 800w" alt="Palmyra Explosion Article - 1960">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 3/9/1960 #3 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <div data-w-id="new-id-19" class="timeline_item">
+            <div id="new-id-19-left" class="timeline_left">
               <div class="timeline_date-text">March 9, 1960</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-19-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-19-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Photo showing the building damage.
@@ -754,23 +613,20 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/19.jpg" class="glightbox" data-gallery="timeline">
-                  <img
-                    src="images/19.jpg"
-                    alt="Building Damage from Palmyra Explosion - 1960"
-                    style="width:100%; height:auto;">
+                  <img src="images/19.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/19-p-500.jpg 500w, images/19.jpg 800w" alt="Building Damage from Palmyra Explosion - 1960">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 3/10/1960 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <div data-w-id="new-id-20" class="timeline_item">
+            <div id="new-id-20-left" class="timeline_left">
               <div class="timeline_date-text">March 10, 1960</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-20-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-20-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Announcement thanking everyone for the help after the explosion.
@@ -778,23 +634,20 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/20.jpg" class="glightbox" data-gallery="timeline">
-                  <img
-                    src="images/20.jpg"
-                    alt="Thank You Announcement After Explosion - 1960"
-                    style="width:100%; height:auto;">
+                  <img src="images/20.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/20-p-500.jpg 500w, images/20.jpg 800w" alt="Thank You Announcement After Explosion - 1960">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 11/24/1960 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <div data-w-id="new-id-21" class="timeline_item">
+            <div id="new-id-21-left" class="timeline_left">
               <div class="timeline_date-text">November 24, 1960</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-21-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-21-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Photograph showing the new building rebuilt after the explosion.
@@ -802,23 +655,20 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/21.jpg" class="glightbox" data-gallery="timeline">
-                  <img
-                    src="images/21.jpg"
-                    alt="New Building Rebuilt After Explosion - 1960"
-                    style="width:100%; height:auto;">
+                  <img src="images/21.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/21-p-500.jpg 500w, images/21.jpg 800w" alt="New Building Rebuilt After Explosion - 1960">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 11/24/1960 #2 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <div data-w-id="new-id-22" class="timeline_item">
+            <div id="new-id-22-left" class="timeline_left">
               <div class="timeline_date-text">November 24, 1960</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-22-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-22-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Article showing the new building rebuilt after the explosion.
@@ -826,23 +676,20 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/22.jpg" class="glightbox" data-gallery="timeline">
-                  <img
-                    src="images/22.jpg"
-                    alt="New Building Article - 1960"
-                    style="width:100%; height:auto;">
+                  <img src="images/22.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/22-p-500.jpg 500w, images/22.jpg 800w" alt="New Building Article - 1960">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 11/24/1960 #3 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <div data-w-id="new-id-23" class="timeline_item">
+            <div id="new-id-23-left" class="timeline_left">
               <div class="timeline_date-text">November 24, 1960</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-23-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-23-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Century Press newspaper post congratulating Marion County Abstract Company on their new building.
@@ -850,23 +697,20 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/23.jpg" class="glightbox" data-gallery="timeline">
-                  <img
-                    src="images/23.jpg"
-                    alt="Century Press Congratulates New Building - 1960"
-                    style="width:100%; height:auto;">
+                  <img src="images/23.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/23-p-500.jpg 500w, images/23.jpg 800w" alt="Century Press Congratulates New Building - 1960">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 11/24/1960 #4 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <div data-w-id="new-id-24" class="timeline_item">
+            <div id="new-id-24-left" class="timeline_left">
               <div class="timeline_date-text">November 24, 1960</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-24-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-24-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Photo showing the deed writing process used.
@@ -874,23 +718,20 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/24.jpg" class="glightbox" data-gallery="timeline">
-                  <img
-                    src="images/24.jpg"
-                    alt="Deed Writing Process - 1960"
-                    style="width:100%; height:auto;">
+                  <img src="images/24.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/24-p-500.jpg 500w, images/24.jpg 800w" alt="Deed Writing Process - 1960">
                 </a>
               </div>
             </div>
           </div>
-          <!-- 11/24/1960 #5 -->
-          <div class="timeline_item">
-            <div class="timeline_left">
+          
+          <div data-w-id="new-id-25" class="timeline_item">
+            <div id="new-id-25-left" class="timeline_left">
               <div class="timeline_date-text">November 24, 1960</div>
             </div>
-            <div class="timeline_centre">
+            <div id="new-id-25-centre" class="timeline_centre">
               <div class="timeline_circle"></div>
             </div>
-            <div class="timeline_right">
+            <div id="new-id-25-right" class="timeline_right">
               <div class="margin-bottom-xlarge">
                 <div class="timeline_text">
                   Photo showing the microfilm process.
@@ -898,24 +739,20 @@
               </div>
               <div class="timeline_image-wrapper">
                 <a href="images/25.jpg" class="glightbox" data-gallery="timeline">
-                  <img
-                    src="images/25.jpg"
-                    alt="Microfilm Process - 1960"
-                    style="width:100%; height:auto;">
+                  <img src="images/25.jpg" loading="lazy" sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw" srcset="images/25-p-500.jpg 500w, images/25.jpg 800w" alt="Microfilm Process - 1960">
                 </a>
               </div>
             </div>
           </div>
-
-          <!-- Overlays -->
+          
+          <!-- New Timeline Items End Here -->
+          
           <div class="overlay-fade-bottom"></div>
           <div class="overlay-fade-top"></div>
         </div>
       </div>
     </div>
-
-    <!-- CTA Section -->
-    <div class="section-timeline-cta">
+    <div data-w-id="a33510ee-228e-eaaa-6baf-5bde8b8e2d5c" class="section-timeline-cta">
       <div class="container">
         <div class="padding-vertical-xlarge">
           <div style="opacity:0.25" class="timeline-main_heading-wrapper">
@@ -923,70 +760,45 @@
               <div class="timeline_date-text">Today</div>
             </div>
             <div class="margin-bottom-small">
-              <div class="timeline_text">
-                Today Mark Twain Title Company is <br>
-              </div>
+              <div class="timeline_text">Today Mark Twain Title Company is <br></div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- jQuery & Webflow Scripts -->
+  
+  <!-- Existing JS -->
   <script src="js/jquery-3.5.1.min.dc5e7f18c8.js" type="text/javascript" crossorigin="anonymous"></script>
   <script src="js/webflow.bff22e984a003de0f3db4fc8d933478f.js" type="text/javascript"></script>
-
-  <!-- IntersectionObserver: reveal each timeline item as it comes into view -->
+  
+  <!-- Custom JS for Timeline Dimming Effect -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const items = document.querySelectorAll('.timeline_item');
-      const observer = new IntersectionObserver((entries) => {
+      const timelineItems = document.querySelectorAll('.timeline_item');
+
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2
+      };
+
+      const callback = (entries, observer) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
+          if(entry.isIntersecting){
             entry.target.classList.add('visible');
             observer.unobserve(entry.target);
           }
         });
-      }, {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver(callback, options);
+
+      timelineItems.forEach(item => {
+        observer.observe(item);
       });
-      items.forEach(item => observer.observe(item));
     });
   </script>
-
-  <!-- Animate the .timeline_progress-bar as you scroll -->
-  <script>
-    document.addEventListener("scroll", function() {
-      const progressContainer = document.querySelector(".timeline_progress");
-      const progressBar = document.querySelector(".timeline_progress-bar");
-      if(!progressContainer || !progressBar) return;
-
-      // total doc height minus viewport
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const docHeight = document.body.scrollHeight;
-      const winHeight = window.innerHeight;
-      const trackLength = docHeight - winHeight;
-      const scrollPercent = scrollTop / trackLength;
-
-      // fill the bar from top to bottom
-      const containerHeight = progressContainer.offsetHeight; 
-      const barHeight = containerHeight * scrollPercent;
-      progressBar.style.height = barHeight + "px";
-    });
-  </script>
-
-  <!-- Toggle mobile hamburger menu -->
-  <script>
-    function toggleMenu() {
-      const mobileMenu = document.getElementById('mobile-menu');
-      if (mobileMenu) {
-        mobileMenu.classList.toggle('open');
-      }
-    }
-  </script>
-
+  
 </body>
 </html>
