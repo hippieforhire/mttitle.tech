@@ -119,8 +119,7 @@
 
     /*************************************************************
      *  TIMELINE VERTICAL LINE + SCROLL PROGRESS
-     *   - Initially hidden, will appear once .section-timeline
-     *     is in view (via IntersectionObserver).
+     *   - Always visible for demonstration
      *************************************************************/
     .timeline_progress {
       position: fixed;
@@ -130,8 +129,7 @@
       bottom: 0;
       width: 3px;
       background-color: #414141;
-      z-index: 10; 
-      display: none; /* hide until timeline enters view */
+      z-index: 10;
     }
     .timeline_progress-bar {
       position: absolute;
@@ -144,7 +142,7 @@
     }
 
     /*************************************************************
-     *  TIMELINE ITEMS: dim, then fade in
+     *  TIMELINE ITEMS: normal flow (bullets push down as you scroll)
      *************************************************************/
     .timeline_item {
       opacity: 0.5;
@@ -168,14 +166,14 @@
       overflow: visible;
     }
 
-    /* We keep the bullet circle sticky; date text is not sticky anymore */
+    /* Bullet circle in normal flow (no sticky), so it moves down with each item */
     .timeline_circle {
-      position: sticky;
-      top: 50vh;
+      position: relative;
       background-color: #fff;
       border-radius: 100%;
       width: 15px;
       height: 15px;
+      margin: 0 auto;
       box-shadow: 0 0 0 8px #0a0a0a;
     }
 
@@ -195,8 +193,7 @@
      *  MEDIA QUERIES to prevent horizontal scroll & date cutoff
      *************************************************************/
     @media screen and (max-width: 991px) {
-      /* Reduce the center column from 180px to 60px so it doesn't
-         force wide layout. This helps keep text fully visible. */
+      /* Reduce center column so it doesn't force wide layout. */
       .timeline_item {
         grid-template-columns: 1fr 60px 1fr;
       }
@@ -207,7 +204,6 @@
       }
     }
     @media screen and (max-width: 479px) {
-      /* Even narrower bullet space on very small phones */
       .timeline_item {
         grid-template-columns: 1fr 40px 1fr;
       }
@@ -333,7 +329,7 @@
             <div class="timeline_progress-bar"></div>
           </div>
 
-          <!-- Timeline items (each starts dimmed, fades in via IntersectionObserver) -->
+          <!-- Timeline items -->
           <!-- 1898 item -->
           <div class="timeline_item">
             <div class="timeline_left">
@@ -351,11 +347,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/6776e3e4c1806fbafe108a66_1.jpg" class="glightbox" data-gallery="timeline">
                   <img 
-                    src="images/6776e3e4c1806fbafe108a66_1.jpg" 
-                    loading="lazy" 
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/6776e3e4c1806fbafe108a66_1-p-500.jpg 500w, images/6776e3e4c1806fbafe108a66_1.jpg 800w" 
-                    alt="Formation of Marion County Abstract Company - 1898">
+                    src="images/6776e3e4c1806fbafe108a66_1.jpg"
+                    alt="Formation of Marion County Abstract Company - 1898" 
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -377,11 +371,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/2.jpg" class="glightbox" data-gallery="timeline">
                   <img
-                    src="images/2.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/2-p-500.jpg 500w, images/2.jpg 800w"
-                    alt="Announcement of Location for the Company - 1/27/1898">
+                    src="images/2.jpg"
+                    alt="Announcement of Location for the Company - 1/27/1898"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -403,11 +395,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/3.jpg" class="glightbox" data-gallery="timeline">
                   <img 
-                    src="images/3.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/3-p-500.jpg 500w, images/3.jpg 800w"
-                    alt="Election of Members for Marion County Abstract Company - 2/3/1898">
+                    src="images/3.jpg"
+                    alt="Election of Members for Marion County Abstract Company - 2/3/1898"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -429,11 +419,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/5.jpg" class="glightbox" data-gallery="timeline">
                   <img 
-                    src="images/5.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/5-p-500.jpg 500w, images/5.jpg 800w"
-                    alt="Announcement of Anticipated Opening of Facility - 2/17/1898">
+                    src="images/5.jpg"
+                    alt="Announcement of Anticipated Opening of Facility - 2/17/1898"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -455,11 +443,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/6.jpg" class="glightbox" data-gallery="timeline">
                   <img 
-                    src="images/6.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/6-p-500.jpg 500w, images/6.jpg 800w"
-                    alt="Advertisement for Marion County Abstract Company - 3/24/1898">
+                    src="images/6.jpg"
+                    alt="Advertisement for Marion County Abstract Company - 3/24/1898"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -481,11 +467,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/7.jpg" class="glightbox" data-gallery="timeline">
                   <img 
-                    src="images/7.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/7-p-500.jpg 500w, images/7.jpg 800w"
-                    alt="Advertisement for Marion County Abstract Company - 4/28/1898">
+                    src="images/7.jpg"
+                    alt="Advertisement for Marion County Abstract Company - 4/28/1898"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -507,11 +491,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/4.jpg" class="glightbox" data-gallery="timeline">
                   <img 
-                    src="images/4.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/4-p-500.jpg 500w, images/4.jpg 800w"
-                    alt="Profile of R. L. Doherty - 4/16/1902">
+                    src="images/4.jpg"
+                    alt="Profile of R. L. Doherty - 4/16/1902"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -533,11 +515,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/8.jpg" class="glightbox" data-gallery="timeline">
                   <img 
-                    src="images/8.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/8-p-500.jpg 500w, images/8.jpg 800w"
-                    alt="R. L. Doherty's Telescope Hobby - 4/10/1912">
+                    src="images/8.jpg"
+                    alt="R. L. Doherty's Telescope Hobby - 4/10/1912"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -559,11 +539,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/10.jpg" class="glightbox" data-gallery="timeline">
                   <img
-                    src="images/10.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/10-p-500.jpg 500w, images/10.jpg 800w"
-                    alt="R. L. Doherty Remained with the Company After Sale - 1914">
+                    src="images/10.jpg"
+                    alt="R. L. Doherty Remained with the Company After Sale - 1914"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -585,11 +563,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/11.jpg" class="glightbox" data-gallery="timeline">
                   <img 
-                    src="images/11.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/11-p-500.jpg 500w, images/11.jpg 800w"
-                    alt="William P Johnson Passed Away - 1935">
+                    src="images/11.jpg"
+                    alt="William P Johnson Passed Away - 1935"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -611,11 +587,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/12.jpg" class="glightbox" data-gallery="timeline">
                   <img 
-                    src="images/12.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/12-p-500.jpg 500w, images/12.jpg 800w"
-                    alt="Company Closed During WWII - 1943">
+                    src="images/12.jpg"
+                    alt="Company Closed During WWII - 1943"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -637,11 +611,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/13.jpg" class="glightbox" data-gallery="timeline">
                   <img 
-                    src="images/13.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/13-p-500.jpg 500w, images/13.jpg 800w"
-                    alt="Johnson Brothers' Service in WWII - 1943">
+                    src="images/13.jpg"
+                    alt="Johnson Brothers' Service in WWII - 1943"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -663,11 +635,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/14.jpg" class="glightbox" data-gallery="timeline">
                   <img
-                    src="images/14.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/14-p-500.jpg 500w, images/14.jpg 800w"
-                    alt="Re-opening of Marion County Abstract Company - 1945">
+                    src="images/14.jpg"
+                    alt="Re-opening of Marion County Abstract Company - 1945"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -689,11 +659,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/15.jpg" class="glightbox" data-gallery="timeline">
                   <img
-                    src="images/15.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/15-p-500.jpg 500w, images/15.jpg 800w"
-                    alt="Profile of Re-opening - 1945">
+                    src="images/15.jpg"
+                    alt="Profile of Re-opening - 1945"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -715,11 +683,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/16.jpg" class="glightbox" data-gallery="timeline">
                   <img
-                    src="images/16.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/16-p-500.jpg 500w, images/16.jpg 800w"
-                    alt="Bob Johnson Purchases the Company - 1957">
+                    src="images/16.jpg"
+                    alt="Bob Johnson Purchases the Company - 1957"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -741,11 +707,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/17.jpg" class="glightbox" data-gallery="timeline">
                   <img
-                    src="images/17.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/17-p-500.jpg 500w, images/17.jpg 800w"
-                    alt="Palmyra Explosion Article - 1960">
+                    src="images/17.jpg"
+                    alt="Palmyra Explosion Article - 1960"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -767,11 +731,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/18.jpg" class="glightbox" data-gallery="timeline">
                   <img
-                    src="images/18.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/18-p-500.jpg 500w, images/18.jpg 800w"
-                    alt="Palmyra Explosion Article - 1960">
+                    src="images/18.jpg"
+                    alt="Palmyra Explosion Article - 1960"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -793,11 +755,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/19.jpg" class="glightbox" data-gallery="timeline">
                   <img
-                    src="images/19.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/19-p-500.jpg 500w, images/19.jpg 800w"
-                    alt="Building Damage from Palmyra Explosion - 1960">
+                    src="images/19.jpg"
+                    alt="Building Damage from Palmyra Explosion - 1960"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -819,11 +779,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/20.jpg" class="glightbox" data-gallery="timeline">
                   <img
-                    src="images/20.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/20-p-500.jpg 500w, images/20.jpg 800w"
-                    alt="Thank You Announcement After Explosion - 1960">
+                    src="images/20.jpg"
+                    alt="Thank You Announcement After Explosion - 1960"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -845,11 +803,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/21.jpg" class="glightbox" data-gallery="timeline">
                   <img
-                    src="images/21.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/21-p-500.jpg 500w, images/21.jpg 800w"
-                    alt="New Building Rebuilt After Explosion - 1960">
+                    src="images/21.jpg"
+                    alt="New Building Rebuilt After Explosion - 1960"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -871,11 +827,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/22.jpg" class="glightbox" data-gallery="timeline">
                   <img
-                    src="images/22.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/22-p-500.jpg 500w, images/22.jpg 800w"
-                    alt="New Building Article - 1960">
+                    src="images/22.jpg"
+                    alt="New Building Article - 1960"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -897,11 +851,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/23.jpg" class="glightbox" data-gallery="timeline">
                   <img
-                    src="images/23.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/23-p-500.jpg 500w, images/23.jpg 800w"
-                    alt="Century Press Congratulates New Building - 1960">
+                    src="images/23.jpg"
+                    alt="Century Press Congratulates New Building - 1960"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -923,11 +875,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/24.jpg" class="glightbox" data-gallery="timeline">
                   <img
-                    src="images/24.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/24-p-500.jpg 500w, images/24.jpg 800w"
-                    alt="Deed Writing Process - 1960">
+                    src="images/24.jpg"
+                    alt="Deed Writing Process - 1960"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -949,11 +899,9 @@
               <div class="timeline_image-wrapper">
                 <a href="images/25.jpg" class="glightbox" data-gallery="timeline">
                   <img
-                    src="images/25.jpg" 
-                    loading="lazy"
-                    sizes="(max-width: 479px) 48px, (max-width: 767px) 64px, 36vw"
-                    srcset="images/25-p-500.jpg 500w, images/25.jpg 800w"
-                    alt="Microfilm Process - 1960">
+                    src="images/25.jpg"
+                    alt="Microfilm Process - 1960"
+                    style="width:100%; height:auto;">
                 </a>
               </div>
             </div>
@@ -1009,44 +957,24 @@
     });
   </script>
 
-  <!-- Animate the .timeline_progress-bar as you scroll, only shown after timeline is in view -->
+  <!-- Animate the .timeline_progress-bar as you scroll -->
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("scroll", function() {
       const progressContainer = document.querySelector(".timeline_progress");
       const progressBar = document.querySelector(".timeline_progress-bar");
-      const timelineSection = document.querySelector(".section-timeline");
+      if(!progressContainer || !progressBar) return;
 
-      // Show/hide the vertical line based on whether .section-timeline is in view
-      if(timelineSection && progressContainer) {
-        const timelineObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if(entry.isIntersecting) {
-              progressContainer.style.display = "block";
-            } else {
-              progressContainer.style.display = "none";
-            }
-          });
-        }, {threshold: 0});
-        timelineObserver.observe(timelineSection);
-      }
+      // total doc height minus viewport
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const docHeight = document.body.scrollHeight;
+      const winHeight = window.innerHeight;
+      const trackLength = docHeight - winHeight;
+      const scrollPercent = scrollTop / trackLength;
 
-      // Keep your existing scroll-based fill logic
-      document.addEventListener("scroll", function() {
-        if(!progressContainer || !progressBar) return;
-        if(progressContainer.style.display === "none") return;
-
-        // total doc height minus viewport
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const docHeight = document.body.scrollHeight;
-        const winHeight = window.innerHeight;
-        const trackLength = docHeight - winHeight;
-        const scrollPercent = scrollTop / trackLength;
-
-        // fill the bar from top to bottom
-        const containerHeight = progressContainer.offsetHeight; 
-        const barHeight = containerHeight * scrollPercent;
-        progressBar.style.height = barHeight + "px";
-      });
+      // fill the bar from top to bottom
+      const containerHeight = progressContainer.offsetHeight; 
+      const barHeight = containerHeight * scrollPercent;
+      progressBar.style.height = barHeight + "px";
     });
   </script>
 
