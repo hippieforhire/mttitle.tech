@@ -2656,6 +2656,7 @@ p {
     grid-area: 1 / 1 / 3 / 2;
   }
 }
+
 @font-face {
   font-family: 'Relative';
   src: url('../fonts/6775fb2abc5d894e047360b8_Relative-Bold.ttf') format('truetype');
