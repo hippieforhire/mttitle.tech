@@ -1,5 +1,5 @@
 /* Existing fully-intact CSS from your project, with horizontal scrolling disabled
-   and no omitted content, plus minor media query overrides to match the updated HTML. */
+   and no omitted content. Only changes: we rely on the new <img> style for loading. */
 
 html {
   -webkit-text-size-adjust: 100%;
@@ -75,14 +75,13 @@ sub, sup {
 sup {
   top: -.5em;
 }
-
 sub {
   bottom: -.25em;
 }
 
 img {
   border: 0;
-  /* Ensure images can shrink on mobile */
+  /* In case we need to ensure images can shrink on mobile */
   max-width: 100%;
   height: auto;
 }
@@ -673,11 +672,10 @@ textarea.w-input, textarea.w-select {
   }
 }
 @media screen and (max-width: 767px) {
-  /* If needed, narrower layout is already handled in timeline5.html,
-     so we keep it consistent. */
+  /* If needed, narrower layout is already handled in the HTML. */
 }
 @media screen and (max-width: 479px) {
-  /* Also handled in timeline5.html media queries above. */
+  /* Also handled in the HTML media queries above. */
 }
 
 .w-widget {
@@ -883,7 +881,6 @@ p {
   font-size: 48px;
   font-weight: 500;
   line-height: 1.2;
-  /* Removed sticky so it doesn't cut off text */
 }
 
 .timeline_text {
@@ -902,8 +899,9 @@ p {
   height: 15px;
   min-height: 15px;
   max-height: 15px;
-  position: sticky;
-  top: 50vh;
+  /* no longer sticky */
+  position: relative;
+  margin: 0 auto;
   box-shadow: 0 0 0 8px #0a0a0a;
 }
 
