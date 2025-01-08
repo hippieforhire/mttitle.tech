@@ -865,16 +865,11 @@ textarea.w-select {
     width: 100%;
   }
 
-  /* ------------------------------------- */
-  /* Remove sticky for bullets/dates here: */
-  /* ------------------------------------- */
+  /* Force bullets and dates to the same vertical position (30vh) on mobile 
+     to keep them perfectly aligned on the timeline line. */
   .timeline_date-text,
   .timeline_circle {
-    position: static;
-    top: auto;
-  }
-  .timeline_item {
-    align-items: center;
+    top: 30vh !important;
   }
 }
 
@@ -2161,6 +2156,13 @@ p {
     padding-top: 80px;
     padding-bottom: 80px;
   }
+  /* We preserve the 3-column layout for timeline items.
+     But force bullets/dates to a single consistent top so they're aligned. */
+  .timeline_date-text,
+  .timeline_circle {
+    top: 30vh !important;
+  }
+
   .timeline_date-text {
     margin-bottom: 24px;
     font-size: 36px;
