@@ -865,8 +865,12 @@ textarea.w-select {
     width: 100%;
   }
 
-  /* Force bullets and dates to the same vertical position (30vh) on mobile 
-     to keep them perfectly aligned on the timeline line. */
+  /* Prevent horizontal scrolling on iPhone or narrow devices. */
+  html, body {
+    overflow-x: hidden !important;
+  }
+
+  /* Keep bullets/dates pinned to 30vh so they're aligned on the line. */
   .timeline_date-text,
   .timeline_circle {
     top: 30vh !important;
@@ -2211,6 +2215,10 @@ p {
   .hero-nav {
     padding-top: 16px;
     padding-bottom: 16px;
+  }
+  /* Prevent horizontal scrolling on iPhone or narrow devices. */
+  html, body {
+    overflow-x: hidden !important;
   }
 }
 
