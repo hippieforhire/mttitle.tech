@@ -864,6 +864,18 @@ textarea.w-select {
   .w-col-small-12 {
     width: 100%;
   }
+
+  /* ------------------------------------- */
+  /* Remove sticky for bullets/dates here: */
+  /* ------------------------------------- */
+  .timeline_date-text,
+  .timeline_circle {
+    position: static;
+    top: auto;
+  }
+  .timeline_item {
+    align-items: center;
+  }
 }
 
 @media screen and (max-width: 479px) {
@@ -2149,8 +2161,6 @@ p {
     padding-top: 80px;
     padding-bottom: 80px;
   }
-  /* Notice we no longer override .timeline_item to 64px 1fr. 
-     That helps preserve the 3-column structure on mobile. */
   .timeline_date-text {
     margin-bottom: 24px;
     font-size: 36px;
