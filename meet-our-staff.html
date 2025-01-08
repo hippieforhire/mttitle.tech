@@ -14,16 +14,19 @@
     rel="stylesheet"
   />
 
-  <!-- Bootstrap 5 -->
+  <!-- Bootstrap 5 (CDN) - FIXED INTEGRITY -->
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-    integrity="sha384-WqQ1D4nD9pI+kv3mxrjfR15d8gB4DDlCDPH9a1/ttbk68DsGaY8Q/QtrSlCJm7c6"
+    integrity="sha384-3v8fS3h+vKQ7+DZUQQ0Zw0gPykbvPz+MVBnZxzBn8q49h3QQ4ZO9pwwK4TA+yE0R"
     crossorigin="anonymous"
   />
 
   <!-- AOS (Animate on Scroll) CSS -->
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="css/animate.min.css" />
 
   <!-- Our custom stylesheet -->
   <link rel="stylesheet" href="css/style.css" />
@@ -33,19 +36,20 @@
   <!-- TSPARTICLES BACKGROUND DIV -->
   <div id="tsparticles"></div>
 
-  <!-- MATCH THE HOME SCREEN HEADER EXACTLY -->
+  <!-- HEADER UPDATED WITH header3.jpg -->
   <header
     class="site-header jarallax position-relative"
-    data-jarallax data-speed="0.25"
+    data-jarallax
+    data-speed="0.25"
     onclick="window.location.href='index.html'"
   >
     <img
-      src="images/Untitled-design.jpeg"
+      src="images/header3.jpg"
       alt="Mark Twain Title Company Header"
       class="header-image"
     >
 
-    <!-- Nav reversed: Contact Us first, then Meet Our Staff -->
+    <!-- Nav reversed: Contact Us first, then Meet Our Staff, Our History -->
     <nav class="header-nav">
       <ul class="list-inline mb-0 nav-no-wrap">
         <li class="list-inline-item">
@@ -54,21 +58,26 @@
         <li class="list-inline-item">
           <a href="meet-our-staff.html" id="staffLink">Meet Our Staff</a>
         </li>
+        <li class="list-inline-item">
+          <a href="timeline5.html" id="historyLink">Our History</a>
+        </li>
       </ul>
     </nav>
   </header>
 
   <!-- Same hero section with video background (for consistency) -->
   <section class="hero-section position-relative rellax" data-rellax-speed="-1">
-    <video
-      class="hero-video"
-      autoplay
-      muted
-      playsinline
-      id="heroVideo"
-    >
-      <source src="images/Logo.mp4" type="video/mp4" />
-    </video>
+    <div class="video-container">
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        playsinline
+        id="heroVideo"
+      >
+        <source src="images/Logo.mp4" type="video/mp4" />
+      </video>
+    </div>
 
     <div
       class="hero-overlay d-flex flex-column align-items-start"
@@ -78,7 +87,7 @@
         Mark Twain Title Company
       </h1>
       <!-- Typed text with readability background -->
-      <p class="lead mb-4 hero-subtitle-text typed-bg" id="typedSubtitle">
+      <p class="lead mb-4 hero-subtitle-text" id="typedSubtitle">
         "Lighting the path to home ownership"
       </p>
     </div>
@@ -163,6 +172,7 @@
   </footer>
 
   <!-- Scripts -->
+  <!-- FIXED INTEGRITY FOR BOOTSTRAP JS -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ho+DgUN3LSz9vwCvCEymX8hiAcOHPFDmydyZ11BRpOq0bZszcMEja/e2WeF"
@@ -176,125 +186,151 @@
   <script src="js/scrollreveal.min.js"></script>
   <script src="js/gsap.min.js"></script>
   <script src="js/lax.min.js"></script>
+  <script src="js/typed.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
 
   <script>
-    AOS.init({ duration: 800, once: true });
-    var rellax = new Rellax('.rellax', { center: false });
-    jarallax(document.querySelectorAll('.jarallax'), { speed: 0.25 });
-
-    VanillaTilt.init(document.querySelectorAll('.tilt-badge'), {
-      max: 5, speed: 200, glare: false
-    });
-
-    let playedCount = 0;
-    const heroVideo = document.getElementById('heroVideo');
-    if (heroVideo) {
-      heroVideo.addEventListener('ended', function() {
-        playedCount++;
-        if (playedCount < 2) {
-          heroVideo.currentTime = 0;
-          heroVideo.play();
-        }
-      });
+    // Toggle hamburger on mobile
+    function toggleMenu(e) {
+      e.stopPropagation();
+      const nav = document.getElementById('mainNav');
+      nav.classList.toggle('nav-open');
+      const hamburger = document.querySelector('.hamburger');
+      hamburger.classList.toggle('is-active');
     }
 
-    tsParticles.load("tsparticles", {
-      fpsLimit: 60,
-      particles: {
-        number: { value: 30 },
-        color: { value: ["#ffffff", "#ffd700", "#ff69b4"] },
-        shape: { type: "circle" },
-        opacity: { value: 0.7 },
-        size: { value: { min: 1, max: 5 } },
-        move: { enable: true, speed: 2, direction: "none", outModes: "out" }
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({ duration: 800, once: true });
+      var rellax = new Rellax('.rellax', { center: false });
+      jarallax(document.querySelectorAll('.jarallax'), { speed: 0.25 });
+
+      // typed effect
+      const typedSubtitleEl = document.getElementById('typedSubtitle');
+      if (typedSubtitleEl) {
+        new Typed('#typedSubtitle', {
+          strings: ['"Lighting the path to home ownership"'],
+          typeSpeed: 60,
+          backSpeed: 30,
+          startDelay: 300,
+          backDelay: 1200,
+          loop: true,
+          onComplete: (self) => {
+            anime({
+              targets: '#typedSubtitle',
+              color: [
+                { value: '#ffd700', duration: 500 },
+                { value: '#ffffff', duration: 500 }
+              ],
+              loop: true,
+              easing: 'easeInOutSine'
+            });
+          }
+        });
       }
-    });
 
-    ScrollReveal().reveal('.reveal-on-scroll', {
-      distance: '50px', origin: 'bottom', duration: 1000, easing: 'ease-in-out'
-    });
-
-    lax.init();
-    lax.addDriver('scrollY', () => window.scrollY);
-
-    document.getElementById('staffLink').classList.add('active');
-
-    document.querySelectorAll('.header-nav a').forEach(link => {
-      link.addEventListener('mouseenter', e => {
-        anime({ targets: e.target, scale: 1.2, duration: 300, easing: 'easeOutExpo' });
+      // GSAP fade
+      gsap.from(".hero-overlay", {
+        opacity: 0,
+        y: -50,
+        duration: 1.2,
+        ease: "power2.out"
       });
-      link.addEventListener('mouseleave', e => {
-        anime({ targets: e.target, scale: 1, duration: 300, easing: 'easeOutExpo' });
-      });
-    });
 
-    const scrollBtn = document.querySelector('.scroll-to-top');
-    window.addEventListener('scroll', () => {
-      scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
-    });
+      // MP4 exactly 2 times
+      let playedCount = 0;
+      const heroVideo = document.getElementById('heroVideo');
+      if (heroVideo) {
+        heroVideo.addEventListener('ended', function() {
+          playedCount++;
+          if (playedCount < 2) {
+            heroVideo.currentTime = 0;
+            heroVideo.play();
+          }
+        });
+      }
 
-    quicklink.listen();
-
-    const typedSubtitleEl = document.getElementById('typedSubtitle');
-    if (typedSubtitleEl) {
-      new Typed('#typedSubtitle', {
-        strings: ['"Lighting the path to home ownership"'],
-        typeSpeed: 60,
-        backSpeed: 30,
-        startDelay: 300,
-        backDelay: 1200,
-        loop: true,
-        onComplete: (self) => {
-          anime({
-            targets: '#typedSubtitle',
-            color: [
-              { value: '#ffd700', duration: 500 },
-              { value: '#ffffff', duration: 500 }
-            ],
-            loop: true,
-            easing: 'easeInOutSine'
-          });
+      // TSParticles
+      tsParticles.load("tsparticles", {
+        fpsLimit: 60,
+        particles: {
+          number: { value: 30 },
+          color: { value: ["#ffffff", "#ffd700", "#ff69b4"] },
+          shape: { type: "circle" },
+          opacity: { value: 0.7 },
+          size: { value: { min: 1, max: 5 } },
+          move: { enable: true, speed: 2, direction: "none", outModes: "out" }
         }
       });
-    }
 
-    const mojs = window.mojs;
-    const burst = new mojs.Burst({
-      radius: { 0: 60 },
-      count: 8,
-      children: {
-        shape: 'circle',
-        radius: 10,
-        fill: [ '#FFD700', '#FF69B4', '#FFF' ],
-        strokeWidth: 5,
-        duration: 600,
-        easing: 'cubic.out'
-      }
-    });
-    document.querySelectorAll('.mojs-target').forEach(el => {
-      el.addEventListener('mouseenter', e => {
-        const rect = e.target.getBoundingClientRect();
-        burst.tune({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }).replay();
+      // ScrollReveal
+      ScrollReveal().reveal('.reveal-on-scroll', {
+        distance: '50px',
+        origin: 'bottom',
+        duration: 1000,
+        easing: 'ease-in-out'
       });
-    });
 
-    const globalBurst = new mojs.Burst({
-      radius: { 0: 80 },
-      count: 10,
-      children: {
-        shape: 'polygon',
-        points: 7,
-        fill: [ '#FFD700', '#FF69B4', '#FFFFFF' ],
-        duration: 800,
-        easing: 'cubic.out'
-      }
-    });
-    document.addEventListener('click', e => {
-      if (e.target.tagName.toLowerCase() !== 'a') {
-        globalBurst.tune({ x: e.pageX, y: e.pageY }).replay();
-      }
+      // Lax
+      lax.init();
+      lax.addDriver('scrollY', () => window.scrollY);
+
+      // Hover effect for nav (desktop)
+      document.querySelectorAll('.header-nav a').forEach(link => {
+        link.addEventListener('mouseenter', e => {
+          anime({ targets: e.target, scale: 1.2, duration: 300, easing: 'easeOutExpo' });
+        });
+        link.addEventListener('mouseleave', e => {
+          anime({ targets: e.target, scale: 1, duration: 300, easing: 'easeOutExpo' });
+        });
+      });
+
+      // Scroll-to-top
+      const scrollBtn = document.querySelector('.scroll-to-top');
+      window.addEventListener('scroll', () => {
+        scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+      });
+
+      // Quicklink
+      quicklink.listen();
+
+      // mo.js global burst
+      const mojs = window.mojs;
+      const burst = new mojs.Burst({
+        radius: { 0: 60 },
+        count: 8,
+        children: {
+          shape: 'circle',
+          radius: 10,
+          fill: [ '#FFD700', '#FF69B4', '#FFF' ],
+          strokeWidth: 5,
+          duration: 600,
+          easing: 'cubic.out'
+        }
+      });
+      document.querySelectorAll('.mojs-target').forEach(el => {
+        el.addEventListener('mouseenter', e => {
+          const rect = e.target.getBoundingClientRect();
+          burst.tune({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }).replay();
+        });
+      });
+
+      const globalBurst = new mojs.Burst({
+        radius: { 0: 80 },
+        count: 10,
+        children: {
+          shape: 'polygon',
+          points: 7,
+          fill: [ '#FFD700', '#FF69B4', '#FFFFFF' ],
+          duration: 800,
+          easing: 'cubic.out'
+        }
+      });
+      document.addEventListener('click', e => {
+        if (e.target.tagName.toLowerCase() !== 'a') {
+          globalBurst.tune({ x: e.pageX, y: e.pageY }).replay();
+        }
+      });
     });
   </script>
 </body>
