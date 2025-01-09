@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 
-/* Basic resets / body and html */
+/* Basic Resets / Body and HTML */
 body, html {
   font-family: "Poppins", Arial, sans-serif;
   color: #333;
@@ -20,19 +20,19 @@ body, html {
   background-attachment: fixed;
 }
 
-/* Helper to avoid wrapping on bigger screens */
+/* Helper to Avoid Wrapping on Bigger Screens */
 .nav-no-wrap {
   white-space: nowrap;
 }
 
-/* HEADER: aligned to left with minimal spacing */
+/* HEADER: Aligned to Left with Minimal Spacing */
 .site-header {
   width: 100%;
   text-align: left; /* Ensure text is left-aligned */
   margin: 0;
-  padding: 0 10px; /* Minimal horizontal padding */
+  padding: 0 15px; /* Minimal horizontal padding */
   position: relative;
-  max-height: 100px; /* Reduced height */
+  max-height: 80px; /* Reduced height for thinner header */
   background-color: #19794A; /* Ensure background matches header image */
   overflow: hidden;
   display: flex; /* Use Flexbox for alignment */
@@ -40,18 +40,18 @@ body, html {
   justify-content: flex-start; /* Align items to the start */
 }
 
-/* Adjust header image */
+/* Adjust Header Image */
 .header-image {
   width: auto;
-  height: 80px; /* Adjust height to fit reduced header */
+  height: 60px; /* Adjust height to fit reduced header */
   object-fit: contain;
   object-position: left;
   display: block;
   margin: 0; /* Ensure no margin */
-  margin-right: 10px; /* Small space between image and nav */
+  margin-right: 15px; /* Space between image and nav */
 }
 
-/* Nav positioned next to the header image */
+/* Nav Positioned Next to the Header Image */
 .header-nav {
   margin-left: 0; /* Remove any left margin */
   background-color: transparent; /* Remove background color */
@@ -60,28 +60,30 @@ body, html {
   transition: max-height 0.3s ease, opacity 0.3s ease;
   max-height: 999px; /* Large value to keep nav visible on desktop */
   opacity: 1;
+  flex-grow: 1; /* Allow nav to take remaining space */
 }
 
-/* Nav list */
+/* Nav List */
 .header-nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
   text-align: left; /* Align links to the left */
   display: flex; /* Display links inline */
+  align-items: center; /* Vertically center links */
 }
 
-/* Nav items */
+/* Nav Items */
 .header-nav li {
   display: inline-block;
-  margin-left: 15px; /* Space between links */
+  margin-left: 20px; /* Space between links */
 }
 
-/* Nav links */
+/* Nav Links */
 .header-nav a {
   color: #ffffff; /* White text */
-  font-weight: 400;
-  font-size: 0.875rem;
+  font-weight: 500;
+  font-size: 1rem;
   text-decoration: none;
   padding: 0.5rem 0.75rem;
   border-radius: 0;
@@ -110,6 +112,7 @@ body, html {
   cursor: pointer;
   z-index: 9999;
 }
+
 .hamburger span {
   display: block;
   width: 100%;
@@ -118,20 +121,20 @@ body, html {
   background-color: #fff;
   transition: all 0.3s ease;
 }
+
 .hamburger.is-active span:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
+
 .hamburger.is-active span:nth-child(2) {
   opacity: 0;
 }
+
 .hamburger.is-active span:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* When .nav-open is not present (on mobile), hide nav */
-.header-nav {
-  /* No additional styles needed here */
-}
+/* When .nav-open is Active (on Mobile) */
 .header-nav.nav-open {
   max-height: 300px; /* Enough to show your links */
   opacity: 1;
@@ -139,75 +142,85 @@ body, html {
 
 /* MOBILE STYLES */
 @media (max-width: 768px) {
-  /* Show hamburger, hide nav by default */
+  /* Show Hamburger, Hide Nav by Default */
   .hamburger {
     display: block;
   }
+  
   .header-nav {
     position: absolute;
-    top: 60px; /* Position below the header */
+    top: 80px; /* Position below the header */
     left: 0;
     width: 100%;
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    background-color: rgba(0,0,0,0.8); /* Add background for mobile nav */
+    background-color: rgba(0, 0, 0, 0.8); /* Add background for mobile nav */
     transition: max-height 0.3s ease, opacity 0.3s ease;
   }
+  
   .header-nav.nav-open {
     max-height: 300px; /* Enough to show your links */
     opacity: 1;
   }
 
-  /* Nav links stacked vertically */
+  /* Nav Links Stacked Vertically */
   .header-nav ul {
     flex-direction: column;
     text-align: left;
+    padding: 10px 15px;
   }
+  
   .header-nav li {
     display: block;
     margin: 10px 0;
   }
+  
   .header-nav a {
-    display: inline-block;
+    display: block;
     padding: 0.75rem 1rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
-  /* Adjust header layout for mobile */
+  /* Adjust Header Layout for Mobile */
   .site-header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 0 15px; /* Minimal horizontal padding */
-    max-height: 60px; /* Adjust as needed */
+    max-height: 80px; /* Adjust as needed */
   }
+
   .header-image {
     height: 50px; /* Adjust size for mobile */
     object-fit: contain;
     margin-right: 10px; /* Adjust spacing */
   }
 
-  /* Hero section adjustments */
+  /* Hero Section Adjustments */
   .hero-section {
     height: 50vh;
     min-height: 300px;
   }
+
   .video-container {
     background-color: #19794A; /* Ensure consistency on mobile */
   }
+
   .hero-overlay {
     top: 3%;
     left: 3%;
   }
+
   .hero-title-text {
     font-size: 1.8rem;
   }
+
   .hero-subtitle-text {
     font-size: 1rem;
   }
 
-  /* Adjust main content spacing for mobile */
+  /* Adjust Main Content Spacing for Mobile */
   main {
     margin-top: 1.5rem;
   }
@@ -218,6 +231,7 @@ body, html {
   .hero-section {
     height: 80vh;
   }
+
   .hero-overlay {
     top: 5%;
     left: 5%;
@@ -237,7 +251,7 @@ body, html {
 .video-container {
   width: 100%;
   height: 100%;
-  background-color: #19794A; /* Updated from #046330 to #19794A */
+  background-color: #19794A; /* Ensure consistency */
   position: relative;
 }
 
@@ -253,7 +267,7 @@ body, html {
   z-index: 1;
 }
 
-/* Hero overlay text */
+/* Hero Overlay Text */
 .hero-overlay {
   position: absolute;
   top: 5%;
@@ -272,7 +286,7 @@ body, html {
   animation: fadeDownHeroTitle 1.3s ease forwards;
 }
 
-/* typed text, no background */
+/* Typed Text, No Background */
 .hero-subtitle-text {
   color: #fff !important;
   font-weight: bold;
@@ -292,6 +306,7 @@ body, html {
     transform: translateY(0);
   }
 }
+
 @keyframes fadeUpHeroSubtitle {
   0% {
     opacity: 0;
@@ -317,20 +332,22 @@ footer {
   font-size: 0.9rem;
 }
 
-/* Staff list styling, etc. */
+/* Staff List Styling, etc. */
 .staff-list {
   line-height: 1.6;
 }
+
 .staff-card {
   background-color: rgba(0,0,0,0.05);
   padding: 0.75rem;
   border-radius: 6px;
 }
 
-/* Subtle fade/zoom on images site-wide (except hero logos above) */
+/* Subtle Fade/Zoom on Images Site-Wide (Except Hero Logos Above) */
 img:not(.hero-logo) {
   transition: transform 0.4s ease, opacity 0.4s ease;
 }
+
 img:not(.hero-logo):hover {
   transform: scale(1.04);
   opacity: 0.9;
@@ -345,6 +362,7 @@ img:not(.hero-logo):hover {
   height: 100%;
   z-index: 0;
 }
+
 .site-header,
 .hero-section,
 main,
@@ -353,7 +371,7 @@ footer {
   z-index: 1;
 }
 
-/* Subtle background for the badge section */
+/* Subtle Background for the Badge Section */
 .badge-section {
   background-color: #f2f2f2;
   padding: 2rem 0;
@@ -375,7 +393,7 @@ footer {
   transition: opacity 0.3s ease;
 }
 
-/* Additional styling for consistency */
+/* Additional Styling for Consistency */
 .container {
   max-width: 1140px;
   margin: 0 auto;
@@ -384,6 +402,7 @@ footer {
 .badge-section img {
   transition: transform 0.3s ease;
 }
+
 .badge-section img:hover {
   transform: scale(1.05);
 }
