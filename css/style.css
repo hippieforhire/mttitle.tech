@@ -25,34 +25,36 @@ body, html {
   white-space: nowrap;
 }
 
-/* HEADER: Aligned to Left with Minimal Spacing */
+/* HEADER: Aligned to Left with Full Height */
 .site-header {
   width: 100%;
-  padding: 0 15px; /* Minimal horizontal padding */
-  height: 80px; /* Reduced height for thinner header */
+  padding: 0; /* Remove horizontal padding to align flush */
+  height: 200px; /* Restore to original image height */
   background-color: #19794A; /* Ensure background matches header image */
   display: flex; /* Use Flexbox for alignment */
   align-items: center; /* Vertically center items */
   justify-content: flex-start; /* Align items to the start */
-  position: relative;
+  position: fixed; /* Fix the header to the top */
+  top: 0;
+  left: 0;
   overflow: hidden;
-  z-index: 2; /* Ensure header is above other elements */
+  z-index: 1000; /* Ensure header is above other elements */
 }
 
 /* Adjust Header Image */
 .header-image {
-  height: 80px; /* Match header height */
+  height: 100%; /* Match header height */
   width: auto;
-  max-width: 300px; /* Limit the image's width to prevent overflow */
   object-fit: contain;
   object-position: left;
   display: block;
-  margin-right: 15px; /* Space between image and nav */
+  margin-left: 15px; /* Space from the very left edge */
+  /* Remove max-width to allow full scaling */
 }
 
 /* Nav Positioned Next to the Header Image */
 .header-nav {
-  margin-left: 0; /* Remove any left margin */
+  margin-left: 30px; /* Space between image and nav */
   background-color: transparent; /* Remove background color */
   padding: 0;
   border-radius: 0;
@@ -104,8 +106,9 @@ body, html {
 .hamburger {
   display: none; /* Hidden on desktop, shown on mobile via media queries */
   position: absolute;
-  top: 15px; /* Adjusted to match reduced header height */
+  top: 50%; /* Center vertically within the header */
   right: 15px;
+  transform: translateY(-50%);
   width: 24px;
   height: 24px;
   cursor: pointer;
@@ -148,7 +151,7 @@ body, html {
   
   .header-nav {
     position: absolute;
-    top: 80px; /* Position below the header */
+    top: 200px; /* Position below the fixed header */
     left: 0;
     width: 100%;
     max-height: 0;
@@ -186,15 +189,14 @@ body, html {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0 15px; /* Minimal horizontal padding */
-    max-height: 80px; /* Adjust as needed */
+    padding: 0; /* Already aligned flush */
+    height: 200px; /* Maintain original height */
   }
 
   .header-image {
-    height: 50px; /* Adjust size for mobile */
-    object-fit: contain;
-    margin-right: 10px; /* Adjust spacing */
-    max-width: 200px; /* Limit width on mobile */
+    height: 100%; /* Maintain original height */
+    margin-left: 15px; /* Align with previous */
+    max-width: none; /* Allow full scaling */
   }
 
   /* Hero Section Adjustments */
@@ -320,7 +322,7 @@ body, html {
 
 /* MAIN CONTENT */
 main {
-  margin-top: 2rem; /* Adds space above the main content */
+  margin-top: 220px; /* Adds space above the main content to account for fixed header */
 }
 
 .reveal-on-scroll {
