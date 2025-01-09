@@ -1,4 +1,4 @@
-/
+/*
   style.css
   Common styling for your entire site
 */
@@ -25,17 +25,17 @@ body, html {
   white-space: nowrap;
 }
 
-/* HEADER: aligned to left */
+/* HEADER: aligned to left with minimal spacing */
 .site-header {
   width: 100%;
-  text-align: left; /* Changed from center to left */
+  text-align: left; /* Ensure text is left-aligned */
   margin: 0;
-  padding: 0 20px; /* Added horizontal padding */
+  padding: 0; /* Remove all padding to align logo to the very edge */
   position: relative;
   max-height: 200px; /* Adjust as needed */
   background-color: #19794A; /* Ensure background matches header image */
   overflow: hidden;
-  display: flex; /* Use flexbox for alignment */
+  display: flex; /* Use Flexbox for alignment */
   align-items: center; /* Vertically center items */
 }
 
@@ -44,24 +44,24 @@ body, html {
   width: auto;
   height: 100%;
   object-fit: contain;
-  object-position: left; /* Align image to the left */
+  object-position: left;
   display: block;
-  margin: 0; /* Remove auto margin */
+  margin: 0; /* Ensure no margin */
+  margin-right: 10px; /* Small space between image and nav */
 }
 
-/* Nav positioned to the left */
+/* Nav positioned next to the header image */
 .header-nav {
-  margin-left: 20px; /* Space between image and nav */
-  
-  /* For desktop, display links inline */
-  background-color: transparent; /* Removed background color */
+  margin-left: 0; /* Remove any left margin */
+  background-color: transparent; /* Remove background color */
   padding: 0;
   border-radius: 0;
   transition: max-height 0.3s ease, opacity 0.3s ease;
-  max-height: 999px; /* large so desktop is fully shown by default */
+  max-height: 999px; /* Large value to keep nav visible on desktop */
   opacity: 1;
 }
 
+/* Nav list */
 .header-nav ul {
   list-style: none;
   padding: 0;
@@ -70,13 +70,15 @@ body, html {
   display: flex; /* Display links inline */
 }
 
+/* Nav items */
 .header-nav li {
   display: inline-block;
-  margin-left: 15px; /* Add spacing between links */
+  margin-left: 15px; /* Space between links */
 }
 
+/* Nav links */
 .header-nav a {
-  color: #ffffff; /* Changed to white */
+  color: #ffffff; /* White text */
   font-weight: 400;
   font-size: 0.875rem;
   text-decoration: none;
@@ -88,7 +90,7 @@ body, html {
 
 .header-nav a.active {
   text-decoration: underline;
-  color: #ffd700 !important;
+  color: #ffd700 !important; /* Highlight active link */
 }
 
 .header-nav a:hover {
@@ -98,7 +100,7 @@ body, html {
 
 /* HAMBURGER MENU */
 .hamburger {
-  display: none; /* hidden on desktop, shown on mobile with media queries */
+  display: none; /* Hidden on desktop, shown on mobile via media queries */
   position: absolute;
   top: 10px;
   right: 20px;
@@ -127,10 +129,10 @@ body, html {
 
 /* When .nav-open is not present (on mobile), hide nav */
 .header-nav {
-  /* Overriding for mobile */
+  /* No additional styles needed here */
 }
 .header-nav.nav-open {
-  max-height: 300px; /* expanded */
+  max-height: 300px; /* Enough to show your links */
   opacity: 1;
 }
 
@@ -152,7 +154,7 @@ body, html {
     transition: max-height 0.3s ease, opacity 0.3s ease;
   }
   .header-nav.nav-open {
-    max-height: 300px; /* enough to show your links */
+    max-height: 300px; /* Enough to show your links */
     opacity: 1;
   }
 
@@ -176,12 +178,13 @@ body, html {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0 15px;
+    padding: 0 15px; /* Minimal horizontal padding */
     max-height: 60px; /* Adjust as needed */
   }
   .header-image {
     height: 50px; /* Adjust size for mobile */
     object-fit: contain;
+    margin-right: 10px; /* Adjust spacing */
   }
 
   /* Hero section adjustments */
