@@ -45,10 +45,11 @@ body, html {
   height: 100%; /* Match header height */
   width: auto; /* Maintain aspect ratio */
   max-width: none; /* Allow full scaling */
-  object-fit: contain; /* Use 'contain' to ensure full SVG is visible */
+  object-fit: contain; /* Use 'contain' to ensure full SVG is visible without cropping */
   object-position: left; /* Align the image to the left */
   display: block;
   margin-left: 15px; /* Space from the very left edge */
+  transform: translateX(-150px); /* Shift image left by 150px */
 }
 
 /* Nav Positioned Next to the Header Image */
@@ -197,6 +198,7 @@ body, html {
     margin-left: 15px; /* Align with previous */
     max-width: none; /* Allow full scaling */
     object-fit: contain; /* Ensure full SVG is visible */
+    transform: translateX(-150px); /* Shift image left by 150px */
   }
 
   /* Hero Section Adjustments */
