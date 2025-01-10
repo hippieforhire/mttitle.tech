@@ -28,7 +28,7 @@ body, html {
 /* HEADER: Full-Width with Flexbox Layout */
 .site-header {
   width: 100%;
-  height: 200px; /* Maintain original header height */
+  height: 80px; /* Match SVG height */
   background-color: #19794A; /* Ensure background matches header image */
   display: flex; /* Use Flexbox for alignment */
   align-items: center; /* Vertically center items */
@@ -45,7 +45,7 @@ body, html {
   height: 100%; /* Match header height */
   width: auto; /* Maintain aspect ratio */
   max-width: none; /* Allow full scaling */
-  object-fit: cover; /* Cover the header area without distortion */
+  object-fit: contain; /* Use 'contain' to ensure full SVG is visible */
   object-position: left; /* Align the image to the left */
   display: block;
   margin-left: 15px; /* Space from the very left edge */
@@ -150,7 +150,7 @@ body, html {
   
   .header-nav {
     position: absolute;
-    top: 200px; /* Position below the fixed header */
+    top: 80px; /* Position below the fixed header */
     left: 0;
     width: 100%;
     max-height: 0;
@@ -189,13 +189,14 @@ body, html {
     justify-content: space-between;
     align-items: center;
     padding: 0; /* Already aligned flush */
-    height: 200px; /* Maintain original height */
+    height: 80px; /* Maintain original height */
   }
 
   .header-image {
     height: 100%; /* Maintain original height */
     margin-left: 15px; /* Align with previous */
     max-width: none; /* Allow full scaling */
+    object-fit: contain; /* Ensure full SVG is visible */
   }
 
   /* Hero Section Adjustments */
@@ -321,7 +322,7 @@ body, html {
 
 /* MAIN CONTENT */
 main {
-  margin-top: 220px; /* Adds space above the main content to account for fixed header */
+  margin-top: 80px; /* Adjusted to match header height */
 }
 
 .reveal-on-scroll {
