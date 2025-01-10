@@ -34,18 +34,18 @@
   <!-- TSPARTICLES BACKGROUND DIV -->
   <div id="tsparticles"></div>
 
-  <!-- HEADER UPDATED WITH header5.svg -->
+  <!-- HEADER UPDATED WITH Header5.svg -->
   <header
     class="site-header position-relative"
     onclick="window.location.href='index.html'"
   >
     <img
-      src="images/header5.svg"
+      src="images/Header5.svg" <!-- Corrected case here -->
       alt="Mark Twain Title Company Header"
       class="header-image"
     >
     <!-- HAMBURGER for mobile, hidden on desktop -->
-    <div class="hamburger" onclick="toggleMenu(event)" aria-label="Toggle navigation menu">
+    <div class="hamburger" onclick="toggleMenu(event)" aria-label="Toggle navigation menu" aria-controls="mainNav" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
@@ -176,6 +176,10 @@
       nav.classList.toggle('nav-open');
       const hamburger = document.querySelector('.hamburger');
       hamburger.classList.toggle('is-active');
+      
+      // Update aria-expanded attribute
+      const isOpen = nav.classList.contains('nav-open');
+      hamburger.setAttribute('aria-expanded', isOpen);
     }
 
     document.addEventListener('DOMContentLoaded', function() {
