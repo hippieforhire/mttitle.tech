@@ -35,14 +35,12 @@
   <div id="tsparticles"></div>
 
   <!-- HEADER UPDATED WITH Header5.svg -->
-  <header
-    class="site-header position-relative"
-    onclick="window.location.href='index.html'"
-  >
+  <header class="site-header position-relative">
     <img
       src="images/Header5.svg"
       alt="Mark Twain Title Company Header"
       class="header-image"
+      onclick="window.location.href='index.html'"
     >
     <!-- HAMBURGER for mobile, hidden on desktop -->
     <div class="hamburger" onclick="toggleMenu(event)" aria-label="Toggle navigation menu" aria-controls="mainNav" aria-expanded="false">
@@ -103,6 +101,8 @@
   >
     <div class="row g-5">
       <div class="col-md-6" data-aos="fade-right">
+        <!-- Added extra spacing to prevent overlapping -->
+        <div class="mb-4"></div>
         <h2 class="mb-4 reveal-on-scroll">Get in Touch</h2>
         <p class="reveal-on-scroll">
           <strong>Mark Twain Title Company</strong><br />
