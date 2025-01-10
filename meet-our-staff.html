@@ -37,14 +37,12 @@
   <div id="tsparticles"></div>
 
   <!-- HEADER UPDATED WITH Header5.svg -->
-  <header
-    class="site-header position-relative"
-    onclick="window.location.href='index.html'"
-  >
+  <header class="site-header position-relative">
     <img
       src="images/Header5.svg"
       alt="Mark Twain Title Company Header"
       class="header-image"
+      onclick="window.location.href='index.html'"
     >
     <!-- HAMBURGER for mobile, hidden on desktop -->
     <div class="hamburger" onclick="toggleMenu(event)" aria-label="Toggle navigation menu" aria-controls="mainNav" aria-expanded="false">
@@ -162,7 +160,7 @@
   </main>
 
   <!-- SCROLL TO TOP BUTTON -->
-  <div class="scroll-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+  <div class="scroll-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" aria-label="Scroll to top">
     ▲
   </div>
 
