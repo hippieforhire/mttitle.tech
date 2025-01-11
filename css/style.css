@@ -28,44 +28,43 @@ body, html {
 /* HEADER: Full-Width with Flexbox Layout */
 .site-header {
   width: 100%;
-  height: 80px; /* Match SVG height */
-  background-color: #056B38; /* Changed to #056B38 */
-  display: flex; /* Use Flexbox for alignment */
-  align-items: flex-end; /* Align items to the bottom */
-  justify-content: flex-start; /* Align items to the start */
-  position: fixed; /* Fix the header to the top */
+  height: 80px; /* Keep the header height unchanged */
+  background-color: #056B38; 
+  display: flex; 
+  align-items: flex-end; 
+  justify-content: flex-start; 
+  position: fixed; 
   top: 0;
   left: 0;
   overflow: hidden;
-  z-index: 1000; /* Ensure header is above other elements */
+  z-index: 1000; 
 }
 
-/* Adjust Header Image */
+/* Adjust Header Image so it spans across the top */
 .header-image {
-  height: 100%; /* Match header height */
-  width: auto; /* Maintain aspect ratio */
-  max-width: none; /* Allow full scaling */
-  object-fit: contain; /* Use 'contain' to ensure full SVG is visible without cropping */
-  object-position: left; /* Align the image to the left */
+  height: 100%; 
+  width: 100%; 
+  object-fit: cover; 
+  object-position: left center; 
   display: block;
-  margin-left: 15px; /* Space from the very left edge */
-  transform: translateX(-250px); /* Shift image left by 250px on desktop */
+  margin-left: 0; 
+  transform: none; 
+  max-width: none; 
 }
 
 /* Nav Positioned Next to the Header Image */
 .header-nav {
-  /* Remove margin-left to align to bottom-left */
-  background-color: transparent; /* Remove background color */
+  background-color: transparent; 
   padding: 0;
   border-radius: 0;
   transition: max-height 0.3s ease, opacity 0.3s ease;
-  max-height: 999px; /* Large value to keep nav visible on desktop */
+  max-height: 999px; 
   opacity: 1;
-  flex-grow: 1; /* Allow nav to take remaining space */
-  z-index: 1001; /* Ensure nav is above other elements */
-  position: absolute; /* Position absolutely within header */
-  bottom: 0; /* Align to the bottom */
-  left: 15px; /* Align with header image's left margin */
+  flex-grow: 1; 
+  z-index: 1002; /* Bumped to ensure menu is above the image on mobile */
+  position: absolute; 
+  bottom: 0; 
+  left: 15px; 
 }
 
 /* Nav List */
@@ -73,49 +72,49 @@ body, html {
   list-style: none;
   padding: 0;
   margin: 0;
-  text-align: left; /* Align links to the left */
-  display: flex; /* Display links inline */
-  align-items: flex-end; /* Align items to the bottom */
+  text-align: left; 
+  display: flex; 
+  align-items: flex-end; 
 }
 
 /* Nav Items */
 .header-nav li {
   display: inline-block;
-  margin-right: 20px; /* Space between links */
+  margin-right: 20px; 
 }
 
 /* Nav Links */
 .header-nav a {
-  color: #ffffff; /* White text */
+  color: #ffffff; 
   font-weight: 500;
   font-size: 1rem;
   text-decoration: none;
   padding: 0.5rem 0.75rem;
   border-radius: 0;
-  background-color: transparent; /* Ensure no background */
+  background-color: transparent; 
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .header-nav a.active {
   text-decoration: underline;
-  color: #ffd700 !important; /* Highlight active link */
+  color: #ffd700 !important; 
 }
 
 .header-nav a:hover {
-  color: #ffd700; /* Hover color to yellow */
-  background-color: transparent; /* No background on hover */
+  color: #ffd700; 
+  background-color: transparent; 
 }
 
 /* HAMBURGER MENU */
 .hamburger {
-  display: none; /* Hidden on desktop, shown on mobile via media queries */
+  display: none; 
   position: absolute;
-  top: 15px; /* Adjusted to prevent overlap with nav */
+  top: 15px; 
   right: 15px;
   width: 24px;
   height: 24px;
   cursor: pointer;
-  z-index: 1002; /* Ensure hamburger is above nav */
+  z-index: 1002; 
 }
 
 .hamburger span {
@@ -141,7 +140,7 @@ body, html {
 
 /* When .nav-open is Active (on Mobile) */
 .header-nav.nav-open {
-  max-height: 500px; /* Increased height to accommodate more links */
+  max-height: 500px; 
   opacity: 1;
 }
 
@@ -154,19 +153,19 @@ body, html {
   
   .header-nav {
     position: absolute;
-    top: 80px; /* Position below the fixed header */
+    top: 80px; 
     left: 0;
     width: 100%;
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.8); /* Add background for mobile nav */
+    background-color: rgba(0, 0, 0, 0.8);
     transition: max-height 0.3s ease, opacity 0.3s ease;
-    z-index: 1001; /* Ensure nav is above other elements */
+    z-index: 1002; 
   }
   
   .header-nav.nav-open {
-    max-height: 500px; /* Increased height to accommodate more links */
+    max-height: 500px; 
     opacity: 1;
   }
 
@@ -193,16 +192,18 @@ body, html {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0; /* Already aligned flush */
-    height: 80px; /* Maintain original height */
+    padding: 0; 
+    height: 80px; 
   }
 
   .header-image {
-    height: 100%; /* Maintain original height */
-    margin-left: 15px; /* Align with previous */
-    max-width: none; /* Allow full scaling */
-    object-fit: contain; /* Ensure full SVG is visible */
-    transform: translateX(-150px); /* Adjusted shift: Shift image left by 150px */
+    height: 100%; 
+    width: 100%;
+    object-fit: cover; 
+    object-position: left center; 
+    margin-left: 0;
+    transform: none; 
+    max-width: none;
   }
 
   /* Hero Section Adjustments */
@@ -212,7 +213,7 @@ body, html {
   }
 
   .video-container {
-    background-color: #056B38; /* Changed to match the new header color */
+    background-color: #056B38; 
   }
 
   .hero-overlay {
@@ -230,7 +231,7 @@ body, html {
 
   /* Adjust Main Content Spacing for Mobile */
   main {
-    margin-top: 2rem; /* Increased margin to prevent overlapping */
+    margin-top: 2rem; 
   }
 }
 
@@ -245,26 +246,20 @@ body, html {
     left: 5%;
   }
 
-  /* Adjust Main Content Spacing for Desktop */
   main {
-    margin-top: 100px; /* Slightly increased margin for better spacing */
+    margin-top: 100px; 
   }
 
-  /* Ensure the header spans the full width */
   .header-nav {
     flex-grow: 1;
-    justify-content: flex-start; /* Align navigation links to the left */
+    justify-content: flex-start; 
     position: absolute;
     bottom: 0;
     left: 15px;
   }
 
   .header-nav ul {
-    justify-content: flex-start; /* Align links to the left */
-  }
-
-  .header-image {
-    transform: translateX(0); /* Remove translation on desktop */
+    justify-content: flex-start; 
   }
 }
 
@@ -275,13 +270,13 @@ body, html {
   min-height: 450px;
   position: relative;
   overflow: hidden;
-  background-color: #056B38; /* Changed to match header */
+  background-color: #056B38;
 }
 
 .video-container {
   width: 100%;
   height: 100%;
-  background-color: #056B38; /* Changed to match header */
+  background-color: #056B38;
   position: relative;
 }
 
@@ -291,7 +286,7 @@ body, html {
   left: 50%;
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Changed to contain to prevent cropping */
+  object-fit: contain; 
   object-position: center;
   transform: translate(-50%, -50%);
   z-index: 1;
@@ -316,7 +311,6 @@ body, html {
   animation: fadeDownHeroTitle 1.3s ease forwards;
 }
 
-/* Typed Text, No Background */
 .hero-subtitle-text {
   color: #fff !important;
   font-weight: bold;
@@ -350,11 +344,11 @@ body, html {
 
 /* MAIN CONTENT */
 main {
-  margin-top: 80px; /* Adjusted to match header height */
+  margin-top: 80px; 
 }
 
 .reveal-on-scroll {
-  margin-top: 1rem; /* Additional spacing for each paragraph if needed */
+  margin-top: 1rem; 
 }
 
 /* FOOTER */
@@ -407,6 +401,20 @@ footer {
   padding: 2rem 0;
 }
 
+.badge-section img {
+  transition: transform 0.3s ease;
+}
+
+.badge-section img:hover {
+  transform: scale(1.05);
+}
+
+/* Ensure the Stewart Badge Doesn't Overflow */
+.stewart-badge {
+  max-width: 200px;
+  background-color: transparent; /* If the PNG is truly transparent, no white box should appear. */
+}
+
 /* SCROLL-TO-TOP */
 .scroll-to-top {
   display: none;
@@ -427,17 +435,4 @@ footer {
 .container {
   max-width: 1140px;
   margin: 0 auto;
-}
-
-.badge-section img {
-  transition: transform 0.3s ease;
-}
-
-.badge-section img:hover {
-  transform: scale(1.05);
-}
-
-/* Ensure the Stewart Badge Doesn't Overflow */
-.stewart-badge {
-  max-width: 200px;
 }
