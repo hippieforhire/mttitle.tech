@@ -257,6 +257,10 @@ body, html {
   .header-nav ul {
     justify-content: flex-end; /* Align links to the right */
   }
+
+  .header-image {
+    transform: translateX(0); /* Remove translation on desktop */
+  }
 }
 
 /* HERO SECTION */
