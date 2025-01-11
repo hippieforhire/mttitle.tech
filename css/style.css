@@ -247,6 +247,16 @@ body, html {
   main {
     margin-top: 100px; /* Slightly increased margin for better spacing */
   }
+
+  /* Ensure the header spans the full width */
+  .header-nav {
+    flex-grow: 1;
+    justify-content: flex-end; /* Align navigation links to the right */
+  }
+
+  .header-nav ul {
+    justify-content: flex-end; /* Align links to the right */
+  }
 }
 
 /* HERO SECTION */
