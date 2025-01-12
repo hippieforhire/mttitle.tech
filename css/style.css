@@ -40,12 +40,12 @@ body, html {
   z-index: 1000; 
 }
 
-/* Adjust Header Image so it spans across the top */
+/* Adjust Header Image so it spans across top */
 .header-image {
   height: 100%; 
   width: 100%; 
   object-fit: cover; 
-  /* CHANGED THIS TO CENTER INSTEAD OF LEFT CENTER */
+  /* Keep center for desktop */
   object-position: center; 
   display: block;
   margin-left: 0; 
@@ -62,8 +62,7 @@ body, html {
   max-height: 999px; 
   opacity: 1;
   flex-grow: 1; 
-  /* BUMPED THIS Z-INDEX HIGHER TO ENSURE NAV & HAMBURGER ABOVE IMAGE */
-  z-index: 9999; 
+  z-index: 9999; /* So menu/hamburger is above image */
   position: absolute; 
   bottom: 0; 
   left: 15px; 
@@ -115,7 +114,6 @@ body, html {
   width: 24px;
   height: 24px;
   cursor: pointer;
-  /* Also ensure hamburger is above the SVG */
   z-index: 9999; 
 }
 
@@ -148,12 +146,19 @@ body, html {
 
 /* MOBILE STYLES */
 @media (max-width: 768px) {
+
   .hamburger {
     display: block;
   }
-  
+
+  /* SHIFT THE LIGHTHOUSE A BIT RIGHT ON MOBILE ONLY */
+  .header-image {
+    object-position: left center;
+    margin-left: 10px; /* nudge so lighthouse isn’t cut off */
+  }
+
   .header-nav {
-    position: absolute;
+    position: fixed; /* so it’s visible, not clipped by overflow */
     top: 80px; 
     left: 0;
     width: 100%;
@@ -193,16 +198,7 @@ body, html {
     align-items: center;
     padding: 0; 
     height: 80px; 
-  }
-
-  .header-image {
-    height: 100%; 
-    width: 100%;
-    object-fit: cover; 
-    object-position: center; 
-    margin-left: 0;
-    transform: none; 
-    max-width: none;
+    overflow: visible; /* so nothing gets clipped on mobile */
   }
 
   .hero-section {
@@ -406,7 +402,7 @@ footer {
   transform: scale(1.05);
 }
 
-/* Ensure the Stewart Badge Doesn't Overflow */
+/* Stewart Badge Sizing */
 .stewart-badge {
   max-width: 200px;
   background-color: transparent;
@@ -428,7 +424,7 @@ footer {
   transition: opacity 0.3s ease;
 }
 
-/* Additional Styling for Consistency */
+/* Container Width */
 .container {
   max-width: 1140px;
   margin: 0 auto;
