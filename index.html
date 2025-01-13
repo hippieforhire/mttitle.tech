@@ -46,7 +46,7 @@
       onclick="window.location.href='index.html'"
     >
 
-    <!-- Desktop Nav (unchanged) -->
+    <!-- Desktop Nav (unchanged, hidden on mobile) -->
     <nav class="header-nav d-none d-md-block" id="mainNav">
       <ul class="list-unstyled mb-0 nav-no-wrap">
         <li class="list-inline-item">
@@ -62,18 +62,12 @@
       </ul>
     </nav>
 
-    <!-- MOBILE LINKS: shown only on mobile, instead of hamburger -->
-    <div class="mobile-links d-md-none">
-      <ul class="list-unstyled mb-0">
-        <li>
-          <a href="contact-us.html">Contact Us</a>
-        </li>
-        <li>
-          <a href="meet-our-staff.html">Meet Our Staff</a>
-        </li>
-        <li>
-          <a href="timeline5.html">Our History</a>
-        </li>
+    <!-- MOBILE LINKS: shown only on mobile, horizontally in white text -->
+    <div class="mobile-links d-block d-md-none">
+      <ul class="mb-0">
+        <li><a href="contact-us.html">Contact Us</a></li>
+        <li><a href="meet-our-staff.html">Meet Our Staff</a></li>
+        <li><a href="timeline5.html">Our History</a></li>
       </ul>
     </div>
   </header>
@@ -251,7 +245,7 @@
       lax.init();
       lax.addDriver('scrollY', () => window.scrollY);
 
-      // Desktop nav hover effect remains
+      // Desktop nav hover effect
       document.querySelectorAll('.header-nav a').forEach(link => {
         link.addEventListener('mouseenter', e => {
           anime({
