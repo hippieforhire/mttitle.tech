@@ -145,12 +145,12 @@ body, html {
     display: block !important;
   }
 
-  /* Shift the header image so the lighthouse & name 
-     appear at the left edge, as requested */
+  /* SHIFT THE HEADER IMAGE MUCH FURTHER LEFT so your 
+     logo (lighthouse + text) appears first on phone screens */
   .header-image {
-    object-position: left 20%; 
-    /* Tweak 20% as needed to shift it “far left.” 
-       Increase to 10% or even a negative margin if you must. */
+    object-position: left -150px center; 
+    /* Adjust the “-150px” to push the image even further left
+       if needed. Larger negative = more shift. */
   }
 
   .hero-section {
