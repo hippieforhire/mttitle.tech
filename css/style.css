@@ -45,7 +45,8 @@ body, html {
   height: 100%; 
   width: 100%; 
   object-fit: cover; 
-  /* Keep center for desktop */
+  /* Keep center on desktop; 
+     we’ll shift for mobile below */
   object-position: center; 
   display: block;
   margin-left: 0; 
@@ -53,7 +54,7 @@ body, html {
   max-width: none; 
 }
 
-/* Nav Positioned Next to the Header Image */
+/* Nav Positioned Next to the Header Image (desktop only) */
 .header-nav {
   background-color: transparent; 
   padding: 0;
@@ -62,7 +63,7 @@ body, html {
   max-height: 999px; 
   opacity: 1;
   flex-grow: 1; 
-  z-index: 9999; /* So the nav is above the header image if needed */
+  z-index: 9999; 
   position: absolute; 
   bottom: 0; 
   left: 15px; 
@@ -77,13 +78,11 @@ body, html {
   align-items: flex-end; 
 }
 
-/* Nav Items */
 .header-nav li {
   display: inline-block;
   margin-right: 20px; 
 }
 
-/* Nav Links */
 .header-nav a {
   color: #ffffff; 
   font-weight: 500;
@@ -105,26 +104,53 @@ body, html {
   background-color: transparent; 
 }
 
-/* 
-   REMOVED the hamburger classes/rules entirely, 
-   since we’re no longer using a mobile hamburger. 
-*/
+/* MOBILE-LINKS: by default hidden on desktop, styled horizontally on mobile */
+.mobile-links {
+  display: none; /* Overridden on smaller screens */
+  position: absolute;
+  top: 10px; 
+  right: 10px;
+  z-index: 9999;
+}
+.mobile-links ul {
+  margin: 0;
+  padding: 0;
+  display: flex; /* horizontal */
+  gap: 1rem;     /* small spacing */
+}
+.mobile-links li {
+  list-style: none;
+}
+.mobile-links a {
+  color: #ffffff !important;
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+  background-color: transparent;
+  transition: color 0.3s ease;
+}
+.mobile-links a:hover {
+  color: #ffd700;
+}
 
 /* MOBILE STYLES */
 @media (max-width: 768px) {
-  
-  /* SHIFT THE LIGHTHOUSE A BIT RIGHT ON MOBILE ONLY */
-  .header-image {
-    object-position: left center;
-    margin-left: 10px; /* nudge so the lighthouse isn’t cut off */
+  /* Hide the desktop nav entirely on mobile */
+  .header-nav.d-none.d-md-block {
+    display: none !important;
   }
 
-  /* If your old code had .header-nav changes for mobile, 
-     keep them or remove them entirely if you no longer need them. 
-     Since the hamburger is gone, you can decide if you want
-     .header-nav hidden or something else on mobile. */
-  .header-nav {
-    display: none; /* or you can keep it if you want, up to you */
+  /* Show the .mobile-links block on phone */
+  .mobile-links.d-block.d-md-none {
+    display: block !important;
+  }
+
+  /* Shift the header image so the lighthouse & name 
+     appear at the left edge, as requested */
+  .header-image {
+    object-position: left 20%; 
+    /* Tweak 20% as needed to shift it “far left.” 
+       Increase to 10% or even a negative margin if you must. */
   }
 
   .hero-section {
@@ -152,11 +178,6 @@ body, html {
   main {
     margin-top: 2rem; 
   }
-
-  /* 
-     If you have new “mobile links” placed in the index.html top-right, 
-     style them here, or you can keep using your prior approach. 
-  */
 }
 
 /* DESKTOP STYLES */
@@ -181,7 +202,6 @@ body, html {
     bottom: 0;
     left: 15px;
   }
-
   .header-nav ul {
     justify-content: flex-start; 
   }
@@ -291,7 +311,7 @@ footer {
   border-radius: 6px;
 }
 
-/* Subtle Fade/Zoom on Images Site-Wide (Except Hero Logos Above) */
+/* Subtle Fade/Zoom on images */
 img:not(.hero-video) {
   transition: transform 0.4s ease, opacity 0.4s ease;
 }
