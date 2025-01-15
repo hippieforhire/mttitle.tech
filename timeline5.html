@@ -77,35 +77,38 @@
     </script>
 
     <!-- 
-      MODIFICATION #1: 
-      A small override to fix the colorful gradient line and the desktop header height,
-      plus a tweak on mobile so dates aren’t cut off. 
-      We keep these here so we don’t break anything else in your site.
+      MODIFICATION:
+      Overriding a few styles to ensure the timeline is colorful 
+      and not always faded on mobile.
     -->
     <style>
-      /* Colorful timeline line fix: remove plain background-color and ensure gradient is visible. */
+      /* Make the parent line transparent so the gradient is fully visible. */
+      .timeline_progress {
+        background: transparent !important; 
+      }
       .timeline_progress-bar {
-        background: linear-gradient(#ff7448, #ff4848 51%, #6248ff);
-        /* remove any plain background-color or “#fff” behind it. */
+        background-image: linear-gradient(#ff7448, #ff4848 51%, #6248ff);
         z-index: -1;
       }
 
-      /* Desktop: let the SVG fit fully (object-fit: contain).
-         This ensures the bottom text isn’t cut off. */
+      /* Desktop: make sure the SVG fits fully. */
       @media (min-width: 992px) {
         .header-image {
           object-fit: contain !important; /* contain instead of cover */
         }
       }
 
-      /* Mobile: fix left side cut-off & fade issues by shifting date-text
-         a little to the right and ensuring full opacity so it’s not stuck "faded." */
+      /* Mobile: ensure items are not stuck faded. */
       @media (max-width: 767px) {
-        .timeline_left {
-          padding-right: 1rem; /* some padding so the date isn’t cut off */
-        }
+        .timeline_left,
+        .timeline_item,
+        .timeline_text,
         .timeline_date-text {
-          opacity: 1 !important; /* ensure the date text is not stuck at low opacity */
+          opacity: 1 !important;
+        }
+        /* Also pad so left text won't be cut off. */
+        .timeline_left {
+          padding-right: 1rem;
         }
       }
     </style>
