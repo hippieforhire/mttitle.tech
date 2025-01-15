@@ -1179,60 +1179,6 @@
             globalBurst.tune({ x: e.pageX, y: e.pageY }).replay();
           }
         });
-
-
-        /**
-         * BELOW: FIXES FOR THE TIMELINE SCROLLING LINE & MOBILE FADE
-         * ------------------------------------------
-         */
-        
-        // 1) Animate the colored line as you scroll.
-        const timelineSection = document.querySelector('.section-timeline');
-        const progressBar = document.querySelector('.timeline_progress-bar');
-        function updateLineProgress() {
-          if (!timelineSection || !progressBar) return;
-          // Where the timeline section starts/ends
-          const rect = timelineSection.getBoundingClientRect();
-          const windowHeight = window.innerHeight;
-
-          // The timeline extends from (startY) to (endY) in document space:
-          const startY = rect.top + window.scrollY;
-          // Subtract windowHeight so the line completes near the bottom
-          const endY = (rect.bottom + window.scrollY) - windowHeight;
-
-          // Current scroll position through the timeline
-          let scrollPos = window.scrollY - startY;
-          let totalDist = endY - startY;
-          if (scrollPos < 0) {
-            scrollPos = 0;
-          } else if (scrollPos > totalDist) {
-            scrollPos = totalDist;
-          }
-          // Increase the bar's height from 0 to totalDist
-          progressBar.style.height = scrollPos + "px";
-        }
-        window.addEventListener('scroll', updateLineProgress);
-        updateLineProgress();
-
-
-        // 2) Dim timeline items on mobile until they're in view,
-        //    then brighten them. We only do this for widths < 768px.
-        if (window.innerWidth < 768) {
-          const items = document.querySelectorAll('.timeline_item');
-          const observer = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add('is-active');
-                } else {
-                  entry.target.classList.remove('is-active');
-                }
-              });
-            },
-            { threshold: 0.5 }
-          );
-          items.forEach((it) => observer.observe(it));
-        }
       });
     </script>
   </body>
