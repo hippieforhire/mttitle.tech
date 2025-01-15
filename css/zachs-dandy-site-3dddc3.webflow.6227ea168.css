@@ -344,16 +344,6 @@ h2 {
   line-height: 36px;
 }
 
-/* Make the timeline heading a bit more visually appealing */
-.section-timeline-heading h2 {
-  letter-spacing: -0.02em;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-  transition: color 0.3s ease;
-}
-.section-timeline-heading h2:hover {
-  color: #ffcd00;
-}
-
 h3 {
   margin-top: 20px;
   font-size: 24px;
@@ -864,16 +854,8 @@ textarea.w-select {
   .w-col-small-12 {
     width: 100%;
   }
-
-  /* Prevent horizontal scrolling on iPhone or narrow devices. */
   html, body {
     overflow-x: hidden !important;
-  }
-
-  /* Keep bullets/dates pinned to 30vh so they're aligned on the line. */
-  .timeline_date-text,
-  .timeline_circle {
-    top: 30vh !important;
   }
 }
 
@@ -927,6 +909,7 @@ textarea.w-select {
   }
   .w-col-tiny-12 {
     width: 100%;
+  }
 }
 
 .w-widget {
@@ -1471,7 +1454,7 @@ textarea.w-select {
   right: 0;
 }
 .w-lightbox-close {
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0yIDAgMTggMTciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxNyI+PGcgdHJhbnNmb3JtPSJyb3RhdGUoNDUpIj48cGF0aCBkPSJtMCAwaDd2LTdoNXY3aDd2NWgtN3Y3aC01di03aC03eiIgb3BhY2l0eT0iLjQiLz48cGF0aCBkPSJtMSAxaDd2LTdoM3Y3aDd2M2gtN3Y3aC0zdi03aC03eiIgZmlsbD0iI2ZmZiIvPjwvZz48L3N2Zz4=");
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii00IDAgMTggMTciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxNyI+PGcgdHJhbnNmb3JtPSJyb3RhdGUoNDUpIj48cGF0aCBkPSJtMCAwaDd2LTdoNXY3aDd2NWgtN3Y3aC01di03aC03eiIgb3BhY2l0eT0iLjQiLz48cGF0aCBkPSJtMSAxaDN2LTdoM3Y3aDd2M2gtN3Y3aC0zdi03aC03eiIgZmlsbD0iI2ZmZiIvPjwvZz48L3N2Zz4=");
   background-size: 18px;
   height: 2.6em;
   right: 0;
@@ -1716,10 +1699,6 @@ p {
   font-size: 20px;
 }
 
-/* ----------------------------- */
-/* Changed background to #014E2C */
-/* ----------------------------- */
-
 .section-timeline-heading {
   background-color: #014E2C; /* was #0a0a0a */
 }
@@ -1737,13 +1716,8 @@ p {
   margin-right: auto;
 }
 
-/* ----------------------------- */
-/* Changed background to #014E2C */
-/* Also keep z-index >= 0 so mobile doesn't break */
-/* ----------------------------- */
-
 .section-timeline {
-  z-index: 0; /* was -3 */
+  z-index: 0; /* was -3 previously */
   background-color: #014E2C;
   position: relative;
 }
@@ -1834,7 +1808,7 @@ p {
 }
 
 .section-timeline-cta {
-  background-color: #014E2C; /* was #0a0a0a */
+  background-color: #014E2C;
 }
 
 .margin-bottom-xlarge {
@@ -2159,13 +2133,10 @@ p {
     padding-top: 80px;
     padding-bottom: 80px;
   }
-  /* We preserve the 3-column layout for timeline items.
-     But force bullets/dates to a single consistent top so they're aligned. */
   .timeline_date-text,
   .timeline_circle {
     top: 30vh !important;
   }
-
   .timeline_date-text {
     margin-bottom: 24px;
     font-size: 36px;
@@ -2215,7 +2186,6 @@ p {
     padding-top: 16px;
     padding-bottom: 16px;
   }
-  /* Prevent horizontal scrolling on iPhone or narrow devices. */
   html, body {
     overflow-x: hidden !important;
   }
@@ -2248,6 +2218,9 @@ p {
   }
 }
 
+/* 
+   @font-face references for your custom fonts, unchanged
+*/
 @font-face {
   font-family: 'Relative';
   src: url('../fonts/6775fb2abc5d894e047360b8_Relative-Bold.ttf') format('truetype');
@@ -2268,17 +2241,22 @@ p {
 }
 
 
+/* ========== TIMELINE ANIMATION ADDITIONS ========== */
+
 /* 
-   ADDED: Only for mobile fade effect
-   This ensures .timeline_item is dim by default on screens <768px,
-   and brightens to full opacity when .is-active is added via IntersectionObserver.
+   By default, we keep the progress bar collapsed 
+   (scaleY = 0) from the top. JS sets scaleY(0..1). 
 */
-@media (max-width: 767px) {
-  .timeline_item {
-    opacity: 0.3;
-    transition: opacity 0.4s ease;
-  }
-  .timeline_item.is-active {
-    opacity: 1;
-  }
+.timeline_progress-bar {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s linear;
+}
+
+/* The sticky bullet circle can get a subtle highlight on hover */
+.timeline_circle {
+  transition: box-shadow 0.3s;
+}
+.timeline_circle:hover {
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.4);
 }
