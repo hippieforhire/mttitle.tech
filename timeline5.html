@@ -34,13 +34,14 @@
       rel="apple-touch-icon"
     />
   </head>
+
   <body>
-    <!-- 
-      NEW HEADER (exact same as your main site header), 
-      so you get uniformity across this timeline page.
-    -->
+    <!-- TSPARTICLES BACKGROUND DIV -->
+    <div id="tsparticles"></div>
+
+    <!-- HEADER (identical to your main site header) -->
     <header class="site-header position-relative">
-      <!-- The SVG header image (desktop stays the same) -->
+      <!-- The SVG header image -->
       <img
         src="images/Header5.svg"
         alt="Mark Twain Title Company Header"
@@ -48,7 +49,7 @@
         onclick="window.location.href='index.html'"
       >
 
-      <!-- Desktop Nav (unchanged, hidden on mobile) -->
+      <!-- Desktop Nav (hidden on mobile) -->
       <nav class="header-nav d-none d-md-block" id="mainNav">
         <ul class="list-unstyled mb-0 nav-no-wrap">
           <li class="list-inline-item">
@@ -63,7 +64,7 @@
         </ul>
       </nav>
 
-      <!-- MOBILE LINKS: shown only on mobile, horizontally in white text -->
+      <!-- MOBILE LINKS (shown only on mobile) -->
       <div class="mobile-links d-block d-md-none">
         <ul class="mb-0">
           <li><a href="contact-us.html">Contact Us</a></li>
@@ -74,28 +75,39 @@
     </header>
     <!-- END HEADER -->
 
-    <div class="page-wrapper">
-      <div class="section-hero">
-        <div class="background-layer"></div>
-        <div class="container">
-          <div class="padding-vertical-xxlarge">
-            <div class="timeline-hero_heading-wrapper">
-              <h1>A Timeline of the Mark Twain Title Company</h1>
-              <div class="margin-bottom-medium">
-                <p class="paragraph-large">
-                  Mark Twain Title Company traces our origins back to 1898, when we
-                  were known as Marion County Abstract Company, a name we still hold
-                  the rights to. The company has been through many changes over the
-                  years, but the one thing that hasn't changed is our dedication to
-                  providing the area with the best title insurance and real estate
-                  services around. Please take a loot at our company timeline, spanning
-                  over a century.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+    <!-- HERO SECTION with video background (same as index.html) -->
+    <section class="hero-section position-relative rellax" data-rellax-speed="-1">
+      <div class="video-container">
+        <video
+          class="hero-video"
+          autoplay
+          muted
+          playsinline
+          id="heroVideo"
+        >
+          <source src="images/Logo.mp4" type="video/mp4" />
+        </video>
       </div>
+
+      <!-- Text/logo overlay -->
+      <div
+        class="hero-overlay d-flex flex-column align-items-start"
+        data-aos="zoom-in"
+      >
+        <h1 class="display-4 fw-bold mb-2 hero-title-text">
+          Mark Twain Title Company
+        </h1>
+        <p class="lead mb-4 hero-subtitle-text" id="typedSubtitle">
+          "Lighting the path to home ownership"
+        </p>
+      </div>
+    </section>
+    <!-- END HERO SECTION -->
+
+    <!-- BEGIN TIMELINE CONTENT -->
+    <div class="page-wrapper">
+      <!-- We skip the old “background-layer” & old hero from Webflow 
+           and move directly to the timeline area. -->
 
       <!-- Section heading with a bit more styling on the H2 -->
       <div class="section-timeline-heading">
@@ -940,6 +952,10 @@
         </div>
       </div>
     </div>
+    <!-- END TIMELINE CONTENT -->
+
+    <!-- Scripts from your timeline and from index.html, 
+         so the typed effect, TSParticles, AOS, etc. all work properly. -->
 
     <!-- jQuery from Webflow if needed -->
     <script
@@ -962,8 +978,151 @@
       });
     </script>
 
-    <!-- CUSTOM TIMELINE SCROLL / ANIMATION LOGIC -->
+    <!-- SCRIPTS FROM INDEX (for typed text, TSParticles, etc.) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-GoK1KRD0IrTEpBDw57NTbm1z9MR4P/JJKmVR+ikKRxrUoWib6h9z9CzZyLWR7Sjs"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/rellax.min.js"></script>
+    <script src="js/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
+    <script src="js/scrollreveal.min.js"></script>
+    <script src="js/gsap.min.js"></script>
+    <script src="js/lax.min.js"></script>
+    <script src="js/typed.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quicklink@2.3.0/dist/quicklink.umd.js"></script>
+
+    <!-- CUSTOM TIMELINE SCROLL / ANIMATION LOGIC + 
+         Index-based scripts (typed text, TSParticles, etc.) -->
     <script>
+      // For typed text in hero subtitle
+      document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({ duration: 800, once: true });
+        var rellax = new Rellax('.rellax', { center: false });
+
+        // Typed effect
+        const typedSubtitleEl = document.getElementById('typedSubtitle');
+        if (typedSubtitleEl) {
+          let typed = new Typed('#typedSubtitle', {
+            strings: ['"Lighting the path to home ownership"'],
+            typeSpeed: 60,
+            backSpeed: 30,
+            startDelay: 300,
+            backDelay: 1200,
+            loop: true,
+            onComplete: function() {
+              anime({
+                targets: '#typedSubtitle',
+                color: [
+                  { value: '#ffd700', duration: 500 },
+                  { value: '#ffffff', duration: 500 }
+                ],
+                loop: true,
+                easing: 'easeInOutSine'
+              });
+            }
+          });
+        }
+
+        // GSAP fade
+        gsap.from(".hero-overlay", {
+          opacity: 0,
+          y: -50,
+          duration: 1.2,
+          ease: "power2.out"
+        });
+
+        // MP4 exactly 2 times
+        let playedCount = 0;
+        const heroVideo = document.getElementById('heroVideo');
+        if (heroVideo) {
+          heroVideo.addEventListener('ended', function() {
+            playedCount++;
+            if (playedCount < 2) {
+              heroVideo.currentTime = 0;
+              heroVideo.play();
+            }
+          });
+        }
+
+        // TSParticles
+        tsParticles.load("tsparticles", {
+          fpsLimit: 60,
+          particles: {
+            number: { value: 30 },
+            color: { value: ["#ffffff", "#ffd700", "#ff69b4"] },
+            shape: { type: "circle" },
+            opacity: { value: 0.7 },
+            size: { value: { min: 1, max: 5 } },
+            move: { enable: true, speed: 2, direction: "none", outModes: "out" }
+          }
+        });
+
+        // ScrollReveal
+        ScrollReveal().reveal('.reveal-on-scroll', {
+          distance: '50px',
+          origin: 'bottom',
+          duration: 1000,
+          easing: 'ease-in-out'
+        });
+
+        // Lax
+        lax.init();
+        lax.addDriver('scrollY', () => window.scrollY);
+
+        // Desktop nav hover effect
+        document.querySelectorAll('.header-nav a').forEach(link => {
+          link.addEventListener('mouseenter', e => {
+            anime({
+              targets: e.target,
+              scale: 1.2,
+              duration: 300,
+              easing: 'easeOutExpo'
+            });
+          });
+          link.addEventListener('mouseleave', e => {
+            anime({
+              targets: e.target,
+              scale: 1,
+              duration: 300,
+              easing: 'easeOutExpo'
+            });
+          });
+        });
+
+        // Scroll-to-top
+        const scrollBtn = document.querySelector('.scroll-to-top');
+        window.addEventListener('scroll', () => {
+          scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+        });
+
+        // Quicklink
+        quicklink.listen();
+
+        // mo.js global burst
+        const mojs = window.mojs;
+        const globalBurst = new mojs.Burst({
+          radius: { 0: 80 },
+          count: 10,
+          children: {
+            shape: 'polygon',
+            points: 7,
+            fill: ['#FFD700', '#FF69B4', '#FFFFFF'],
+            duration: 800,
+            easing: 'cubic.out'
+          }
+        });
+        document.addEventListener('click', e => {
+          if (e.target.tagName.toLowerCase() !== 'a') {
+            globalBurst.tune({ x: e.pageX, y: e.pageY }).replay();
+          }
+        });
+      });
+
+      // CUSTOM TIMELINE PROGRESS BAR LOGIC
       (function() {
         const progressBar = document.querySelector(".timeline_progress-bar");
         if (!progressBar) return;
