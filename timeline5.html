@@ -13,6 +13,8 @@
   
   <!-- Existing CSS -->
   <link href="css/zachs-dandy-site-3dddc3.webflow.6227ea168.css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="css/style.css" />
   
   <!-- Custom CSS for Header and Navigation -->
   <style>
@@ -190,6 +192,34 @@
       </ul>
     </nav>
   </header>
+
+  <!-- HERO SECTION with video background -->
+<section class="hero-section position-relative rellax" data-rellax-speed="-1">
+  <div class="video-container">
+    <video
+      class="hero-video"
+      autoplay
+      muted
+      playsinline
+      id="heroVideo"
+    >
+      <source src="images/Logo.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <!-- Text/logo overlay -->
+  <div
+    class="hero-overlay d-flex flex-column align-items-start"
+    data-aos="zoom-in"
+  >
+    <h1 class="display-4 fw-bold mb-2 hero-title-text">
+      Mark Twain Title Company
+    </h1>
+    <p class="lead mb-4 hero-subtitle-text" id="typedSubtitle">
+      "Lighting the path to home ownership"
+    </p>
+  </div>
+</section>
   
   <!-- Page Wrapper -->
   <div class="page-wrapper">
