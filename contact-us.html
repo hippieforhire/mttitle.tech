@@ -28,43 +28,96 @@
 
   <!-- Our Custom Stylesheet -->
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Custom CSS for Header and Navigation -->
+  <style>
+    header {
+      position: relative;
+      width: 100%;
+      height: auto;
+      z-index: 9999;
+    }
+
+    header img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    header nav {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+    }
+
+    header nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+
+    header nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    header nav ul li a:hover {
+      color: #ff7448;
+    }
+
+    @media screen and (max-width: 767px) {
+      header nav {
+        bottom: 15px;
+        right: 15px;
+      }
+
+      header nav ul {
+        gap: 15px;
+      }
+
+      header nav ul li a {
+        font-size: 14px;
+      }
+    }
+
+    @media screen and (max-width: 479px) {
+      header nav {
+        bottom: 10px;
+        right: 10px;
+      }
+
+      header nav ul {
+        gap: 10px;
+      }
+
+      header nav ul li a {
+        font-size: 12px;
+      }
+    }
+  </style>
+  
 </head>
 <body>
-
   <!-- TSPARTICLES BACKGROUND DIV -->
   <div id="tsparticles"></div>
 
-  <!-- HEADER UPDATED WITH Header5.svg -->
-  <header class="site-header position-relative">
-    <img
-      src="images/Header5.svg"
-      alt="Mark Twain Title Company Header"
-      class="header-image"
-      onclick="window.location.href='index.html'"
-    >
-    <!-- HAMBURGER for mobile, hidden on desktop -->
-    <div class="hamburger" onclick="toggleMenu(event)" aria-label="Toggle navigation menu" aria-controls="mainNav" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    <!-- Nav for links at left on desktop, collapses on mobile -->
-    <nav class="header-nav" id="mainNav">
-      <ul class="list-unstyled mb-0 nav-no-wrap">
-        <li class="list-inline-item">
-          <a href="contact-us.html" id="contactLink">Contact Us</a>
-        </li>
-        <li class="list-inline-item">
-          <a href="meet-our-staff.html" id="staffLink">Meet Our Staff</a>
-        </li>
-        <!-- New "Our History" Link -->
-        <li class="list-inline-item">
-          <a href="timeline5.html" id="historyLink">Our History</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+ <!-- HEADER UPDATED WITH Header1.jpg -->
+<header>
+  <img src="images/Header1.jpg" alt="Header Image">
+  <nav aria-label="Main Navigation" style="left: 20px; right: auto;">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="contact-us.html">Contact Us</a></li>
+      <li><a href="meet-our-staff.html">Meet Our Staff</a></li>
+      <li><a href="timeline5.html">Our History</a></li>
+    </ul>
+  </nav>
+</header>
 
   <!-- HERO SECTION with video background -->
   <section class="hero-section position-relative rellax" data-rellax-speed="-1">
